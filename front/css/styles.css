@@ -310,6 +310,16 @@
                 grid-template-columns: 40% 60%;
                 row-gap: 5%;
             }
+
+            /* he tocado aqui para poner limite al tamaño de las fotos */
+
+            .mylistImg-Cont > img {
+                width: 100%;
+                height: 100%;
+            }
+
+            /* solo he añadido esto */
+
             .mylistE-divs{
                 width: 100%;
                 height: 100%;
