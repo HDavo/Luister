@@ -318,6 +318,10 @@
                 height: 100%;
             }
 
+            .popelement > img {
+                width: 100%;
+                height: 100%;
+            }
             /* solo he añadido esto */
 
             .mylistE-divs{
