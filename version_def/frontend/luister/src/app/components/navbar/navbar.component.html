@@ -1,0 +1,23 @@
+
+<nav id='navigationbar' class="maincontainers">
+    <div class="menu display-flex-center" id="logo">
+        <span> <a #asMenu id="luister-logo" routerLink="/">{{ title }}</a></span>
+    </div>
+    <ul id="menucontainer">
+        <li class="menu">
+            <span><a #asMenu routerLink="/news" routerLinkActive="page-selected"> Novedades </a></span>
+        </li>
+        <li class="menu">
+            <span> <a #asMenu routerLink="/popular" routerLinkActive="page-selected"> Popular </a></span>
+        </li>
+        <li class="menu">
+            <span> <a #asMenu routerLink="/library" routerLinkActive="page-selected"> Biblioteca </a></span>
+        </li>
+        <li class="menu">
+            <span> <a #asMenu routerLink="/discover" routerLinkActive="page-selected"> Descubrir </a></span>
+        </li>
+    </ul>
+    <div class="menu display-flex-center" id="userSession">
+        <span><a routerLink="/signin-signup">Iniciar sesión</a></span>
+    </div>
+</nav>

@@ -1,0 +1,184 @@
+
+.search-container{
+    width: 85%;
+    min-height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.search-field-shadow{
+    display: flex;
+    align-items: center;
+    position: relative;
+    min-width: 278px;
+    width: 100%;
+    max-width: 400px;
+    height: 55px;
+    border-radius: 111px;
+    color: rgb(255, 255, 255);
+}
+
+.search-field{
+    padding: 0 44px;
+    width: calc(100% - 88px);
+    height: 100%;
+    border-radius: 111px;
+    background: rgba(82, 82, 82, 0.187);
+    border: 4px inset white;
+    color: rgb(255, 255, 255);
+    font-size: 18px;
+    position: absolute;
+    font-family: 'Montserrat';
+}
+
+.search-field-shadow::before{   
+    font-size: 22px;
+    content: '\e986';
+    left: 13px;
+}
+.search-field-shadow::after{
+    font-size: 17px;
+    content: '\ea0f';
+    right: 13px;
+    cursor: pointer;
+}
+.search-field-shadow::after, .search-field-shadow::before{
+    position: absolute;
+    width: fit-content;
+    font-family: 'icomoon';
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.search-page-default-body{
+    width: 60%;
+    color: white;
+    font-family: 'Montserrat';
+    text-align: center;
+    margin: 22px 0;
+    line-height: 33px;
+}
+
+.page-section{
+    width: 80%;
+    height: fit-content;
+    color: var(--var-white);
+    margin: 20px 0;
+    font-family: 'Outfit';
+}
+
+.page-section-title{
+    display: flex;
+    align-items: center;
+    min-height: 55px;
+    font-size: 25px;
+    padding: 10px 0;
+}
+
+.page-section-content{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    column-gap: 30px;
+    row-gap: 38px;
+
+}
+.page-section-element{
+    width: 160px;
+    height: 240px;
+    border-radius: clamp(5px,7px,10px);
+    background-color: rgba(96, 96, 96, 0.089);
+    cursor: pointer;
+    display: grid;
+    grid-template-columns: 100%; 
+    grid-template-rows: 67% 13% 16%;
+    row-gap: 2%;
+    justify-content: center;
+    padding: 20px;
+    transition: .2s;      
+}
+.page-section-element:hover{
+    background-color: rgba(81, 81, 81, 0.364);
+    transform: scale(1.03);
+}
+.image{
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+.artist-image{
+    border-radius: 100%;
+    box-shadow: 0 0 8px 8px rgba(32, 16, 53, 0.1),
+                0 0 11px 22px rgba(0, 0, 0, 0.1),
+                0 0 22px 33px rgba(0, 0, 0, 0.1);
+}
+.album-image{
+    border-radius: 7px;
+}
+
+.card-title{
+    font-size: 16px;
+    line-height: 40px;
+    font-weight: 600;
+    display: block;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.card-description{
+    display: flex;
+    align-items: center;
+    text-align: justify;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.genre-element{
+    --opacity: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 200px;
+    height: 200px;
+    border-radius: clamp(5px,7px,10px);
+    overflow: hidden;
+    transition: box-shadow .3s, transform .15s;
+    position: relative;
+    cursor: pointer;
+       
+}
+.genre-element::before{
+    line-height: 55px;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, var(--opacity));
+    content: '';
+    z-index: 1;
+       
+}
+.genre-element:hover{
+    --opacity: .5;
+    transform: scale(1.022);
+    color: white;
+    
+}
+.genre-element-image{
+    position: absolute;
+}
+.genre-element-title{
+    overflow: hidden;
+    width: fit-content;
+    max-width: 80%;
+    height: fit-content;
+    position: absolute;
+    font-size: 22px;
+    text-align: center;
+    bottom: 9px;
+    z-index: 2;
+}
+
+

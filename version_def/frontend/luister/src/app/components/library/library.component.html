@@ -1,0 +1,43 @@
+<div id="pagecontainer" class="maincontainers" #asHomePage>
+    <div id="mainpagetitle">
+        <div class="mainpagetitle-cont">
+            <h1 id="mainpagetitle-title">Biblioteca</h1>
+            <p id="mainpagetitle-body">
+                Puedes visualizar tus canciones favoritas en esta sección. <br>
+                Crea listas personalizadas para agrupar y  guardar tus canciones favoritas según tus propios criterios.
+            </p>
+        </div>
+    </div>
+
+    <div class="new-custom-list-cont">
+        <button class="new-list-button">Nueva lista personalizada</button>
+    </div>
+
+    <div class="library-body-container">
+        <div class="favorite-songs-list">
+            <div class="favorite-songs-list-body">
+                <div class="favorite-songs-list-type">Lista predefinida</div>
+                <h1 class="favorite-songs-list-title">Canciones que te gustan</h1>
+                <div class="favorite-songs-list-description">
+                    <span class="list-owner">Luke SkyWalker</span> 
+                    <span class="list-count">0 canciones </span>
+                </div>
+            </div>
+            <img class="fav-songs-list-image" src="../../../assets/images/fav-list.webp" alt="favorite songs">
+        </div>
+
+        <div class="custom-list" *ngFor="let list of customUserList">
+            <div class="custom-list-body">
+                <div class="custom-list-type">{{list.type}}</div>
+                <h1 class="custom-list-title">{{list.name}}</h1>
+                <span class="custom-list-count"> {{list.totalTracks}} canciones </span>
+            </div>
+            <img *ngIf="list?.img; else defaultimg" class="custom-list-image" src="{{list.img}}" alt="favorite songs">
+            <ng-template #defaultimg>
+                <img class="custom-list-image" src="../../../assets/images/default-custom-list-image.webp" alt="favorite songs">
+            </ng-template>
+        </div>
+
+    </div>
+
+</div>

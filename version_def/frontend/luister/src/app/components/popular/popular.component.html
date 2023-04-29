@@ -1,0 +1,39 @@
+<div id="pagecontainer" class="maincontainers" #asHomePage>
+    <div id="mainpagetitle">
+        <div class="mainpagetitle-cont">
+            <h1 id="mainpagetitle-title">Lo más popular</h1>
+            <p id="mainpagetitle-body">
+                Disfruta de los artistas, albumes y pistas más populares del momento. <br>
+                Todas las canciones nuevas y los álbumes más recientes de tus artistas y grupos favoritos a tu disposición.
+            </p>
+        </div>
+    </div>
+
+    <!-- <div class="page-section">
+        <h2 class="page-section-title">Canciones</h2>
+        <div class="page-section-content">
+            
+        </div>
+    </div> -->
+
+    <div class="page-section">
+        <h2 class="page-section-title">Álbumes</h2>
+        <div class="page-section-content">
+            <!-- <div class="page-section-element" *ngFor="let album of albums?.items" #album id="{{album.id}}">
+                <img *ngIf="album.images.length != 0; else defaultimg" class='image album-image' src="{{album.images[0].url}}" alt="{{album.name}}">
+                <ng-template #defaultimg>
+                    <img class='image artist-image' src="https://c8.alamy.com/compes/2e2kkm2/notas-musicales-con-placa-musical-sobre-fondo-blanco-musica-abstracta-fondo-de-disco-2e2kkm2.jpg" alt="{{album.name}}">
+                </ng-template>
+                <p class="card-title" > {{album.name}} </p>
+                <p class="card-description">
+                    <span *ngFor="let artist of album.artists"> {{artist.name}} &nbsp;</span>
+                </p>
+            </div> -->
+        </div>
+        <div class="prev-next-captions-container">
+            <!-- <button class="prev-page-caption prevnext-captions" *ngIf="albums?.previous" (click)="getPage(albums?.previous || albums?.href)">Anterior</button>
+            <button class="next-page-caption prevnext-captions" *ngIf="albums?.next" (click)="getPage(albums?.next || albums?.href)">Siguiente</button> -->
+        </div>
+    </div>
+
+</div>

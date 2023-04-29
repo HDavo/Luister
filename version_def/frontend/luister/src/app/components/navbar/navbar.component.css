@@ -1,0 +1,119 @@
+
+    #navigationbar{
+        height: var(--nav-height);
+        background-color: var(--var-black);
+        display: flex;
+        position: sticky;
+        top: 0;
+        z-index: 4;
+    }
+    #logo{
+        width: 20%;
+    }
+    #menucontainer{
+        width: 58%;
+        max-width: 555px;
+        height: 100%;
+        justify-content: left;
+        align-items: center;
+        display: grid;
+        grid-template-columns: repeat(4, 25%);
+        grid-template-rows: 100%;
+    }
+    .menu{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+        width: 100%;
+        font-weight: 600;
+    }
+    #userSession{
+        position: absolute;
+        width: 22%;
+        max-width: 245px;
+        justify-self: end;
+        right: 0;
+    }
+    #userSession > span {
+        box-shadow: 0 0 1px 1px rgba(101, 75, 193, 0.086);
+        background: linear-gradient(45deg,#12054f,rgb(49, 3, 56) 30%,#12054f);
+        padding: 4px 10px;
+        border-radius: 100px;
+        transition: box-shadow .3s;
+    }
+    #userSession > span:hover {
+        box-shadow: 0 0 2px 2px rgba(183, 39, 196, 0.598);
+    }
+    #userSession > span:hover > a {
+        color: white !important;
+    }
+    .menu > span{
+        height: fit-content;
+        width: fit-content;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        transform-style: preserve-3d;
+        transition: .3s;
+    }
+    .menu > span > a{
+        transition: .2s;
+        color: var(--var-white);
+        font-family: 'Outfit';
+        height: fit-content;
+        font-size: 17px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .menu > span > a:active{
+        color: rgb(64, 128, 232) !important;
+        
+    }
+    .page-selected{ /*Clase para animaciones y efectos*/
+        color: rgb(204, 117, 255) !important;
+        text-shadow: 0 0 2px rgb(227, 179, 255);
+    }      
+    .menu > span:hover > a, .page-selected{
+        color: rgb(195, 146, 223);
+    }
+    .display-flex-center{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    #luister-logo{
+        --logo-shadow: #ffffff7e;
+        background: white;
+        color: transparent;
+        -webkit-background-clip: text; background-clip: text;
+        position: relative;
+        font-size: 33px;
+        font-weight: 900;
+        perspective: 200px;
+        transform: translateY(-5px);  /* ----- */
+        transition: .4s !important;
+    }
+
+
+    #luister-logo:hover{
+        --logo-shadow: rgb(67, 49, 101) !important;
+    }
+    .logo-selected{
+        --logo-shadow: rgb(85, 8, 123) !important;
+        background: linear-gradient(45deg,#998fca,rgb(207, 90, 225) 30%,#4d2ed2) !important;
+        -webkit-background-clip: text !important; background-clip: text !important;
+        color: transparent;
+    }
+    #luister-logo::before{
+        transition: .5s !important;
+        position: absolute;
+        text-shadow: 0 0 3px var(--logo-shadow);
+        color: transparent;
+        content: 'Luister';
+        transform: rotateX(220deg) translateY(-33px) translateX(2px);  /* ----- */
+    }
+       
+           

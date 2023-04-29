@@ -1,0 +1,85 @@
+
+.footer-container{
+    background-color: black;
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+    padding-top: 33px;
+}
+
+.footer-section{
+    width: 100%;
+    height: 55px;
+    color: white;
+}
+.socialsNetworks{
+    display: grid;
+    grid-template-columns: repeat(3, 40px);
+    column-gap: 22px;
+    grid-template-rows: 40px;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.socialsNetworks-element{
+    --border: dashed;
+    --bcolor: rgb(173, 173, 173);
+    position: relative;
+    width: 100%;
+    height: 100%;
+    font-family: 'icomoon';
+    font-size: 14px;
+    cursor: pointer;
+    border-radius: 100px;
+    transition: .3s;
+}
+.socialsNetworks-element:hover {
+    --border: ridge;
+    --bcolor: rgb(195, 146, 223);
+    color: rgb(195, 146, 223);
+}
+#twitter::before{ content: '\ea96'; }
+#insta::before{ content: '\ea92'; }
+#facebook::before{ content: '\ea91' }
+
+.socialsNetworks-element::before{
+    border-radius: 100px;
+    border: 3px var(--border) var(--bcolor);
+    position: absolute;
+    width: calc(100% - 16px);
+    height: calc(100% - 16px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px;
+}
+
+.legal{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-family: 'Outfit';
+}
+
+.legal-element{ 
+    cursor: pointer;
+    transition: .3s;
+}
+.legal-element:hover{ 
+    cursor: pointer;
+    color: rgb(195, 146, 223);
+}
+.separator{
+    width: 1px;
+    height: 10px;
+    background-color: white;
+    margin: 0 10px;
+}
+.ccmons{
+    display: flex;
+    align-items: end;
+    justify-content: center;
+    font-family: 'Noto Sans Display';
+}
