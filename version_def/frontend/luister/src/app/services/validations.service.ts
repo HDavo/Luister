@@ -8,12 +8,12 @@ export class ValidationsService {
 
   constructor() { }
 
-  public firstNameAndLastnamePattern: string = '([a-zA-Z]+) ([a-zA-Z]+)';
+  public namePattern: string = '([a-zA-Z]+) ([a-zA-Z]+)';
   public emailPattern: string = "^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$";
 
   //TODO: poner el servicio en funcionamiento dentro de las páginas de reactive (hasta ahora con las validaciones en el propio fichero)
 
-  public noAceptado = ( control: FormControl ): ValidationErrors | null => { //esto debe devolver un objeto con el error
+  public validForm = ( control: FormControl ): ValidationErrors | null => { //esto debe devolver un objeto con el error
 
       const valor: string = control.value.trim().toLowerCase();
 
@@ -26,26 +26,26 @@ export class ValidationsService {
       return null;
   }
 
-  public campoValido( formulario: FormGroup, campo: string): boolean | null {
-      return formulario.controls[campo].errors && formulario.controls[campo].touched;
+  public validField( form: FormGroup, field: string): boolean | null {
+      return form.controls[field].errors && form.controls[field].touched;
   }
 
 
-  public camposIguales(campo1: string, campo2: string){
+  public equalInputs(field1: string, field2: string){
 
       return ( formGroup: AbstractControl): ValidationErrors | null => {
-          const valorCampo1 = formGroup.get(campo1)?.value;
-          const valorCampo2 = formGroup.get(campo2)?.value;
+          const valorfield1 = formGroup.get(field1)?.value;
+          const valorfield2 = formGroup.get(field2)?.value;
 
-          if( valorCampo1 !== valorCampo2 ){
-              formGroup.get(campo2)?.setErrors({ noIguales: true });
+          if( valorfield1 !== valorfield2 ){
+              formGroup.get(field2)?.setErrors({ notEquals: true });
               console.log('Entro ewe');
-              return { noIguales: true}
+              return { notEquals: true}
 
           }
 
           console.log('Entro aqui2');
-          formGroup.get(campo2)?.setErrors(null);
+          formGroup.get(field2)?.setErrors(null);
           return null;
 
 

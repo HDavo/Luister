@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
+import { ValidationsService} from 'src/app/services/validations.service';
 
 @Component({
   selector: 'app-login',
@@ -8,16 +9,25 @@ import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 })
 export class LoginComponent {
   myForm: FormGroup = this.fb.group({
-    email: ['', [Validators.required, Validators.email]], //TODO: poner la validación del curso de Angular para asegurarse del funcionamiento
+    email: ['', [Validators.required, Validators.pattern(this.val.emailPattern)]],
     password: ['', [Validators.required, Validators.minLength(6)]], //TODO: decidir que patrón queremos poner dentro del campo de contraseñas
   });
 
-  constructor( private fb: FormBuilder){}
+  constructor(
+    private fb: FormBuilder,
+    private val: ValidationsService
+  ){}
+
+  isValid(field: string){
+    return this.val.validField(this.myForm, field);
+  }
 
   login(){
     const {email, password} = this.myForm.value;
 
     console.log(email, password);
+
+    this.myForm.markAllAsTouched();
 
   }
 }
