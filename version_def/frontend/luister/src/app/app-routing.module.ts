@@ -5,7 +5,8 @@ import { NewsComponent } from './components/news/news.component';
 import { PopularComponent } from './components/popular/popular.component';
 import { LibraryComponent } from './components/library/library.component';
 import { DiscoverComponent } from './components/discover/discover.component';
-import { SigninSignupComponent } from './components/signin-signup/signin-signup.component';
+import { RegisterComponent } from './components/register/register.component';
+import { LoginComponent } from './components/login/login.component';
 
 const routes: Routes = [
   {
@@ -29,8 +30,16 @@ const routes: Routes = [
     component: DiscoverComponent
   },
   {
-    path: 'signin-signup',
-    component: SigninSignupComponent
+    path: 'register',
+    component: RegisterComponent
+  },
+  {
+    path: 'login',
+    component: LoginComponent
+  },
+  {
+    path: '**',
+    redirectTo: ''
   }
 ];
 

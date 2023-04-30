@@ -5,16 +5,19 @@ import { ComponentsModule } from './components/components.module';
 import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { ApibindingService } from './services/apibinding.service';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
     ComponentsModule,
+    BrowserAnimationsModule,
   ],
   providers: [ApibindingService],
   bootstrap: [AppComponent]

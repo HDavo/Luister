@@ -8,9 +8,10 @@ import { NewsComponent } from './news/news.component';
 import { PopularComponent } from './popular/popular.component';
 import { LibraryComponent } from './library/library.component';
 import { DiscoverComponent } from './discover/discover.component';
-import { SigninSignupComponent } from './signin-signup/signin-signup.component';
 import { AppRoutingModule } from '../app-routing.module';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { LoginComponent } from './login/login.component';
+import { RegisterComponent } from './register/register.component';
 
 
 @NgModule({
@@ -22,12 +23,14 @@ import { FormsModule } from '@angular/forms';
     PopularComponent,
     LibraryComponent,
     DiscoverComponent,
-    SigninSignupComponent
+    LoginComponent,
+    RegisterComponent,
   ],
   imports: [
     CommonModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   exports: [
     NavbarComponent,
@@ -37,7 +40,7 @@ import { FormsModule } from '@angular/forms';
     PopularComponent,
     LibraryComponent,
     DiscoverComponent,
-    SigninSignupComponent,
+    RegisterComponent
   ]
 })
 

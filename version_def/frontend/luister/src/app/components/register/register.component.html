@@ -1,0 +1,68 @@
+<div id="pagecontainer" class="maincontainers">
+  <form
+    autocomplete="off"
+    [formGroup]="myForm"
+    (ngSubmit)="register()">
+
+    <span>
+      Nuevo usuario
+    </span>
+
+    <div>
+      <span>Nombre</span>
+      <br>
+      <input
+          type="text"
+          formControlName = "name"
+          placeholder="Introduce tu nombre"
+          >
+    </div>
+    <div>
+      <span>Email</span>
+      <br>
+      <input
+          type="text"
+          formControlName = "email"
+          placeholder="Introduce tu correo electrónico"
+          >
+    </div>
+    <div>
+      <span>Contraseña</span>
+      <br>
+      <input
+          type="password"
+          formControlName ="password"
+          placeholder="Introduce tu contraseña"
+          >
+    </div>
+    <div>
+      <input
+            type="checkbox"
+            name="terms"
+            id=""
+            formControlName ="consent">
+      <span for="terms">Aceptar los términos y condiciones</span>
+    </div>
+    <div class="">
+      <button class="envio"
+            type="submit"
+
+      >
+        Registro
+      </button>
+    </div>
+    <div>
+      <span>
+        ¿Ya tienes una cuenta?
+      </span>
+
+      <a routerLink="/login">
+        Inicia sesión
+      </a>
+    </div>
+  </form>
+</div>
+
+
+
+
