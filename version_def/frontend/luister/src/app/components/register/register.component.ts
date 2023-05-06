@@ -3,8 +3,6 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ValidationsService } from 'src/app/services/validations.service';
 
 
-
-
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',

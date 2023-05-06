@@ -1,0 +1,55 @@
+<div id="pagecontainer" class="maincontainers" #asHomePage #pagesectionelement>
+    
+        <div id="mainpagetitle">
+            <div class="mainpagetitle-cont">
+                <h1 id="mainpagetitle-title">{{ welcomText }}</h1>
+                <p id="mainpagetitle-body">
+                    En Luister tienes acceso a un catálogo amplio de música. <br>
+                    Puedes acceder a los distintos servicios e información que ofrecen las plataformas de streaming más populares, y eledgir aqella que más se adapte a ti. <br> <br>
+                    Aquí también podrás crear tus listas de reproducción personalizadas y guardar todas aquellas canciones que te gustan en tu lista personal. Gracias a ello, sabrás con mayor seguridad cuál es la plataforma que más te conviene. <br> <br>
+                    Adicionalmente, puedes realizar búsquedas de canciones en Luister, comparar catálogos de servicios de streaming de música, y almacen de todas tus canciones favoritas mediante listas pesonalizadas.
+                </p>
+            </div>
+        </div>
+
+        <div class="page-section">
+            <h2 class="page-section-title">Artistas sugeridos</h2>
+            <div class="page-section-content">
+                <div class="page-section-element hidden" *ngFor="let artist of artists" id="{{artist.id}}" #pagesectionelement >
+                    <img *ngIf="artist.images.length != 0; else defaultimg" class='image artist-image' src="{{artist.images[0].url}}" alt="{{artist.type}} {{artist.name}}">
+                    <ng-template #defaultimg>
+                        <img class='image artist-image' src="https://c8.alamy.com/compes/2e2kkm2/notas-musicales-con-placa-musical-sobre-fondo-blanco-musica-abstracta-fondo-de-disco-2e2kkm2.jpg" alt="{{artist.type}} {{artist.name}}">
+                    </ng-template>
+                    <span class="card-title">
+                        <a routerLink="/details/artist/{{artist.id}}">{{artist.name}}</a>
+                    </span>
+                    <span class="card-description"> Artista </span>
+                </div>
+            </div>
+        </div>
+
+        <div class="page-section">
+            <h2 class="page-section-title">Los siguientes álbumes podrian intersarte</h2>
+            <div class="page-section-content">
+                <div class="page-section-element hidden" #pagesectionelement *ngFor="let album of albums" id="{{album.id}}">
+                    <img *ngIf="album.images.length != 0; else defaultimg" class='image album-image' src="{{album.images[0].url}}" alt="{{album.name}}">
+                    <ng-template #defaultimg>
+                        <img class='image artist-image' src="https://c8.alamy.com/compes/2e2kkm2/notas-musicales-con-placa-musical-sobre-fondo-blanco-musica-abstracta-fondo-de-disco-2e2kkm2.jpg" alt="{{album.name}}">
+                    </ng-template>
+                    <a class="card-title" routerLink="/details/album/{{album.id}}"> {{album.name}} </a>
+                    <p class="card-description" >Album</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="page-section">
+            <h2 class="page-section-title">Géneros y listas predeterminadas</h2>
+            <div class="page-section-content">
+                <div class="genre-element" *ngFor="let category of categories" id="{{category.id}}" #pagesectionelement>
+                    <img class='image genre-element-image' src="{{category.icons[0].url}}" alt="meteora">
+                    <span class="genre-element-title">{{category.name}}</span>
+                </div>
+            </div>
+        </div>
+
+</div>

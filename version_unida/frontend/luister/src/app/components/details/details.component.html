@@ -1,0 +1,133 @@
+<div id="pagecontainer" class="maincontainers" #asMainContainer>
+
+    <div *ngIf="elementType == 'album'" class="page-section">
+        <div class="left-container">
+            <img *ngIf="album.data.images; else defaultimg" src="{{album.data?.images[0].url}}" alt="album image">
+            <ng-template #defaultimg>
+                <img src="../../../assets/images/default-custom-list.png" alt="album image">
+            </ng-template>
+            <div class="left-bottom-info">
+                <div>Lanzamiento: {{album.data?.release_date}}</div>
+                <div>Género: Hip-Hop - R&B</div>
+                <div>{{album.data?.label}}</div>
+            </div>
+            <div class="left-bottom-platforms">
+                <h3 class="left-bottom-platforms-title">Plataformas de streaming</h3>
+                <div class="left-bottom-platforms-container">
+                    <span>Spotify</span><span>AppleMusic</span>
+                    <span>Deezer</span><span>Youtube</span>
+                    <span>Amazon No se qué</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="right-container">
+            <h2 class="element-name">{{album.data?.name}}</h2>
+            <div *ngFor="let artist of album.artists" class="author-info-card">
+                <img *ngIf="artist.images; else defaultimg" src="{{artist.images[0].url}}" alt="author image">
+                <ng-template #defaultimg>
+                    <img src="../../../assets/images/default-custom-list.png" alt="album image">
+                </ng-template>
+                <div class="author-info">
+                    <div class="author-name">{{artist.name}}</div>
+                    <div class="author-genre">More info about authors</div>
+                </div>
+            </div>
+            <div class="related-tracks">
+                <h2 class="related-tracks-title">Pistas relacionadas</h2>
+                <div class="related-tracks-container">
+                    <div class="track" *ngFor="let track of album.data.tracks?.items; let index = index">
+                        <span class="track-index">{{index+1}}</span><span>{{track.name}}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div *ngIf="elementType == 'artist'" class="page-section">
+        <div class="left-container">
+            <img *ngIf="artist.data.images; else defaultimg" src="{{artist.data.images[0].url}}" alt="artist image">
+            <ng-template #defaultimg>
+                <img src="../../../assets/images/default-custom-list.png" alt="album image">
+            </ng-template>
+            <div class="left-bottom-info">
+                
+            </div>
+            <div class="left-bottom-platforms">
+                <h3 class="left-bottom-platforms-title">Plataformas de streaming</h3>
+                <div class="left-bottom-platforms-container">
+                    <span>Spotify</span><span>AppleMusic</span>
+                    <span>Deezer</span><span>Youtube</span>
+                    <span>Amazon No se qué</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="right-container">
+            <h2 class="element-name">{{artist.data?.name}}</h2>
+            <div>Género: 
+                <span *ngFor="let genre of artist.data?.genres; let i = index">
+                    <span *ngIf="i != 0"> - </span> {{ genre }}
+                </span>
+            </div>
+            <div>Seguidores: {{artist.data.followers?.total}}</div>
+            <div class="related-tracks">
+                <h2 class="related-tracks-title">Canciones populares</h2>
+                <div class="related-tracks-container">
+                    <div class="track" *ngFor="let track of artist.topTracks; let index = index">
+                        <span class="track-index">{{index+1}}</span><span>{{track.name}}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div *ngIf="elementType == 'track'" class="page-section">
+        <div class="left-container">
+            <img *ngIf="track.album.images; else defaultimg" src="{{track.album?.images[0].url}}" alt="album image">
+            <ng-template #defaultimg>
+                <img src="../../../assets/images/default-custom-list.png" alt="album image">
+            </ng-template>
+            <div class="left-bottom-info">
+                <div>Título: {{track.data?.name}}</div>
+                <div>Album: {{track.album?.name}}</div>
+                <div>Lanzamiento: {{track.album?.release_date}}</div>
+                <div>Explícita: 
+                    <span *ngIf="track.data?.explicit; else noExpl"> Sí</span>
+                    <ng-template #noExpl>No</ng-template> 
+                </div>
+            </div>
+            <div class="left-bottom-platforms">
+                <h3 class="left-bottom-platforms-title">Plataformas de streaming</h3>
+                <div class="left-bottom-platforms-container">
+                    <span>Spotify</span><span>AppleMusic</span>
+                    <span>Deezer</span><span>Youtube</span>
+                    <span>Amazon No se qué</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="right-container">
+            <h2 class="element-name">{{track.data?.name}}</h2>
+            <div *ngFor="let artist of track.artists" class="author-info-card">
+                <img *ngIf="artist.images; else defaultimg" src="{{artist.images[0].url}}" alt="author image">
+                <ng-template #defaultimg>
+                    <img src="../../../assets/images/default-custom-list.png" alt="album image">
+                </ng-template>
+                <div class="author-info">
+                    <div class="author-name">{{artist.name}}</div>
+                    <div class="author-genre">More info about authors</div>
+                </div>
+            </div>
+            <div class="related-tracks">
+                <h2 class="related-tracks-title">Pistas relacionadas</h2>
+                <div class="related-tracks-container">
+                    <div class="track" *ngFor="let track of track.album.tracks?.items; let index = index">
+                        <span class="track-index">{{index+1}}</span><span>{{track.name}}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

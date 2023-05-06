@@ -1,0 +1,18 @@
+span{
+    color: white;
+}
+
+maincontainers
+{
+display: flex;
+flex-direction: column;
+/* width: 50%; */
+}
+/* maincontainers > div {
+width: 100%;
+} */
+.envio{
+background-color: blanchedalmond;
+padding: 2%;
+cursor: pointer;
+}

@@ -1,0 +1,40 @@
+<div id="pagecontainer" class="maincontainers" #asMainContainer>
+    <div id="mainpagetitle">
+        <div class="mainpagetitle-cont">
+            <h1 id="mainpagetitle-title">Novedades</h1>
+            <p id="mainpagetitle-body">
+                Mantente al día de los nuevos lanzamientos. <br>
+                Todas las canciones nuevas y los álbumes más recientes de tus artistas y grupos favoritos a tu disposición.
+            </p>
+        </div>
+    </div>
+
+    <div class="page-section" #releasescontainer>
+        <h2 class="page-section-title">Nuevos lanzamientos</h2>
+        <div class="page-section-content" #releases>
+            <div class="page-section-element" *ngFor="let album of albums?.items" #album id="{{album.id}}">
+                <img *ngIf="album.images.length != 0; else defaultimg" class='image album-image' src="{{album.images[0].url}}" alt="{{album.name}}">
+                <figcaption class="fig-caption" *ngIf="album.album_type == 'single'; else albumfigcaption"> Canción </figcaption>
+                <ng-template #albumfigcaption>
+                    <figcaption class="fig-caption"> Album </figcaption>
+                </ng-template>
+                <ng-template #defaultimg>
+                    <img class='image artist-image' src="https://c8.alamy.com/compes/2e2kkm2/notas-musicales-con-placa-musical-sobre-fondo-blanco-musica-abstracta-fondo-de-disco-2e2kkm2.jpg" alt="{{album.name}}">
+                    <figcaption class="fig-caption" *ngIf="album.album_type == 'single'; else albumfigcaption"> Canción </figcaption>
+                    <ng-template #albumfigcaption>
+                        <figcaption class="fig-caption"> Album </figcaption>
+                    </ng-template>
+                </ng-template>
+                <p class="card-title" >
+                    <a routerLink="/details/album/{{album.id}}">{{album.name}}</a>
+                </p>
+                <p class="card-description">
+                    <a *ngFor="let artist of album.artists" routerLink="/details/artist/{{artist.id}}">
+                         {{artist.name}} &nbsp;
+                    </a>
+                </p>
+            </div>
+        </div>
+    </div>
+
+</div>
