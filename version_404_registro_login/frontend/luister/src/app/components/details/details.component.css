@@ -1,0 +1,145 @@
+*{
+    color: white;
+    font-family: 'Montserrat';
+}
+
+.page-section{
+    display: flex;
+    justify-content: space-between;
+    max-width: 900px;
+    height: fit-content;
+}
+
+.left-container{
+    position: relative;
+    box-sizing: border-box;
+    width: 44%;
+    height: fit-content;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    row-gap: 20px;
+}
+
+.left-container > img{
+    width: 100%;
+    height: 333px;
+}
+.left-bottom-info{
+    width: 100%;
+    box-sizing: border-box;
+    height: fit-content;
+    font-size: 18px;
+    padding: 11px;
+    background: rgba(41, 41, 41, 0.481);
+}
+.left-bottom-info > div{
+    color: white;
+}
+.left-bottom-platforms{
+    width: 100%;
+    height: fit-content;
+    font-size: 22px;
+    display: flex;
+    flex-direction: column;
+}
+
+.left-bottom-platforms-title{
+    font-size: 22px;
+    padding: 6px 11px;
+    background: rgb(41, 41, 41);
+}
+.left-bottom-platforms-container{
+    display: flex;
+    gap: 11px;
+    flex-wrap: wrap;
+    align-items: center;
+    border-left: 2px solid rgb(41, 41, 41);
+    border-bottom: 2px solid rgb(42, 42, 42);
+    padding: 11px;
+}
+
+.left-bottom-platforms-container > span{
+    font-size: 16px;
+    padding: 5px 16px;
+    border-radius: 100px;
+    background-color: rgb(60, 15, 63);
+}
+.right-container{
+    position: relative;
+    box-sizing: border-box;
+    width: 56%;
+    height: fit-content;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    row-gap: 20px;
+}
+
+.element-name{
+    font-size: 33px;
+    width: 100%;
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+}
+
+.author-info-card{
+    position: relative;
+    width: 100%;
+    height: 133px;
+    display: grid;
+    grid-template-columns: 35% 60%;
+    column-gap: 20px;
+}
+
+.author-info-card > img{
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.author-info{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
+.author-name, .author-genre{
+    height: 24px;
+}
+
+.related-tracks{
+    overflow: hidden;
+    width: 100%;
+    height: fit-content;
+}
+.related-tracks-title{
+    height: 44px;
+    width: 100%;
+}
+.related-tracks-container{
+    box-sizing: border-box;
+    width: 100%;
+    min-height: 118px;
+    max-height: 231px;
+    overflow-x: hidden;
+    padding-right: 7px;
+}
+.track{
+    width: 100%;
+    height: 55px;
+    display: flex;
+    align-items: center;
+    background-color: rgba(44, 44, 44, 0.156);
+    border-radius: 2px;
+    margin-bottom: 4px;
+}
+.track-index{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 100%;
+}
+

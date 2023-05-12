@@ -1,0 +1,8 @@
+{
+    "/api/*":{
+        "target": "https://accounts.spotify.com",
+        "secure": true,
+        "logLevel": "debug",
+        "changeOrigin": true
+    }
+}

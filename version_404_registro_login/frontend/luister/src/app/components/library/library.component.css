@@ -1,0 +1,376 @@
+
+*{
+    font-family: 'Montserrat';
+    color: white;
+}
+
+*::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: white;
+    opacity: .55;
+  }
+
+#mainpagetitle{
+    background: linear-gradient(45deg,black,rgb(10, 4, 16),black);
+    width: 100%;
+    min-height: 111px;
+    display: flex;
+    justify-content: center;
+    padding: 22px 0 44px 0;
+}
+.page-section{
+    perspective: 500px;
+    transform-style: preserve-3d;
+}
+#mainpagetitle-title{
+    opacity: 0;
+    font-size: 33px;
+    padding: 11px 0;
+    font-family: 'Montserrat';
+    animation-name: custom;
+    animation-duration: .6s;
+    animation-delay: 0s;
+    animation-fill-mode: forwards;
+    transform-origin: bottom;
+}
+#mainpagetitle-body{
+    opacity: 0;
+    font-size: 18px ;
+    line-height: 26px;
+    animation-name: custom;
+    animation-duration: .6s;
+    animation-delay: .4s;
+    animation-fill-mode: forwards;
+    transform-origin: bottom;
+}
+.library-body-container{
+    --gap: 33px;
+    position: relative;
+    width: 85%;
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    gap: var(--gap);
+}
+.favorite-songs-list{
+    opacity: 0;
+    overflow: hidden;
+    position: relative;
+    width: calc(456px + var(--gap));
+    height: 300px;
+    border: 2px solid rgb(255, 255, 255);
+    cursor: pointer;
+    display: flex;
+    align-items: flex-end;
+    transition: .3s;
+    animation-name: showing;
+    animation-duration: .6s;
+    animation-delay: .2s;
+    animation-fill-mode: forwards;
+    transform-origin: bottom;
+}
+.favorite-songs-list:hover > .favorite-songs-list-body > .favorite-songs-list-title{
+    color: rgb(243, 194, 237);
+    text-decoration: underline;
+}
+.favorite-songs-list-body{
+    padding: 11px 22px;
+    width: calc(100% - 44px);
+    position: absolute;
+    background: rgba(0, 0, 0, 0.613);
+    z-index: 1;
+}
+.favorite-songs-list-title{
+    font-size: 33px;
+}
+.favorite-songs-list-description,.favorite-songs-list-type{
+    font-size: 18px;
+    padding: 8px 0;
+}
+.favorite-songs-list-description{
+    display: flex;
+    justify-content: space-between;
+}
+.list-owner{
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    display: block;
+    width: 45%;
+}
+.list-count{
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    display: block;
+    width: 45%;
+    text-align: end;
+}
+
+.fav-songs-list-image, .custom-list-image{
+    left: 0;top: 0;
+    position: absolute;
+}
+.fav-songs-list-image{
+    top: -25%;
+    width: 100%;
+    height: 150%;
+}
+.custom-list-image{
+    width: 100%;
+    height: 100%;
+}
+
+.new-custom-list-cont{
+    opacity: 0;
+    min-height: 77px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    animation-name: to-right;
+    animation-duration: .3s;
+    animation-delay: .3s;
+    animation-fill-mode: forwards;
+    transform-origin: bottom;
+}
+
+.new-list-button{
+    padding: 15px 22px;
+    background: linear-gradient(45deg,rgba(8, 14, 12, 0.1),rgba(51, 89, 68, 0.1),rgba(4, 12, 11, 0.1));
+    border-radius: 8px;
+    font-size: 18px;
+    font-weight: 600;
+    cursor: pointer;
+    z-index: 1;
+    transition: .3s;
+}
+.new-list-button:hover{
+    color: rgb(203, 255, 154);
+    background: linear-gradient(45deg,rgba(8, 14, 12, 0.4),rgba(29, 46, 37, 0.3),rgba(4, 12, 11, 0.3));
+}
+.custom-list{
+    opacity: 0;
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 230px;
+    height: 233px;
+    cursor: pointer;
+    transition: box-shadow .3s, transform .1s;
+    box-shadow: 0px 0px 0px 0px rgba(4, 1, 10, 0.202);
+    animation-name: showing;
+    animation-duration: .6s;
+    animation-delay: .6s;
+    animation-fill-mode: forwards;
+    transform-origin: bottom;
+}
+.custom-list:hover{
+    box-shadow: 11px 11px 1px 1px rgba(105, 25, 119, 0.478);
+}
+.custom-list:hover > div > .custom-list-title{
+    color: rgb(255, 255, 255);
+    text-decoration: underline;
+}
+
+.custom-list-body{
+    padding: 11px;
+    width: calc(100% - 22px);
+    position: absolute;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: 1;
+}
+
+.custom-list-title{
+    font-size: 20px;
+    padding: 5px 0;
+    max-width: 80%;
+}
+
+.new-custom-list-form{
+    display: none;
+    padding: 28px;
+    --height: fit-content;
+    --width: 300px;
+    position: absolute;
+    flex-wrap: wrap;
+    top: calc(20vh);
+    min-width: var(--width);
+    max-width: 500px;
+    min-height: var(--height);
+    background-color: rgba(41, 41, 41);
+    z-index: 2;
+    flex-direction: column;
+    border-radius: 11px;
+}
+
+.new-custom-list-form::before{
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    left: 0;
+    top: 0;
+    background: rgba(0, 0, 0, 0.4);
+    content: '';
+    z-index: -1;
+
+   
+}
+.new-custom-list-form-title{
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 44px;
+    font-size: 24px;
+}
+.new-custom-list-form-image{
+    width: 40%;
+    height: 188px;
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0 0 3px 3px rgba(0, 0, 0, .1),
+                0 0 10px 10px rgba(0, 0, 0, .01),
+                0 0 20px 20px rgba(0, 0, 0, .02),
+                0 0 30px 30px rgba(0, 0, 0, .02),
+                0 0 40px 40px rgba(0, 0, 0, .01),
+                0 0 50px 50px rgba(0, 0, 0, .1);
+}
+.new-custom-list-form-image > img{
+    width: 100%;
+    height: 100%;
+}
+.new-custom-list-form-image:hover > .addImage{
+    visibility: visible;
+}
+.addImage{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    left: 0;
+    top: 0;
+    visibility: hidden;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.557);
+    z-index: 5;
+}
+
+.form-list-image{
+    width: 50px;
+    height: 50px;
+    background: rgba(50, 50, 50, 0.88);
+    padding: 10px;
+    border-radius: 100px;
+    color: white;
+    font-family: 'Icomoon';
+    cursor: pointer;
+}
+
+.form-list-image::before{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    content: '\e905';
+    font-size: 33px;
+}
+
+.new-custom-list-form-save{
+    align-self: flex-end;
+    background-color: rgb(255, 255, 255);
+    color: black;
+    font-weight: bolder;
+    border-radius: 100px;
+    width: 144px;
+    height: 50px;
+    cursor: pointer;
+    font-size: 17px;
+}
+.new-custom-list-form-save:hover{
+    font-size: 19px;
+    color: rgb(31, 120, 25);
+    font-weight: bolder;
+}
+.new-custom-list-form-advise{
+    width: 100%;
+    font-size: 12px;
+    font-weight: 600;
+    margin-top: 10px;
+}
+.new-custom-list-form-close-button{
+    position: absolute;
+    width: fit-content;
+    height: fit-content;
+    top: 41px;
+    right: 41px;
+    cursor: pointer;
+    font-size: 15px;
+    content: '\ea0f';
+    font-family: 'Icomoon';
+}
+.new-custom-list-form-close-button::before{
+    position: absolute;
+    content: '\ea0f';
+}
+.nclf-body{
+    width: 100%;
+    display: flex;
+    column-gap: 4%;
+    margin: 30px 0 10px 0;
+}
+.nclf-body-fields-container{
+    width: 56%;
+    display: grid;
+    grid-template-columns: 100%;
+    grid-template-rows: 22% 68%;
+    row-gap: 10%;
+}
+
+.nclf-body-fields-child{
+    --height: 20px;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
+.nclf-body-fields-child > label{
+    font-size: 14px;
+    display: none;
+    width: fit-content;
+    height: var(--height);
+    padding: 0 0 0 5px;
+    font-weight: 600;
+    position: absolute;
+    top: -8px;
+    left: 6px;
+    padding: 0 2px;
+    background: linear-gradient(to bottom, rgb(41,41,41) 60%, transparent 60%);
+}
+.new-custom-list-formfields{
+    --padding: 10px;
+    --border: 2px;
+    width: calc(100% - ((var(--padding) + var(--border))*2));
+    background-color: rgb(62, 62, 62);
+    resize: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: 600;
+    border: 2px solid rgba(0, 0, 0, 0);
+    height: 100%;
+    padding: var(--padding);
+}
+
+.new-custom-list-formfields:focus{
+    width: calc(100% - ((var(--padding)+var(--border))*2));
+    border: 2px solid rgb(166, 166, 166);
+    background: transparent;
+}
+
+.new-custom-list-formfields:focus ~ label{
+    display: block;
+}

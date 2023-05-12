@@ -1,0 +1,53 @@
+<div id="pagecontainer" class="maincontainers">
+    <form
+      autocomplete="off"
+      [formGroup]="myForm"
+      (ngSubmit)="login()">
+  
+      <span>
+        Usuario ya existente
+      </span>
+      <div>
+        <span>Email</span>
+        <br>
+        <input
+            type="text"
+            formControlName = "email"
+            placeholder="Introduce tu correo electrónico"
+            >
+        <span *ngIf="isValid('email')">
+          Correo no válido
+        </span>
+      </div>
+      <div>
+        <span>Contraseña</span>
+        <br>
+        <input
+            type="password"
+            formControlName ="password"
+            placeholder="Introduce tu contraseña"
+            >
+        <span *ngIf="isValid('password')">
+          Contraseña no correcta
+        </span>
+      </div>
+      <div class="">
+        <button class="envio"
+              type="submit"
+  
+        >
+          Inicio de sesión
+        </button>
+      </div>
+      <div>
+        <span>
+          ¿No tienes una cuenta?
+        </span>
+  
+        <a routerLink="/signup">
+          Regístrate
+        </a>
+      </div>
+    </form>
+  </div>
+  
