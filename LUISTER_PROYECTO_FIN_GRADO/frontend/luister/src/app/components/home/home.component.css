@@ -1,0 +1,230 @@
+
+*{
+    font-family: 'Montserrat';
+}
+#mainpagetitle{
+    background: linear-gradient(27deg,rgb(0, 0, 0),rgb(25, 2, 30),rgb(16, 5, 6));
+}
+#mainpagetitle-body{
+    animation-name: to-top;
+    transform-origin: bottom;
+}
+.image{
+    position: relative;
+}
+.artist-image{
+    aspect-ratio: 1 / 1;
+    border-radius: 100%;
+    box-shadow: 0 0 8px 8px rgba(32, 16, 53, 0.1),
+                0 0 11px 22px rgba(0, 0, 0, 0.1),
+                0 0 22px 33px rgba(0, 0, 0, 0.1);
+}
+.genre-element{
+    aspect-ratio: 1 / 1;
+    --opacity: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: clamp(5px,7px,10px);
+    overflow: hidden;
+    transition: box-shadow .3s, transform .15s;
+    position: relative;
+    cursor: pointer;
+       
+}
+.genre-element::before{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, var(--opacity));
+    content: '';
+    z-index: 1;
+       
+}
+.genre-element:hover{
+    --opacity: .5;
+    color: white;
+}
+.genre-element-image{
+    position: absolute;
+}
+.genre-element-title{
+    overflow: hidden;
+    width: fit-content;
+    max-width: 80%;
+    height: fit-content;
+    position: absolute;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    text-align: center;
+    z-index: 2;
+}
+
+@media screen and (max-width: 420px) {
+    .album-image{
+        border-radius: 7px;
+    }
+    .genre-element{
+        min-height: 133px;     
+    }
+    .genre-element::before{
+        line-height: 55px;     
+    }
+    .genre-element:hover{
+        transform: scale(1.022);
+    }
+    .genre-element-image{
+        position: absolute;
+    }
+    .genre-element-title{
+        font-size: 20px;
+        bottom: 9px;
+    }
+}
+@media screen and (min-width: 420.9px) and (max-width: 640px) {
+    .album-image{
+        border-radius: 7px;
+    }
+    .genre-element{
+        min-height: 140px;     
+    }
+    .genre-element::before{
+        line-height: 55px;     
+    }
+    .genre-element:hover{
+        transform: scale(1.022);
+    }
+    .genre-element-image{
+        position: absolute;
+    }
+    .genre-element-title{
+        font-size: 22px;
+        bottom: 9px;
+    }
+}
+@media screen and (min-width: 640.9px) and (max-width: 960px) {
+    .album-image{
+        border-radius: 7px;
+    }
+    .genre-element{
+        min-height: 140px;     
+    }
+    .genre-element::before{
+        line-height: 55px;     
+    }
+    .genre-element:hover{
+        transform: scale(1.022);
+    }
+    .genre-element-image{
+        position: absolute;
+    }
+    .genre-element-title{
+        font-size: 22px;
+        bottom: 9px;
+    }
+}
+@media screen and (min-width: 960.9px) and (max-width: 1280px) {
+    .album-image{
+        border-radius: 7px;
+    }
+    .genre-element{
+        min-height: 150px;     
+    }
+    .genre-element::before{
+        line-height: 55px;     
+    }
+    .genre-element:hover{
+        transform: scale(1.022);
+    }
+    .genre-element-image{
+        position: absolute;
+    }
+    .genre-element-title{
+        font-size: 22px;
+        bottom: 9px;
+    }
+}
+@media screen and (min-width: 1280.9px) and (max-width: 1600px) {
+    .album-image{
+        border-radius: 7px;
+    }
+    .genre-element{
+        min-height: 150px;     
+    }
+    .genre-element::before{
+        line-height: 55px;     
+    }
+    .genre-element:hover{
+        transform: scale(1.022);
+    }
+    .genre-element-image{
+        position: absolute;
+    }
+    .genre-element-title{
+        font-size: 22px;
+        bottom: 9px;
+    }
+}
+@media screen and (min-width: 1600.9px) and (max-width: 1920px) {
+    .album-image{
+        border-radius: 7px;
+    }
+    .genre-element{
+        min-height: 150px;     
+    }
+    .genre-element::before{
+        line-height: 55px;     
+    }
+    .genre-element:hover{
+        transform: scale(1.022);
+    }
+    .genre-element-image{
+        position: absolute;
+    }
+    .genre-element-title{
+        font-size: 22px;
+        bottom: 9px;
+    }
+}
+@media screen and (min-width: 1920.9px) and (max-width: 2240px) {
+    .album-image{
+        border-radius: 7px;
+    }
+    .genre-element{
+        min-height: 150px;     
+    }
+    .genre-element::before{
+        line-height: 55px;     
+    }
+    .genre-element:hover{
+        transform: scale(1.022);
+    }
+    .genre-element-image{
+        position: absolute;
+    }
+    .genre-element-title{
+        font-size: 22px;
+        bottom: 9px;
+    }
+}
+@media screen and (min-width: 2240.9px) { 
+    .album-image{
+        border-radius: 7px;
+    }
+    .genre-element{
+        min-height: 150px;     
+    }
+    .genre-element::before{
+        line-height: 55px;     
+    }
+    .genre-element:hover{
+        transform: scale(1.022);
+    }
+    .genre-element-image{
+        position: absolute;
+    }
+    .genre-element-title{
+        font-size: 22px;
+        bottom: 9px;
+    }
+}

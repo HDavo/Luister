@@ -1,0 +1,182 @@
+
+*{
+    font-family: 'Montserrat';
+}
+
+#mainpagetitle{
+    background: linear-gradient(27deg,rgb(0, 0, 0),rgb(36, 10, 41),rgb(16, 5, 6));
+}
+#mainpagetitle-title{
+    animation-name: to-top2;
+    animation-duration: .9s;
+}
+#mainpagetitle-body{
+    animation-name: to-top;
+    animation-duration: .9s;
+}
+.page-section-title{
+    animation-name: to-right;
+    animation-fill-mode: forwards;
+    animation-duration: .5s;
+    animation-delay: .4s;
+}
+.track-card{
+    position: relative;
+    background-color: rgba(17, 17, 17, 0.059) ;
+    display: flex;
+    flex-direction: column;
+    transition: .3s;
+    transform-origin: top;
+}
+.track-card:hover{
+    background-color: rgba(45, 45, 45, 0.5) ;
+}
+.track-card-image{
+    position: relative;
+    height: 50%;
+}
+.track-card-title{
+    height: 20%;
+    font-weight: 600;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+.track-card-artists{
+    overflow: hidden;
+    height: 30%;
+    text-overflow: ellipsis;
+}
+.track-top{
+    display: block;
+    position: absolute;
+    background-color: rgb(0, 0, 0);
+    font-weight: 600;
+    min-width: 22px;
+    min-width: 55px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    left: 0;
+    top: 10px;
+    transform: rotate(-45deg) translateX(-5px) translateY(-15px);
+}
+
+@media screen and (max-width: 420px) {
+    .track-card{
+        padding: 5px;
+    }
+    .track-card-title{
+        --font-size: 16px;
+        font-size: var(--font-size);
+        line-height: 32px;
+    }
+    .track-card-artists{
+        line-height: 32px;
+        font-size: 16px;
+    }
+}
+@media screen and (min-width: 420.1px) and (max-width: 640px) {
+    .track-card{
+        padding: 5px;
+    }
+    .track-card-title{
+        --font-size: 16px;
+        font-size: var(--font-size);
+        line-height: 32px;
+    }
+    .track-card-artists{
+        line-height: 32px;
+        font-size: 16px;
+    }
+}
+@media screen and (min-width: 640.1px) and (max-width: 960px) {
+    .track-card{
+        padding: 5px;
+        max-height: 200px;
+    }
+    .track-card-title{
+        --font-size: 16px;
+        font-size: var(--font-size);
+        line-height: 32px;
+    }
+    .track-card-artists{
+        line-height: 32px;
+        font-size: 16px;
+    }
+}
+@media screen and (min-width: 960.1px) and (max-width: 1280px) {
+    .track-card{
+        padding: 10px;
+        padding-bottom: 10px;
+    }
+    .track-card-title{
+        --font-size: 16px;
+        font-size: var(--font-size);
+        line-height: 32px;
+    }
+    .track-card-artists{
+        line-height: 24px;
+        font-size: 16px;
+    }
+}
+@media screen and (min-width: 1280.1px) and (max-width: 1600px) {
+    .track-card{
+        padding: 10px;
+        padding-bottom: 10px;
+    }
+    .track-card-title{
+        --font-size: 16px;
+        font-size: var(--font-size);
+        line-height: 32px;
+    }
+    .track-card-artists{
+        line-height: 24px;
+        font-size: 16px;
+    }
+}
+@media screen and (min-width: 1600.1px) and (max-width: 1920px) {
+    .track-card{
+        padding: 10px;
+        padding-bottom: 10px;
+    }
+    .track-card-title{
+        --font-size: 16px;
+        font-size: var(--font-size);
+        line-height: 32px;
+    }
+    .track-card-artists{
+        line-height: 24px;
+        font-size: 16px;
+    }
+}
+@media screen and (min-width: 1920.1px) and (max-width: 2240px) {
+    .track-card{
+        padding: 10px;
+        padding-bottom: 10px;
+    }
+    .track-card-title{
+        --font-size: 16px;
+        font-size: var(--font-size);
+        line-height: 32px;
+    }
+    .track-card-artists{
+        line-height: 24px;
+        font-size: 16px;
+    }
+}
+@media screen and (min-width: 2240.1px) {
+    .track-card{
+        padding: 10px;
+        padding-bottom: 10px;
+    }
+    .track-card-title{
+        --font-size: 16px;
+        font-size: var(--font-size);
+        line-height: 32px;
+    }
+    .track-card-artists{
+        line-height: 24px;
+        font-size: 16px;
+    }
+}

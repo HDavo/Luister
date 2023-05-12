@@ -1,0 +1,808 @@
+/* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Display:wght@100&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap');
+
+@font-face {
+    font-family: 'linearicon';
+    src:url('./assets/fonts/Linearicons-Free.eot?7y0ygv');
+    src:url('./assets/fonts/Linearicons-Free.eot?#iefix7y0ygv') format('embedded-opentype'),
+        url('./assets/fonts/Linearicons-Free.woff2?7y0ygv') format('woff2'),
+        url('./assets/fonts/Linearicons-Free.woff?7y0ygv') format('woff'),
+        url('./assets/fonts/Linearicons-Free.ttf?7y0ygv') format('truetype'),
+        url('./assets/fonts/Linearicons-Free.svg?7y0ygv#Linearicons-Free') format('svg');
+
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'icomoon';
+    src: url('./assets/fonts/IcoMoon-Free.ttf') format('truetype');
+    
+    font-weight: normal;
+    font-style: normal;
+}
+
+*{
+    --var-black: #000000;
+    --var-white: #fff;
+    --var-gray: #9f9f9f;
+    --footer-height: 333px;
+    --nav-height: 77px;
+    --var-search-padding: 10px;
+    --main-containers-width: 100%;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    text-decoration: none;
+    outline: none;
+    border: none;
+    color: white;
+}
+
+*::-webkit-scrollbar{
+    width: 15px;
+    background-color: #000000;
+}
+*::-webkit-scrollbar-track-piece{
+    background: linear-gradient(45deg, rgb(198, 172, 208) 10%,rgb(168, 145, 179) 80%);
+    box-shadow: 0 0 5px 2px rgb(21, 21, 21) inset;
+}
+*::-webkit-scrollbar-thumb{
+    background: linear-gradient(45deg, rgb(104, 20, 104),rgb(81, 61, 170));
+    box-shadow: 0 0 3px 3px rgb(16, 16, 16) inset;
+}
+
+.maincontainers{
+    width: var(--main-containers-width);
+    min-width: 250px;
+}
+#pagecontainer{
+    position: relative;
+    min-height: calc(100vh - var(--footer-height) - var(--nav-height));
+    background: linear-gradient(0deg,black -100%,rgb(5, 0, 7)100%,black 90%);
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow: hidden;
+}
+#mainpagetitle{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+.mainpagetitle-cont{
+    max-width: 2042px;
+    width: 85%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.page-section-title{
+    opacity: 0;
+    display: flex;
+    align-items: center;
+    animation-name: opaque;
+    animation-fill-mode: forwards;
+    animation-duration: .6s;
+    animation-delay: .2s;
+}
+#mainpagetitle-title{
+    opacity: 0;
+    font-family: 'Montserrat';
+    animation: to-bottom 1s;
+    animation-fill-mode: forwards;
+    animation-duration: .6s;
+    animation-delay: .2s;
+    margin: 22px 0;
+}
+#mainpagetitle-body{
+    opacity: 0;
+    font-family: 'Noto Sans Display';
+    display: flex;
+    align-items: flex-start;
+    animation-fill-mode: forwards;
+    animation-duration: .6s;
+    animation-delay: .2s;
+}
+.page-section{
+    width: 85%;
+    max-width: 2042px;
+}
+.max-element-width{
+    max-width: 1632px !important;
+}
+li{
+    position: relative;
+}
+.hidden{
+    opacity: 0.05 !important;
+    transition: opacity .5s !important;
+}
+.show{
+    opacity: 1 !important;
+    transition: opacity .5s !important;
+}
+.track-hide{
+    visibility: hidden;
+    opacity: 0;
+    /*transform: translateX(-200px) translateY(-200px);*/
+    transform: rotateX(-90deg) rotateY(-15deg);
+}
+.track-show{
+    visibility: visible;
+    opacity: 1;
+    transform: rotateX(0deg) rotateY(0deg);
+}
+.page-section-content{
+    --cwidth: calc((100% - (var(--ttalCards) - 1) * var(--gap)) / var(--ttalCards));
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(var(--ttalCards), var(--cwidth));
+    gap: var(--gap);
+
+}
+.page-section-element{
+    position: relative;
+    border-radius: clamp(5px,7px,10px);
+    background-color: rgba(96, 96, 96, 0.089);
+    cursor: pointer;
+    display: grid;
+    justify-content: center;
+    transition: .2s;
+}
+.page-section-element:hover{
+    transform: scale(1.03);
+    background-color: rgba(81, 81, 81, 0.364);
+}
+.card-title{
+    position: relative;
+    display: block;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    min-height: 16px;
+}
+.card-description{
+    position: relative;
+    display: flex;
+    align-items: center;
+    text-align: justify;
+    white-space: nowrap;
+    overflow: hidden;
+    min-height: 32px;
+}
+.customContextMenu{
+    left: 0;
+    top: 0;
+    z-index: 3;
+    position: fixed;
+    background: #292929;
+    color: white;
+    font-weight: 600;
+    height: fit-content;
+}
+.customContextMenu > div{
+    width: calc(100% - var(--padding)*2);
+    cursor: pointer;
+}
+.customContextMenu > div:hover{
+    background: rgba(95, 95, 95, 0.3);
+}
+a{
+    color: white;
+}
+a:hover{
+    color: rgb(194, 170, 230);
+    text-decoration: underline;
+}
+img{
+    width: 100%;
+    height: 100%;
+}
+
+@media screen and (max-width: 420px) {
+    #pagecontainer{
+        padding-bottom: 33px;
+    }
+    #mainpagetitle{
+        min-height: 300px;
+        padding: 22px 0;
+    }
+    .page-section-title{
+        min-height: 33px;
+        font-size: 20px;
+        padding: 10px 0;
+    }
+    #mainpagetitle-title{
+        font-size: 22px;
+    }
+    #mainpagetitle-body{
+        font-size: 18px ;
+        line-height: 33px;
+        min-height: 111px;
+    }
+    .page-section{
+        margin: 5px 0;
+    }
+    .page-section-content{
+        --gap: 11px;
+        --ttalCards: 2;
+        min-height: 300px;
+    }
+    .page-section-element{
+        max-height: 230px;
+        grid-template-columns: 100%; 
+        grid-template-rows: 67% 13% 16%;
+        row-gap: 2%;
+        padding: 8px;
+    }
+    .card-title{
+        font-size: 16px;
+        line-height: 22px;
+        font-weight: 600;
+    }
+    .card-description{
+        font-size: 16px;
+    }
+    .customContextMenu{
+        min-width: 222px;
+        padding: 8px;
+        border-radius: 2px;
+    }
+    .customContextMenu > div{
+        --padding: 10px;
+        font-size: 16px;
+        padding: 11px var(--padding);
+        border-radius: 2px;
+    }
+}
+@media screen and (min-width: 420.9px) and (max-width: 640px) {
+    #pagecontainer{
+        padding-bottom: 33px;
+    }
+    #mainpagetitle{
+        min-height: 300px;
+        padding: 22px 0;
+    }
+    .page-section-title{
+        min-height: 33px;
+        font-size: 22px;
+        padding: 10px 0;
+    }
+    #mainpagetitle-title{
+        font-size: 22px;
+    }
+    #mainpagetitle-body{
+        font-size: 18px ;
+        line-height: 44px;
+        min-height: 111px;
+    }
+    .page-section{
+        margin: 8px 0;
+    }
+    .page-section-content{
+        --gap: 11px;
+        --ttalCards: 3;
+        min-height: 233px;
+    }
+    .page-section-element{
+        max-height: 230px;
+        grid-template-columns: 100%; 
+        grid-template-rows: 67% 13% 16%;
+        row-gap: 2%;
+        padding: 8px;
+    }
+    .card-title{
+        font-size: 16px;
+        line-height: 22px;
+        font-weight: 600;
+    }
+    .card-description{
+        font-size: 16px;
+    }
+    .customContextMenu{
+        min-width: 222px;
+        padding: 8px;
+        border-radius: 2px;
+    }
+    .customContextMenu > div{
+        --padding: 10px;
+        font-size: 16px;
+        padding: 11px var(--padding);
+        border-radius: 2px;
+    }
+}
+@media screen and (min-width: 640.9px) and (max-width: 960px) {
+    #pagecontainer{
+        padding-bottom: 100px;
+    }
+    #mainpagetitle{
+        min-height: 300px;
+        padding: 22px 0;
+    }
+    .page-section-title{
+        min-height: 33px;
+        font-size: 25px;
+        padding: 10px 0;
+    }
+    #mainpagetitle-title{
+        font-size: 22px;
+    }
+    #mainpagetitle-body{
+        font-size: 18px ;
+        line-height: 44px;
+        min-height: 111px;
+    }
+    .page-section{
+        margin: 8px 0;
+    }
+    .page-section-content{
+        --gap: 11px;
+        --ttalCards: 5;
+        min-height: 300px;
+    }
+    .page-section-element{
+        max-height: 230px;
+        grid-template-columns: 100%; 
+        grid-template-rows: 67% 13% 16%;
+        row-gap: 2%;
+        padding: 10px;
+    }
+    .card-title{
+        font-size: 16px;
+        line-height: 22px;
+        font-weight: 600;
+    }
+    .card-description{
+        font-size: 16px;
+    }
+    .customContextMenu{
+        min-width: 222px;
+        padding: 8px;
+        border-radius: 2px;
+    }
+    .customContextMenu > div{
+        --padding: 10px;
+        font-size: 16px;
+        padding: 11px var(--padding);
+        border-radius: 2px;
+    }
+}
+@media screen and (min-width: 960.9px) and (max-width: 1280px) {
+    #pagecontainer{
+        padding-bottom: 33px;
+    }
+    #mainpagetitle{
+        min-height: 300px;
+        padding: 22px 0 50px 0;
+    }
+    .page-section-title{
+        min-height: 33px;
+        font-size: 33px;
+        padding: 10px 0;
+    }
+    #mainpagetitle-title{
+        font-size: 33px;
+    }
+    #mainpagetitle-body{
+        font-size: 18px ;
+        line-height: 44px;
+        min-height: 111px;
+    }
+    .page-section{
+        margin: 10px 0;
+    }
+    .page-section-content{
+        --gap: 18px;
+        --ttalCards: 6;
+        min-height: 300px;
+    }
+    .page-section-element{
+        max-height: 230px;
+        grid-template-columns: 100%; 
+        grid-template-rows: 67% 13% 16%;
+        row-gap: 2%;
+        padding: 12px;
+    }
+    .card-title{
+        font-size: 16px;
+        line-height: 22px;
+        font-weight: 600;
+    }
+    .card-description{
+        font-size: 16px;
+    }
+    .customContextMenu{
+        min-width: 222px;
+        padding: 8px;
+        border-radius: 2px;
+    }
+    .customContextMenu > div{
+        --padding: 10px;
+        font-size: 16px;
+        padding: 11px var(--padding);
+        border-radius: 2px;
+    }
+}
+@media screen and (min-width: 1280.9px) and (max-width: 1600px) {
+    #pagecontainer{
+        padding-bottom: 44px;
+    }
+    #mainpagetitle{
+        min-height: 200px;
+        padding: 22px 0;
+    }
+    .page-section-title{
+        min-height: 33px;
+        font-size: 26px;
+        padding: 10px 0;
+    }
+    #mainpagetitle-title{
+        font-size: 33px;
+    }
+    #mainpagetitle-body{
+        font-size: 18px ;
+        line-height: 44px;
+        min-height: 111px;
+    }
+    .page-section{
+        margin: 10px 0;
+    }
+    .page-section-content{
+        --gap: 20px;
+        --ttalCards: 7;
+        min-height: 300px;
+    }
+    .page-section-element{
+        max-height: 230px;
+        grid-template-columns: 100%; 
+        grid-template-rows: 67% 13% 16%;
+        row-gap: 2%;
+        padding: 14px;
+    }
+    .card-title{
+        font-size: 16px;
+        line-height: 22px;
+        font-weight: 600;
+    }
+    .card-description{
+        font-size: 16px;
+    }
+    .customContextMenu{
+        min-width: 222px;
+        padding: 8px;
+        border-radius: 2px;
+    }
+    .customContextMenu > div{
+        --padding: 10px;
+        font-size: 16px;
+        padding: 11px var(--padding);
+        border-radius: 2px;
+    }
+}
+@media screen and (min-width: 1600.9px) and (max-width: 1920px) {
+    #pagecontainer{
+        padding-bottom: 100px;
+    }
+    #mainpagetitle{
+        min-height: 300px;
+        padding: 22px 0 33px 0;
+    }
+    .page-section-title{
+        min-height: 33px;
+        font-size: 33px;
+        padding: 10px 0;
+    }
+    #mainpagetitle-title{
+        font-size: 33px;
+    }
+    #mainpagetitle-body{
+        font-size: 25px;
+        line-height: 44px;
+        min-height: 111px;
+    }
+    .page-section{
+        margin: 10px 0;
+    }
+    .page-section-content{
+        --gap: 22px;
+        --ttalCards: 8;
+        min-height: 300px;
+    }
+    .page-section-element{
+        max-height: 230px;
+        grid-template-columns: 100%; 
+        grid-template-rows: 67% 13% 16%;
+        row-gap: 2%;
+        padding: 14px;
+    }
+    .card-title{
+        font-size: 16px;
+        line-height: 40px;
+        font-weight: 600;
+    }
+    .card-description{
+        font-size: 16px;
+    }
+    .customContextMenu{
+        min-width: 222px;
+        padding: 8px;
+        border-radius: 2px;
+    }
+    .customContextMenu > div{
+        --padding: 10px;
+        font-size: 16px;
+        padding: 11px var(--padding);
+        border-radius: 2px;
+    }
+}
+@media screen and (min-width: 1920.9px) and (max-width: 2240px) {
+    #pagecontainer{
+        padding-bottom: 100px;
+    }
+    #mainpagetitle{
+        min-height: 300px;
+        padding: 22px 0 44px 0;
+    }
+    .page-section-title{
+        min-height: 33px;
+        font-size: 33px;
+        padding: 10px 0;
+    }
+    #mainpagetitle-title{
+        font-size: 44px;
+    }
+    #mainpagetitle-body{
+        font-size: 30px ;
+        line-height: 55px;
+        min-height: 111px;
+    }
+    .page-section{
+        margin: 10px 0;
+    }
+    .page-section-content{
+        --gap: 22px;
+        --ttalCards: 9;
+        min-height: 300px;
+    }
+    .page-section-element{
+        max-height: 230px;
+        grid-template-columns: 100%; 
+        grid-template-rows: 67% 13% 16%;
+        row-gap: 2%;
+        padding: 14px;
+    }
+    .card-title{
+        font-size: 16px;
+        line-height: 40px;
+        font-weight: 600;
+    }
+    .card-description{
+        font-size: 16px;
+    }
+    .customContextMenu{
+        min-width: 222px;
+        padding: 8px;
+        border-radius: 2px;
+    }
+    .customContextMenu > div{
+        --padding: 10px;
+        font-size: 16px;
+        padding: 11px var(--padding);
+        border-radius: 2px;
+    }
+}
+@media screen and (min-width: 2240.9px) {
+    #pagecontainer{
+        padding-bottom: 100px;
+    }
+    #mainpagetitle{
+        min-height: 300px;
+        padding: 22px 0 44px 0;
+    }
+    .page-section-title{
+        min-height: 33px;
+        font-size: 33px;
+        padding: 10px 0;
+    }
+    #mainpagetitle-title{
+        font-size: 33px;
+    }
+    #mainpagetitle-body{
+        font-size: 18px ;
+        line-height: 88px;
+        min-height: 111px;
+    }
+    .page-section{
+        margin: 10px 0;
+    }
+    .page-section-content{
+        --gap: 22px;
+        --ttalCards: 10;
+        min-height: 300px;
+    }
+    .page-section-element{
+        max-height: 230px;
+        grid-template-columns: 100%; 
+        grid-template-rows: 67% 13% 16%;
+        row-gap: 2%;
+        padding: 14px;
+    }
+    .card-title{
+        font-size: 16px;
+        line-height: 40px;
+        font-weight: 600;
+    }
+    .card-description{
+        font-size: 16px;
+    }
+    .customContextMenu{
+        min-width: 222px;
+        padding: 8px;
+        border-radius: 2px;
+    }
+    .customContextMenu > div{
+        --padding: 10px;
+        font-size: 16px;
+        padding: 11px var(--padding);
+        border-radius: 2px;
+    }
+}
+
+
+
+@keyframes custom2 {
+    from{
+        opacity: 0;
+        transform: rotateX(90deg);
+    }
+    to{
+        opacity: 1;
+        transform: rotateX(0deg);
+    }
+}
+@keyframes custom {
+    from{
+        opacity: 0;
+        transform: rotateX(90deg);
+    }
+    to{
+        opacity: 1;
+        transform: rotateX(0deg);
+    }
+}
+@keyframes no-perspect {
+    from{
+        perspective: 5000px;
+    }
+    to{
+        perspective: 0px;
+    }
+}
+@keyframes to-top {
+    from{
+        opacity: 0;
+        transform: translateY(100px);
+    }
+    to{
+        opacity: 1;
+        transform: translateY(0px);
+    }
+}
+@keyframes to-top2 {
+    from{
+        opacity: 0;
+        transform: translateY(200px);
+    }
+    to{
+        opacity: 1;
+        transform: translateY(0px);
+    }
+}
+@keyframes to-top3 {
+    from{
+        transform: translateY(200px);
+    }
+    to{
+        transform: translateY(0px);
+    }
+}
+@keyframes to-bottom {
+    from{
+        opacity: 0;
+        transform: translateY(-50px);
+    }
+    to{
+        opacity: 1;
+        transform: translateY(0px);
+    }
+}
+@keyframes hidding-bottom {
+    from{
+        opacity: 1;
+        transform: translateY(0px);
+    }
+    to{
+        opacity: 0;
+        transform: translateY(300px);
+    }
+}
+@keyframes to-right {
+    from{
+        opacity: 0;
+        transform: translatex(-100px);
+    }
+    to{
+        opacity: 1;
+        transform: translatex(-0px);
+    }
+}
+@keyframes to-left {
+    from{
+        opacity: 0;
+        transform: translatex(200px);
+    }
+    to{
+        opacity: 1;
+        transform: translatex(0px);
+    }
+}
+@keyframes showing {
+    from{
+        opacity: 0;
+        transform: scale(.5);
+    }
+    to{
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+@keyframes enlarge {
+    0%{
+        opacity: 0;
+        width: 0%;
+    }
+    10%{opacity:0;}
+    80%{opacity:1;}
+    100%{
+        opacity: 1;
+        width: 100%;
+    }
+}
+@keyframes to-bottom {
+    0%{
+        opacity: 0;
+        transform: translateY(-300px);
+    }
+    60%{
+        transform: translateY(0px);
+    }
+    100%{
+        opacity: 1;
+    }
+}
+@keyframes opaque {
+    0%{
+        opacity: 0;
+    }
+    100%{
+        opacity: 1;
+    }
+}
+@keyframes to-top {
+    0%{
+        opacity: 0;
+        transform: translateY(300px);
+    }
+    60%{
+        transform: translateY(0px);
+    }
+    100%{
+        opacity: 1;
+    }
+}

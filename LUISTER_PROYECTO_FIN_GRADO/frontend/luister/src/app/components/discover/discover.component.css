@@ -1,0 +1,175 @@
+
+.search-container{
+    width: 85%;
+    min-height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.search-field-shadow{
+    opacity: 0;
+    display: flex;
+    align-items: center;
+    position: relative;
+    min-width: 100px;
+    max-width: 400px;
+    height: 55px;
+    border-radius: 111px;
+    color: rgb(255, 255, 255);
+    animation-name: enlarge;
+    animation-duration: 1.99s;
+    animation-fill-mode: forwards;
+}
+.search-field{
+    --border: 3px;
+    --padding: 44px;
+    padding: 0 var(--padding);
+    width: calc(100% - (var(--padding) + var(--border))*2);
+    height: 100%;
+    border-radius: 111px;
+    background: rgba(82, 82, 82, 0.187);
+    border: var(--border) groove white;
+    color: rgb(255, 255, 255);
+    font-size: 18px;
+    position: absolute;
+    font-family: 'Montserrat';
+}
+.search-field-shadow::before{   
+    font-size: 22px;
+    content: '\e986';
+    left: 16px;
+}
+.search-field-shadow::after{
+    font-size: 17px;
+    content: '\ea0f';
+    right: 16px;
+    cursor: pointer;
+}
+.search-field-shadow::after, .search-field-shadow::before{
+    position: absolute;
+    width: fit-content;
+    font-family: 'icomoon';
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.search-page-default-body{
+    opacity: 0;
+    width: 60%;
+    color: white;
+    font-family: 'Montserrat';
+    text-align: center;
+    margin: 22px 0;
+    line-height: 33px;
+    animation-name: to-bottom;
+    animation-duration: .6s;
+    animation-fill-mode: forwards;
+}
+.page-section{
+    width: 80%;
+    height: fit-content;
+    color: var(--var-white);
+    margin: 20px 0;
+    font-family: 'Outfit';
+}
+.page-section-title{
+    display: flex;
+    align-items: center;
+    min-height: 55px;
+    font-size: 25px;
+    padding: 10px 0;
+}
+.page-section-element:hover{
+    background-color: rgba(81, 81, 81, 0.364);
+    transform: scale(1.03);
+}
+.image{
+    position: relative;
+}
+.artist-image{
+    border-radius: 100%;
+    box-shadow: 0 0 8px 8px rgba(32, 16, 53, 0.1),
+                0 0 11px 22px rgba(0, 0, 0, 0.1),
+                0 0 22px 33px rgba(0, 0, 0, 0.1);
+}
+.album-image{
+    border-radius: 7px;
+}
+.card-description{
+    display: flex;
+    align-items: center;
+    text-align: justify;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.genre-element{
+    --opacity: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 200px;
+    height: 200px;
+    border-radius: clamp(5px,7px,10px);
+    overflow: hidden;
+    transition: box-shadow .3s, transform .15s;
+    position: relative;
+    cursor: pointer;
+       
+}
+.genre-element::before{
+    line-height: 55px;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, var(--opacity));
+    content: '';
+    z-index: 1;
+       
+}
+.genre-element:hover{
+    --opacity: .5;
+    transform: scale(1.022);
+    color: white;
+    
+}
+.genre-element-image{
+    position: absolute;
+}
+.genre-element-title{
+    overflow: hidden;
+    width: fit-content;
+    max-width: 80%;
+    height: fit-content;
+    position: absolute;
+    font-size: 22px;
+    text-align: center;
+    bottom: 9px;
+    z-index: 2;
+}
+
+@media screen and (max-width: 420px){
+    
+}
+@media screen and (min-width: 420.1px) and (max-width: 640px) {
+    
+}
+@media screen and (min-width: 640.1px) and (max-width: 960px) {
+  
+}
+@media screen and (min-width: 960.1px) and (max-width: 1280px) {
+    
+}
+@media screen and (min-width: 1280.1px) and (max-width: 1600px) {
+
+}
+@media screen and (min-width: 1600.1px) and (max-width: 1920px) {
+    
+}
+@media screen and (min-width: 1920.1px) and (max-width: 2240px) {
+    
+}
+@media screen and (min-width: 2240.1px) {
+    
+}
+
+

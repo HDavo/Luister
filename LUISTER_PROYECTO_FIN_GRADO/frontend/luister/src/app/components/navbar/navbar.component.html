@@ -1,0 +1,69 @@
+<nav id='navigationbar' class="maincontainers">
+    <div class="all-nav-menu-container page-section">
+        <div class="menu" id="logo">
+            <span> <a #asMenu id="luister-logo" routerLink="/" routerLinkActive="logo-selected">{{ title }}</a></span>
+        </div>
+        <ul id="menucontainer">
+            <li class="menu">
+                <span><a #asMenu routerLink="/news" routerLinkActive="page-selected"> Novedades </a></span>
+            </li>
+            <li class="menu">
+                <span> <a #asMenu routerLink="/popular" routerLinkActive="page-selected"> Popular </a></span>
+            </li>
+            <li class="menu">
+                <span> <a #asMenu routerLink="/library" routerLinkActive="page-selected"> Biblioteca </a></span>
+            </li>
+            <li class="menu">
+                <span> <a #asMenu routerLink="/discover" routerLinkActive="page-selected"> Descubrir </a></span>
+            </li>
+        </ul>
+        <div class="menu" id="userSession">
+            <span><a routerLink="/signin">Iniciar sesión</a></span>
+        </div>
+    </div>
+</nav>
+
+<nav class="mobile-navbar">
+    <div class="mobile-menu mobile-logo">
+        <a class="home-page-icon" routerLink="/"></a>
+        <span class="mobile-menu-option-caption">Luister</span>
+    </div>
+
+    <ul class="mobile-menu main-menu">
+        <span class="main-menu-icon"  #asMobileGridMenu></span>
+        <span class="mobile-menu-option-caption">Menú</span>
+        <li class="mobile-menu-container element-hidden" #asGridMenuContainer>
+            <ul class="mobile-menu-grid">
+                <li class="page-like-app">
+                    <a routerLink="/news">
+                        <img src="../../../assets/images/new.jpg" alt="">
+                        <span>Novedades</span>
+                    </a>
+                </li>
+                <li class="page-like-app">
+                    <a routerLink="/popular">
+                        <img src="../../../assets/images/popular.jpg" alt="">
+                        <span>Popular</span>
+                    </a>
+                </li>
+                <li class="page-like-app">
+                    <a routerLink="/library">
+                        <img src="../../../assets/images/lib.jpg" alt="">
+                        <span>Biblioteca</span>
+                    </a>
+                </li>
+                <li class="page-like-app">
+                    <a routerLink="/discover">
+                        <img src="../../../assets/images/discover.jpg" alt="">
+                        <span>Descubrir</span>
+                    </a>
+                </li>
+            </ul>                
+        </li>
+    </ul>
+
+    <div class="mobile-menu userSession">
+        <span class="user-icon"></span>
+        <span class="mobile-menu-option-caption">Perfil</span>
+    </div>
+</nav>

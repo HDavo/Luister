@@ -1,0 +1,79 @@
+<div id="pagecontainer" class="maincontainers">
+  <form
+    autocomplete="off"
+    formGroup="myForm"
+    (ngSubmit)="register()">
+
+    <span>
+      Nuevo usuario
+    </span>
+
+    <div>
+      <span>Nombre</span>
+      <br>
+      <input
+          type="text"
+          placeholder="Introduce tu nombre"
+          >
+    <span *ngIf="isValid('name')">
+      Nombre no válido
+    </span>
+    </div>
+    <div>
+      <span>Email</span>
+      <br>
+      <input
+          type="text"
+          placeholder="Introduce tu correo electrónico"
+          >
+      <span *ngIf="isValid('email')">
+        Email no válido
+      </span>
+    </div>
+    <div>
+      <span>Contraseña</span>
+      <br>
+      <input
+          type="password"
+          placeholder="Introduce tu contraseña"
+          >
+      <span *ngIf="isValid('password')">
+        La contraseña debe tener al menos 6 caracteres
+      </span>
+    </div>
+    <div>
+      <span>Repite tu contraseña</span>
+      <br>
+      <input
+          type="password"
+          placeholder="Repite la contraseña"
+          >
+    </div>
+    <div>
+      <input
+            type="checkbox"
+            name="terms"
+            id="">
+      <span for="terms">Aceptar los términos y condiciones</span>
+    </div>
+    <div class="">
+      <!-- TODO: Hay que implementar una forma de no dejar enviar el formulario hasta que coincidan las contraseñas -->
+      <button class="envio" type="submit">
+        Registro
+      </button>
+    </div>
+    <div>
+      <span>
+        ¿Ya tienes una cuenta?
+      </span>
+
+      <a routerLink="/signin">
+        Inicia sesión
+      </a>
+    </div>
+  </form>
+</div>
+
+
+
+

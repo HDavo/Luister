@@ -1,0 +1,1322 @@
+
+*{
+    font-family: 'Montserrat';
+    color: white;
+}
+
+*::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: white;
+    opacity: .55;
+  }
+
+#mainpagetitle{
+    background: linear-gradient(45deg,black,rgb(21, 5, 36),black);
+}
+.mainpagetitle-cont{
+    animation-name: no-perspect;
+    animation-duration: .9s;
+}
+#mainpagetitle-title{
+    animation-name: custom;
+    animation-delay: 0s;
+    transform-origin: bottom;
+}
+#mainpagetitle-body{
+    animation-name: custom;
+    animation-delay: .3s;
+    transform-origin: top;
+}
+.library-body-container{
+    --cwth: calc((100% - ((var(--ttelm) - 1) * var(--gap))) / var(--ttelm));
+    position: relative;
+    width: 85%;
+    height: fit-content;
+    display: grid;
+    grid-template-columns: repeat(var(--ttelm), var(--cwth));
+    grid-template-rows: auto;
+    column-gap: var(--gap);
+}
+.favorite-songs-list{
+    grid-column: 1/3;
+    box-sizing: border-box;
+    opacity: 0;
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+    cursor: pointer;
+    display: flex;
+    transition: .3s;
+    animation-name: showing;
+    animation-duration: .6s;
+    animation-delay: .2s;
+    animation-fill-mode: forwards;
+    transform-origin: bottom;
+}
+.favorite-songs-list:hover > .favorite-songs-list-body > .favorite-songs-list-title{
+    color: rgb(243, 194, 237);
+    text-decoration: underline;
+}
+.favorite-songs-list-body{
+    box-sizing: border-box;
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.613);
+    z-index: 1;
+}
+.favorite-songs-list-description{
+    display: flex;
+    justify-content: space-between;
+}
+.list-owner{
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    display: block;
+}
+.list-count{
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    display: block;
+    text-align: end;
+}
+.fav-songs-list-image, .custom-list-image{
+    left: 0;top: 0;
+    position: absolute;
+}
+.new-custom-list-cont{
+    opacity: 0;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    animation-name: to-right;
+    animation-duration: .3s;
+    animation-delay: .3s;
+    animation-fill-mode: forwards;
+    transform-origin: bottom;
+}
+.new-list-button{
+    background: linear-gradient(45deg,rgba(8, 14, 12, 0.1),rgba(51, 89, 68, 0.1),rgba(4, 12, 11, 0.1));
+    font-weight: 600;
+    cursor: pointer;
+    z-index: 1;
+    transition: .3s;
+}
+.new-list-button:hover{
+    color: rgb(203, 255, 154);
+    background: linear-gradient(45deg,rgba(8, 14, 12, 0.4),rgba(29, 46, 37, 0.3),rgba(4, 12, 11, 0.3));
+}
+.custom-list{
+    box-sizing: border-box;
+    opacity: 0;
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    cursor: pointer;
+    transition: box-shadow .3s, transform .1s;
+    box-shadow: 0px 0px 0px 0px rgba(4, 1, 10, 0.202);
+    animation-name: showing;
+    animation-duration: .6s;
+    animation-delay: .6s;
+    animation-fill-mode: forwards;
+    transform-origin: bottom;
+}
+.custom-list-body{
+    box-sizing: border-box;
+    width: 100%;
+    position: absolute;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: 1;
+}
+.custom-list-title{
+    max-width: 80%;
+}
+.new-custom-list-form{
+    display: none;
+    position: absolute;
+    flex-wrap: wrap;
+    min-width: 222PX;
+    min-height: 300PX;
+    background-color: rgba(41, 41, 41);
+    z-index: 2;
+    flex-direction: column;
+    overflow: hidden;
+}
+.new-custom-list-form::before{
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    left: 0;
+    top: 0;
+    background: rgba(0, 0, 0, 0.4);
+    content: '';
+    z-index: -1;
+}
+.new-custom-list-form-title{
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+.new-custom-list-form-image{
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0 0 3px 3px rgba(0, 0, 0, .1),
+                0 0 10px 10px rgba(0, 0, 0, .01),
+                0 0 20px 20px rgba(0, 0, 0, .02),
+                0 0 30px 30px rgba(0, 0, 0, .02),
+                0 0 40px 40px rgba(0, 0, 0, .01),
+                0 0 50px 50px rgba(0, 0, 0, .1);
+}
+.new-custom-list-form-image:hover > .addImage{
+    visibility: visible;
+}
+.addImage{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    left: 0;top: 0;
+    visibility: hidden;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.557);
+    z-index: 5;
+}
+.form-list-image{
+    background: rgba(50, 50, 50, 0.88);
+    color: white;
+    font-family: 'Icomoon';
+    cursor: pointer;
+}
+.form-list-image::before{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    content: '\e905';
+    position: relative;
+}
+.new-custom-list-form-save{
+    align-self: flex-end;
+    background-color: rgb(255, 255, 255);
+    color: black;
+    font-weight: bolder;
+    cursor: pointer;
+}
+.new-custom-list-form-save:hover{
+    color: rgb(31, 120, 25);
+    font-weight: bolder;
+}
+.new-custom-list-form-advise{
+    width: 100%;
+}
+.new-custom-list-form-close-button{
+    position: absolute;
+    width: fit-content;
+    height: fit-content;
+    cursor: pointer;
+    content: '\ea0f';
+    font-family: 'Icomoon';
+}
+.new-custom-list-form-close-button::before{
+    position: absolute;
+    content: '\ea0f';
+}
+.nclf-body{
+    width: 100%;
+    display: flex;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+}
+.nclf-body-fields-container{
+    display: grid;
+}
+.nclf-body-fields-child{
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+.nclf-body-fields-child > label{
+    display: none;
+    width: fit-content;
+    height: var(--height);
+    font-weight: 600;
+    position: absolute;
+    background: linear-gradient(to bottom, rgb(41,41,41) 60%, transparent 60%);
+}
+.new-custom-list-formfields{
+    box-sizing: border-box;
+    width: 100%;
+    background-color: rgb(62, 62, 62);
+    resize: none;
+    cursor: pointer;
+    font-weight: 600;
+    height: 100%;
+    padding: var(--padding);
+}
+.new-custom-list-formfields:focus{
+    box-sizing: border-box;
+    width: 100%;
+    background: transparent;
+}
+.new-custom-list-formfields:focus ~ label{
+    display: block;
+}
+
+@media screen and (max-width: 420px) {
+    .library-body-container{
+        --gap: 0;
+        --ttelm: 1;
+        row-gap: 22px;
+    }
+    .favorite-songs-list{
+        grid-column: 1/2 !important;
+        min-width: 222px;
+        min-height: 222px;
+        border: 2px solid rgb(255, 255, 255);
+    }
+    .favorite-songs-list-body{
+        padding: 0 10px;
+    }
+    .favorite-songs-list-title{
+        font-size: 16px;
+    }
+    .favorite-songs-list-description,.favorite-songs-list-type{
+        font-size: 15.5px;
+        padding: 8px 0;
+    }
+    .list-owner{width: 45%;}
+    .list-count{ width: 45%;}
+    .fav-songs-list-image{
+        top: 8%;
+        width: 100%;
+        height: 120%;
+    }
+    .new-custom-list-cont{
+        min-width: 77px;
+        justify-content: center !important;
+    }
+    .new-list-button{
+        padding: 5px 10px;
+        border-radius: 8px;
+        font-size: 16px;
+    }
+    .custom-list{
+        min-width: 222px;
+        min-height: 222px;
+    }
+    .custom-list:hover{
+        box-shadow: 7px 7px 1px 1px rgba(99, 24, 112, 0.664);
+    }
+    .custom-list-body{
+        padding: 7px;
+    }
+    .custom-list-title{
+        font-size: 17px;
+        padding: 3px 0;
+    }
+    .new-custom-list-form{
+        padding: 11px;
+        top: calc(20vh);
+        width: 80%;
+        width: 222px;
+        border-radius: 11px;
+    }
+    .new-custom-list-form-title{
+        width: 100%;
+        height: 20px;
+        font-size: 16px;
+    }
+    .new-custom-list-form-image{
+        width: 100%;
+        height: 166px;
+    }
+    .form-list-image{
+        width: 50px;
+        height: 50px;
+        padding: 10px;
+        border-radius: 100px;
+    }
+    .form-list-image::before{
+        font-size: 33px;
+    }
+    .new-custom-list-form-save{
+        border-radius: 100px;
+        width: 100%;
+        height: 33px;
+        font-size: 16px;
+        align-self: center;
+    }
+    .new-custom-list-form-save:hover{
+        font-size: 18px;
+    }
+    .new-custom-list-form-advise{
+        font-size: 12px;
+        font-weight: 600;
+        margin: 10px 0;
+    }
+    .new-custom-list-form-close-button{
+        top: 15px;
+        right: 20px;
+        font-size: 13px;
+    }
+    .nclf-body{
+        margin: 20px 0 10px 0;
+        height: fit-content;
+        row-gap: 10px;
+        flex-wrap: wrap;
+    }
+    .nclf-body-fields-container{
+        width: 100%;
+        height: 155px;
+        grid-template-columns: 100%;
+        grid-template-rows: 24% 68%;
+        row-gap: 8%;
+        position: relative;
+    }
+    .nclf-body-fields-child{
+        --height: 14px;
+    }
+    .nclf-body-fields-child > label{
+        font-size: 14px;
+        top: -8px;
+        left: 6px;
+        padding: 0 2px;
+    }
+    .new-custom-list-formfields{
+        box-sizing: border-box;
+        --padding: 5px;
+        --border: 2px;
+        border-radius: 5px;
+        border: 2px solid rgba(0, 0, 0, 0);
+    }
+    .new-custom-list-formfields:focus{
+        border: 2px solid rgb(166, 166, 166);
+    }
+}
+@media screen and (min-width: 420.1px) and (max-width: 640px) {
+    .library-body-container{
+        --gap: 4%;
+        --ttelm: 2;
+        row-gap: 22px;
+    }
+    .favorite-songs-list{
+        grid-column: 1/2 !important;
+        min-width: 111px;
+        min-height: 155px;
+        max-width: 300px;
+        border: 2px solid rgb(255, 255, 255);
+    }
+    .favorite-songs-list-body{
+        padding: 0 10px;
+    }
+    .favorite-songs-list-title{
+        font-size: 16px;
+    }
+    .favorite-songs-list-description,.favorite-songs-list-type{
+        font-size: 15.5px;
+        padding: 8px 0;
+    }
+    .list-owner{width: 45%;}
+    .list-count{ width: 45%;}
+    .fav-songs-list-image{
+        top: 8%;
+        width: 100%;
+        height: 120%;
+    }
+    .new-custom-list-cont{
+        min-width: 77px;
+        justify-content: center !important;
+    }
+    .new-list-button{
+        padding: 5px 10px;
+        border-radius: 8px;
+        font-size: 16px;
+    }
+    .custom-list{
+        min-width: 111px;
+        min-height: 166px;
+    }
+    .custom-list:hover{
+        box-shadow: 7px 7px 1px 1px rgba(99, 24, 112, 0.664);
+    }
+    .custom-list-body{
+        padding: 7px;
+    }
+    .custom-list-title{
+        font-size: 17px;
+        padding: 3px 0;
+    }
+    .new-custom-list-form{
+        padding: 11px;
+        top: calc(20vh);
+        width: 80%;
+        width: 333px;
+        border-radius: 11px;
+    }
+    .new-custom-list-form-title{
+        width: 100%;
+        height: 20px;
+        font-size: 16px;
+    }
+    .new-custom-list-form-image{
+        width: 40%;
+        height: 144px;
+    }
+    .form-list-image{
+        width: 50px;
+        height: 50px;
+        padding: 10px;
+        border-radius: 100px;
+    }
+    .form-list-image::before{
+        font-size: 33px;
+    }
+    .new-custom-list-form-save{
+        border-radius: 100px;
+        width: 133px;
+        height: 33px;
+        font-size: 16px;
+        
+    }
+    .new-custom-list-form-save:hover{
+        font-size: 18px;
+    }
+    .new-custom-list-form-advise{
+        font-size: 12px;
+        font-weight: 600;
+        margin: 10px 0;
+    }
+    .new-custom-list-form-close-button{
+        top: 15px;
+        right: 20px;
+        font-size: 13px;
+    }
+    .nclf-body{
+        margin: 20px 0 10px 0;
+        height: fit-content;
+        row-gap: 10px;
+        column-gap: 5%;
+    }
+    .nclf-body-fields-container{
+        width: 55%;
+        height: 144px;
+        grid-template-columns: 100%;
+        grid-template-rows: 24% 68%;
+        row-gap: 8%;
+        position: relative;
+    }
+    .nclf-body-fields-child{
+        --height: 14px;
+    }
+    .nclf-body-fields-child > label{
+        font-size: 14px;
+        top: -8px;
+        left: 6px;
+        padding: 0 2px;
+    }
+    .new-custom-list-formfields{
+        box-sizing: border-box;
+        --padding: 5px;
+        --border: 2px;
+        border-radius: 5px;
+        border: 2px solid rgba(0, 0, 0, 0);
+    }
+    .new-custom-list-formfields:focus{
+        border: 2px solid rgb(166, 166, 166);
+    }
+}
+@media screen and (min-width: 640.1px) and (max-width: 960px) {
+    .library-body-container{
+        --gap: 2%;
+        --ttelm: 3;
+        row-gap: 22px;
+    }
+    .favorite-songs-list{
+        grid-column: 1/2 !important;
+        min-width: 111px;
+        min-height: 155px;
+        border: 2px solid rgb(255, 255, 255);
+    }
+    .favorite-songs-list-body{
+        padding: 0 10px;
+    }
+    .favorite-songs-list-title{
+        font-size: 16px;
+    }
+    .favorite-songs-list-description,.favorite-songs-list-type{
+        font-size: 15.5px;
+        padding: 8px 0;
+    }
+    .list-owner{width: 45%;}
+    .list-count{ width: 45%;}
+    .fav-songs-list-image{
+        top: 8%;
+        width: 100%;
+        height: 120%;
+    }
+    .new-custom-list-cont{
+        min-width: 77px;
+        justify-content: center !important;
+    }
+    .new-list-button{
+        padding: 5px 10px;
+        border-radius: 8px;
+        font-size: 16px;
+    }
+    .custom-list{
+        min-width: 111px;
+        min-height: 166px;
+    }
+    .custom-list:hover{
+        box-shadow: 7px 7px 1px 1px rgba(99, 24, 112, 0.664);
+    }
+    .custom-list-body{
+        padding: 7px;
+    }
+    .custom-list-title{
+        font-size: 17px;
+        padding: 3px 0;
+    }
+    .new-custom-list-form{
+        padding: 22px;
+        top: calc(20vh);
+        width: 80%;
+        width: 444px;
+        border-radius: 11px;
+    }
+    .new-custom-list-form-title{
+        width: 100%;
+        height: 20px;
+        font-size: 16px;
+    }
+    .new-custom-list-form-image{
+        width: 40%;
+        height: 144px;
+    }
+    .form-list-image{
+        width: 50px;
+        height: 50px;
+        padding: 10px;
+        border-radius: 100px;
+    }
+    .form-list-image::before{
+        font-size: 33px;
+    }
+    .new-custom-list-form-save{
+        border-radius: 100px;
+        width: 133px;
+        height: 44px;
+        font-size: 16px;
+        
+    }
+    .new-custom-list-form-save:hover{
+        font-size: 18px;
+    }
+    .new-custom-list-form-advise{
+        font-size: 12px;
+        font-weight: 600;
+        margin: 10px 0;
+    }
+    .new-custom-list-form-close-button{
+        top: 15px;
+        right: 20px;
+        font-size: 13px;
+    }
+    .nclf-body{
+        margin: 20px 0 10px 0;
+        height: fit-content;
+        row-gap: 10px;
+        column-gap: 5%;
+    }
+    .nclf-body-fields-container{
+        width: 55%;
+        height: 144px;
+        grid-template-columns: 100%;
+        grid-template-rows: 24% 68%;
+        row-gap: 8%;
+        position: relative;
+    }
+    .nclf-body-fields-child{
+        --height: 14px;
+    }
+    .nclf-body-fields-child > label{
+        font-size: 14px;
+        top: -8px;
+        left: 6px;
+        padding: 0 2px;
+    }
+    .new-custom-list-formfields{
+        box-sizing: border-box;
+        --padding: 5px;
+        --border: 2px;
+        border-radius: 5px;
+        border: 2px solid rgba(0, 0, 0, 0);
+    }
+    .new-custom-list-formfields:focus{
+        border: 2px solid rgb(166, 166, 166);
+    }
+}
+@media screen and (min-width: 960.1px) and (max-width: 1280px) {
+    .library-body-container{
+        --gap: 2%;
+        --ttelm: 5;
+        row-gap: 22px;
+        align-items: flex-end;
+    }
+    .favorite-songs-list{
+        min-width: 111px;
+        min-height: 222px;
+        border: 2px solid rgb(255, 255, 255);
+    }
+    .favorite-songs-list-body{
+        padding: 0 10px;
+    }
+    .favorite-songs-list-title{
+        font-size: 16px;
+    }
+    .favorite-songs-list-description,.favorite-songs-list-type{
+        font-size: 15.5px;
+        padding: 8px 0;
+    }
+    .list-owner{width: 45%;}
+    .list-count{ width: 45%;}
+    .fav-songs-list-image{
+        top: -22%;
+        width: 100%;
+        height: 150%;
+    }
+    .new-custom-list-cont{
+        min-width: 77px;
+        justify-content: center !important;
+    }
+    .new-list-button{
+        padding: 5px 10px;
+        border-radius: 8px;
+        font-size: 16px;
+    }
+    .custom-list{
+        min-width: 111px;
+        height: 166px;
+    }
+    .custom-list:hover{
+        box-shadow: 7px 7px 1px 1px rgba(99, 24, 112, 0.664);
+    }
+    .custom-list-body{
+        padding: 7px;
+    }
+    .custom-list-title{
+        font-size: 17px;
+        padding: 3px 0;
+    }
+    .new-custom-list-form{
+        padding: 22px;
+        top: calc(20vh);
+        width: 80%;
+        width: 444px;
+        border-radius: 11px;
+    }
+    .new-custom-list-form-title{
+        width: 100%;
+        height: 20px;
+        font-size: 16px;
+    }
+    .new-custom-list-form-image{
+        width: 40%;
+        height: 144px;
+    }
+    .form-list-image{
+        width: 50px;
+        height: 50px;
+        padding: 10px;
+        border-radius: 100px;
+    }
+    .form-list-image::before{
+        font-size: 33px;
+    }
+    .new-custom-list-form-save{
+        border-radius: 100px;
+        width: 133px;
+        height: 44px;
+        font-size: 16px;
+        
+    }
+    .new-custom-list-form-save:hover{
+        font-size: 18px;
+    }
+    .new-custom-list-form-advise{
+        font-size: 12px;
+        font-weight: 600;
+        margin: 10px 0;
+    }
+    .new-custom-list-form-close-button{
+        top: 15px;
+        right: 20px;
+        font-size: 13px;
+    }
+    .nclf-body{
+        margin: 20px 0 10px 0;
+        height: fit-content;
+        row-gap: 10px;
+        column-gap: 5%;
+    }
+    .nclf-body-fields-container{
+        width: 55%;
+        height: 144px;
+        grid-template-columns: 100%;
+        grid-template-rows: 24% 68%;
+        row-gap: 8%;
+        position: relative;
+    }
+    .nclf-body-fields-child{
+        --height: 14px;
+    }
+    .nclf-body-fields-child > label{
+        font-size: 14px;
+        top: -8px;
+        left: 6px;
+        padding: 0 2px;
+    }
+    .new-custom-list-formfields{
+        box-sizing: border-box;
+        --padding: 5px;
+        --border: 2px;
+        border-radius: 5px;
+        border: 2px solid rgba(0, 0, 0, 0);
+    }
+    .new-custom-list-formfields:focus{
+        border: 2px solid rgb(166, 166, 166);
+    }
+}
+@media screen and (min-width: 1280.1px) and (max-width: 1600px) {
+    .library-body-container{
+        --gap: 2%;
+        --ttelm: 7;
+        row-gap: 22px;
+        align-items: flex-end;
+    }
+    .favorite-songs-list{
+        min-width: 111px;
+        min-height: 222px;
+        border: 2px solid rgb(255, 255, 255);
+    }
+    .favorite-songs-list-body{
+        padding: 0 10px;
+    }
+    .favorite-songs-list-title{
+        font-size: 16px;
+    }
+    .favorite-songs-list-description,.favorite-songs-list-type{
+        font-size: 15.5px;
+        padding: 8px 0;
+    }
+    .list-owner{width: 45%;}
+    .list-count{ width: 45%;}
+    .fav-songs-list-image{
+        top: -22%;
+        width: 100%;
+        height: 150%;
+    }
+    .new-custom-list-cont{
+        min-width: 77px;
+        justify-content: center !important;
+    }
+    .new-list-button{
+        padding: 5px 10px;
+        border-radius: 8px;
+        font-size: 16px;
+    }
+    .custom-list{
+        min-width: 111px;
+        height: 166px;
+    }
+    .custom-list:hover{
+        box-shadow: 7px 7px 1px 1px rgba(99, 24, 112, 0.664);
+    }
+    .custom-list-body{
+        padding: 7px;
+    }
+    .custom-list-title{
+        font-size: 17px;
+        padding: 3px 0;
+    }
+    .new-custom-list-form{
+        padding: 22px;
+        top: calc(20vh);
+        width: 80%;
+        width: 444px;
+        border-radius: 11px;
+    }
+    .new-custom-list-form-title{
+        width: 100%;
+        height: 20px;
+        font-size: 16px;
+    }
+    .new-custom-list-form-image{
+        width: 40%;
+        height: 144px;
+    }
+    .form-list-image{
+        width: 50px;
+        height: 50px;
+        padding: 10px;
+        border-radius: 100px;
+    }
+    .form-list-image::before{
+        font-size: 33px;
+    }
+    .new-custom-list-form-save{
+        border-radius: 100px;
+        width: 133px;
+        height: 44px;
+        font-size: 16px;
+        
+    }
+    .new-custom-list-form-save:hover{
+        font-size: 18px;
+    }
+    .new-custom-list-form-advise{
+        font-size: 12px;
+        font-weight: 600;
+        margin: 10px 0;
+    }
+    .new-custom-list-form-close-button{
+        top: 15px;
+        right: 20px;
+        font-size: 13px;
+    }
+    .nclf-body{
+        margin: 20px 0 10px 0;
+        height: fit-content;
+        row-gap: 10px;
+        column-gap: 5%;
+    }
+    .nclf-body-fields-container{
+        width: 55%;
+        height: 144px;
+        grid-template-columns: 100%;
+        grid-template-rows: 24% 68%;
+        row-gap: 8%;
+        position: relative;
+    }
+    .nclf-body-fields-child{
+        --height: 14px;
+    }
+    .nclf-body-fields-child > label{
+        font-size: 14px;
+        top: -8px;
+        left: 6px;
+        padding: 0 2px;
+    }
+    .new-custom-list-formfields{
+        box-sizing: border-box;
+        --padding: 5px;
+        --border: 2px;
+        border-radius: 5px;
+        border: 2px solid rgba(0, 0, 0, 0);
+    }
+    .new-custom-list-formfields:focus{
+        border: 2px solid rgb(166, 166, 166);
+    }
+}
+@media screen and (min-width: 1600.1px) and (max-width: 1920px) {
+    .library-body-container{
+        --gap: 2%;
+        --ttelm: 8;
+        row-gap: 22px;
+        align-items: flex-end;
+    }
+    .favorite-songs-list{
+        min-width: 111px;
+        min-height: 222px;
+        border: 2px solid rgb(255, 255, 255);
+    }
+    .favorite-songs-list-body{
+        padding: 0 10px;
+    }
+    .favorite-songs-list-title{
+        font-size: 16px;
+    }
+    .favorite-songs-list-description,.favorite-songs-list-type{
+        font-size: 15.5px;
+        padding: 8px 0;
+    }
+    .list-owner{width: 45%;}
+    .list-count{ width: 45%;}
+    .fav-songs-list-image{
+        top: -22%;
+        width: 100%;
+        height: 150%;
+    }
+    .new-custom-list-cont{
+        min-width: 77px;
+        justify-content: center !important;
+    }
+    .new-list-button{
+        padding: 5px 10px;
+        border-radius: 8px;
+        font-size: 16px;
+    }
+    .custom-list{
+        min-width: 111px;
+        height: 166px;
+    }
+    .custom-list:hover{
+        box-shadow: 7px 7px 1px 1px rgba(99, 24, 112, 0.664);
+    }
+    .custom-list-body{
+        padding: 7px;
+    }
+    .custom-list-title{
+        font-size: 17px;
+        padding: 3px 0;
+    }
+    .new-custom-list-form{
+        padding: 22px;
+        top: calc(20vh);
+        width: 80%;
+        width: 444px;
+        border-radius: 11px;
+    }
+    .new-custom-list-form-title{
+        width: 100%;
+        height: 20px;
+        font-size: 16px;
+    }
+    .new-custom-list-form-image{
+        width: 40%;
+        height: 144px;
+    }
+    .form-list-image{
+        width: 50px;
+        height: 50px;
+        padding: 10px;
+        border-radius: 100px;
+    }
+    .form-list-image::before{
+        font-size: 33px;
+    }
+    .new-custom-list-form-save{
+        border-radius: 100px;
+        width: 133px;
+        height: 44px;
+        font-size: 16px;
+        
+    }
+    .new-custom-list-form-save:hover{
+        font-size: 18px;
+    }
+    .new-custom-list-form-advise{
+        font-size: 12px;
+        font-weight: 600;
+        margin: 10px 0;
+    }
+    .new-custom-list-form-close-button{
+        top: 15px;
+        right: 20px;
+        font-size: 13px;
+    }
+    .nclf-body{
+        margin: 20px 0 10px 0;
+        height: fit-content;
+        row-gap: 10px;
+        column-gap: 5%;
+    }
+    .nclf-body-fields-container{
+        width: 55%;
+        height: 144px;
+        grid-template-columns: 100%;
+        grid-template-rows: 24% 68%;
+        row-gap: 8%;
+        position: relative;
+    }
+    .nclf-body-fields-child{
+        --height: 14px;
+    }
+    .nclf-body-fields-child > label{
+        font-size: 14px;
+        top: -8px;
+        left: 6px;
+        padding: 0 2px;
+    }
+    .new-custom-list-formfields{
+        box-sizing: border-box;
+        --padding: 5px;
+        --border: 2px;
+        border-radius: 5px;
+        border: 2px solid rgba(0, 0, 0, 0);
+    }
+    .new-custom-list-formfields:focus{
+        border: 2px solid rgb(166, 166, 166);
+    }
+}
+@media screen and (min-width: 1920.1px) and (max-width: 2240px) {
+    .library-body-container{
+        --gap: 2%;
+        --ttelm: 8;
+        row-gap: 22px;
+        align-items: flex-end;
+    }
+    .favorite-songs-list{
+        min-width: 111px;
+        min-height: 222px;
+        border: 2px solid rgb(255, 255, 255);
+    }
+    .favorite-songs-list-body{
+        padding: 0 10px;
+    }
+    .favorite-songs-list-title{
+        font-size: 16px;
+    }
+    .favorite-songs-list-description,.favorite-songs-list-type{
+        font-size: 15.5px;
+        padding: 8px 0;
+    }
+    .list-owner{width: 45%;}
+    .list-count{ width: 45%;}
+    .fav-songs-list-image{
+        top: -22%;
+        width: 100%;
+        height: 150%;
+    }
+    .new-custom-list-cont{
+        min-width: 77px;
+        justify-content: center !important;
+    }
+    .new-list-button{
+        padding: 5px 10px;
+        border-radius: 8px;
+        font-size: 16px;
+    }
+    .custom-list{
+        min-width: 111px;
+        height: 166px;
+    }
+    .custom-list:hover{
+        box-shadow: 7px 7px 1px 1px rgba(99, 24, 112, 0.664);
+    }
+    .custom-list-body{
+        padding: 7px;
+    }
+    .custom-list-title{
+        font-size: 17px;
+        padding: 3px 0;
+    }
+    .new-custom-list-form{
+        padding: 22px;
+        top: calc(20vh);
+        width: 80%;
+        width: 444px;
+        border-radius: 11px;
+    }
+    .new-custom-list-form-title{
+        width: 100%;
+        height: 20px;
+        font-size: 16px;
+    }
+    .new-custom-list-form-image{
+        width: 40%;
+        height: 144px;
+    }
+    .form-list-image{
+        width: 50px;
+        height: 50px;
+        padding: 10px;
+        border-radius: 100px;
+    }
+    .form-list-image::before{
+        font-size: 33px;
+    }
+    .new-custom-list-form-save{
+        border-radius: 100px;
+        width: 133px;
+        height: 44px;
+        font-size: 16px;
+        
+    }
+    .new-custom-list-form-save:hover{
+        font-size: 18px;
+    }
+    .new-custom-list-form-advise{
+        font-size: 12px;
+        font-weight: 600;
+        margin: 10px 0;
+    }
+    .new-custom-list-form-close-button{
+        top: 15px;
+        right: 20px;
+        font-size: 13px;
+    }
+    .nclf-body{
+        margin: 20px 0 10px 0;
+        height: fit-content;
+        row-gap: 10px;
+        column-gap: 5%;
+    }
+    .nclf-body-fields-container{
+        width: 55%;
+        height: 144px;
+        grid-template-columns: 100%;
+        grid-template-rows: 24% 68%;
+        row-gap: 8%;
+        position: relative;
+    }
+    .nclf-body-fields-child{
+        --height: 14px;
+    }
+    .nclf-body-fields-child > label{
+        font-size: 14px;
+        top: -8px;
+        left: 6px;
+        padding: 0 2px;
+    }
+    .new-custom-list-formfields{
+        box-sizing: border-box;
+        --padding: 5px;
+        --border: 2px;
+        border-radius: 5px;
+        border: 2px solid rgba(0, 0, 0, 0);
+    }
+    .new-custom-list-formfields:focus{
+        border: 2px solid rgb(166, 166, 166);
+    }
+}
+@media screen and (min-width: 2240.1px) {
+    .library-body-container{
+        --gap: 2%;
+        --ttelm: 9;
+        row-gap: 22px;
+        align-items: flex-end;
+    }
+    .favorite-songs-list{
+        min-width: 111px;
+        min-height: 222px;
+        border: 2px solid rgb(255, 255, 255);
+    }
+    .favorite-songs-list-body{
+        padding: 0 10px;
+    }
+    .favorite-songs-list-title{
+        font-size: 16px;
+    }
+    .favorite-songs-list-description,.favorite-songs-list-type{
+        font-size: 15.5px;
+        padding: 8px 0;
+    }
+    .list-owner{width: 45%;}
+    .list-count{ width: 45%;}
+    .fav-songs-list-image{
+        top: -22%;
+        width: 100%;
+        height: 150%;
+    }
+    .new-custom-list-cont{
+        min-width: 77px;
+        justify-content: center !important;
+    }
+    .new-list-button{
+        padding: 5px 10px;
+        border-radius: 8px;
+        font-size: 16px;
+    }
+    .custom-list{
+        min-width: 111px;
+        height: 166px;
+    }
+    .custom-list:hover{
+        box-shadow: 7px 7px 1px 1px rgba(99, 24, 112, 0.664);
+    }
+    .custom-list-body{
+        padding: 7px;
+    }
+    .custom-list-title{
+        font-size: 17px;
+        padding: 3px 0;
+    }
+    .new-custom-list-form{
+        padding: 22px;
+        top: calc(20vh);
+        width: 80%;
+        width: 444px;
+        border-radius: 11px;
+    }
+    .new-custom-list-form-title{
+        width: 100%;
+        height: 20px;
+        font-size: 16px;
+    }
+    .new-custom-list-form-image{
+        width: 40%;
+        height: 144px;
+    }
+    .form-list-image{
+        width: 50px;
+        height: 50px;
+        padding: 10px;
+        border-radius: 100px;
+    }
+    .form-list-image::before{
+        font-size: 33px;
+    }
+    .new-custom-list-form-save{
+        border-radius: 100px;
+        width: 133px;
+        height: 44px;
+        font-size: 16px;
+        
+    }
+    .new-custom-list-form-save:hover{
+        font-size: 18px;
+    }
+    .new-custom-list-form-advise{
+        font-size: 12px;
+        font-weight: 600;
+        margin: 10px 0;
+    }
+    .new-custom-list-form-close-button{
+        top: 15px;
+        right: 20px;
+        font-size: 13px;
+    }
+    .nclf-body{
+        margin: 20px 0 10px 0;
+        height: fit-content;
+        row-gap: 10px;
+        column-gap: 5%;
+    }
+    .nclf-body-fields-container{
+        width: 55%;
+        height: 144px;
+        grid-template-columns: 100%;
+        grid-template-rows: 24% 68%;
+        row-gap: 8%;
+        position: relative;
+    }
+    .nclf-body-fields-child{
+        --height: 14px;
+    }
+    .nclf-body-fields-child > label{
+        font-size: 14px;
+        top: -8px;
+        left: 6px;
+        padding: 0 2px;
+    }
+    .new-custom-list-formfields{
+        box-sizing: border-box;
+        --padding: 5px;
+        --border: 2px;
+        border-radius: 5px;
+        border: 2px solid rgba(0, 0, 0, 0);
+    }
+    .new-custom-list-formfields:focus{
+        border: 2px solid rgb(166, 166, 166);
+    }
+}

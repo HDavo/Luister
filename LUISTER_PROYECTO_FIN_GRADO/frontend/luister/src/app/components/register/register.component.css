@@ -1,0 +1,26 @@
+span{
+  color: white;
+}
+
+#maincontainers{
+  display: flex;
+  flex-direction: column;
+  /* width: 50%; */
+}
+/* maincontainers > div {
+  width: 100%;
+} */
+.envio{
+  background-color: blanchedalmond;
+  padding: 2%;
+  cursor: pointer;
+}
+
+@media screen and (max-height: 320px) { }
+@media screen and (min-height: 320.9px) and (max-height: 640px) { }
+@media screen and (min-height: 640.9px) and (max-height: 960px) { }
+@media screen and (min-height: 960.9px) and (max-height: 1920px) { }
+@media screen and (min-height: 1920.9px) and (max-height: 1600px) { }
+@media screen and (min-height: 1600.9px) and (max-height: 1920px) { }
+@media screen and (min-height: 1920.9px) and (max-height: 2240px) { }
+@media screen and (min-height: 2240.9px) { }
