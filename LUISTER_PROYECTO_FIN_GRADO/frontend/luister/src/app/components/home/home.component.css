@@ -30,6 +30,7 @@
     transition: box-shadow .3s, transform .15s;
     position: relative;
     cursor: pointer;
+    min-height: 100px;
        
 }
 .genre-element::before{
@@ -64,9 +65,6 @@
     .album-image{
         border-radius: 7px;
     }
-    .genre-element{
-        min-height: 133px;     
-    }
     .genre-element::before{
         line-height: 55px;     
     }
@@ -84,9 +82,6 @@
 @media screen and (min-width: 420.9px) and (max-width: 640px) {
     .album-image{
         border-radius: 7px;
-    }
-    .genre-element{
-        min-height: 140px;     
     }
     .genre-element::before{
         line-height: 55px;     
@@ -106,9 +101,6 @@
     .album-image{
         border-radius: 7px;
     }
-    .genre-element{
-        min-height: 140px;     
-    }
     .genre-element::before{
         line-height: 55px;     
     }
@@ -126,9 +118,6 @@
 @media screen and (min-width: 960.9px) and (max-width: 1280px) {
     .album-image{
         border-radius: 7px;
-    }
-    .genre-element{
-        min-height: 150px;     
     }
     .genre-element::before{
         line-height: 55px;     
@@ -148,9 +137,6 @@
     .album-image{
         border-radius: 7px;
     }
-    .genre-element{
-        min-height: 150px;     
-    }
     .genre-element::before{
         line-height: 55px;     
     }
@@ -168,9 +154,6 @@
 @media screen and (min-width: 1600.9px) and (max-width: 1920px) {
     .album-image{
         border-radius: 7px;
-    }
-    .genre-element{
-        min-height: 150px;     
     }
     .genre-element::before{
         line-height: 55px;     
@@ -190,9 +173,6 @@
     .album-image{
         border-radius: 7px;
     }
-    .genre-element{
-        min-height: 150px;     
-    }
     .genre-element::before{
         line-height: 55px;     
     }
@@ -210,9 +190,6 @@
 @media screen and (min-width: 2240.9px) { 
     .album-image{
         border-radius: 7px;
-    }
-    .genre-element{
-        min-height: 150px;     
     }
     .genre-element::before{
         line-height: 55px;     
