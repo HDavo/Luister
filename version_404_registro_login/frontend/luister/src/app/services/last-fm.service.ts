@@ -20,6 +20,7 @@ export class LastFmService {
   //El token tiene un validez temporal ilimitada, por lo que no es necesario poner los métodos de renovación¿
 
   getArtistInfo(name: string){
-    return this.http.get<LastFmArtist>(`${this.URL}?${this.searchParameter}&artista=${name}&api_key=${this.apiKey}`);
+    return this.http.get<LastFmArtist>(`${this.URL}?${this.searchParameter}&artist=${name}&api_key=${this.apiKey}&format=json`);
+
   }
 }

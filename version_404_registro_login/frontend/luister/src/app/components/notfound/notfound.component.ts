@@ -21,7 +21,14 @@ export class NotfoundComponent {
   } */
 
   pruebaInfo(name: string){
-    const info = this.bio.getArtistInfo(name);
-    console.log(info)
+    // const info = this.bio.getArtistInfo(name);
+
+    this.bio.getArtistInfo(name)
+    .subscribe(
+      (data: any) => {
+        console.log(data);
+      }
+
+    )
   }
 }

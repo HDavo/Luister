@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { ApibindingService } from 'src/app/services/apibinding.service';
+import { LastFmService } from 'src/app/services/last-fm.service';
 
 @Component({
   selector: 'app-details',
@@ -23,11 +24,12 @@ export class DetailsComponent {
   public artist:any= {
     data: [],
     albums: [],
-    topTracks: []
+    topTracks: [],
+    bio: []
   };
 
 
-  constructor(private route:ActivatedRoute, private router:Router, private fromSpotify:ApibindingService){
+  constructor(private route:ActivatedRoute, private router:Router, private fromSpotify:ApibindingService, private lastFm: LastFmService){
     this.route.params.subscribe((res:any)=>{
       this.id = res.id;
       this.elementType = res.element;
@@ -86,7 +88,15 @@ export class DetailsComponent {
             this.artist.topTracks = res.tracks.filter((element:any) => element != null);
           })
         })
-        console.log(this.artist)
+
+       this.lastFm.getArtistInfo(this.artist.data.name)
+        .subscribe(
+          (res:any) => {
+            
+            this.artist.bio = res.artist.bio.summary; 
+            console.log(this.artist.bio);
+          }
+        )
       },
       (error:any)=>{
         if(error.status == 400 || error.status == 404){

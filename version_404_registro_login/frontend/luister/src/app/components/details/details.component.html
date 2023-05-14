@@ -51,7 +51,12 @@
                 <img src="../../../assets/images/default-custom-list.png" alt="album image">
             </ng-template>
             <div class="left-bottom-info">
-                
+                <div>Género: 
+                    <span *ngFor="let genre of artist.data?.genres; let i = index">
+                        <span *ngIf="i != 0"> - </span> {{ genre | titlecase }}
+                    </span>
+                </div>
+                <div>Seguidores: {{artist.data.followers?.total | number: '1.2' }}</div>
             </div>
             <div class="left-bottom-platforms">
                 <h3 class="left-bottom-platforms-title">Plataformas de streaming</h3>
@@ -65,12 +70,9 @@
 
         <div class="right-container">
             <h2 class="element-name">{{artist.data?.name}}</h2>
-            <div>Género: 
-                <span *ngFor="let genre of artist.data?.genres; let i = index">
-                    <span *ngIf="i != 0"> - </span> {{ genre }}
-                </span>
+            <div>
+                {{artist.bio}}
             </div>
-            <div>Seguidores: {{artist.data.followers?.total}}</div>
             <div class="related-tracks">
                 <h2 class="related-tracks-title">Canciones populares</h2>
                 <div class="related-tracks-container">
