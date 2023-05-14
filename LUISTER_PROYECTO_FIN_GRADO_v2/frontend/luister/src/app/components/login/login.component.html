@@ -1,7 +1,7 @@
 <div id="pagecontainer" class="maincontainers">
   <form
-    autocomplete="on"
-    formGroup="myForm"
+    autocomplete="off"
+    [formGroup]="myForm"
     (ngSubmit)="login()">
 
     <span>
@@ -10,7 +10,11 @@
     <div>
       <span>Email</span>
       <br>
-      <input type="text" formControlName = "email" placeholder="Introduce tu correo electrónico"> <!-- formControlName = "email" -->
+      <input
+          type="text"
+          formControlName = "email"
+          placeholder="Introduce tu correo electrónico"
+          >
       <span *ngIf="isValid('email')">
         Correo no válido
       </span>
@@ -18,7 +22,11 @@
     <div>
       <span>Contraseña</span>
       <br>
-      <input type="password" formControlName = "password" placeholder="Introduce tu contraseña"> <!-- formControlName = "password" -->
+      <input
+          type="password"
+          formControlName ="password"
+          placeholder="Introduce tu contraseña"
+          >
       <span *ngIf="isValid('password')">
         Contraseña no correcta
       </span>

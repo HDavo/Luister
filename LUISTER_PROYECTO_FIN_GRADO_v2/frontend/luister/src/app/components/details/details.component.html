@@ -1,5 +1,6 @@
 <div id="pagecontainer" class="maincontainers" #asMainContainer>
 
+    <!-- Detalles en el caso de que el elemento sea un album -->
     <div *ngIf="elementType == 'album'" class="page-section">
         <div class="left-container">
             <div class="lc-image-cont">
@@ -18,7 +19,7 @@
                 <div class="left-bottom-platforms-container">
                     <span>Spotify</span><span>AppleMusic</span>
                     <span>Deezer</span><span>Youtube</span>
-                    <span>Amazon No se qué</span>
+                    <span>Amazon Music</span>
                 </div>
             </div>
         </div>
@@ -66,6 +67,7 @@
         </div>
     </div>
 
+    <!-- detalles en el caso de que acceda a los detalles de una canción -->
     <div *ngIf="elementType == 'track'" class="page-section">
         <div class="left-container">
             <div class="lc-image-cont">
@@ -140,6 +142,7 @@
         </div>
     </div>
 
+    <!-- Detalles de artistas, cuando se pulsa para ver los detalles de un artista -->
     <div *ngIf="elementType == 'artist'" class="page-section">
         <div class="left-container">
             <div class="lc-image-cont radial-img">
@@ -149,26 +152,30 @@
                 </ng-template>
             </div>
             <div class="left-bottom-info">
-                
+                <div>Género: 
+                    <span *ngFor="let genre of artist.data?.genres; let i = index">
+                        <span *ngIf="i != 0"> - </span> {{ genre | titlecase }}
+                    </span>
+                </div>
+                <div>
+                    Seguidores: {{artist.data.followers?.total | number: '3.0': 'es' }}
+                </div>
             </div>
             <div class="left-bottom-platforms">
                 <h3 class="left-bottom-platforms-title">Plataformas de streaming</h3>
                 <div class="left-bottom-platforms-container">
                     <span>Spotify</span><span>AppleMusic</span>
                     <span>Deezer</span><span>Youtube</span>
-                    <span>Amazon No se qué</span>
+                    <span>Amazon Music</span>
                 </div>
             </div>
         </div>
 
         <div class="right-container">
             <h2 class="element-name">{{artist.data?.name}}</h2>
-            <div>Género: 
-                <span *ngFor="let genre of artist.data?.genres; let i = index">
-                    <span *ngIf="i != 0"> - </span> {{ genre }}
-                </span>
+            <div>
+                {{artist.bio}}
             </div>
-            <div>Seguidores: {{artist.data.followers?.total}}</div>
             <div class="related-tracks">
                 <h2 class="related-tracks-title">Canciones populares</h2>
                 <div class="related-tracks-container">
