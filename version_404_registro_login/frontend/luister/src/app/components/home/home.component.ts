@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent {
-  
+
   public welcomText:string = 'Bienvenido a Luister';
   public artists:any;
   public albums:any;
@@ -16,7 +16,9 @@ export class HomeComponent {
   @ViewChild('asHomePage') homeContainer!:ElementRef;
   @ViewChildren('pagesectionelement') psecElement!:QueryList<any>;
 
-  constructor(private fromSpotify: ApibindingService, private renderer:Renderer2){
+  constructor(
+    private fromSpotify: ApibindingService,
+    private renderer:Renderer2){
     this.renderHomePage();
   }
 
@@ -26,7 +28,7 @@ export class HomeComponent {
         this.artists = result.artists.items;
       });
     })
-    
+
     this.fromSpotify.getRandomElements('album').then((data:Observable<any>)=>{
       data.subscribe((result:any)=> {
         this.albums = result.albums.items;
