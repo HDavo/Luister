@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { ApibindingService } from 'src/app/services/apibinding.service';
+import { LuisterSweetAlert } from 'src/app/services/luisterSweetAlert';
 
 @Component({
   selector: 'app-details',
@@ -45,7 +46,7 @@ export class DetailsComponent {
             this.getTrack(this.id);
             break;
         default:
-          this.router.navigate(['/not-found']);
+          this.router.navigate(['/','not-found']);
           break;
       }
     })
@@ -68,7 +69,7 @@ export class DetailsComponent {
       },
       (error:any)=>{
         if(error.status == 400 || error.status == 404){
-          this.router.navigate(['/not-found']);
+          this.router.navigate(['/','not-found']);
         }
       })
     })
@@ -89,7 +90,7 @@ export class DetailsComponent {
       },
       (error:any)=>{
         if(error.status == 400 || error.status == 404){
-          this.router.navigate(['/not-found']);
+          this.router.navigate(['/','not-found']);
         }
       })
     })
@@ -136,7 +137,7 @@ export class DetailsComponent {
         DetailsComponent.audio.play();
       }
     }else{
-      alert('Previsualizacion no admitida');
+      LuisterSweetAlert.info('Previsualizacion no admitida');
     }
   }
 }

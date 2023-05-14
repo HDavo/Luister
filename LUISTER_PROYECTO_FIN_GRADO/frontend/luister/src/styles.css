@@ -75,8 +75,6 @@
     justify-content: center;
 }
 .mainpagetitle-cont{
-    max-width: 2042px;
-    width: 85%;
     height: 100%;
     display: flex;
     flex-direction: column;
@@ -109,8 +107,7 @@
     animation-duration: .6s;
     animation-delay: .2s;
 }
-.page-section{
-    width: 85%;
+.page-section,.all-nav-menu-container,.mainpagetitle-cont{
     max-width: 2042px;
 }
 .max-element-width{
@@ -139,6 +136,7 @@ li{
     transform: rotateX(0deg) rotateY(0deg);
 }
 .page-section-content{
+    --gap: 22px;
     --cwidth: calc((100% - (var(--ttalCards) - 1) * var(--gap)) / var(--ttalCards));
     width: 100%;
     display: grid;
@@ -185,13 +183,33 @@ li{
     color: white;
     font-weight: 600;
     height: fit-content;
+    font-family: 'Montserrat';
+    display: flex;
+    flex-direction: column;
 }
-.customContextMenu > div{
-    width: calc(100% - var(--padding)*2);
+.ccm-option{
+    box-sizing: border-box;
+    width: 100%;
     cursor: pointer;
+    background: transparent;
+    position: relative;
 }
-.customContextMenu > div:hover{
+.ccm-option:hover > .ccm-submenu-cont{
+    visibility: visible;
+}
+.ccm-submenu-cont{
+    padding: 10px;
+    visibility: hidden;
+    bottom: -33px;
+    left: 222px;
+    position: absolute;
+    width: 100%;
+    background-color: #292929;
+}
+.ccm-option:hover{
     background: rgba(95, 95, 95, 0.3);
+    text-decoration: none;
+    color: white;
 }
 a{
     color: white;
@@ -230,7 +248,6 @@ img{
         margin: 5px 0;
     }
     .page-section-content{
-        --gap: 11px;
         --ttalCards: 2;
         min-height: 300px;
     }
@@ -254,7 +271,7 @@ img{
         padding: 8px;
         border-radius: 2px;
     }
-    .customContextMenu > div{
+    .ccm-option{
         --padding: 10px;
         font-size: 16px;
         padding: 11px var(--padding);
@@ -286,7 +303,7 @@ img{
         margin: 8px 0;
     }
     .page-section-content{
-        --gap: 11px;
+        
         --ttalCards: 3;
         min-height: 233px;
     }
@@ -310,7 +327,7 @@ img{
         padding: 8px;
         border-radius: 2px;
     }
-    .customContextMenu > div{
+    .ccm-option{
         --padding: 10px;
         font-size: 16px;
         padding: 11px var(--padding);
@@ -342,7 +359,7 @@ img{
         margin: 8px 0;
     }
     .page-section-content{
-        --gap: 11px;
+        
         --ttalCards: 5;
         min-height: 300px;
     }
@@ -366,7 +383,7 @@ img{
         padding: 8px;
         border-radius: 2px;
     }
-    .customContextMenu > div{
+    .ccm-option{
         --padding: 10px;
         font-size: 16px;
         padding: 11px var(--padding);
@@ -398,7 +415,7 @@ img{
         margin: 10px 0;
     }
     .page-section-content{
-        --gap: 18px;
+        
         --ttalCards: 6;
         min-height: 300px;
     }
@@ -422,7 +439,7 @@ img{
         padding: 8px;
         border-radius: 2px;
     }
-    .customContextMenu > div{
+    .ccm-option{
         --padding: 10px;
         font-size: 16px;
         padding: 11px var(--padding);
@@ -454,7 +471,7 @@ img{
         margin: 10px 0;
     }
     .page-section-content{
-        --gap: 20px;
+        
         --ttalCards: 7;
         min-height: 300px;
     }
@@ -478,7 +495,7 @@ img{
         padding: 8px;
         border-radius: 2px;
     }
-    .customContextMenu > div{
+    .ccm-option{
         --padding: 10px;
         font-size: 16px;
         padding: 11px var(--padding);
@@ -510,7 +527,7 @@ img{
         margin: 10px 0;
     }
     .page-section-content{
-        --gap: 22px;
+        
         --ttalCards: 8;
         min-height: 300px;
     }
@@ -534,7 +551,7 @@ img{
         padding: 8px;
         border-radius: 2px;
     }
-    .customContextMenu > div{
+    .ccm-option{
         --padding: 10px;
         font-size: 16px;
         padding: 11px var(--padding);
@@ -566,7 +583,7 @@ img{
         margin: 10px 0;
     }
     .page-section-content{
-        --gap: 22px;
+        
         --ttalCards: 9;
         min-height: 300px;
     }
@@ -590,7 +607,7 @@ img{
         padding: 8px;
         border-radius: 2px;
     }
-    .customContextMenu > div{
+    .ccm-option{
         --padding: 10px;
         font-size: 16px;
         padding: 11px var(--padding);
@@ -622,7 +639,7 @@ img{
         margin: 10px 0;
     }
     .page-section-content{
-        --gap: 22px;
+        
         --ttalCards: 10;
         min-height: 300px;
     }
@@ -646,14 +663,25 @@ img{
         padding: 8px;
         border-radius: 2px;
     }
-    .customContextMenu > div{
+    .ccm-option{
         --padding: 10px;
         font-size: 16px;
         padding: 11px var(--padding);
         border-radius: 2px;
     }
 }
-
+@media screen and (max-width: 959.9px){
+    .page-section, .all-nav-menu-container, .mainpagetitle-cont{
+        width: 90%;
+        max-width: 2042px;
+    }
+}
+@media screen and (min-width: 960px) {
+    .page-section, .all-nav-menu-container, .mainpagetitle-cont{
+        width: 85%;
+        max-width: 2042px;
+    }
+}
 
 
 @keyframes custom2 {
@@ -805,4 +833,73 @@ img{
     100%{
         opacity: 1;
     }
+}
+
+/*
+Luister sweet Alert
+*/
+
+.banner-container{
+    z-index: 6;
+    --title-color: '';
+    --paragraph-color: '';
+    --border-color: '';
+    box-sizing: border-box;
+    border: 5px double var(--border-color);
+    top: 20vh;
+    left: calc(50% - 126px);
+    position: fixed;
+    background: rgb(255, 255, 255);
+    width: 252px;
+    display: flex;
+    flex-flow: column nowrap;
+    padding: 7px 0 11px 0;
+    align-items: center;
+    border-radius: 5px;
+    box-shadow: 0 0 1px 1px rgba(77, 5, 77, 0.1),
+    0 0 5px 5px rgba(72, 3, 73, 0.1),
+    0 0 10px 10px rgba(69, 2, 72, 0.05),
+    0 0 15px 15px rgba(68, 3, 65, 0.05),
+    0 0 20px 20px rgba(59, 2, 61, 0.01),
+    0 0 25px 25px rgba(57, 2, 53, 0.01),
+    0 0 35px 35px rgba(51, 2, 65, 0.01);
+}
+.banner-gif{
+    width: 40px;
+    height: 40px;
+}
+.banner-body{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.banner-body-title{
+    display: block;
+    font-size: 18px;
+    font-family: 'Montserrat';
+    font-weight: bolder;
+    color: var(--title-color);
+}
+.banner-body-paragraph{
+    text-align: center;
+    padding: 8px 0;
+    color: var(--paragraph-color);
+    font-family: 'Noto Sans Display';
+    font-weight: 600;
+}
+.banner-close-button{
+    width: 88px;
+    background: var(--title-color);
+    color: white;
+    padding: 8px 4px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    font-family: 'Outfit';
+    font-weight: 600;
+}
+
+.link{
+    text-decoration: none;
+    margin-bottom: 5px;
 }

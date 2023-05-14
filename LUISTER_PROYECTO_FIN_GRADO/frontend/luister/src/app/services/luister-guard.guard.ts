@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
 import { Observable } from 'rxjs';
-import Swal from 'sweetalert2';
+import { LuisterSweetAlert } from './luisterSweetAlert';
 
 @Injectable({
   providedIn: 'root'
@@ -23,12 +23,13 @@ export class LuisterGuardGuard implements CanActivate {
   }
 
   isValidSession():boolean{
-    const RESULT = this.CookieService.check('cookie-token');
+    const RESULT = this.CookieService.check('auth-token');
     if(!RESULT) {
-      Swal.fire(
-          'No autorizado',
-          'Debes iniciar sesión para acceder a este recurso',
-          'error'
+      LuisterSweetAlert.denie(
+        'Debes iniciar sesión para acceder a este recurso',
+        'No autorizado',
+        '#',
+        '¿Iniciar sesión?'
         );
     }
     return RESULT;

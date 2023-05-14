@@ -37,7 +37,6 @@ export class LibraryComponent {
   public newListDescription!:string;
   public newListImage:any;
   public newListImagePreview!:string;
-  private contexMenu:any;
 
   constructor(private renderer:Renderer2){ }
 
@@ -45,18 +44,6 @@ export class LibraryComponent {
   @ViewChild('asMainContainer') asMainContainer!:ElementRef;
   printCustomListForm(){
     this.renderer.setStyle(this.newCustomListForm.nativeElement, 'display', 'flex');
-  }
-
-  @HostListener('click',['$event.target.className'])
-  onClick(className:any){
-    if(!className.includes('customContextMenu') && !className.includes('ccm-option')){
-      this.removeContexMenu();
-    }
-  }
-
-  @HostListener('window:scroll',['$event'])
-  onScroll(){
-    this.removeContexMenu();
   }
 
   closeForm(){
@@ -89,42 +76,6 @@ export class LibraryComponent {
     })
     this.closeForm()
   }
-  /* contextualmenu */
-  insertContexMenu(event:any){
-    let contextMenu = this.renderer.createElement('div'),
-        options = ['Detalles','Editar','Eliminar'],
-        option,
-        parentNode = this.asMainContainer.nativeElement;
-    
-    this.removeContexMenu();
-    
-    this.renderer.addClass(contextMenu, 'customContextMenu');
-
-    options.forEach(element =>{
-      option = this.renderer.createElement('div');
-      this.renderer.addClass(option, 'ccm-option');
-      this.renderer.appendChild(option, this.renderer.createText(element));
-      this.renderer.appendChild(contextMenu, option);
-    });
-
-    this.renderer.appendChild(parentNode, contextMenu);
-    this.renderer.setStyle(contextMenu, 'left', event.clientX+'px');
-    this.renderer.setStyle(contextMenu, 'top', event.clientY+'px');
-
-    this.contexMenu = contextMenu;
-
-    return false;
-  }
-
-  removeContexMenu(){
-    let parentNode = this.asMainContainer.nativeElement;
-    if(this.contexMenu){
-      this.renderer.removeChild(parentNode, this.contexMenu);
-      this.contexMenu = null;
-    }
-  }
-
-  /* */
 
   encodeFileAsBase64URL(file:any) {
     return new Promise((resolve) => {
@@ -132,6 +83,6 @@ export class LibraryComponent {
         reader.readAsDataURL(file);
         reader.addEventListener('loadend', () => resolve(reader.result) );
     });
-};
+  }
 
 }

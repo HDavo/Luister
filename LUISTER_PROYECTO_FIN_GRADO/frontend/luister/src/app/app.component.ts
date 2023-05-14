@@ -1,4 +1,5 @@
 import { Component, ElementRef, HostListener, ViewChild, Renderer2 } from '@angular/core';
+import { ContexMenu } from './services/contextMenu';
 
 @Component({
     selector: 'app-root',
@@ -9,15 +10,25 @@ import { Component, ElementRef, HostListener, ViewChild, Renderer2 } from '@angu
 export class AppComponent {
     title = 'Luister';
     cookieBannerState !:string;
+    contexMenu:any;
+
     @ViewChild('asBannerContainer') asBannerContainer !:ElementRef;
     @ViewChild('asBannerButton') asBannerButton !:ElementRef;
 
-    constructor(private renderer:Renderer2){
+    constructor(private renderer:Renderer2, private contextMenu:ContexMenu){
         this.cookieBannerState = localStorage.getItem('cookie-banner') || '';
     }
 
     @HostListener('contextmenu',['$event'])
-    void(){ return false; }
+    void(){
+        this.contextMenu.insertContextMenu(event);
+        return false;
+    }
+
+    @HostListener('window:scroll',['$event'])
+    onScroll(){
+        this.contextMenu.removeContexMenu();
+    }
 
     @HostListener('click',['$event.target'])
     onCLick(element:any):void{
@@ -25,8 +36,11 @@ export class AppComponent {
         if(element.localName === 'a' || element.parentNode.localName === 'a'){
             document.documentElement.scrollTop = 0;
         }
-    }
 
+        if(!element.className.includes('customContextMenu') && !element.className.includes('ccm-option')){
+            this.contextMenu.removeContexMenu();
+          }
+    }
     ngAfterViewInit(){
 
         if(!this.cookieBannerState || this.cookieBannerState != 'hidden'){
@@ -38,11 +52,9 @@ export class AppComponent {
             this.hideBannerInfo(e);
         })
     }
-
     changeBannerVisibility(value:string){
         this.renderer.setStyle(this.asBannerContainer.nativeElement, 'visibility', value);
     }
-
     hideBannerInfo(event:any){
         const TRANSITION = 600;
         this.renderer.setStyle(event.target.parentNode, 'animation-name', 'hidding-bottom');
@@ -50,5 +62,4 @@ export class AppComponent {
             this.changeBannerVisibility('hidden');
         }, TRANSITION);
     }
-
 }

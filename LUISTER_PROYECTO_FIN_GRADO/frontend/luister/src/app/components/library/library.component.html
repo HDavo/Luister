@@ -61,7 +61,7 @@
             <img class="fav-songs-list-image" src="../../../assets/images/fav-list.webp" alt="favorite songs">
         </div>
         
-        <div class="custom-list" *ngFor="let list of customUserList" (contextmenu)="insertContexMenu($event)">
+        <div class="custom-list" *ngFor="let list of customUserList">
             <div class="custom-list-body">
                 <h1 class="custom-list-title"><a routerLink="/details/list/{{list.id}}">{{list.name}}</a></h1>
                 <span class="custom-list-count"> {{list.totalTracks}} canciones </span>

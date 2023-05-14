@@ -6,6 +6,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { ApibindingService } from './services/apibinding.service';
 import { ValidationsService } from './services/validations.service';
+import { ContexMenu } from './services/contextMenu';
 
 @NgModule({
   declarations: [AppComponent],
@@ -15,7 +16,11 @@ import { ValidationsService } from './services/validations.service';
     AppRoutingModule,
     ComponentsModule,
   ],
-  providers: [ApibindingService, ValidationsService],
+  providers: [
+    ApibindingService,
+    ValidationsService,
+    ContexMenu
+  ],
   bootstrap: [AppComponent]
 })
 

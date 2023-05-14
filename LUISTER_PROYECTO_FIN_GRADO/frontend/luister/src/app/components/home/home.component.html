@@ -15,13 +15,13 @@
         <div *ngIf="artists?.length > 0" class="page-section">
             <h2 class="page-section-title">Artistas sugeridos</h2>
             <div class="page-section-content">
-                <div class="page-section-element hidden" *ngFor="let artist of artists" id="{{artist.id}}" #pagesectionelement >
+                <div class="page-section-element hidden" *ngFor="let artist of artists" id="{{artist.id}}" #pagesectionelement ctm="artist">
                     <img *ngIf="artist.images.length != 0; else defaultimg" class='image artist-image' src="{{artist.images[0].url}}" alt="{{artist.type}} {{artist.name}}">
                     <ng-template #defaultimg>
                         <img class='image artist-image' src="https://c8.alamy.com/compes/2e2kkm2/notas-musicales-con-placa-musical-sobre-fondo-blanco-musica-abstracta-fondo-de-disco-2e2kkm2.jpg" alt="{{artist.type}} {{artist.name}}">
                     </ng-template>
                     <span class="card-title">
-                        <a routerLink="/details/artist/{{artist.id}}">{{artist.name}}</a>
+                        <a routerLink="/details/artist/{{artist.id}}" ctm="artist">{{artist.name}}</a>
                     </span>
                     <span class="card-description"> Artista </span>
                 </div>
@@ -31,12 +31,12 @@
         <div *ngIf="albums?.length > 0" class="page-section">
             <h2 class="page-section-title">Los siguientes álbumes podrian intersarte</h2>
             <div class="page-section-content">
-                <div class="page-section-element hidden" #pagesectionelement *ngFor="let album of albums" id="{{album.id}}">
+                <div class="page-section-element hidden" #pagesectionelement *ngFor="let album of albums" id="{{album.id}}" ctm="album">
                     <img *ngIf="album.images.length != 0; else defaultimg" class='image album-image' src="{{album.images[0].url}}" alt="{{album.name}}">
                     <ng-template #defaultimg>
                         <img class='image artist-image' src="https://c8.alamy.com/compes/2e2kkm2/notas-musicales-con-placa-musical-sobre-fondo-blanco-musica-abstracta-fondo-de-disco-2e2kkm2.jpg" alt="{{album.name}}">
                     </ng-template>
-                    <a class="card-title" routerLink="/details/album/{{album.id}}"> {{album.name}} </a>
+                    <a class="card-title" routerLink="/details/album/{{album.id}}" ctm="album"> {{album.name}} </a>
                     <p class="card-description" >Album</p>
                 </div>
             </div>
