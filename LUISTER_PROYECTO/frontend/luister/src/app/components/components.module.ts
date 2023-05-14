@@ -27,9 +27,9 @@ import { MoreInfoComponent } from './more-info/more-info.component';
     LibraryComponent,
     DiscoverComponent,
     DetailsComponent,
+    NotfoundComponent,
     LoginComponent,
     RegisterComponent,
-    NotfoundComponent,
     MoreInfoComponent,
   ],
   imports: [
@@ -47,7 +47,6 @@ import { MoreInfoComponent } from './more-info/more-info.component';
     LibraryComponent,
     DiscoverComponent,
     LoginComponent,
-    RegisterComponent,
   ]
 })
 

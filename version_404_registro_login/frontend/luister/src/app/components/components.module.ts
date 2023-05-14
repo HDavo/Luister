@@ -33,7 +33,6 @@ import { RegisterComponent } from './register/register.component';
     NotfoundComponent,
     LoginComponent,
     RegisterComponent,
-    NotfoundComponent
   
   ],
   imports: [

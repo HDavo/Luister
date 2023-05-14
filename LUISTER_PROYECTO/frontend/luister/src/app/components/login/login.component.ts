@@ -11,7 +11,7 @@ import { ValidationsService} from '../../services/validations.service'
 export class LoginComponent {
   myForm: FormGroup = this.fb.group({
     email: ['', [Validators.required, Validators.pattern(this.val.emailPattern)]],
-    password: ['', [Validators.required, Validators.minLength(6)]], //TODO: decidir que patrón queremos poner dentro del campo de contraseñas
+    password: ['', [Validators.required, Validators.minLength(6)]],
   });
 
   constructor(
