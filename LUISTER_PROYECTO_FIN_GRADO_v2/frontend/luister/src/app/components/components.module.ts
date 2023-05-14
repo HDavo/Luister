@@ -9,7 +9,7 @@ import { PopularComponent } from './popular/popular.component';
 import { LibraryComponent } from './library/library.component';
 import { DiscoverComponent } from './discover/discover.component';
 import { AppRoutingModule } from '../app-routing.module';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DetailsComponent } from './details/details.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
@@ -35,7 +35,8 @@ import { MoreInfoComponent } from './more-info/more-info.component';
   imports: [
     CommonModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   exports: [
     NavbarComponent,

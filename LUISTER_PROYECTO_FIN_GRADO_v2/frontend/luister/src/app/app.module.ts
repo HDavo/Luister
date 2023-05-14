@@ -14,7 +14,7 @@ import { ContexMenu } from './services/contextMenu';
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
-    ComponentsModule,
+    ComponentsModule
   ],
   providers: [
     ApibindingService,

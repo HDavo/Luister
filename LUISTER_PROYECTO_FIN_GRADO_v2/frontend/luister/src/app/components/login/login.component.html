@@ -10,7 +10,7 @@
     <div>
       <span>Email</span>
       <br>
-      <input type="text" placeholder="Introduce tu correo electrónico"> <!-- formControlName = "email" -->
+      <input type="text" formControlName = "email" placeholder="Introduce tu correo electrónico"> <!-- formControlName = "email" -->
       <span *ngIf="isValid('email')">
         Correo no válido
       </span>
@@ -18,7 +18,7 @@
     <div>
       <span>Contraseña</span>
       <br>
-      <input type="password" placeholder="Introduce tu contraseña"> <!-- formControlName = "password" -->
+      <input type="password" formControlName = "password" placeholder="Introduce tu contraseña"> <!-- formControlName = "password" -->
       <span *ngIf="isValid('password')">
         Contraseña no correcta
       </span>
