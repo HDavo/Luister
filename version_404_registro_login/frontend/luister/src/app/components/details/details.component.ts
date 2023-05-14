@@ -29,7 +29,12 @@ export class DetailsComponent {
   };
 
 
-  constructor(private route:ActivatedRoute, private router:Router, private fromSpotify:ApibindingService, private lastFm: LastFmService){
+  constructor(
+    private route:ActivatedRoute,
+    private router:Router,
+    private fromSpotify:ApibindingService,
+    private lastFm: LastFmService
+  ){
     this.route.params.subscribe((res:any)=>{
       this.id = res.id;
       this.elementType = res.element;
@@ -128,7 +133,6 @@ export class DetailsComponent {
             })
           })
         });
-
       })
     })
   }
