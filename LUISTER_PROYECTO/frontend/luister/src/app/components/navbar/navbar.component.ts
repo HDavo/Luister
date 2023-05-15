@@ -7,7 +7,8 @@ import {  Component, OnInit, HostListener, Renderer2, ElementRef, ViewChild } fr
 })
 
 export class NavbarComponent{
-    public title = 'Luister';
+    public title:string = 'Luister';
+    public session:string = 'Luke SkyWalker'
     @ViewChild('asMenu') homeSelector!:ElementRef;
     @ViewChild('asMobileGridMenu') asMmobileMenu!:ElementRef;
     @ViewChild('asGridMenuContainer') asGridMenuContainer!:ElementRef;

@@ -18,7 +18,19 @@
             </li>
         </ul>
         <div class="menu" id="userSession">
-            <span><a routerLink="/signin">Iniciar sesión</a></span>
+            <span *ngIf="!session; else profile"><a routerLink="/signin">Iniciar sesión</a></span>
+            <ng-template #profile>
+                <ul class="profile-container">
+                    <li class="profile-container-caption">
+                        <span>Luke SkyWalker</span>
+                        <ul class="pc-menu">
+                            <li class="pc-menu-element">Perfil</li>
+                            <li class="pc-menu-element">Configuración</li>
+                            <li class="pc-menu-element">Cerrar sesión</li>
+                        </ul>
+                    </li>
+                </ul>
+            </ng-template>
         </div>
     </div>
 </nav>

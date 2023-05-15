@@ -65,20 +65,7 @@
     animation-duration: .6s;
     animation-fill-mode: forwards;
 }
-.page-section{
-    width: 80%;
-    height: fit-content;
-    color: var(--var-white);
-    margin: 20px 0;
-    font-family: 'Outfit';
-}
-.page-section-title{
-    display: flex;
-    align-items: center;
-    min-height: 55px;
-    font-size: 25px;
-    padding: 10px 0;
-}
+
 .page-section-element:hover{
     background-color: rgba(81, 81, 81, 0.364);
     transform: scale(1.03);
