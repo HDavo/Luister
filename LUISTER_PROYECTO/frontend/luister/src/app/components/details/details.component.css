@@ -101,6 +101,11 @@
     flex-direction: column;
     row-gap: 20px;
 }
+.artist-bio{
+    text-align: justify;
+    font-style: italic;
+    font-size: 17px;
+}
 .element-name{
     width: 100%;
     display: flex;

@@ -102,9 +102,7 @@ export class DetailsComponent {
         this.lastFm.getArtistInfo(this.artist.data.name)
         .subscribe(
           (res:any) => {
-            
-            this.artist.bio = res.artist.bio.summary; 
-            console.log(this.artist.bio);
+            this.artist.bio = `${res.artist.bio.summary.split('<a href').shift()}`; 
           }
         )
       },
@@ -130,17 +128,18 @@ export class DetailsComponent {
           })
         })
 
-        res.artists.forEach((artist:any, index:number) => {
+        this.track.data.artists.forEach((artist:any, index:number) => {
+          this.track.artists=[];
           this.fromSpotify.getArtist(artist.id)
           .then((response:Observable<any>)=>{
             response.subscribe((res:any)=>{
               this.track.artists[index]=(res);
             })
           })
-        });
+        })
+
       })
     })
-    console.log(this.track)
   }
 
   playSong(uri:string){

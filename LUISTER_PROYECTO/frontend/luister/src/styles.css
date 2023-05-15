@@ -175,17 +175,20 @@ li{
     min-height: 32px;
 }
 .customContextMenu{
-    left: 0;
-    top: 0;
+    left: 0;top: 0;
     z-index: 3;
     position: fixed;
     background: #292929;
     color: white;
     font-weight: 600;
+    min-width: 166px;
     height: fit-content;
     font-family: 'Montserrat';
     display: flex;
     flex-direction: column;
+    box-shadow: 0 0 5px black;
+    padding: 4px;
+    border-radius: 5px;
 }
 .ccm-option{
     box-sizing: border-box;
@@ -193,18 +196,21 @@ li{
     cursor: pointer;
     background: transparent;
     position: relative;
+    border-radius: 5px;
 }
 .ccm-option:hover > .ccm-submenu-cont{
     visibility: visible;
 }
 .ccm-submenu-cont{
-    padding: 10px;
+    padding: 4px;
     visibility: hidden;
-    bottom: -33px;
-    left: 222px;
+    top: -22px;
+    left: 166px;
     position: absolute;
     width: 100%;
     background-color: #292929;
+    box-shadow: 0 0 5px black;
+    border-radius: 5px;
 }
 .ccm-option:hover{
     background: rgba(95, 95, 95, 0.3);
@@ -266,16 +272,10 @@ img{
     .card-description{
         font-size: 16px;
     }
-    .customContextMenu{
-        min-width: 222px;
-        padding: 8px;
-        border-radius: 2px;
-    }
     .ccm-option{
         --padding: 10px;
         font-size: 16px;
         padding: 11px var(--padding);
-        border-radius: 2px;
     }
 }
 @media screen and (min-width: 420.9px) and (max-width: 640px) {
@@ -322,16 +322,10 @@ img{
     .card-description{
         font-size: 16px;
     }
-    .customContextMenu{
-        min-width: 222px;
-        padding: 8px;
-        border-radius: 2px;
-    }
     .ccm-option{
         --padding: 10px;
         font-size: 16px;
         padding: 11px var(--padding);
-        border-radius: 2px;
     }
 }
 @media screen and (min-width: 640.9px) and (max-width: 960px) {
@@ -359,7 +353,6 @@ img{
         margin: 8px 0;
     }
     .page-section-content{
-        
         --ttalCards: 5;
         min-height: 300px;
     }
@@ -378,16 +371,10 @@ img{
     .card-description{
         font-size: 16px;
     }
-    .customContextMenu{
-        min-width: 222px;
-        padding: 8px;
-        border-radius: 2px;
-    }
     .ccm-option{
         --padding: 10px;
         font-size: 16px;
         padding: 11px var(--padding);
-        border-radius: 2px;
     }
 }
 @media screen and (min-width: 960.9px) and (max-width: 1280px) {
@@ -433,11 +420,6 @@ img{
     }
     .card-description{
         font-size: 16px;
-    }
-    .customContextMenu{
-        min-width: 222px;
-        padding: 8px;
-        border-radius: 2px;
     }
     .ccm-option{
         --padding: 10px;
@@ -490,16 +472,10 @@ img{
     .card-description{
         font-size: 16px;
     }
-    .customContextMenu{
-        min-width: 222px;
-        padding: 8px;
-        border-radius: 2px;
-    }
     .ccm-option{
         --padding: 10px;
         font-size: 16px;
         padding: 11px var(--padding);
-        border-radius: 2px;
     }
 }
 @media screen and (min-width: 1600.9px) and (max-width: 1920px) {
@@ -527,7 +503,6 @@ img{
         margin: 10px 0;
     }
     .page-section-content{
-        
         --ttalCards: 8;
         min-height: 300px;
     }
@@ -546,16 +521,10 @@ img{
     .card-description{
         font-size: 16px;
     }
-    .customContextMenu{
-        min-width: 222px;
-        padding: 8px;
-        border-radius: 2px;
-    }
     .ccm-option{
         --padding: 10px;
         font-size: 16px;
         padding: 11px var(--padding);
-        border-radius: 2px;
     }
 }
 @media screen and (min-width: 1920.9px) and (max-width: 2240px) {
@@ -602,16 +571,10 @@ img{
     .card-description{
         font-size: 16px;
     }
-    .customContextMenu{
-        min-width: 222px;
-        padding: 8px;
-        border-radius: 2px;
-    }
     .ccm-option{
         --padding: 10px;
         font-size: 16px;
         padding: 11px var(--padding);
-        border-radius: 2px;
     }
 }
 @media screen and (min-width: 2240.9px) {
@@ -658,16 +621,10 @@ img{
     .card-description{
         font-size: 16px;
     }
-    .customContextMenu{
-        min-width: 222px;
-        padding: 8px;
-        border-radius: 2px;
-    }
     .ccm-option{
         --padding: 10px;
         font-size: 16px;
         padding: 11px var(--padding);
-        border-radius: 2px;
     }
 }
 @media screen and (max-width: 959.9px){
