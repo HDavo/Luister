@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { ValidationsService} from '../../services/validations.service'
+import { LuisterApiService } from 'src/app/services/luister-api.service';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'login',
@@ -9,26 +11,37 @@ import { ValidationsService} from '../../services/validations.service'
 })
 
 export class LoginComponent {
-  myForm: FormGroup = this.fb.group({
-    email: ['', [Validators.required, Validators.pattern(this.val.emailPattern)]],
+
+  signInForm: FormGroup = this.formBuilder.group({
+    email: ['', [Validators.required, Validators.pattern(this.validator.emailPattern)]],
     password: ['', [Validators.required, Validators.minLength(6)]],
   });
 
   constructor(
-    private fb: FormBuilder,
-    private val: ValidationsService
+    private formBuilder: FormBuilder,
+    private validator: ValidationsService,
+    private lusiter:LuisterApiService,
+    private cookiService:CookieService
   ){}
 
   isValid(field: string){
-    return this.val.validField(this.myForm, field);
+    return this.validator.validField(this.signInForm, field);
   }
 
   login(){
-    const {email, password} = this.myForm.value;
-
-    console.log(email, password);
-
-    this.myForm.markAllAsTouched();
-
+    if(this.signInForm.valid){
+      this.lusiter.signIn(this.signInForm.value)
+      .subscribe((response:any)=> {
+        if(response){
+          this.cookiService.set('auth-token', response['auth-token']);
+          this.cookiService.set('username', response.data.name);
+          this.cookiService.set('useremail', response.data.email);
+          this.cookiService.set('userid', response.data.id);
+          window.location.reload();// Revisar este workaround
+        }
+      })
+      
+    }
+    this.signInForm.markAllAsTouched();
   }
 }

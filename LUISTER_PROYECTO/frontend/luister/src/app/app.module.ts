@@ -7,6 +7,8 @@ import { AppComponent } from './app.component';
 import { ApibindingService } from './services/apibinding.service';
 import { ValidationsService } from './services/validations.service';
 import { ContexMenu } from './services/contextMenu';
+import { LuisterApiService } from './services/luister-api.service';
+import { LastFmService } from './services/last-fm.service';
 
 @NgModule({
   declarations: [AppComponent],
@@ -14,12 +16,14 @@ import { ContexMenu } from './services/contextMenu';
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
-    ComponentsModule
+   ComponentsModule
   ],
   providers: [
     ApibindingService,
     ValidationsService,
-    ContexMenu
+    ContexMenu,
+    LuisterApiService,
+    LastFmService
   ],
   bootstrap: [AppComponent]
 })

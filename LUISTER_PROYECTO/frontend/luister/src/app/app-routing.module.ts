@@ -10,7 +10,7 @@ import { RegisterComponent } from './components/register/register.component';
 import { LoginComponent } from './components/login/login.component';
 import { NotfoundComponent } from './components/notfound/notfound.component';
 import { MoreInfoComponent } from './components/more-info/more-info.component';
-import { LuisterGuardGuard } from './services/luister-guard.guard';
+import { noAuthGuard, authGuard } from './services/luister-guard.guard';
 
 const routes: Routes = [
   {
@@ -28,7 +28,7 @@ const routes: Routes = [
   {
     path: 'library',
     component: LibraryComponent,
-    canActivate: [LuisterGuardGuard]
+    canActivate: [noAuthGuard]
   },
   {
     path: 'library/list/:id',
@@ -44,11 +44,13 @@ const routes: Routes = [
   },
   {
     path: 'signup',
-    component: RegisterComponent
+    component: RegisterComponent,
+    canActivate: [authGuard]
   },
   {
     path: 'signin',
-    component: LoginComponent
+    component: LoginComponent,
+    canActivate: [authGuard]
   },
   {
     path: 'more-info/:section',

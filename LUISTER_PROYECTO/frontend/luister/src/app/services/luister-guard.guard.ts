@@ -1,38 +1,27 @@
-import { Injectable } from '@angular/core';
-import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
-import { CookieService } from 'ngx-cookie-service';
-import { Observable } from 'rxjs';
-import { LuisterSweetAlert } from './luisterSweetAlert';
+import { inject } from "@angular/core"
+import { Router, CanActivateFn} from "@angular/router"
+import { CookieService } from "ngx-cookie-service"
 
-@Injectable({
-  providedIn: 'root'
-})
-export class LuisterGuardGuard implements CanActivate {
+export const noAuthGuard: CanActivateFn = () => {
+  const cookieService =  inject(CookieService);
+  const router =  inject(Router);
 
-  constructor(private CookieService:CookieService, private router:Router){ }
-
-  canActivate(
-    route: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    
-    const VALIDATION = this.isValidSession();
-    if(!VALIDATION){
-      this.router.navigate(['/', 'signin']);
-    }
-    return VALIDATION;
+  const VALIDATION = cookieService.check('auth-token');
+  if(!VALIDATION){
+    router.navigate(['/', 'signin']);
   }
+  return VALIDATION;
+}
 
-  isValidSession():boolean{
-    const RESULT = this.CookieService.check('auth-token');
-    if(!RESULT) {
-      LuisterSweetAlert.denie(
-        'Debes iniciar sesión para acceder a este recurso',
-        'No autorizado',
-        '#',
-        '¿Iniciar sesión?'
-        );
-    }
-    return RESULT;
+export const authGuard: CanActivateFn = () => {
+  const cookieService =  inject(CookieService);
+  const router =  inject(Router);
+
+  const VALIDATION = cookieService.check('auth-token');
+
+  if(VALIDATION){
+    router.navigate(['/']);
   }
   
+  return (!VALIDATION);
 }

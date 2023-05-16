@@ -1,4 +1,6 @@
-import {  Component, OnInit, HostListener, Renderer2, ElementRef, ViewChild } from "@angular/core";
+import {  Component, HostListener, Renderer2, ElementRef, ViewChild } from "@angular/core";
+import { CookieService } from "ngx-cookie-service";
+import { LuisterApiService } from "src/app/services/luister-api.service";
 
 @Component({
     selector: 'navbar',
@@ -6,14 +8,19 @@ import {  Component, OnInit, HostListener, Renderer2, ElementRef, ViewChild } fr
     styleUrls: ['./navbar.component.css']
 })
 
-export class NavbarComponent{
-    public title:string = 'Luister';
-    public session:string = 'Luke SkyWalker'
+export class NavbarComponent {
+    public title: string = 'Luister';
+    public username: string | null = null;
     @ViewChild('asMenu') homeSelector!:ElementRef;
     @ViewChild('asMobileGridMenu') asMmobileMenu!:ElementRef;
     @ViewChild('asGridMenuContainer') asGridMenuContainer!:ElementRef;
 
-    constructor(private renderer:Renderer2){
+    constructor(
+        private renderer:Renderer2, 
+        private cookieService:CookieService,
+        private luister:LuisterApiService
+        ){
+        this.username = this.cookieService.get('username');
     }
 
     @HostListener('click',['$event.target'])
@@ -58,5 +65,18 @@ export class NavbarComponent{
     hideMobileMenu(){
         this.renderer.addClass(this.asGridMenuContainer.nativeElement, 'element-hidden');
         this.renderer.removeClass(this.asGridMenuContainer.nativeElement, 'element-visible');
+    }
+
+    logOut(){
+        const session = this.cookieService.get('auth-token');
+        this.luister.logOut(session)
+        .subscribe((response:any)=> {
+            console.log(response);
+            this.cookieService.delete('auth-token');
+            this.cookieService.delete('userid');
+            this.cookieService.delete('username');
+            this.cookieService.delete('useremail');
+            window.location.reload(); // Revisar este workaround
+        })
     }
 }

@@ -42,26 +42,29 @@
     }
     #userSession{
         position: relative;
-        justify-self: end;
         width: 20%;
         justify-content: flex-end;
-        right: 0;
     }
     #userSession > span {
         box-shadow: 0 0 1px 1px rgba(101, 75, 193, 0.086);
         background: linear-gradient(45deg,#12054f,rgb(49, 3, 56) 30%,#12054f);
         border-radius: 5px;
-        transition: box-shadow .3s;
+        transition: box-shadow .2s;
         width: fit-content;
         height: 44px;
     }
     #userSession > span:hover {
-        box-shadow: 0 0 2px 2px rgba(183, 39, 196, 0.598);
+        box-shadow: 0 0 1px 1px rgba(183, 39, 196, 0.598);
     }
     #userSession > span > a {
+        line-height: 44px;
+        box-sizing: border-box;
+        /* display: flex;
+        align-items: center;
+        justify-content: center; */
         width: 100%;
         height: 100%;
-        padding: 10px;
+        padding: 8px;
     }
     #userSession > span:hover > a {
         color: white !important;
@@ -69,11 +72,14 @@
     /*  --------  */
     .profile-container{
         width: 100%;
+        display: flex;
+        justify-content: flex-end;
     }
     .profile-container-caption{
         font-family: 'Outfit';
         font-size: 17px;
         height: 40px;
+        width: fit-content;
     }
     .profile-container-caption > span{
         box-sizing: border-box;
@@ -81,7 +87,8 @@
         justify-content: center;
         align-items: center;
         height: 100%;
-        padding: 5px;
+        width: 100%;
+        padding: 5px  11px;
         overflow: hidden;
         white-space: nowrap;
         text-overflow: ellipsis;
@@ -97,7 +104,6 @@
         box-sizing: border-box;
         width: 100%;
         display: none;
-
         background: linear-gradient(45deg, rgb(11, 1, 15), rgb(43, 4, 58));
         padding: 5px;
         border-radius: 5px;
@@ -162,8 +168,6 @@
         transform: translateY(-5px);  /* ----- */
         transition: .4s !important;
     }
-
-
     #luister-logo:hover{
         --logo-shadow: rgb(67, 49, 101) !important;
     }
