@@ -15,10 +15,15 @@ export class LuisterApiService {
       data: data,
       })
   }
-
   logOut(session:string){
     return this.http.post('http://localhost:8000/logout.php', {
         session,
         })
+  }
+  getUserCustomList(userid:number){
+    return this.http.get(`http://localhost:8000/customlists.php?userid=${userid}`);
+  }
+  addCustomList(customlist:any){
+    return this.http.post('http://localhost:8000/newcustomlist.php', customlist);
   }
 }

@@ -40,7 +40,6 @@ export class LoginComponent {
           window.location.reload();// Revisar este workaround
         }
       })
-      
     }
     this.signInForm.markAllAsTouched();
   }

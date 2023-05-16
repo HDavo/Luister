@@ -1,88 +1,101 @@
 import { Component, ElementRef, HostListener, Renderer2, ViewChild } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { CookieService } from 'ngx-cookie-service';
+import { LuisterApiService } from 'src/app/services/luister-api.service';
+
 @Component({
   selector: 'app-library',
   templateUrl: './library.component.html',
   styleUrls: ['./library.component.css']
 })
 export class LibraryComponent {
+  public imgroot:string = 'http://localhost:8000';
+  public customLists:any = [];
+  public newListImagePreview: string | null = null;
 
-  public customUserList:any = [
-    {
-      id: 1,
-      name: 'Trekking',
-      totalTracks: 10,
-      owner: 'Luke SkyWalker',
-      type: 'Custom List',
-      img: 'https://media.istockphoto.com/id/1369171053/es/foto/grupo-de-deportistas-camina-por-monta%C3%B1as-al-atardecer-con-mochilas.jpg?s=612x612&w=0&k=20&c=UpuYyh2nNmi-gaJPGnoh2AGDe0-rAMEk1TMFVOepcBo='
-    },
-    {
-      id: 2,
-      name: 'Mientras cocino',
-      totalTracks: 5,
-      owner: 'Luke SkyWalker',
-      type: 'Custom List',
-      img: 'https://s2.ppllstatics.com/elcorreo/www/multimedia/201901/10/media/cortadas/aplicaciones-aprender-cocinar-2019-U601036856160UwB-U70203477799ehH-624x385@El%20Correo-ElCorreo.jpg'
-    },
-    {
-      id: 3,
-      name: 'Wprk Out',
-      totalTracks: 22,
-      owner: 'Luke SkyWalker',
-      type: 'Custom List',
-      img: 'https://images.everydayhealth.com/images/everything-you-need-know-about-fitness-1440x810.jpg'
+  public customListForm:FormGroup = this.formBuilder.group({
+    title: ['', Validators.required],
+    description: ['', Validators.required],
+    image: [null],
+    imageFile: [null]
+  });
+
+  constructor(
+    private renderer:Renderer2,
+    private cookieService: CookieService,
+    private luister:LuisterApiService,
+    private formBuilder: FormBuilder
+    ){
+      this.getLists();
     }
-  ];
-
-  public newListName!:string;
-  public newListDescription!:string;
-  public newListImage:any;
-  public newListImagePreview!:string;
-
-  constructor(private renderer:Renderer2){ }
 
   @ViewChild('newCustomListForm') newCustomListForm!:ElementRef;
   @ViewChild('asMainContainer') asMainContainer!:ElementRef;
   printCustomListForm(){
     this.renderer.setStyle(this.newCustomListForm.nativeElement, 'display', 'flex');
   }
-
   closeForm(){
     this.renderer.setStyle(this.newCustomListForm.nativeElement, 'display', 'none');
     this.resetForm();
   }
-
   resetForm(){
-    this.newListName = '';
-    this.newListDescription = '';
-    this.newListImage = null;
-    this.newListImagePreview = '';
-
+    this.customListForm.reset();
+    this.newListImagePreview = null;
   }
-
-  getImageData(e:any){
-    const FIRSELEMENT = 0;
-    this.newListImage = e.target.files[FIRSELEMENT];
-    this.encodeFileAsBase64URL(e.target.files[FIRSELEMENT])
-    .then((result:any) => this.newListImagePreview = result)
+  getImage(event:any){
+    const FE = 0,
+    file = event.target.files[FE];
+    if(file){
+      this.encodeFileAsBase64URL(file)
+      .then((result:any) => {
+        this.newListImagePreview = result;
+        this.customListForm.patchValue({
+          imageFile: file
+        })
+      })
+    }
   }
-
   submitNewCusstomList(){
-    this.customUserList.push({
-      name: this.newListName,
-      totalTracks: 0,
-      owner: 'Luke SkyWalker',
-      type: 'Custom List',
-      img: this.newListImagePreview
-    })
-    this.closeForm()
+    const clform = this.customListForm;
+    if(clform.valid){
+      let data = new FormData();
+      data.append('title', clform.value.title);
+      data.append('description', clform.value.description);
+      data.append('image', clform.value.image);
+      data.append('imageFile', clform.value.imageFile);
+      data.append('userid', this.cookieService.get('userid'));
+      
+      this.luister.addCustomList(data)
+      .subscribe((response:any)=>{
+        if(response){
+          this.customLists.push({
+            id: response,
+            image: data.get('image')?.toString().split('\\').slice(-1),
+            title: data.get('title')?.toString(),
+            totaltracks: 0
+          });
+        }
+      });
+      this.closeForm();
+    }else {
+      alert('Ciertos campos contienen valores incorrectos!');
+    }
   }
-
   encodeFileAsBase64URL(file:any) {
     return new Promise((resolve) => {
         const reader = new FileReader();
         reader.readAsDataURL(file);
         reader.addEventListener('loadend', () => resolve(reader.result) );
     });
+  }
+  getLists(){
+    const userid = parseInt(this.cookieService.get('userid'));
+    this.luister.getUserCustomList(userid)
+    .subscribe((response:any) => {
+      if(response){
+        this.customLists = response.data;
+      }
+    })
   }
 
 }

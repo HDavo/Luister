@@ -57,7 +57,7 @@ export class NavbarComponent {
 
         this.hideMobileMenu();
     }
-
+    
     showMobileMenu(){
         this.renderer.addClass(this.asGridMenuContainer.nativeElement, 'element-visible');
         this.renderer.removeClass(this.asGridMenuContainer.nativeElement, 'element-hidden');
