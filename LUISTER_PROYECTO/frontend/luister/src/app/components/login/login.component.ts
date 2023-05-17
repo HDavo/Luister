@@ -11,8 +11,8 @@ import { CookieService } from 'ngx-cookie-service';
 })
 
 export class LoginComponent {
-
-  signInForm: FormGroup = this.formBuilder.group({
+  public errors!:string;
+  public signInForm: FormGroup = this.formBuilder.group({
     email: ['', [Validators.required, Validators.pattern(this.validator.emailPattern)]],
     password: ['', [Validators.required, Validators.minLength(6)]],
   });
@@ -38,6 +38,8 @@ export class LoginComponent {
           this.cookiService.set('useremail', response.data.email);
           this.cookiService.set('userid', response.data.id);
           window.location.reload();// Revisar este workaround
+        }else {
+          this.errors = 'Credenciales incorrectas';
         }
       })
     }

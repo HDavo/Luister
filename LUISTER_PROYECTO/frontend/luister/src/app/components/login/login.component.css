@@ -1,19 +1,110 @@
-span{
-  color: white;
+.maincontainers{
+  background: linear-gradient(25deg, rgb(17, 1, 20), rgb(48, 2, 55), rgb(17, 1, 20)) !important;
+  padding: 33px 0 !important;
+  font-family: 'Outfit';
 }
-
-#maincontainers{
+.form-title{
+  text-align: center;
+  letter-spacing: 11px;
+}
+.wrong-credentials{
+  height: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  font-size: 20px;
+}
+.login-form{
+  min-width: 222px;
   display: flex;
   flex-direction: column;
-  /* width: 50%; */
+  background: rgba(0, 0, 0, 0.257);
+  padding: 22px;
+  border-radius: 15px;
+  box-shadow: 5px 5px 8px rgb(0, 0, 0);
 }
-/* maincontainers > div {
+.form-field-cont{
+  height: 55px;
   width: 100%;
-} */
-.envio{
-  background-color: blanchedalmond;
-  padding: 2%;
+  position: relative;
+}
+.form-field-cont > input {
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+  padding-left: 30px;
+  background-color: transparent;
+  font-size: 16px;
+  font-weight: 600;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.185);
+}
+.email-field-icon,.password-field-icon{
+  position: absolute;
+  width: 50px;
+  height: 95%;
+  display: flex;
+  align-items: center;
+  font-family: 'Linearicon' !important;
+  font-size: 20px;
+  color: rgb(165, 165, 165);
+}
+.email-field-icon::before{
+  content: '\e818';
+}
+.password-field-icon::before{
+  content: '\e80f';
+}
+.validation-caption{
+  height: 33px;
+  display: flex;
+  align-items: center;
+}
+.form-bottom-caption{
+  margin-top: 11px;
+  height: 44px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  gap: 11px;
+}
+.login-button{
+  background: linear-gradient(45deg, rgba(70, 19, 50, 0.826),rgba(223, 30, 223, 0.62),rgba(60, 17, 60, 0.23));
+  color: rgb(213, 213, 213);
   cursor: pointer;
+  font-size: 17px;
+  font-weight: bolder;
+  width: 166px;
+  padding: 0 15px;
+  border-radius: 1000px;
+  height: 100%;
+  box-shadow: 2px 2px 2px 3px rgb(1, 0, 1);
+  transition: color .3s;
+  font-family: 'Outfit';
+}
+.login-button:hover{
+  color: rgb(255, 255, 255);
+  font-size: 17.1px;
+}
+.login-button:active{
+  box-shadow: 2px 2px 2px 3px rgb(2, 0, 2) inset;
+  font-size: 16px;
+}
+.recover-pass{
+  margin-top: 28px;
+  width: fit-content;
+  cursor: pointer;
+  align-self: flex-end;
+}
+.recover-pass:hover{
+  color: pink;
+}
+a,span{
+  align-items: center;
+  height: fit-content;
+}
+span{
+ color: rgb(255, 118, 118);
 }
 
 @media screen and (max-height: 320px) { }
