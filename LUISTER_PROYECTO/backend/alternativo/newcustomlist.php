@@ -46,7 +46,7 @@
                 }else{
                     echo json_encode(false);
                 }
-            }else echo json_encode(false);
+            }else echo json_encode($res);
         }
     } catch (PDOException $e) {
         echo json_encode($e->getMessage());

@@ -1,4 +1,4 @@
-import { Component, ElementRef, HostListener, Renderer2, ViewChild } from '@angular/core';
+import { Component, ElementRef, HostListener, OnInit, Renderer2, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CookieService } from 'ngx-cookie-service';
 import { LuisterApiService } from 'src/app/services/luister-api.service';
@@ -8,11 +8,10 @@ import { LuisterApiService } from 'src/app/services/luister-api.service';
   templateUrl: './library.component.html',
   styleUrls: ['./library.component.css']
 })
-export class LibraryComponent {
+export class LibraryComponent implements OnInit {
   public imgroot:string = 'http://localhost:8000';
   public customLists:any = [];
   public newListImagePreview: string | null = null;
-
   public customListForm:FormGroup = this.formBuilder.group({
     title: ['', Validators.required],
     description: ['', Validators.required],
@@ -28,6 +27,13 @@ export class LibraryComponent {
     ){
       this.getLists();
     }
+
+  ngOnInit() {
+    this.luister.deletedList
+    .subscribe((res:any)=>{
+      this.customLists = this.customLists.filter((list:any) => list.id != res);
+    })
+  }
 
   @ViewChild('newCustomListForm') newCustomListForm!:ElementRef;
   @ViewChild('asMainContainer') asMainContainer!:ElementRef;
@@ -68,12 +74,7 @@ export class LibraryComponent {
       this.luister.addCustomList(data)
       .subscribe((response:any)=>{
         if(response){
-          this.customLists.push({
-            id: response,
-            image: data.get('image')?.toString().split('\\').slice(-1),
-            title: data.get('title')?.toString(),
-            totaltracks: 0
-          });
+          this.getLists();
         }
       });
       this.closeForm();
@@ -92,9 +93,7 @@ export class LibraryComponent {
     const userid = parseInt(this.cookieService.get('userid'));
     this.luister.getUserCustomList(userid)
     .subscribe((response:any) => {
-      if(response){
-        this.customLists = response.data;
-      }
+      this.customLists = response?.data;
     })
   }
 

@@ -1,5 +1,7 @@
 import { Injectable, Renderer2, RendererFactory2 } from "@angular/core";
 import { Router } from "@angular/router";
+import { LuisterApiService } from "./luister-api.service";
+import { CookieService } from "ngx-cookie-service";
 
 @Injectable({
     providedIn: 'root'
@@ -8,23 +10,28 @@ import { Router } from "@angular/router";
 export class ContexMenu {
 
     private contextMenu:any;
+    private etype!:string;
+    private id:any;
     private renderer:Renderer2;
-
-    constructor(rendererFactory:RendererFactory2, private router:Router){
+    constructor(
+        rendererFactory:RendererFactory2,
+        private router:Router,
+        private luister: LuisterApiService,
+        private cookieService: CookieService
+    ){
         this.renderer = rendererFactory.createRenderer(null, null);
     }
-
     insertContextMenu(event:any, target:any=document.getElementsByTagName('body')[0]){
-        const etype = this.getElementType(event.target).type,
-              id = this.getElementType(event.target).id;
+        this.etype = this.getElementType(event.target).type,
+        this.id = this.getElementType(event.target).id;
               
-        if(etype && id){
+        if(this.etype && this.id){
 
             this.removeContexMenu();
             const contextMenu = this.renderer.createElement('div');
             this.renderer.addClass(contextMenu, 'customContextMenu');
             
-            const _options = this.createMenuOptions(etype,id);
+            const _options = this.createMenuOptions(this.etype, this.id);
             
             _options.forEach(option => {
                 this.renderer.appendChild(contextMenu, option);
@@ -128,6 +135,11 @@ export class ContexMenu {
                 option = this.renderer.createElement('div');
                 this.renderer.addClass(option, 'ccm-option');
                 this.renderer.appendChild(option, this.renderer.createText(caption));
+                if(caption == 'Eliminar'){
+                    this.renderer.listen(option, 'click', ()=>{
+                        this.deleteList();
+                    })
+                }
                 return option;
             },
             menu: ()=>{
@@ -194,5 +206,22 @@ export class ContexMenu {
           this.contextMenu.remove();
           this.contextMenu = null;
         }
+    }
+    deleteList(){
+        const params = {
+            clid: this.id,
+            userid: this.cookieService.get('userid')
+        }
+        if(confirm('¿Desea eliminar la lista?')){
+            this.luister.deleteCustomList(params)
+            .subscribe((res:any)=>{
+                if(res){
+                    this.luister.deletedList.emit(params.clid);
+                }else {
+                    console.log(res);
+                }
+            })
+        }
+        this.removeContexMenu();
     }
 }

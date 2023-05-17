@@ -1,6 +1,5 @@
-import { HttpClient, HttpResponse } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+import { EventEmitter, Injectable, Output } from '@angular/core';
 
 @Injectable({
   providedIn: 'root'
@@ -8,7 +7,8 @@ import { Observable } from 'rxjs';
 
 export class LuisterApiService {
 
-  constructor(private http: HttpClient) { }
+  @Output() deletedList:EventEmitter<any> = new EventEmitter();
+  constructor(private http: HttpClient) {}
 
   signIn(data:any):any{
     return this.http.post('http://localhost:8000/login.php', {
@@ -26,4 +26,11 @@ export class LuisterApiService {
   addCustomList(customlist:any){
     return this.http.post('http://localhost:8000/newcustomlist.php', customlist);
   }
+  deleteCustomList({clid='', userid=''}){
+    return this.http.post('http://localhost:8000/deletelist.php', {
+      customlistid: clid,
+      userid: userid
+    });
+  }
+  
 }

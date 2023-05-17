@@ -12,15 +12,15 @@
     <div class="page-section">
         <h2 class="page-section-title"><i>#Trending</i></h2>
         <div class="page-section-content">
-            <div *ngFor="let track of topTracks; let i = index" class="track-card track-hide" #track>
+            <div *ngFor="let track of topTracks; let i = index" class="track-card track-hide" id="{{track.track?.id}}" ctm="track" #track>
                 <img class="track-card-image" src="{{track.track?.album.images[0].url}}" alt="{{track.track?.name}}">
                 <div class="track-card-title">
                     <a routerLink="/details/track/{{track.track?.id}}">{{track.track?.name}}</a>
                 </div>
                 <div class="track-card-artists">
                     <span class="track-card-artist" *ngFor="let artist of track.track?.artists; let x = index">
-                        <span *ngIf="x != 0"> & </span> 
-                        <a routerLink="/details/artist/{{artist.id}}">{{artist.name}} </a>
+                        <span *ngIf="x != 0"> ft </span> 
+                        <a routerLink="/details/artist/{{artist.id}}" ctm="artist" id="{{artist.id}}">{{artist.name}} </a>
                     </span>
                 </div>
                 <span class="track-top"> #{{i+1}} </span>

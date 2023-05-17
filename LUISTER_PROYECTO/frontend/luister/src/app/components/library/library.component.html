@@ -61,7 +61,7 @@
             <img class="fav-songs-list-image" src="../../../assets/images/fav-list.webp" alt="favorite songs">
         </div>
         
-        <div class="custom-list" *ngFor="let list of customLists">
+        <div class="custom-list" *ngFor="let list of customLists" ctm="list" id="{{list.id}}">
             <div class="custom-list-body">
                 <h1 class="custom-list-title"><a routerLink="/details/list/{{list.id}}">{{list.title | titlecase}}</a></h1>
                 <span class="custom-list-count"> {{list.totaltracks}} canciones </span>
