@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, Renderer2, ViewChild } from '@angular/core';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { ValidationsService} from '../../services/validations.service'
 import { LuisterApiService } from 'src/app/services/luister-api.service';
@@ -16,18 +16,22 @@ export class LoginComponent {
     email: ['', [Validators.required, Validators.pattern(this.validator.emailPattern)]],
     password: ['', [Validators.required, Validators.minLength(6)]],
   });
-
+  public resetPassForm:FormGroup = this.formBuilder.group({
+    resetpassemail: ['', [Validators.required, Validators.pattern(this.validator.emailPattern)]]
+  });
+  @ViewChild('asPassResetCont') passresetcont !:ElementRef;
+  
   constructor(
     private formBuilder: FormBuilder,
     private validator: ValidationsService,
     private lusiter:LuisterApiService,
-    private cookiService:CookieService
+    private cookiService:CookieService,
+    private renderer: Renderer2
   ){}
 
-  isValid(field: string){
-    return this.validator.validField(this.signInForm, field);
+  isValid(field: string, form:FormGroup){
+    return this.validator.validField(form, field);
   }
-
   login(){
     if(this.signInForm.valid){
       this.lusiter.signIn(this.signInForm.value)
@@ -44,5 +48,29 @@ export class LoginComponent {
       })
     }
     this.signInForm.markAllAsTouched();
+  }
+  passwordResetRequest(){
+    const form = this.resetPassForm;
+   if(this.resetPassForm.valid){
+    this.lusiter.passwordResetRequest(form.value.resetpassemail)
+    .subscribe((res:any)=>{
+      if(res == true){
+        alert('Peticion procesada correctamente!');
+        this.hidePassResetCont();
+      }else{
+        alert('Este correo no esta asociado a ninguna cuenta');
+      }
+    })
+   }
+  }
+  showPassResetCont(){
+    const target = this.passresetcont.nativeElement;
+     this.renderer.setStyle(target, 'display', 'flex');
+     document.documentElement.scrollTo({top:0, behavior: 'smooth'});
+  }
+  hidePassResetCont(){
+    const target = this.passresetcont.nativeElement;
+    this.renderer.setStyle(target, 'display', 'none');
+    this.resetPassForm.reset();
   }
 }

@@ -106,12 +106,63 @@ a,span{
 span{
  color: rgb(255, 118, 118);
 }
-
-@media screen and (max-height: 320px) { }
-@media screen and (min-height: 320.9px) and (max-height: 640px) { }
-@media screen and (min-height: 640.9px) and (max-height: 960px) { }
-@media screen and (min-height: 960.9px) and (max-height: 1920px) { }
-@media screen and (min-height: 1920.9px) and (max-height: 1600px) { }
-@media screen and (min-height: 1600.9px) and (max-height: 1920px) { }
-@media screen and (min-height: 1920.9px) and (max-height: 2240px) { }
-@media screen and (min-height: 2240.9px) { }
+.close-rest-pass-container{
+  font-size: 18px;
+  top: 0;
+  right: 0;
+  padding: 0 5px;
+  position: absolute;
+  color: white;
+  cursor: pointer;
+}
+.password-recover-container{
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  row-gap: 22px;
+  padding: 22px;
+  position: absolute;
+  box-sizing: border-box;
+  min-height: 77px;
+  top: 5%;
+  background: rgba(79, 4, 74, 0.99);
+  width: 80%;
+  min-width: 280px;
+  max-width: 500px;
+  animation: to-top .5s;
+}
+.password-recover-field-container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+.pass-rest-info{
+  width: 100%;
+  text-align: justify;
+}
+.pass-reset-email{
+  box-sizing: border-box;
+  padding: 0 15px;
+  height: 33px;
+  font-size: 19px;
+  min-width: 145px;
+  width: calc(100% - 100px);
+  background: rgba(235, 175, 226, 0.442);
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.45);
+  border-radius: 3px 0 0 3px;
+  font-family: 'Outfit';
+  font-weight: 600;
+}
+.send-button{
+  height: 33px;
+  width: 100px;
+  cursor: pointer;
+  background: rgb(134, 20, 113);
+  border-radius: 0 5px 5px 0;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.45);
+  font-size: 18px;
+  font-family: 'Outfit';
+  font-weight: 600;
+}
