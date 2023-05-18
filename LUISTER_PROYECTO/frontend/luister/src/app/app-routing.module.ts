@@ -11,6 +11,7 @@ import { LoginComponent } from './components/login/login.component';
 import { NotfoundComponent } from './components/notfound/notfound.component';
 import { MoreInfoComponent } from './components/more-info/more-info.component';
 import { noAuthGuard, authGuard } from './services/luister-guard.guard';
+import { NewpasswordComponent } from './components/newpassword/newpassword.component';
 
 const routes: Routes = [
   {
@@ -45,6 +46,11 @@ const routes: Routes = [
   {
     path: 'signup',
     component: RegisterComponent,
+    canActivate: [authGuard]
+  },
+  {
+    path: 'set-your-password/:token',
+    component: NewpasswordComponent,
     canActivate: [authGuard]
   },
   {

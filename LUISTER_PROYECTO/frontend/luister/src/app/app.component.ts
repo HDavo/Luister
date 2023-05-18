@@ -34,7 +34,7 @@ export class AppComponent {
     onCLick(element:any):void{
         
         if(element.localName === 'a' || element.parentNode.localName === 'a'){
-            document.documentElement.scrollTop = 0;
+            document.documentElement.scrollTo({top: 0, behavior: 'smooth'});
         }
 
         if(!element.className.includes('customContextMenu') && !element.className.includes('ccm-option')){

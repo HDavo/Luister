@@ -32,5 +32,11 @@ export class LuisterApiService {
       userid: userid
     });
   }
+
+  passwordResetRequest(email:string){
+    return this.http.post('http://localhost:8000/resetpassword.php', {
+      accountemail: email,
+    });
+  }
   
 }
