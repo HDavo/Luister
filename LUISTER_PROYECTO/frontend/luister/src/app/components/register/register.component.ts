@@ -15,19 +15,19 @@ export class RegisterComponent {
     password2 : ['', [Validators.required]],
     consent: [false, [Validators.requiredTrue]]
   },{
-    Validators: [
-      this.val.equalInputs('password', 'password2')
+    validators: [
+      this.val.EqualFields('password', 'password2')
     ]
     
   });
-//TODO: mirar porque no funciona esta comparación de campos
+
   constructor(
     private fb: FormBuilder,
     private val: ValidationsService
     ){}
 
-  isValid(field: string){
-    return this.val.validField(this.myForm, field);
+  isValid( field: string ) {
+    return this.val.validField( this.myForm, field );
   }
 
   register(){
@@ -37,5 +37,5 @@ export class RegisterComponent {
 
     this.myForm.markAllAsTouched();
 
-  }
+  }  
 }

@@ -1,7 +1,9 @@
 span{
   color: white;
 }
-
+input{
+  color: black;
+}
 #maincontainers{
   display: flex;
   flex-direction: column;
