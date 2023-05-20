@@ -23,10 +23,18 @@
             $prepQ->execute();
             $res = $prepQ->fetchAll();
             if($res){
-                echo json_encode(['data'=> $res]);
-            }else $res; 
-        }else false;
+                echo json_encode(['status'=>200, 'data'=> $res]);
+            }else echo json_encode([
+                'status'=>404,
+                'message'=> 'Sin listas personalizadas'
+            ]); 
+        }else die(json_encode([
+            'status'=>404,
+            'messages'=> 'Sin datos'
+        ]));
     } catch (PDOException $e) {
-        echo json_encode($e->getMessage());
+       die(json_encode([
+        'status'=>500,
+        'message'=>'Hubo un error inensperado.']));
     }
 ?>

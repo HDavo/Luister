@@ -19,8 +19,8 @@
         $request = json_decode(file_get_contents('php://input'));
     
         if($request){
-            $email = $request->data->email;
-            $pass = $request->data->password;
+            $email = $request->email;
+            $pass = $request->password;
 
             $prepQ = $conection->prepare("SELECT * FROM users WHERE email = :email");
             $prepQ->bindParam(':email', $email);
@@ -35,19 +35,21 @@
                     $prepQ->bindParam(':token', $token);
                     $prepQ->bindParam(':userid', $userdata['id']);
                     $prepQ->bindParam(':device', $_SERVER['HTTP_USER_AGENT']);
-                    $prepQ->execute();
-                    $res = $prepQ;
+                    $res = $prepQ->execute();
 
                     if($res){
                         echo json_encode([
-                            'auth-token'=>$token,
-                            'data' => $userdata
+                            'status'=>200,
+                            'data'=>[
+                                'auth-token'=>$token,
+                                'userdata' => $userdata
+                            ]
                         ]);
-                    }
-                }else false;
-            }else $res; 
-        }else $request;
+                    }else echo json_encode(['status'=>500, 'message'=>'Hubo un error inesperado']);
+                }else echo json_encode(['status'=>403, 'message'=>'Credenciales incorrectas']);
+            }else echo json_encode(['status'=>404, 'message'=>'Dirección de correo electrónico no dada de alta']); 
+        }else echo json_encode(['status'=>400, 'message'=>'Error en la petición']);
     } catch (PDOException $e) {
-        echo json_encode($e->getMessage());
+        die(json_encode(['status'=>500, 'message'=>'Hubo un error inesperado']));
     }
 ?>

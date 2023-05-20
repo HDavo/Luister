@@ -1,6 +1,6 @@
 import {  Component, HostListener, Renderer2, ElementRef, ViewChild } from "@angular/core";
-import { CookieService } from "ngx-cookie-service";
 import { LuisterApiService } from "src/app/services/luister-api.service";
+import { LuisterCookieManagerService } from "src/app/services/luister-cookie-manager.service";
 
 @Component({
     selector: 'navbar',
@@ -17,11 +17,11 @@ export class NavbarComponent {
 
     constructor(
         private renderer:Renderer2, 
-        private cookieService:CookieService,
+        private cookieService:LuisterCookieManagerService,
         private luister:LuisterApiService
         ){
-        this.username = this.cookieService.get('username');
-    }
+            this.username = this.cookieService.get('username');
+        }
 
     @HostListener('click',['$event.target'])
     onCLick(element:any):void{
@@ -37,8 +37,7 @@ export class NavbarComponent {
             this.hideMobileMenu();
         }
 
-    }
-    
+    }   
     @HostListener('window:load',['$event.target'])
     onPageLoad(element:any) {
         if (element.URL.replace(element.baseURI, '') != ''){
@@ -56,8 +55,7 @@ export class NavbarComponent {
         })
 
         this.hideMobileMenu();
-    }
-    
+    }    
     showMobileMenu(){
         this.renderer.addClass(this.asGridMenuContainer.nativeElement, 'element-visible');
         this.renderer.removeClass(this.asGridMenuContainer.nativeElement, 'element-hidden');
@@ -66,17 +64,20 @@ export class NavbarComponent {
         this.renderer.addClass(this.asGridMenuContainer.nativeElement, 'element-hidden');
         this.renderer.removeClass(this.asGridMenuContainer.nativeElement, 'element-visible');
     }
-
     logOut(){
         const session = this.cookieService.get('auth-token');
         this.luister.logOut(session)
         .subscribe((response:any)=> {
-            console.log(response);
-            this.cookieService.delete('auth-token');
-            this.cookieService.delete('userid');
-            this.cookieService.delete('username');
-            this.cookieService.delete('useremail');
-            window.location.reload(); // Revisar este workaround
+            if (response.status = 200) {
+                this.deleteSessionCookies();
+                window.location.reload();
+            }else alert(response.message); 
         })
+    }
+    deleteSessionCookies(){
+        this.cookieService.delete('auth-token');
+        this.cookieService.delete('userid');
+        this.cookieService.delete('username');
+        this.cookieService.delete('useremail');
     }
 }

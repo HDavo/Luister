@@ -1,53 +1,33 @@
 <div id="pagecontainer" class="maincontainers">
-    <form
+    <form class="signup-form"
       autocomplete="off"
-      [formGroup]="myForm"
+      [formGroup]="signUpForm"
       (ngSubmit)="register()">
   
-      <span>Nuevo usuario</span>
-      <div>
+      <h1>Registro de usuarios</h1>
+
+      <div class="form-field-container">
         <span>Nombre</span>
-        <br>
-        <input type="text" formControlName = "name" placeholder="Introduce tu nombre">
-        <br>
-        <span *ngIf="isValid('name')">Nombre no válido</span>
+        <input type="text" formControlName="name" placeholder="Introduce tu nombre">
       </div>
-      <div>
+      <div class="infvalid-field-value">
+        <span *ngIf="!isValid('name')">Nombre no válido</span>
+      </div>
+      <div class="form-field-container">
         <span>Email</span>
-        <br>
-        <input type="text" formControlName = "email" placeholder="Introduce tu correo electrónico">
-        <br>
-        <span *ngIf="isValid('email')">Email no válido</span>
+        <input type="text" formControlName="email" placeholder="Introduce tu correo electrónico">
       </div>
-      <div>
-        <span>Contraseña</span>
-        <br>
-        <input type="password" formControlName ="password" placeholder="Introduce tu contraseña">
-        <br>
-        <span *ngIf="isValid('password')">
-          La contraseña debe tener al menos 6 caracteres
-        </span>
+      <div class="infvalid-field-value">
+        <span *ngIf="!isValid('email')">Email no válido</span>
       </div>
-      <div>
-        <span>Repite tu contraseña</span>
-        <br>
-        <input type="password" formControlName ="password2" placeholder="Repite la contraseña">
+      <div class="consent-container">
+        <input type="checkbox" formControlName="consent" id="consent">
+        <label for="consent">Aceptar los términos y condiciones</label>
       </div>
-      <div>
-        <input type="checkbox" name="terms" formControlName ="consent">
-        <span for="terms">Aceptar los términos y condiciones</span>
-      </div>
-      <div class="">
-        <button
-          class="envio"
-          type="submit"
-          [disabled]="!myForm.valid">
-          Registrarse
-        </button>
-      </div>
-      <div>
-        <span>¿Ya tienes una cuenta?</span>
-        <a routerLink="/signin">Inicia sesión</a>
+      <div class="form-bottom-fields">
+        <input type="submit" class="send-button" value="Registrarse"
+          [disabled]="!signUpForm.valid">
+        <a routerLink="/signin" class="signin-link">Inicia sesión</a>
       </div>
     </form>
   </div>

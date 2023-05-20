@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { LuisterApiService } from 'src/app/services/luister-api.service';
 import { ValidationsService } from 'src/app/services/validations.service';
 
 @Component({
@@ -8,34 +9,40 @@ import { ValidationsService } from 'src/app/services/validations.service';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent {
-  myForm: FormGroup = this.fb.group({
-    name: ['', [Validators.required, Validators.pattern(this.val.namePattern)]],
-    email: ['', [Validators.required, Validators.pattern(this.val.emailPattern)]],
-    password: ['', [Validators.required, Validators.minLength(6)]],
-    password2 : ['', [Validators.required]],
+  signUpForm: FormGroup = this.fb.group({
+    name: ['', [Validators.required, Validators.pattern(this.validator.namePattern)]],
+    email: ['', [Validators.required, Validators.pattern(this.validator.emailPattern)]],
     consent: [false, [Validators.requiredTrue]]
   },{
     validators: [
-      this.val.equalInputs('password', 'password2')
+      this.validator.equalInputs('password', 'password2')
     ]
     
   });
 
   constructor(
     private fb: FormBuilder,
-    private val: ValidationsService
+    private validator: ValidationsService,
+    private luister: LuisterApiService
     ){}
 
   isValid( field: string ) {
-    return this.val.validField( this.myForm, field );
+    return this.validator.validField( this.signUpForm, field );
   }
-
   register(){
-    const { name, email, password, password2, consent} = this.myForm.value;
-
-    console.log(name, email, password, password2, consent);
-
-    this.myForm.markAllAsTouched();
-
+    const newUser = {
+      name: this.signUpForm.value.name,
+      email: this.signUpForm.value.email,
+      consent: this.signUpForm.value.consent
+    };
+    this.luister.signUp(newUser)
+    .subscribe((response:any)=> {
+      if(response.status == 200){
+        alert('Registro efectuado de forma correcta');
+        this.signUpForm.reset();
+      }else alert(response.message);
+    })
+    
+    this.signUpForm.markAllAsTouched();
   }  
 }

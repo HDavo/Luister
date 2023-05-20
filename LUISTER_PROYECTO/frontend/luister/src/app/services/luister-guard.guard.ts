@@ -1,12 +1,13 @@
 import { inject } from "@angular/core"
 import { Router, CanActivateFn} from "@angular/router"
-import { CookieService } from "ngx-cookie-service"
+import { LuisterCookieManagerService } from "./luister-cookie-manager.service";
 
 export const noAuthGuard: CanActivateFn = () => {
-  const cookieService =  inject(CookieService);
+  const cookieService =  inject(LuisterCookieManagerService);
   const router =  inject(Router);
 
   const VALIDATION = cookieService.check('auth-token');
+
   if(!VALIDATION){
     router.navigate(['/', 'signin']);
   }
@@ -14,7 +15,7 @@ export const noAuthGuard: CanActivateFn = () => {
 }
 
 export const authGuard: CanActivateFn = () => {
-  const cookieService =  inject(CookieService);
+  const cookieService =  inject(LuisterCookieManagerService);
   const router =  inject(Router);
 
   const VALIDATION = cookieService.check('auth-token');
@@ -22,6 +23,5 @@ export const authGuard: CanActivateFn = () => {
   if(VALIDATION){
     router.navigate(['/']);
   }
-  
   return (!VALIDATION);
 }

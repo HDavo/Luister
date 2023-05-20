@@ -1,7 +1,7 @@
 import { Component, ElementRef, HostListener, OnInit, Renderer2, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { CookieService } from 'ngx-cookie-service';
 import { LuisterApiService } from 'src/app/services/luister-api.service';
+import { LuisterCookieManagerService } from 'src/app/services/luister-cookie-manager.service';
 
 @Component({
   selector: 'app-library',
@@ -21,7 +21,7 @@ export class LibraryComponent implements OnInit {
 
   constructor(
     private renderer:Renderer2,
-    private cookieService: CookieService,
+    private cookieService: LuisterCookieManagerService,
     private luister:LuisterApiService,
     private formBuilder: FormBuilder
     ){
@@ -73,14 +73,12 @@ export class LibraryComponent implements OnInit {
       
       this.luister.addCustomList(data)
       .subscribe((response:any)=>{
-        if(response){
+        if(response.status == 200){
           this.getLists();
-        }
+        }else alert(response.message);
       });
       this.closeForm();
-    }else {
-      alert('Ciertos campos contienen valores incorrectos!');
-    }
+    }else alert('Ciertos campos contienen valores incorrectos!');
   }
   encodeFileAsBase64URL(file:any) {
     return new Promise((resolve) => {
@@ -93,7 +91,9 @@ export class LibraryComponent implements OnInit {
     const userid = parseInt(this.cookieService.get('userid'));
     this.luister.getUserCustomList(userid)
     .subscribe((response:any) => {
-      this.customLists = response?.data;
+      if(response.status == 200){
+        this.customLists = response.data;
+      }else console.log(response.message);
     })
   }
 

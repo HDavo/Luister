@@ -18,6 +18,7 @@ if($method == "OPTIONS") die();
         ]);
 
         $data = json_decode(file_get_contents("php://input"));
+        
         if($data){
             $email = $data->accountemail;
             $prepQ = $conection->prepare("SELECT id FROM users WHERE email = :email");
@@ -32,12 +33,26 @@ if($method == "OPTIONS") die();
                 $res = $prepQ->execute();
                 if($res){
                     $sender = new Sendmail();
-                    $sender->mailTo($email,'Restauracion de contraseña',`Acceda a http://localhost:4200/set-your-password/$token para restaurar su contraseña`);
-                }
-                echo json_encode($res);
-            }else echo json_encode($id);
-        }else echo json_encode($data);
+                    $subject = 'Restauracion de credenciales';
+                    $body = <<<EOF
+                                Estimado, <br>
+                                Acceda al siguiente enlace para asignar una 
+                                contraseña y activar su usuario. 
+                                <br><br>
+                                Enlace: http://localhost:4200/set-your-password/$token
+                                <br>
+                                Cordiales saludos, 
+                                <br><br>
+                                Luister
+                            EOF;
+                    $res = $sender->mailTo($email,$subject,$body);
+                    echo ($res)
+                    ?json_encode(['status'=>200])
+                    :json_encode(['status'=>500, 'message'=>'Hubo un error en el envio']);
+                }else echo json_encode(['status'=>500, 'message'=> 'Hubo un error inesperado']);
+            }else echo json_encode(['status'=>404, 'message'=>'La direccion de correo electronico no esta asociada a ninguna cuenta']);
+        }else echo json_encode(['status'=>400, 'message'=>'Peticion incorrecta']);
     } catch (PDOException $e) {
-        echo json_encode($e->getMessage());
+        die(json_encode(['status'=>500, 'message'=>'Hubo un error inesperado']));
     }
 ?>

@@ -80,6 +80,7 @@
         font-size: 17px;
         height: 40px;
         width: fit-content;
+        min-width: 133px;
     }
     .profile-container-caption > span{
         box-sizing: border-box;

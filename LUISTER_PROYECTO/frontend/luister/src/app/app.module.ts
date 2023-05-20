@@ -9,6 +9,7 @@ import { ValidationsService } from './services/validations.service';
 import { ContexMenu } from './services/contextMenu';
 import { LuisterApiService } from './services/luister-api.service';
 import { LastFmService } from './services/last-fm.service';
+import { LuisterCookieManagerService } from './services/luister-cookie-manager.service';
 
 @NgModule({
   declarations: [AppComponent],
@@ -16,14 +17,15 @@ import { LastFmService } from './services/last-fm.service';
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
-   ComponentsModule
+    ComponentsModule
   ],
   providers: [
     ApibindingService,
     ValidationsService,
     ContexMenu,
     LuisterApiService,
-    LastFmService
+    LastFmService,
+    LuisterCookieManagerService
   ],
   bootstrap: [AppComponent]
 })

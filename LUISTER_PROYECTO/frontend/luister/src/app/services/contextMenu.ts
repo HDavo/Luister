@@ -1,7 +1,7 @@
 import { Injectable, Renderer2, RendererFactory2 } from "@angular/core";
 import { Router } from "@angular/router";
 import { LuisterApiService } from "./luister-api.service";
-import { CookieService } from "ngx-cookie-service";
+import { LuisterCookieManagerService } from "./luister-cookie-manager.service";
 
 @Injectable({
     providedIn: 'root'
@@ -17,7 +17,7 @@ export class ContexMenu {
         rendererFactory:RendererFactory2,
         private router:Router,
         private luister: LuisterApiService,
-        private cookieService: CookieService
+        private cookieService: LuisterCookieManagerService
     ){
         this.renderer = rendererFactory.createRenderer(null, null);
     }

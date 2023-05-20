@@ -24,9 +24,9 @@
             $prepQ = $conection->prepare("DELETE FROM sessions WHERE token = :token");
             $prepQ->bindParam(':token', $token);
             $res = $prepQ->execute();
-            echo json_encode($res);
-        }else echo $request->session;
+            echo json_encode(['status'=>200]);
+        }else echo json_encode(['status'=>404, 'message'=>'Sesión inválida']);
     } catch (PDOException $e) {
-        echo json_encode($e->getMessage());
+        die(json_encode(['status'=>500, 'message'=>'Hubo un error inesperado']));
     }
 ?>

@@ -27,10 +27,11 @@
             $prepQ->bindParam(':userid', $userid);
             $prepQ->bindParam(':clid', $listid);
             $res = $prepQ->execute();
+            if($res) echo json_encode(['status'=>200]);
+            else echo json_encode(['status'=>500, 'message'=>'Hubo un error inesperado']);
             
-            echo json_encode($res);
-        }else $data;
+        }else json_encode(['status'=>400, 'message'=>'No se recibieron datos']);
     } catch (PDOException $e) {
-        echo json_encode($e->getMessage());
+        echo die(json_encode(['status'=>500, 'message'=>'Hubo un error inesperado']));
     }
 ?>

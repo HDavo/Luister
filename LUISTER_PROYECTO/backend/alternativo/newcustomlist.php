@@ -27,28 +27,34 @@
                 $filedir = $file['tmp_name'];
             }
 
-            $prepQ = $conection->prepare("INSERT INTO customlists (title, description, image, userid) VALUES (:title,:description,:image,:userid)");
+            $prepQ = $conection->prepare("SELECT id FROM customlists WHERE userid = :userid AND title = :title");
             $prepQ->bindParam(':title', $title);
-            $prepQ->bindParam(':description', $description);
-            $prepQ->bindParam(':image', $filename);
             $prepQ->bindParam(':userid', $userid);
             $prepQ->execute();
-            $res = $conection->lastInsertId();
-            
-            if($res && !empty($file)){
-                if (!file_exists('./images/')) mkdir('./images/');
-                if (!file_exists($uploadDir)) mkdir($uploadDir);
-                if (!file_exists($uploadDir.$res.'/')) mkdir($uploadDir.$res.'/');
-                
+            $exist = $prepQ->fetch();
 
-                if(move_uploaded_file($filedir, $uploadDir.$res.'/'.$filename)){
-                    echo json_encode($res);
-                }else{
-                    echo json_encode(false);
-                }
-            }else echo json_encode($res);
-        }
+            if(!$exist){
+                $prepQ = $conection->prepare("INSERT INTO customlists (title, description, image, userid) VALUES (:title,:description,:image,:userid)");
+                $prepQ->bindParam(':title', $title);
+                $prepQ->bindParam(':description', $description);
+                $prepQ->bindParam(':image', $filename);
+                $prepQ->bindParam(':userid', $userid);
+                $prepQ->execute();
+                $res = $conection->lastInsertId();
+                
+                if($res){
+                    if(!empty($file)){
+                        if (!file_exists('./images/')) mkdir('./images/');
+                        if (!file_exists($uploadDir)) mkdir($uploadDir);
+                        if (!file_exists($uploadDir.$res.'/')) mkdir($uploadDir.$res.'/');
+                        
+                        move_uploaded_file($filedir, $uploadDir.$res.'/'.$filename);
+                    }
+                    echo json_encode(['status'=>200]);
+                }else echo json_encode(['status'=>500, 'message'=>'Hubo un error inesperado']);
+            } else echo json_encode(['status'=>406, 'message'=>'Lista ya existente']);;
+        }else echo json_encode(['status'=>400, 'message'=>'Peticion incorrecta']);
     } catch (PDOException $e) {
-        echo json_encode($e->getMessage());
+        die(json_encode(['status'=>500, 'message'=>'Hubo un error inesperado']));
     }
 ?>
