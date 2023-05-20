@@ -1,5 +1,6 @@
-import { Component, ElementRef, HostListener, OnInit, Renderer2, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, Renderer2, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ContexMenu } from 'src/app/services/contextMenu';
 import { LuisterApiService } from 'src/app/services/luister-api.service';
 import { LuisterCookieManagerService } from 'src/app/services/luister-cookie-manager.service';
 
@@ -14,7 +15,7 @@ export class LibraryComponent implements OnInit {
   public newListImagePreview: string | null = null;
   public customListForm:FormGroup = this.formBuilder.group({
     title: ['', Validators.required],
-    description: ['', Validators.required],
+    description: [''],
     image: [null],
     imageFile: [null]
   });
@@ -23,7 +24,8 @@ export class LibraryComponent implements OnInit {
     private renderer:Renderer2,
     private cookieService: LuisterCookieManagerService,
     private luister:LuisterApiService,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private contextMen:ContexMenu
     ){
       this.getLists();
     }
@@ -32,7 +34,11 @@ export class LibraryComponent implements OnInit {
     this.luister.deletedList
     .subscribe((res:any)=>{
       this.customLists = this.customLists.filter((list:any) => list.id != res);
-    })
+    });
+  }
+
+  ngOnDestroy(){
+    this.contextMen.getUserLists();
   }
 
   @ViewChild('newCustomListForm') newCustomListForm!:ElementRef;

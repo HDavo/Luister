@@ -9,6 +9,7 @@ import { Observable } from 'rxjs';
 export class LuisterApiService {
 
   @Output() deletedList:EventEmitter<any> = new EventEmitter();
+  @Output() updateList: EventEmitter<any> = new EventEmitter();
   constructor(private http: HttpClient) {}
 
   signIn(data:any):Observable<any>{
@@ -42,5 +43,7 @@ export class LuisterApiService {
   setNewPassword(data:any):Observable<any>{
     return this.http.post('http://localhost:8000/setnewpassword.php', data);
   }
-  
+  addTrackToList(data:any):Observable<any>{
+    return this.http.post('http://localhost:8000/addtracktolist.php', data);
+  }
 }
