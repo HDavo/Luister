@@ -249,20 +249,20 @@ export class ContexMenu {
 
         this.fromSpoify.getTrack(this.id)
         .then((response:any)=> {
-            response.subscribe((res:any)=>{
+            return response.subscribe((res:any)=>{
                 data.title = res.name;
                 res.artists.forEach((e:any)=>{
                     data.artist += e.name;
                 });
-            });
-        });
 
-        this.luister.addTrackToList(data)
-        .subscribe((response:any)=>{
-            if(response.status == 200){
-                alert('Pista agregada a lista!');
-            }else alert(response.message);
+                this.luister.addTrackToList(data)
+                .subscribe((response:any)=>{
+                    if(response.status == 200){
+                        alert('Pista agregada a lista!');
+                    }else alert(response.message);
+                })
+                this.removeContexMenu();
+            });
         })
-        this.removeContexMenu();
     }
 }

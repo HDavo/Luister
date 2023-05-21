@@ -6,13 +6,78 @@
         </div>
     </div>
 
-    <div class="search-page-default-body" *ngIf="searchResults?.lentgh >= 0; else searchresults">
+    <div class="search-page-default-body" *ngIf="searchFullResults?.lentgh >= 0; else searchresults">
         Puedes introducir tus criterios de búsqueda en el campo para dar con
         las canciones, artistas o álbumes que desees encontrar.
     </div>
 
     <ng-template #searchresults>
-            <div class="page-section">
+        <div class="page-section">
+            <div class="main-search-results">
+                <div *ngIf="mainResult.id" class="main-elements-container"> <h1>Resultado principal</h1>
+                    <div class="first-element">
+                        <div class="fe-img-cont">
+                            <img src="{{mainResult.img}}" alt="">
+                        </div>
+                        <div class="fe-title">
+                            <a routerLink="/details/{{mainResult.type}}/{{mainResult.id}}">{{mainResult.name}}</a>
+                        </div>
+                        <div class="fe-element-extra">
+                            <span class="fee-extra">
+                                {{ mainResult.extra}}
+                            </span>
+                            <span class="fee-type">
+                                {{ captions[mainResult.type]}}
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <div *ngIf="tracks.length > 0" class="main-elements-container"><h1>Canciones</h1>
+                    <div class="tracks-elements">
+                        <div class="main-track-found" *ngFor="let i of [1,2,3]">
+                            <div class="mtf-img-container">
+                                <img src="{{tracks[i].album.img}}" alt="">
+                            </div>
+                            <span class="mtf-type">{{captions[tracks[i].type]}}</span>
+                            <span class="mtf-title">
+                                <a routerLink="/details/{{tracks[i].type}}/{{tracks[i].id}}">{{tracks[i].name}}</a>
+                            </span>
+                            <span class="mtf-artists">
+                                <a *ngFor="let artist of tracks[i].artists; let i = index" routerLink="/details/artist/{{artist.id}}">
+                                    <span *ngIf="i != 0"> & </span> {{artist.name}}
+                                </a>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <div *ngIf="albums.length > 0" class="main-elements-container"><h1>Albumes</h1>
+                    <div class="msr-albums-elements">
+                        <div class="msr-ae-elements" *ngFor="let i of [1,2,3,4,5,6]">
+                            <div class="ae-img-cont">
+                                <img src="{{albums[i].img}}" alt="">
+                            </div>
+                            <div class="msr-ae-type">{{captions[albums[i].type]}}</div>
+                            <div class="msr-ae-info">
+                                <span class="msr-ae-info-title">
+                                    <a routerLink="/details/{{albums[i].type}}/{{albums[i].id}}">{{albums[i].name}}</a>
+                                </span>
+                                
+                                <span class="msr-ae-info-artists">
+                                   <a *ngFor="let artist of albums[i].artists; let i = index" routerLink="/details/artist/{{artist.id}}">
+                                    <span *ngIf="i != 0"> & </span>
+                                    {{artist.name}}
+                                    </a>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+            <!-- <div class="page-section">
                 <h2 class="page-section-title">Canciones</h2>
                 <div class="page-section-content">
                     <div class="page-section-element" *ngFor="let track of searchResults?.tracks.items" #track id="{{track.id}}">
@@ -54,8 +119,7 @@
                         <p class="card-description">Álbum</p>
                     </div>
                 </div>
-            </div>
-        
+            </div> -->
     </ng-template>
 
 </div>

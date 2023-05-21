@@ -43,7 +43,7 @@
                 else echo json_encode(['status'=>500, 'message'=>'Hubo un error inesperrado al añadir la cancion']);
             } else echo json_encode(['status'=>406, 'message'=>'La pista ya se encuentra agregada']);
             
-        }else json_encode(['status'=>400, 'message'=>'No se recibieron datos']);
+        }else echo json_encode(['status'=>400, 'message'=>'No se recibieron datos']);
     } catch (PDOException $e) {
         echo die(json_encode(['status'=>500, 'message'=>'Hubo un error inesperado']));
     }
