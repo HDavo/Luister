@@ -75,6 +75,17 @@
                     </div>
                 </div>
             </div>
+
+            <div class="more-results-artists">
+                <div class="artist-tape">
+                    <div *ngFor="let artist of artists" class="mra-element">
+                        <img src="{{artist.img}}" alt="{{artist.name}}" class="mrae-image">
+                        <div class="mrae-title-type-cont">
+                            <a class="mrae-title" routerLink="/details/{{artist.type}}/{{artist.id}}">{{artist.name}}</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
         
             <!-- <div class="page-section">
