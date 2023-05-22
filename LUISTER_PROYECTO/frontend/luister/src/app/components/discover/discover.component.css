@@ -292,7 +292,7 @@
     box-sizing: border-box;
     width: 100%;
     min-height: 300px;
-    padding: 33px 0;
+    padding: 33px 0 0 0;
     background: rgb(249, 244, 255);
     display: flex;
     flex-direction: column;
@@ -324,7 +324,7 @@
     grid-template-rows: 65% 27%;
     gap: 8%;
 }
-.pse-card-album-artists > a, .ft{
+.pse-card-track-artists > a, .ft{
     color: black;
     font-weight: bold;
     font-family: 'Montserrat';
@@ -342,6 +342,52 @@
                 0 0 16px rgba(0, 0, 0, .2);
 }
 
+.album-carusel-title{
+    color: black;
+    margin: 33px 0 22px 0;
+    padding: 0 5px 8px 5px;
+    border-bottom: 4px solid rgb(103, 103, 103);
+}
+.album-carusel-container{
+    width: 100%;
+    height: fit-content;
+}
+.album-carusel-tape{
+    display: flex;
+    width: calc(100% * 22 / 5);
+}
+.ac-tape-element{
+    position: relative;
+    aspect-ratio: 1 / 1;
+    width: calc(100% / 22);
+}
+.ac-tape-e-image{
+    left: 0;top: 0;
+    position: absolute;
+}
+.ac-tape-e-caption{
+    box-sizing: border-box;
+    padding: 22px;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    bottom: 0;left: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 11px;
+    background: rgb(0, 0, 0);
+    font-weight: bolder;
+    opacity: .1;
+    transition: .3s;
+}
+.ac-tape-element:hover > .ac-tape-e-caption{
+    opacity: .9;
+}
+.ac-tape-e-title{
+    font-size: 20px;
+}
 /* *** */
 
 @media screen and (max-width: 420px){

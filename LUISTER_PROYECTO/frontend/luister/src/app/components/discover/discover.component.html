@@ -114,9 +114,9 @@
                             <img class='another-image' src="https://c8.alamy.com/compes/2e2kkm2/notas-musicales-con-placa-musical-sobre-fondo-blanco-musica-abstracta-fondo-de-disco-2e2kkm2.jpg" alt="{{track.name}}">
                         </ng-template>
                         <div>
-                            <a routerLink="/details/album/{{track.album.id}}" class="pse-card-album-name"> {{track.album.name}} </a>
+                            <a routerLink="/details/{{track.type}}/{{track.id}}" class="pse-card-album-name"> {{track.name}} </a>
                             <div>
-                                <span class="pse-card-album-artists" *ngFor="let artist of track.artists; let i = index"> 
+                                <span class="pse-card-track-artists" *ngFor="let artist of track.artists; let i = index"> 
                                    <i class="ft" *ngIf="i != 0"> Ft </i> <a routerLink="/details/artist/{{artist.id}}">{{artist.name}}</a>
                                 </span>
                             </div>
@@ -125,16 +125,18 @@
                 </div>
             </div>
 
-            <div class="page-section">
-                <h1 class="page-section-title">Álbumes</h1>
-                <div class="page-section-content">
-                    <div class="page-section-element" *ngFor="let album of albums" #album id="{{album.id}}">
-                        <img *ngIf="album.img; else defaultimg" class='image album-image' src="{{album.img}}" alt="{{album.name}}">
+            <h1 class="album-carusel-title">Álbumes</h1>
+            <div class="album-carusel-container">
+                <div class="album-carusel-tape">
+                    <div class="ac-tape-element" *ngFor="let album of albums" #album id="{{album.id}}">
+                        <img *ngIf="album.img; else defaultimg" class='ac-tape-e-image' src="{{album.img}}" alt="{{album.name}}">
                         <ng-template #defaultimg>
-                            <img class='image artist-image' src="https://c8.alamy.com/compes/2e2kkm2/notas-musicales-con-placa-musical-sobre-fondo-blanco-musica-abstracta-fondo-de-disco-2e2kkm2.jpg" alt="{{album.name}}">
+                            <img class='ac-tape-e-image' src="https://c8.alamy.com/compes/2e2kkm2/notas-musicales-con-placa-musical-sobre-fondo-blanco-musica-abstracta-fondo-de-disco-2e2kkm2.jpg" alt="{{album.name}}">
                         </ng-template>
-                        <a class="card-title" routerLink="/details/album/{{album.id}}"> {{album.name}} &nbsp;</a>
-                        <p class="card-description">Álbum</p>
+                        <div class="ac-tape-e-caption">
+                            <a class="ac-tape-e-title" routerLink="/details/album/{{album.id}}"> {{album.name}} &nbsp;</a>
+                            <span class="ac-tape-e-description">Álbum</span>
+                        </div>
                     </div>
                 </div>
             </div>
