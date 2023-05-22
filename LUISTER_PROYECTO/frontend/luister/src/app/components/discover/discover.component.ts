@@ -1,4 +1,4 @@
-import { Component, HostListener } from '@angular/core';
+import { Component, ElementRef, HostListener, ViewChild } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Album } from 'src/app/interfaces/Album';
 import { Artist } from 'src/app/interfaces/Artist';
@@ -23,6 +23,8 @@ export class DiscoverComponent {
     album: 'Álbum',
     artist: 'Artista'
   }
+  @ViewChild('asArtistsCarrusel') asArtistsCarrusel!: ElementRef;
+  private tapescrollX:number = 0;
 
   constructor(private fromSpotify:ApibindingService){ }
 
@@ -132,5 +134,12 @@ export class DiscoverComponent {
   cleanSearchLabel(){
     this.searchLabel = '';
     this.searchFullResults = null;
+  }
+  setTapeScroolX(scroll:number){
+    this.asArtistsCarrusel.nativeElement.scrollTo({left: scroll, behavior: 'smooth'});
+  }
+  scrollToRight(){
+    this.tapescrollX += this.asArtistsCarrusel.nativeElement.clientWidth;
+    this.setTapeScroolX(this.tapescrollX);
   }
 }
