@@ -6,10 +6,10 @@ import { AbstractControl, FormControl, FormGroup, ValidationErrors } from '@angu
 })
 export class ValidationsService {
 
-  public namePattern: string = '([a-zA-Z]+) ([a-zA-Z]+)';
-  public emailPattern: string = "^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$";
-
   constructor() { }
+
+  public namePattern: string = '([a-zA-Z0-9_-]{4,15})';
+  public emailPattern: string = "^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$";
 
   //TODO: poner el servicio en funcionamiento dentro de las páginas de reactive (hasta ahora con las validaciones en el propio fichero)
 
@@ -25,27 +25,29 @@ export class ValidationsService {
 
       return null;
   }
+
   public validField( form: FormGroup, field: string): boolean | null {
-      return !(form.controls[field].errors && form.controls[field].touched);
+      return form.controls[field].errors && form.controls[field].touched;
   }
-  public equalInputs(field1: string, field2: string){
 
-      return ( formGroup: AbstractControl): ValidationErrors | null => {
-          const valorfield1 = formGroup.get(field1)?.value;
-          const valorfield2 = formGroup.get(field2)?.value;
 
-          if( valorfield1 !== valorfield2 ){
-              formGroup.get(field2)?.setErrors({ notEquals: true });
-              console.log('Entro ewe');
-              return { notEquals: true}
+  public EqualFields( field1: string, field2: string ) {
 
-          }
+    return ( formGroup: AbstractControl ): ValidationErrors | null => {
 
-          console.log('Entro aqui2');
-          formGroup.get(field2)?.setErrors(null);
-          return null;
+      const fieldValue1 = formGroup.get(field1)?.value;
+      const fieldValue2 = formGroup.get(field2)?.value;
+
+      if ( fieldValue1 !== fieldValue2 ) {
+        formGroup.get(field2)?.setErrors({ notEqual: true });
+        return { notEqual: true }
       }
+
+      formGroup.get(field2)?.setErrors(null);
+      return null;
     }
+
+  }
   
 }
 

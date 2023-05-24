@@ -12,6 +12,7 @@ import { NotfoundComponent } from './components/notfound/notfound.component';
 import { MoreInfoComponent } from './components/more-info/more-info.component';
 import { noAuthGuard, authGuard } from './services/luister-guard.guard';
 import { NewpasswordComponent } from './components/newpassword/newpassword.component';
+import { ListComponent } from './components/library/pages/list/list/list.component';
 
 const routes: Routes = [
   {
@@ -29,11 +30,12 @@ const routes: Routes = [
   {
     path: 'library',
     component: LibraryComponent,
-    canActivate: [noAuthGuard]
+    // canActivate: [noAuthGuard]
   },
   {
     path: 'library/list/:id',
-    component: LibraryComponent
+    component: ListComponent,
+    
   },
   {
     path: 'discover',

@@ -15,7 +15,7 @@ export class RegisterComponent {
     consent: [false, [Validators.requiredTrue]]
   },{
     validators: [
-      this.validator.equalInputs('password', 'password2')
+      this.validator.EqualFields('password', 'password2')
     ]
     
   });
