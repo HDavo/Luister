@@ -16,6 +16,7 @@ import { RegisterComponent } from './register/register.component';
 import { NotfoundComponent } from './notfound/notfound.component';
 import { MoreInfoComponent } from './more-info/more-info.component';
 import { NewpasswordComponent } from './newpassword/newpassword.component';
+import { AccountComponent } from './account/account.component';
 
 
 @NgModule({
@@ -33,6 +34,7 @@ import { NewpasswordComponent } from './newpassword/newpassword.component';
     RegisterComponent,
     MoreInfoComponent,
     NewpasswordComponent,
+    AccountComponent,
   ],
   imports: [
     CommonModule,

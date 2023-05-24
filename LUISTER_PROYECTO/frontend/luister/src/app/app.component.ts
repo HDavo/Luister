@@ -14,6 +14,7 @@ export class AppComponent {
 
     @ViewChild('asBannerContainer') asBannerContainer !:ElementRef;
     @ViewChild('asBannerButton') asBannerButton !:ElementRef;
+    @ViewChild('routerOutlet') routerOutlet !:ElementRef;
 
     constructor(private renderer:Renderer2, private contextMenu:ContexMenu){
         this.cookieBannerState = localStorage.getItem('cookie-banner') || '';
@@ -21,7 +22,7 @@ export class AppComponent {
 
     @HostListener('contextmenu',['$event'])
     void(){
-        this.contextMenu.insertContextMenu(event);
+        this.contextMenu.insertContextMenu(event, this.routerOutlet.nativeElement);
         return false;
     }
 

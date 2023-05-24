@@ -24,9 +24,13 @@
                     <li class="profile-container-caption">
                         <span>{{username | titlecase}} </span>
                         <ul class="pc-menu">
-                            <li class="pc-menu-element">Perfil</li>
-                            <li class="pc-menu-element">Configuración</li>
-                            <li class="pc-menu-element" (click)="logOut()">Cerrar sesión</li>
+                            <li class="pc-menu-element">
+                                <a routerLink="/user/profile">Perfil</a>
+                            </li>
+                            <li class="pc-menu-element">
+                                <a routerLink="/user/settings">Configuración</a>
+                            </li>
+                            <li class="pc-menu-element logout" (click)="logOut()">Cerrar sesión</li>
                         </ul>
                     </li>
                 </ul>

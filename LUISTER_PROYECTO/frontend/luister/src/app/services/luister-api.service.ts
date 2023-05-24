@@ -19,9 +19,7 @@ export class LuisterApiService {
     return this.http.post('http://localhost:8000/register.php', data)
   }
   logOut(session:string):Observable<any>{
-    return this.http.post('http://localhost:8000/logout.php', {
-        session,
-        })
+    return this.http.post('http://localhost:8000/logout.php', { session })
   }
   getUserCustomList(userid:number):Observable<any>{
     return this.http.get(`http://localhost:8000/customlists.php?userid=${userid}`);
@@ -45,5 +43,10 @@ export class LuisterApiService {
   }
   addTrackToList(data:any):Observable<any>{
     return this.http.post('http://localhost:8000/addtracktolist.php', data);
+  }
+  isValidSession(data: string):Observable<any>{
+    return this.http.post('http://localhost:8000/validsession.php', {
+      sessiontoken: data
+    });
   }
 }

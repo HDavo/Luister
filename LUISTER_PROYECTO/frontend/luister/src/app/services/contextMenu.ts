@@ -1,4 +1,4 @@
-import { Injectable, Renderer2, RendererFactory2 } from "@angular/core";
+import { ElementRef, HostListener, Injectable, Renderer2, RendererFactory2, ViewChild } from "@angular/core";
 import { Router } from "@angular/router";
 import { LuisterApiService } from "./luister-api.service";
 import { LuisterCookieManagerService } from "./luister-cookie-manager.service";
@@ -16,6 +16,9 @@ export class ContexMenu {
     private etype!:string;
     private id:any;
     private renderer:Renderer2;
+    @ViewChild('asMainContainer') asMainContainer!: ElementRef;
+    @HostListener('contextmenu',['$event'])
+    void(){ return false; }
 
     constructor(
         rendererFactory:RendererFactory2,
@@ -175,13 +178,14 @@ export class ContexMenu {
         if(this.userid){
             this.luister.getUserCustomList(this.userid)
             .subscribe((response:any)=>{
+                this.uLists = [];
                 response.data.forEach((list:any, index:number) =>{
                     this.uLists[index] = {caption: list.title, clid: list.id};
                 });
             });
         }
     }
-    insertContextMenu(event:any, target:any=document.getElementsByTagName('body')[0]){
+    insertContextMenu(event:any, target:ElementRef){
         this.etype = this.getElementType(event.target).type,
         this.id = this.getElementType(event.target).id;
               
