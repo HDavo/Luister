@@ -10,6 +10,7 @@ import { ContexMenu } from './services/contextMenu';
 import { LuisterApiService } from './services/luister-api.service';
 import { LastFmService } from './services/last-fm.service';
 import { LuisterCookieManagerService } from './services/luister-cookie-manager.service';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [AppComponent],
@@ -17,7 +18,8 @@ import { LuisterCookieManagerService } from './services/luister-cookie-manager.s
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
-    ComponentsModule
+    ComponentsModule,
+    BrowserAnimationsModule
   ],
   providers: [
     ApibindingService,

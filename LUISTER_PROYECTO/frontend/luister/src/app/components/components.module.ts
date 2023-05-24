@@ -17,7 +17,11 @@ import { NotfoundComponent } from './notfound/notfound.component';
 import { MoreInfoComponent } from './more-info/more-info.component';
 import { NewpasswordComponent } from './newpassword/newpassword.component';
 import { AccountComponent } from './account/account.component';
+import { ListComponent } from './library/pages/list/list/list.component';
 
+import { MatTableModule } from '@angular/material/table';
+import {MatFormFieldModule} from '@angular/material/form-field'; 
+import {MatSortModule} from '@angular/material/sort'; 
 
 @NgModule({
   declarations: [
@@ -35,12 +39,16 @@ import { AccountComponent } from './account/account.component';
     MoreInfoComponent,
     NewpasswordComponent,
     AccountComponent,
+    ListComponent,
   ],
   imports: [
     CommonModule,
     AppRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatTableModule,
+    MatFormFieldModule,
+    MatSortModule
   ],
   exports: [
     NavbarComponent,
