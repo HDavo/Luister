@@ -18,7 +18,7 @@
     
         if(isset($_GET['userid'])){
             $userid = $_GET['userid'];
-            $prepQ = $conection->prepare("SELECT cl.id, cl.title, cl.image, count(t.id) AS totaltracks FROM customlists AS cl LEFT JOIN tracks AS t ON cl.id = t.customlistid WHERE cl.userid = :userid GROUP BY cl.id, cl.title, cl.image");
+            $prepQ = $conection->prepare("SELECT cl.id, cl.title, cl.image, count(ct.id) AS totaltracks FROM customlists AS cl LEFT JOIN customlisttracks AS ct ON cl.id = ct.customlistid WHERE cl.userid = :userid GROUP BY cl.id, cl.title, cl.image");
             $prepQ->bindParam(':userid', $userid);
             $prepQ->execute();
             $res = $prepQ->fetchAll();

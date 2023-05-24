@@ -24,7 +24,7 @@
             $listid = $data->listid;
             $lookupkey = $data->lookupkey;
 
-            $prepQ = $conection->prepare("SELECT id FROM tracks WHERE title = :title AND artist = :artist AND customlistid = :listid");
+            $prepQ = $conection->prepare("SELECT id FROM customlisttracks WHERE title = :title AND artist = :artist AND customlistid = :listid");
             $prepQ->bindParam(':title', $title);
             $prepQ->bindParam(':artist', $artist);
             $prepQ->bindParam(':listid', $listid);
@@ -32,7 +32,7 @@
             $exist = $prepQ->fetch();
 
             if(!$exist){
-                $prepQ = $conection->prepare("INSERT INTO tracks (title,artist,customlistid,lookupkey) VALUES (:title,:artist,:listid,:lookupkey)");
+                $prepQ = $conection->prepare("INSERT INTO customlisttracks (title,artist,customlistid,lookupkey) VALUES (:title,:artist,:listid,:lookupkey)");
                 $prepQ->bindParam(':title', $title);
                 $prepQ->bindParam(':artist', $artist);
                 $prepQ->bindParam(':listid', $listid);
