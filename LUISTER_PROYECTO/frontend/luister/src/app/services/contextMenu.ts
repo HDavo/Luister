@@ -82,7 +82,7 @@ export class ContexMenu {
         let option, result:any[] = [];
 
         options[etype].forEach((element:any) =>{
-            if(element.type != 'menu' || this.userid){
+            if((element.caption != 'Añadir a lista' && element.caption != 'Seguir') || this.userid){
                 option = this.createOption(element);
                 result.push(option);
             }
