@@ -1,7 +1,6 @@
 ::placeholder{color: rgba(255, 255, 255, 0.383);}
 .maincontainers{
   background: linear-gradient(135deg, rgb(40, 14, 75), rgb(101, 13, 89), rgb(47, 2, 55)) !important;
-  padding: 33px 0 !important;
   font-family: 'Outfit';
 }
 .form-title{
@@ -14,6 +13,7 @@
   font-size: 20px;
 }
 .login-form{
+  margin-top: 33px;
   min-width: 222px;
   width: 100%;
   max-width: 333px;
@@ -125,7 +125,7 @@ span{
   position: absolute;
   box-sizing: border-box;
   min-height: 77px;
-  top: 5%;
+  top: calc(5% + var(--nav-height));
   background: rgba(79, 4, 74, 0.99);
   width: 80%;
   min-width: 280px;

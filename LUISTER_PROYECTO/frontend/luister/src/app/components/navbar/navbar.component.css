@@ -3,20 +3,21 @@
     a:hover{
         text-decoration: none !important;
     }
+    
+    #navigationbar{
+        height: var(--nav-height);
+        background-color: var(--var-black);
+        position: fixed;
+        display: flex;
+        justify-content: center;
+        top: 0;
+        z-index: 4;
+    }
     .all-nav-menu-container{
         height: 100%;
         display: flex;
         position: relative;
         justify-content: space-between;
-    }
-    #navigationbar{
-        height: var(--nav-height);
-        background-color: var(--var-black);
-        position: sticky;
-        display: flex;
-        justify-content: center;
-        top: 0;
-        z-index: 4;
     }
     #logo{
         width: 20%;

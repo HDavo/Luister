@@ -1,7 +1,4 @@
-*{
-    color: white;
-    font-family: 'Outfit';
-}
+
 .account-main-container{
     position: relative;
     width: 100%;
@@ -10,6 +7,8 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    padding-top: 77px;
+    font-family: 'Outfit';
 }
 .settings-main-child, .user-data, .following-section{
     width: 85%;

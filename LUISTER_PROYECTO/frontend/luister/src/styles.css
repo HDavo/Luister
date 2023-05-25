@@ -62,12 +62,14 @@
 #pagecontainer{
     position: relative;
     min-height: calc(100vh - var(--footer-height) - var(--nav-height));
+    height: fit-content;
     background: linear-gradient(0deg,black -100%,rgb(5, 0, 7)100%,black 90%);
     z-index: 1;
     display: flex;
     flex-direction: column;
     align-items: center;
     overflow: hidden;
+    padding-top: var(--nav-height);
 }
 #mainpagetitle{
     width: 100%;
@@ -129,7 +131,6 @@ li{
 .track-hide{
     visibility: hidden;
     opacity: 0;
-    /*transform: translateX(-200px) translateY(-200px);*/
     transform: rotateX(-90deg) rotateY(-15deg);
 }
 .track-show{
