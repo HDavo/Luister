@@ -26,7 +26,7 @@ export class NewsComponent {
   showAlbums(){
     let elemBottom = this.releases?.nativeElement.getBoundingClientRect().bottom,
         windowHeigth = window.innerHeight,
-        pageTotalScroll = document.documentElement.offsetHeight - windowHeigth;
+        pageTotalScroll = document.documentElement.scrollHeight - windowHeigth;
     if(elemBottom <= windowHeigth * 0.7 || window.scrollY >= pageTotalScroll){
       this.getMoreAlbums();
     }

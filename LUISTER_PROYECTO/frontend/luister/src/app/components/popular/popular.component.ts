@@ -38,12 +38,12 @@ export class PopularComponent {
   showHomePageElements():void{
     let elementTop, elementHeight,
         windowHeigth = window.innerHeight,
-        pageTotalScroll = document.documentElement.offsetHeight - windowHeigth;
+        pageTotalScroll = document.documentElement.scrollHeight - windowHeigth;
     this.track?.forEach(element =>{
       elementTop = element.nativeElement.offsetTop;
       elementHeight = element.nativeElement.offsetHeight;
       if(elementTop <= (window.scrollY + windowHeigth * 0.6) || window.scrollY >= pageTotalScroll){
-        this.renderer.removeClass(element.nativeElement, 'track-hidden');
+        this.renderer.removeClass(element.nativeElement, 'track-hide');
         this.renderer.addClass(element.nativeElement, 'track-show');
       }else{
         this.renderer.removeClass(element.nativeElement, 'track-show');
