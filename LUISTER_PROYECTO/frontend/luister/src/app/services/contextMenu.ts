@@ -188,6 +188,8 @@ export class ContexMenu {
     insertContextMenu(event:any, target:ElementRef){
         this.etype = this.getElementType(event.target).type,
         this.id = this.getElementType(event.target).id;
+        let left = event.clientX,
+            top = event.clientY;
               
         if(this.etype && this.id){
 
@@ -202,8 +204,12 @@ export class ContexMenu {
             });
             
             this.renderer.appendChild(target, contextMenu);
-            this.renderer.setStyle(contextMenu, 'left', event.clientX+'px');
-            this.renderer.setStyle(contextMenu, 'top', event.clientY+'px');
+            
+            if(window.innerWidth -  contextMenu.clientWidth <= left  ) left -= contextMenu.clientWidth; 
+            if(window.innerHeight - contextMenu.offsetHeight <= top  ) top -= contextMenu.offsetHeight;
+
+            this.renderer.setStyle(contextMenu, 'left', left+'px');
+            this.renderer.setStyle(contextMenu, 'top', top+'px');
         
             this.contextMenu = contextMenu;
             }
