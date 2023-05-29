@@ -172,6 +172,7 @@
     grid-template-rows: repeat(3, calc(33% - 15px));
     gap: 15px;
     box-sizing: border-box;
+    
 }
 .main-track-found{
     display: grid;
@@ -389,6 +390,30 @@
     font-size: 20px;
 }
 /* *** */
+
+.search-filter-container{
+    display: flex;
+    height: 50px;
+    max-width: 398px;
+    width: 100%;
+    min-width: 222px;
+    justify-content: space-between;
+    margin: 11px 0;
+}
+.filter{
+    width: 44%;
+    height: 100%;
+    background: rgb(16, 3, 20);
+    cursor: pointer;
+    box-shadow: 0 0 5px 5px rgba(32, 32, 32, 0.063),
+    0 0 11px 11px rgba(33, 33, 33, 0.084),
+    0 0 22px 22px rgba(48, 48, 48, 0.086);
+    border-radius: 1000px;
+    padding: 5px 11px;
+    font-size: 1.5rem;
+    font-weight: bold;
+    border: 2px groove white;
+}
 
 @media screen and (max-width: 420px){
     

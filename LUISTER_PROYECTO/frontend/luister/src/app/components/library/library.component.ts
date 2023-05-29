@@ -1,5 +1,6 @@
 import { Component, ElementRef, OnInit, Renderer2, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FavTrack } from 'src/app/interfaces/Favtrack';
 import { ContexMenu } from 'src/app/services/contextMenu';
 import { LuisterApiService } from 'src/app/services/luister-api.service';
 import { LuisterCookieManagerService } from 'src/app/services/luister-cookie-manager.service';
@@ -11,7 +12,7 @@ import { LuisterCookieManagerService } from 'src/app/services/luister-cookie-man
 })
 export class LibraryComponent implements OnInit {
   public imgroot:string = 'http://localhost:8000';
-  public customLists:any = [];
+  public customLists:any[] = [];
   public newListImagePreview: string | null = null;
   public customListForm:FormGroup = this.formBuilder.group({
     title: ['', Validators.required],
@@ -19,6 +20,7 @@ export class LibraryComponent implements OnInit {
     image: [null],
     imageFile: [null]
   });
+  public favtracks:FavTrack[] = [];
 
   constructor(
     private renderer:Renderer2,
@@ -28,6 +30,7 @@ export class LibraryComponent implements OnInit {
     private contextMen:ContexMenu
     ){
       this.getLists();
+      this.getFavTracks();
     }
 
   ngOnInit() {
@@ -99,6 +102,17 @@ export class LibraryComponent implements OnInit {
     .subscribe((response:any) => {
       if(response.status == 200){
         this.customLists = response.data;
+      }else console.log(response.message);
+    })
+  }
+  getFavTracks(){
+    const userid = parseInt(this.cookieService.get('userid'));
+    this.luister.getFavTracks(userid)
+    .subscribe((response:any) => {
+      this.favtracks = [];
+      if(response.status == 200){
+        this.favtracks = response.data;
+        console.log(response)
       }else console.log(response.message);
     })
   }

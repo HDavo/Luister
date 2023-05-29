@@ -1,4 +1,4 @@
-<div id="pagecontainer" class="maincontainers" #pagesectionelement>
+<div *ngIf="!usersession; else userhomepage" id="pagecontainer" class="maincontainers" #pagesectionelement>
     
         <div id="mainpagetitle">
             <div class="mainpagetitle-cont">
@@ -7,16 +7,16 @@
                     En Luister tienes acceso a un catálogo amplio de música. <br>
                     Puedes acceder a los distintos servicios e información que ofrecen las plataformas de streaming más populares, y eledgir aqella que más se adapte a ti. <br> <br>
                     Aquí también podrás crear tus listas de reproducción personalizadas y guardar todas aquellas canciones que te gustan en tu lista personal. Gracias a ello, sabrás con mayor seguridad cuál es la plataforma que más te conviene. <br> <br>
-                    Adicionalmente, puedes realizar búsquedas de canciones en Luister, comparar catálogos de servicios de streaming de música, y almacen de todas tus canciones favoritas mediante listas pesonalizadas.
+                    Adicionalmente, puedes realizar búsquedas de canciones en Luister, comparar catálogos de servicios de streaming de música, y almacenar todas tus canciones favoritas mediante listas pesonalizadas.
                 </p>
             </div>
         </div>
 
-        <div *ngIf="artists?.length > 0" class="page-section">
+        <div *ngIf="artists" class="page-section">
             <h2 class="page-section-title">Artistas sugeridos</h2>
             <div class="page-section-content">
                 <div class="page-section-element hidden" *ngFor="let artist of artists" id="{{artist.id}}" #pagesectionelement ctm="artist">
-                    <img *ngIf="artist.images.length != 0; else defaultimg" class='image artist-image' src="{{artist.images[0].url}}" alt="{{artist.type}} {{artist.name}}">
+                    <img *ngIf="artist.img; else defaultimg" class='image artist-image' src="{{artist.img}}" alt="{{artist.type}} {{artist.name}}">
                     <ng-template #defaultimg>
                         <img class='image artist-image' src="https://c8.alamy.com/compes/2e2kkm2/notas-musicales-con-placa-musical-sobre-fondo-blanco-musica-abstracta-fondo-de-disco-2e2kkm2.jpg" alt="{{artist.type}} {{artist.name}}">
                     </ng-template>
@@ -28,11 +28,11 @@
             </div>
         </div>
 
-        <div *ngIf="albums?.length > 0" class="page-section">
+        <div *ngIf="albums" class="page-section">
             <h2 class="page-section-title">Los siguientes álbumes podrian intersarte</h2>
             <div class="page-section-content">
                 <div class="page-section-element hidden" #pagesectionelement *ngFor="let album of albums" id="{{album.id}}" ctm="album">
-                    <img *ngIf="album.images.length != 0; else defaultimg" class='image album-image' src="{{album.images[0].url}}" alt="{{album.name}}">
+                    <img *ngIf="album.img; else defaultimg" class='image album-image' src="{{album.img}}" alt="{{album.name}}">
                     <ng-template #defaultimg>
                         <img class='image artist-image' src="https://c8.alamy.com/compes/2e2kkm2/notas-musicales-con-placa-musical-sobre-fondo-blanco-musica-abstracta-fondo-de-disco-2e2kkm2.jpg" alt="{{album.name}}">
                     </ng-template>
@@ -53,3 +53,104 @@
         </div>
 
 </div>
+
+<ng-template #userhomepage>
+
+    <div id="pagecontainer" class="maincontainers" #pagesectionelement>
+        <div id="mainpagetitle">
+            <div class="mainpagetitle-cont">
+                <h1 id="mainpagetitle-title">Hola {{usersession}}</h1>
+                <p id="mainpagetitle-body">
+                    Ya tienes todo listo para realizar tus tareas cotidianas a compañado de un ambiente perfecto para ti. <br>
+                    Te dejamos algunas recomendaciones abajo según tus gustos. <br> <br>
+                    Disfrútalo!!
+                </p>
+            </div>
+        </div>
+
+        <div *ngIf="artists" class="page-section">
+            <div class="o-page-section-title-cont">
+                <h2 class="page-section-title">100% hecho para {{usersession}} </h2>
+                <a class="show-more-link">Mostrar todo</a>
+            </div>
+
+            <div class="page-section-content-horizontal">
+                <div class="o-page-section-element hidden" *ngFor="let artist of artists.slice(0,6)" id="{{artist.id}}" #pagesectionelement ctm="artist">
+                    <img *ngIf="artist.img; else defaultimg" class='image artist-image' src="{{artist.img}}" alt="{{artist.type}} {{artist.name}}">
+                    <ng-template #defaultimg>
+                        <img class='image artist-image' src="https://c8.alamy.com/compes/2e2kkm2/notas-musicales-con-placa-musical-sobre-fondo-blanco-musica-abstracta-fondo-de-disco-2e2kkm2.jpg" alt="{{artist.type}} {{artist.name}}">
+                    </ng-template>
+                    <span class="card-title">
+                        <a routerLink="/details/artist/{{artist.id}}" ctm="artist">{{artist.name}}</a>
+                    </span>
+                    <span class="card-description"> Artista </span>
+                </div>
+            </div>
+        </div>
+
+        <div *ngIf="albums" class="page-section">
+            <div class="o-page-section-title-cont">
+                <h2 class="page-section-title">Los siguientes álbumes podrían interesarte</h2>
+                <a class="show-more-link">Mostrar todo</a>
+            </div>
+
+            <div class="page-section-content-horizontal">
+                <div class="o-page-section-element hidden" *ngFor="let album of albums.slice(0,6)" id="{{album.id}}" #pagesectionelement ctm="album">
+                    <img *ngIf="album.img; else defaultimg" class='image album-image' src="{{album.img}}" alt="{{album.type}} {{album.name}}">
+                    <ng-template #defaultimg>
+                        <img class='image album-image' src="https://c8.alamy.com/compes/2e2kkm2/notas-musicales-con-placa-musical-sobre-fondo-blanco-musica-abstracta-fondo-de-disco-2e2kkm2.jpg" alt="{{album.type}} {{album.name}}">
+                    </ng-template>
+                    <span class="card-title">
+                        <a routerLink="/details/album/{{album.id}}" ctm="album">{{album.name}}</a>
+                    </span>
+                    <span class="card-description"> Álbum </span>
+                </div>
+            </div>
+        </div>
+
+        <div *ngIf="albums" class="page-section">
+            <div class="o-page-section-title-cont">
+                <h2 class="page-section-title">Relacionado con tus últimas búsquedas</h2>
+                <a class="show-more-link">Mostrar todo</a>
+            </div>
+
+            <div class="page-section-content-horizontal">
+                <div class="o-page-section-element hidden" *ngFor="let album of albums.slice(0,6)" id="{{album.id}}" #pagesectionelement ctm="album">
+                    <img *ngIf="album.img; else defaultimg" class='image album-image' src="{{album.img}}" alt="{{album.type}} {{album.name}}">
+                    <ng-template #defaultimg>
+                        <img class='image album-image' src="https://c8.alamy.com/compes/2e2kkm2/notas-musicales-con-placa-musical-sobre-fondo-blanco-musica-abstracta-fondo-de-disco-2e2kkm2.jpg" alt="{{album.type}} {{album.name}}">
+                    </ng-template>
+                    <span class="card-title">
+                        <a routerLink="/details/album/{{album.id}}" ctm="album">{{album.name}}</a>
+                    </span>
+                    <span class="card-description"> Álbum </span>
+                </div>
+            </div>
+        </div>
+
+        <div *ngIf="albums" class="page-section">
+            <div class="o-page-section-title-cont">
+                <h2 class="page-section-title">Más de lo que te gusta</h2>
+                <a class="show-more-link">Mostrar todo</a>
+            </div>
+
+            <div class="page-section-content-horizontal">
+                <div class="o-page-section-element hidden" *ngFor="let relatedtrack of relatedTracks.slice(0,6)" id="{{relatedtrack.id}}" #pagesectionelement ctm="track">
+                    <img *ngIf="relatedtrack.album.img; else defaultimg" class='image track-image' src="{{relatedtrack.album.img}}" alt="{{relatedtrack.type}} {{relatedtrack.name}}">
+                    <ng-template #defaultimg>
+                        <img class='image track-image' src="https://c8.alamy.com/compes/2e2kkm2/notas-musicales-con-placa-musical-sobre-fondo-blanco-musica-abstracta-fondo-de-disco-2e2kkm2.jpg" alt="{{relatedtrack.type}} {{relatedtrack.name}}">
+                    </ng-template>
+                    <span class="card-title">
+                        <a routerLink="/details/{{relatedtrack.type}}/{{relatedtrack.id}}" ctm="track">{{relatedtrack.name}}</a>
+                    </span>
+                    <span class="card-description"> Canción </span>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- aqui vendria un apartado ngFor para mostrar elementos en 
+        funcion de cuantos artistas este siguiendo -->
+
+    </div>
+</ng-template>

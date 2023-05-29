@@ -8,6 +8,13 @@ import { registerLocaleData } from '@angular/common';
 
 //necesario para poder mostrar el formato de números de forma que se ajuste al formato usado en España
 import localeEs from '@angular/common/locales/es';
+import { LuisterCookieManagerService } from 'src/app/services/luister-cookie-manager.service';
+import { LuisterApiService } from 'src/app/services/luister-api.service';
+import { Track } from 'src/app/interfaces/Track';
+import { Artist } from 'src/app/interfaces/Artist';
+import { AlbumExtended } from 'src/app/interfaces/AlbumExtended';
+import { SetData } from 'src/app/interfaces/SetData';
+import { DeezerService } from 'src/app/services/deezer.service';
 registerLocaleData(localeEs, 'es');
 
 @Component({
@@ -15,47 +22,52 @@ registerLocaleData(localeEs, 'es');
   templateUrl: './details.component.html',
   styleUrls: ['./details.component.css']
 })
-export class DetailsComponent {
+export class DetailsComponent extends SetData{
   public id!:string;
+  public platform!:string;
   public elementType!:string;
   public static audio:any;
   public playing:boolean = false;
   public track:any = {
-    data: [],
+    data: {},
     artists: [],
-    album: []
+    album: {}
   };
   public album:any= {
-    data: [],
+    data: {},
     artists: []
   };
   public artist:any= {
-    data: [],
-    albums: [],
+    data: {},
     topTracks: [],
-    bio: []
+    bio: ''
   };
-
 
   constructor(
     private route:ActivatedRoute,
     private router:Router,
     private fromSpotify:ApibindingService,
-    private lastFm: LastFmService
+    private fromDeezer: DeezerService,
+    private lastFm: LastFmService,
+    private luister: LuisterApiService,
+    private cookieService: LuisterCookieManagerService
   ){
+    super();
     this.route.params.subscribe((res:any)=>{
-      this.id = res.id;
+      const lkey = res.id.split(':');
+      this.platform = lkey.shift();
+      this.id = lkey;
       this.elementType = res.element;
 
       switch (this.elementType) {
         case 'album':
-          this.getAlbum(this.id);
+          this.getThatAlbum(this.id);
           break;
         case 'artist':
-          this.getArtist(this.id);
+          this.getThatArtist(this.id);
           break;
         case 'track':
-            this.getTrack(this.id);
+            this.getThatTrack(this.id);
             break;
         default:
           this.router.navigate(['/','not-found']);
@@ -64,85 +76,149 @@ export class DetailsComponent {
     })
   }
 
-  getAlbum(id:string){
-    this.fromSpotify.getAlbum(id)
-    .then((response:Observable<any>)=>{
-      response.subscribe((res:any)=>{
-        this.album.data = res;
-        res.artists.forEach((artist:any, index:number) => {
-          this.fromSpotify.getArtist(artist.id)
-          .then((response:Observable<any>)=>{
-            response.subscribe((res:any)=>{
-              this.album.artists[index]=(res);
-            })
-          })
-        });
-
-      },
-      (error:any)=>{
-        if(error.status == 400 || error.status == 404){
-          this.router.navigate(['/','not-found']);
-        }
-      })
-    })
-  }
-
-  getArtist(id:string){
-    this.fromSpotify.getArtist(id)
-    .then((response:Observable<any>)=>{
-      response.subscribe((res:any)=>{
-        this.artist.data = res;
-
-        this.fromSpotify.getArtistTopTracks(id)
+  getThatAlbum(id:string){
+    const platform:any = {
+      sfy: ()=>{
+        this.fromSpotify.getAlbum(id)
         .then((response:Observable<any>)=>{
           response.subscribe((res:any)=>{
-            this.artist.topTracks = res.tracks.filter((element:any) => element != null);
+            this.album.data = this.setAlbum(res);
+
+            res.artists.forEach((artist:any, index:number) => {
+              this.fromSpotify.getArtist(artist.id)
+              .then((response:Observable<any>)=>{
+                response.subscribe((res:any)=>{
+                  this.album.artists[index]=this.setArtist(res);
+                })
+              })
+            });
+          },
+          (error:any)=>{
+            if(error.status == 400 || error.status == 404){
+              this.router.navigate(['/','not-found']);
+            }
           })
         })
-        this.lastFm.getArtistInfo(this.artist.data.name)
-        .subscribe(
-          (res:any) => {
-            this.artist.bio = `${res.artist.bio.summary.split('<a href').shift()}`; 
+      },
+      dzr: ()=>{
+        this.fromDeezer.getElement(id, this.elementType)
+        .subscribe((res:any)=>{
+          this.album.data = this.setDzAlbum(res);
+
+          this.fromDeezer.getElement(res.artist.id, res.artist.type)
+          .subscribe((res:any)=>{
+            this.album.artists = [this.setDzArtist(res)];
+          })
+        },
+        (error:any)=>{
+          if(error.status == 400 || error.status == 404){
+            this.router.navigate(['/','not-found']);
           }
-        )
-      },
-      (error:any)=>{
-        if(error.status == 400 || error.status == 404){
-          this.router.navigate(['/','not-found']);
-        }
-      })
-    })
+        });
+      }
+    }
+    platform[this.platform]();
   }
-
-  getTrack(id:string){
-    this.fromSpotify.getTrack(id)
-    .then((response:Observable<any>)=>{
-      response.subscribe((res:any)=>{
-        this.track.data = res;
-
-        this.fromSpotify.getAlbum(res.album.id)
+  getThatArtist(id:string){
+    const platform: any = {
+      sfy: ()=>{
+        this.fromSpotify.getArtist(id)
         .then((response:Observable<any>)=>{
           response.subscribe((res:any)=>{
-            this.track.album = res;
-            this.track.album.tracks.items = res.tracks.items.filter((track:any) => track.id !=id );
-          })
-        })
-
-        this.track.data.artists.forEach((artist:any, index:number) => {
-          this.track.artists=[];
-          this.fromSpotify.getArtist(artist.id)
-          .then((response:Observable<any>)=>{
-            response.subscribe((res:any)=>{
-              this.track.artists[index]=(res);
+            this.artist.data = this.setArtist(res);
+    
+            this.fromSpotify.getArtistTopTracks(id)
+            .then((response:Observable<any>)=>{
+              response.subscribe((res:any)=>{
+                const dta = res.tracks.filter((element:any) => element != null);
+                this.artist.topTracks = this.setTracks(dta);
+              })
             })
+            this.lastFm.getArtistInfo(this.artist.data.name)
+            .subscribe((res:any) => {
+                this.artist.bio = `${res.artist.bio.summary.split('<a href').shift()}`; 
+            })
+          },
+          (error:any)=>{
+            if(error.status == 400 || error.status == 404){
+              this.router.navigate(['/','not-found']);
+            }
           })
         })
+      },
+      dzr: ()=>{
+        this.fromDeezer.getElement(id, this.elementType)
+        .subscribe((res:any)=>{
+          this.artist.data = this.setDzArtist(res);
 
-      })
-    })
+          this.fromDeezer.getArtistTopTracks(id)
+          .subscribe((response:any)=>{
+            this.artist.topTracks = this.setDzTracks(response.data);
+          })
+
+          this.lastFm.getArtistInfo(this.artist.data.name)
+          .subscribe((res:any) => {
+            this.artist.bio = `${res.artist.bio.summary.split('<a href').shift()}`; 
+          })
+        },
+        (error:any)=>{
+          if(error.status == 400 || error.status == 404){
+            this.router.navigate(['/','not-found']);
+          }
+        });
+      }
+    }
+    console.log(this.platform)
+    platform[this.platform]();
   }
+  getThatTrack(id:string){
+    const platform:any = {
+      sfy: ()=>{
+        this.fromSpotify.getTrack(id)
+        .then((response:Observable<any>)=>{
+          response.subscribe((res:any)=>{
+            this.track.data = this.setTrack(res);
+    
+            this.fromSpotify.getAlbum(res.album.id)
+            .then((response:Observable<any>)=>{
+              response.subscribe((res:any)=> {
+                this.track.album = this.setAlbum(res)
+              });
+            })
+    
+            res.artists.forEach((artist:any, index:number) => {
+              this.track.artists=[];
+              this.fromSpotify.getArtist(artist.id)
+              .then((response:Observable<any>)=>{
+                response.subscribe((res:any)=> this.track.artists[index]=this.setArtist(res))
+              })
+            })
+    
+          })
+        })
+      },
 
-  playSong(uri:string){
+      dzr: ()=>{
+                this.fromDeezer.getElement(id, this.elementType)
+                .subscribe((response:any)=>{
+                  this.track.data = this.setDzTrack(response);
+
+                  this.fromDeezer.getElement(response.album.id, response.album.type)
+                  .subscribe((response:any)=>{
+                    this.track.album = this.setDzAlbum(response)
+                  })
+                  this.track.artists = [this.setDzArtist(response.artist)]
+                },
+                (error:any)=>{
+                  if(error.status == 400 || error.status == 404){
+                    this.router.navigate(['/','not-found']);
+                  }
+                });
+      }
+    }
+    platform[this.platform]();
+  }
+  playSong(uri: string){
     if(uri){
       if(DetailsComponent.audio){
         DetailsComponent.audio.src = '';
@@ -158,5 +234,37 @@ export class DetailsComponent {
     }else{
       LuisterSweetAlert.info('Previsualizacion no admitida');
     }
+  }
+  like(event: any){
+    const userid = this.cookieService.get('userid');
+    let name, lookupkey;
+    event.target.getAttribute('title').split('-').
+    forEach((e:string, i:number)=>{
+    (i == 0)? lookupkey = e : name = e;
+    })
+    this.luister.addFavTracks({
+      userid,
+      lookupkey,
+      name
+    }).subscribe((response:any)=>{
+      if(response.status == 200){
+        alert('Añadido a favoritos')
+      }else console.log(response.message)
+    })
+  }
+  dislike(event: any){
+    const userid = this.cookieService.get('userid');
+    let name, lookupkey;
+    event.target.getAttribute('title').split('-').
+    forEach((e:string, i:number)=>{
+    (i == 0)? lookupkey = e : name = e;
+    })
+    this.luister.removeFavTracks({
+      userid, lookupkey, name
+    }).subscribe((response:any)=>{
+      if(response.status == 200){
+        alert('Eliminado de favoritos')
+      }else console.log(response.message)
+    })
   }
 }

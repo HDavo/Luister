@@ -1,27 +1,36 @@
 import { Component, ElementRef, HostListener, QueryList, Renderer2, ViewChild, ViewChildren } from '@angular/core';
 import { ApibindingService } from '../../services/apibinding.service'
 import { Observable } from 'rxjs';
+import { SetData } from 'src/app/interfaces/SetData';
 
 @Component({
   selector: 'app-popular',
   templateUrl: './popular.component.html',
   styleUrls: ['./popular.component.css']
 })
-export class PopularComponent {
+export class PopularComponent extends SetData{
 
   public topTracks:any;
   @ViewChildren('track') track!:QueryList<any>;
   @ViewChild('asMainContainer') asMainContainer!:ElementRef;
 
-  constructor(private fromSpotify:ApibindingService, private renderer:Renderer2){
-    this.getTopList()
-  }
+  constructor(
+    private fromSpotify:ApibindingService, 
+    private renderer:Renderer2
+    ){
+      super();
+      this.getTopList();
+    }
 
   getTopList(){
     this.fromSpotify.getTopListPlayList()
     .then((response:Observable<any>) => {
       response.subscribe((result:any)=>{
-        this.topTracks = result.tracks.items.filter((element:any) => element?.track);
+        this.topTracks = [];
+        const dta = result.tracks.items;
+        dta.forEach((track:any) => {
+          this.topTracks.push(this.setTrack(track.track));
+        });
       })
     })
   }

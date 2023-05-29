@@ -2,7 +2,6 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import {MatTableDataSource} from '@angular/material/table';
 import { MatSort } from '@angular/material/sort';
 
-
 interface Song {
   title: string;
   artist: string;
@@ -10,7 +9,6 @@ interface Song {
   added: string;
   duration: string;
 }
-
 
 const jsonData = {
   user: 'pepe',
@@ -87,11 +85,6 @@ const jsonData = {
   },
 };
 
-
-
-
-
-
 @Component({
   selector: 'app-list',
   templateUrl: './list.component.html',
@@ -108,8 +101,6 @@ export class ListComponent implements OnInit{
   public modifyDate!: string;
   public listName!: string;
 
-
-  
   displayedColumns: string[] = ['number', 'title', 'album', 'artist', 'date', 'duration'];
   dataSource = new MatTableDataSource(Object.values(jsonData.songs));
   element: Song = {} as Song;

@@ -162,6 +162,23 @@
     height: 100%;
     width: 40px;
 }
+.like-dislike-cont{
+    display: flex;
+    gap: 11px;
+    justify-content: space-between;
+}
+.like{
+    background: green;
+    width: fit-content;
+    padding: 1px 8px;
+    cursor: pointer;
+}
+.dislike{
+    background: rgb(128, 0, 0);
+    width: fit-content;
+    padding: 1px 8px;
+    cursor: pointer;
+}
 /* ---- */
 .track-index-link{
     display: block;

@@ -49,4 +49,13 @@ export class LuisterApiService {
       sessiontoken: data
     });
   }
+  getFavTracks(userid:number):Observable<any>{
+    return this.http.post(`http://localhost:8000/favtracks.php`, {userid});
+  }
+  addFavTracks(data:any):Observable<any>{
+    return this.http.post(`http://localhost:8000/addfavtrack.php`, data);
+  }
+  removeFavTracks(data:any):Observable<any>{
+    return this.http.post(`http://localhost:8000/removefavtrack.php`, data);
+  }
 }

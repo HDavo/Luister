@@ -125,15 +125,24 @@ export class ContexMenu {
 
                 let subMenCont = this.renderer.createElement('ul');
                 this.renderer.addClass(subMenCont, 'ccm-submenu-cont');
-                menuElements.forEach((listE:any) =>{
+                this.renderer.setAttribute(subMenCont, 'id', 'ccm-submenu-cont');
+                if(menuElements.length > 0){
+                    menuElements.forEach((listE:any) =>{
+                        let submenu = this.renderer.createElement('li');
+                        this.renderer.addClass(submenu, 'ccm-option');
+                        this.renderer.appendChild(submenu, this.renderer.createText(listE.caption));
+                        this.renderer.listen(submenu, 'click', ()=>{
+                            this.addTrackToList(listE.clid);
+                        })
+                        this.renderer.appendChild(subMenCont, submenu);
+                    });
+                }else{
                     let submenu = this.renderer.createElement('li');
-                    this.renderer.addClass(submenu, 'ccm-option');
-                    this.renderer.appendChild(submenu, this.renderer.createText(listE.caption));
-                    this.renderer.listen(submenu, 'click', ()=>{
-                        this.addTrackToList(listE.clid);
-                    })
-                    this.renderer.appendChild(subMenCont, submenu);
-                });
+                        this.renderer.addClass(submenu, 'ccm-option-ital');
+                        this.renderer.appendChild(submenu, this.renderer.createText('Sin listas disponibles'));
+                        this.renderer.appendChild(subMenCont, submenu);
+                }
+
                 this.renderer.appendChild(menuElement, subMenCont);
                 this.renderer.appendChild(option, menuElement);
                 return option;
@@ -178,10 +187,12 @@ export class ContexMenu {
         if(this.userid){
             this.luister.getUserCustomList(this.userid)
             .subscribe((response:any)=>{
-                this.uLists = [];
-                response.data.forEach((list:any, index:number) =>{
-                    this.uLists[index] = {caption: list.title, clid: list.id};
-                });
+                if(response.data){
+                    this.uLists = [];
+                    response.data.forEach((list:any, index:number) =>{
+                        this.uLists[index] = {caption: list.title, clid: list.id};
+                    });
+                    }
             });
         }
     }
@@ -189,7 +200,9 @@ export class ContexMenu {
         this.etype = this.getElementType(event.target).type,
         this.id = this.getElementType(event.target).id;
         let left = event.clientX,
-            top = event.clientY;
+            top = event.clientY,
+            _left = 160,
+            _top = -22;
               
         if(this.etype && this.id){
 
@@ -204,12 +217,22 @@ export class ContexMenu {
             });
             
             this.renderer.appendChild(target, contextMenu);
-            
-            if(window.innerWidth -  contextMenu.clientWidth <= left  ) left -= contextMenu.clientWidth; 
-            if(window.innerHeight - contextMenu.offsetHeight <= top  ) top -= contextMenu.offsetHeight;
+            const first=0,
+            menuSubmenu = contextMenu.getElementsByClassName('ccm-submenu-cont')[first];
+
+            if(window.innerWidth - contextMenu.clientWidth <= left *1.1  ) left -= contextMenu.clientWidth; 
+            if(window.innerHeight - contextMenu.offsetHeight <= top) top -= contextMenu.offsetHeight;
 
             this.renderer.setStyle(contextMenu, 'left', left+'px');
             this.renderer.setStyle(contextMenu, 'top', top+'px');
+            if(menuSubmenu){
+                if(window.innerWidth - menuSubmenu.clientWidth <= (left + _left*1.1)  ) _left = - menuSubmenu.clientWidth; 
+                console.log(window.innerHeight - (top - _top) - menuSubmenu.offsetHeight)
+                console.log(window.innerHeight, (top - _top), menuSubmenu.offsetHeight)
+                if(window.innerHeight - menuSubmenu.offsetHeight <= (top - _top)) _top += (window.innerHeight - (top - _top - _top) - menuSubmenu.offsetHeight);
+                this.renderer.setStyle(menuSubmenu, 'left', _left+'px');
+                this.renderer.setStyle(menuSubmenu, 'top', _top+'px');
+            }
         
             this.contextMenu = contextMenu;
             }

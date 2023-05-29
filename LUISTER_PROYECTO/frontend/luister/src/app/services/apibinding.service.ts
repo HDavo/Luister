@@ -9,7 +9,7 @@ export class ApibindingService {
   private SID = 'be4da263ec534f46bdf841e70bcf5f94';
   private URL = 'https://api.spotify.com/v1/';
   private spotifyTokenReq = {
-    url: '/api/token/',
+    url: '/api1/api/token/',
     body: `grant_type=client_credentials&client_id=${this.ID}&client_secret=${this.SID}`,
     headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
   }
@@ -140,4 +140,49 @@ export class ApibindingService {
       });
     });
   }
+
+  getRecomendation(artists: string,genres: string,tracks: string){
+    return this.generateAuthToken()
+    .then((token) =>{
+      return this.http.get(`${this.URL}recommendations?limit=20&seed_artists=${artists}&seed_genres=${genres}&seed_tracks=${tracks}`,{
+        headers: {
+          Authorization: 'Bearer '+token
+        }
+      });
+    });
+  }
+
+  getRecomTracks(tracks: string){
+    return this.generateAuthToken()
+    .then((token) =>{
+      return this.http.get(`${this.URL}recommendations?limit=20&seed_tracks=${tracks}`,{
+        headers: {
+          Authorization: 'Bearer '+token
+        }
+      });
+    });
+  }
+
+  getRecomArtists(artists: string){
+    return this.generateAuthToken()
+    .then((token) =>{
+      return this.http.get(`${this.URL}recommendations?limit=20&seed_artists=${artists}`,{
+        headers: {
+          Authorization: 'Bearer '+token
+        }
+      });
+    });
+  }
+
+  getRecomGenres(genres: string){
+    return this.generateAuthToken()
+    .then((token) =>{
+      return this.http.get(`${this.URL}recommendations?limit=20&seed_genres=${genres}`,{
+        headers: {
+          Authorization: 'Bearer '+token
+        }
+      });
+    });
+  }
+
 }

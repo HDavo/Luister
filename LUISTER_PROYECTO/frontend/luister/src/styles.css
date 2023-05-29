@@ -193,7 +193,7 @@ li{
     padding: 4px;
     border-radius: 5px;
 }
-.ccm-option{
+.ccm-option, .ccm-option-ital{
     box-sizing: border-box;
     width: 100%;
     cursor: pointer;
@@ -208,12 +208,15 @@ li{
     padding: 4px;
     visibility: hidden;
     top: -22px;
-    left: 166px;
+    left: 160px;
     position: absolute;
-    width: 100%;
+    width: max-content;
     background-color: #292929;
     box-shadow: 0 0 5px black;
     border-radius: 5px;
+}
+.ccm-option-ital{
+    font-style: italic !important;
 }
 .ccm-option:hover{
     background: rgba(95, 95, 95, 0.3);
@@ -273,7 +276,7 @@ img{
     .card-description{
         font-size: 16px;
     }
-    .ccm-option{
+    .ccm-option, .ccm-option-ital{
         --padding: 10px;
         font-size: 16px;
         padding: 11px var(--padding);
@@ -319,7 +322,7 @@ img{
     .card-description{
         font-size: 16px;
     }
-    .ccm-option{
+    .ccm-option, .ccm-option-ital{
         --padding: 10px;
         font-size: 16px;
         padding: 11px var(--padding);
@@ -365,7 +368,7 @@ img{
     .card-description{
         font-size: 16px;
     }
-    .ccm-option{
+    .ccm-option, .ccm-option-ital{
         --padding: 10px;
         font-size: 16px;
         padding: 11px var(--padding);
@@ -411,7 +414,7 @@ img{
     .card-description{
         font-size: 16px;
     }
-    .ccm-option{
+    .ccm-option, .ccm-option-ital{
         --padding: 10px;
         font-size: 16px;
         padding: 11px var(--padding);
@@ -458,7 +461,7 @@ img{
     .card-description{
         font-size: 16px;
     }
-    .ccm-option{
+    .ccm-option, .ccm-option-ital{
         --padding: 10px;
         font-size: 16px;
         padding: 11px var(--padding);
@@ -504,7 +507,7 @@ img{
     .card-description{
         font-size: 16px;
     }
-    .ccm-option{
+    .ccm-option, .ccm-option-ital{
         --padding: 10px;
         font-size: 16px;
         padding: 11px var(--padding);
@@ -551,7 +554,7 @@ img{
     .card-description{
         font-size: 16px;
     }
-    .ccm-option{
+    .ccm-option, .ccm-option-ital{
         --padding: 10px;
         font-size: 16px;
         padding: 11px var(--padding);
@@ -597,7 +600,7 @@ img{
     .card-description{
         font-size: 16px;
     }
-    .ccm-option{
+    .ccm-option, .ccm-option-ital{
         --padding: 10px;
         font-size: 16px;
         padding: 11px var(--padding);

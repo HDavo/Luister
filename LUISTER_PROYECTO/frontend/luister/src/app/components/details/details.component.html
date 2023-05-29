@@ -4,31 +4,31 @@
     <div *ngIf="elementType == 'album'" class="page-section">
         <div class="left-container">
             <div class="lc-image-cont">
-                <img *ngIf="album.data.images?.length > 0; else defaultimg" src="{{album.data.images[0].url}}" alt="album image">
+                <img *ngIf="album.data.img; else defaultimg" src="{{album.data.img}}" alt="album image">
                 <ng-template #defaultimg>
                     <img src="../../../assets/images/default-custom-list.png" alt="album image">
                 </ng-template>
             </div>
             <div class="left-bottom-info">
-                <div>Lanzamiento: {{album.data?.release_date}}</div>
+                <div>Lanzamiento: {{album.data.release}}</div>
                 <div>Género: Hip-Hop - R&B</div>
-                <div>{{album.data?.label}}</div>
+                <div>{{album.data.label}}</div>
             </div>
             <div class="left-bottom-platforms">
                 <h3 class="left-bottom-platforms-title">Plataformas de streaming</h3>
                 <div class="left-bottom-platforms-container">
-                    <span>Spotify</span><span>AppleMusic</span>
-                    <span>Deezer</span><span>Youtube</span>
+                    <span>Spotify</span>
+                    <span>Deezer</span>
                     <span>Amazon Music</span>
                 </div>
             </div>
         </div>
 
         <div class="right-container">
-            <h2 class="element-name">{{album.data?.name}}</h2>
+            <h2 class="element-name">{{album.data.name}}</h2>
             <div *ngFor="let artist of album.artists" class="author-info-card">
                 <div class="author-image-container">
-                    <img *ngIf="artist?.images.length > 0; else defaultimg" src="{{artist.images[0].url}}" alt="author image">
+                    <img *ngIf="artist.img; else defaultimg" src="{{artist.img}}" alt="author image">
                     <ng-template #defaultimg>
                         <img src="../../../assets/images/default-custom-list.png" alt="album image">
                     </ng-template>
@@ -43,10 +43,10 @@
             <div class="related-tracks">
                 <h2 class="related-tracks-title">Pistas</h2>
                 <div class="related-tracks-container">
-                    <div class="track" *ngFor="let track of album.data.tracks?.items; let index = index">
+                    <div class="track" *ngFor="let track of album.data.tracks; let index = index">
                         <span class="track-index">{{index+1}}</span>
                         <div class="track-index-imge">
-                            <img *ngIf="album.data.images?.length > 0; else defaultimg" src="{{album.data.images[0].url}}" alt="album image">
+                            <img *ngIf="album.data.img; else defaultimg" src="{{album.data.img}}" alt="album image">
                             <ng-template #defaultimg>
                                 <img src="../../../assets/images/default-custom-list.png" alt="album image">
                             </ng-template>
@@ -72,7 +72,7 @@
         <div class="left-container">
             <div class="lc-image-cont">
                 <div class="lc-image-cont">
-                    <img *ngIf="track.album.images?.length > 0; else defaultimg" src="{{track.album.images[0].url}}" alt="album image">
+                    <img *ngIf="track.album.img; else defaultimg" src="{{track.album.img}}" alt="album image">
                     <ng-template #defaultimg>
                         <img src="../../../assets/images/default-custom-list.png" alt="album image">
                     </ng-template>
@@ -82,46 +82,53 @@
                 </div>
             </div>
             <div class="left-bottom-info">
-                <div>Album: <a routerLink="/details/album/{{track.album.id}}">{{track.album?.name}}</a></div>
-                <div>Lanzamiento: {{track.album?.release_date}}</div>
+                <div>Album: <a routerLink="/details/album/{{track.album.id}}">{{track.album.name}}</a></div>
+                <div>Lanzamiento: {{track.album.release}}</div>
                 <div>Explícita: 
-                    <span *ngIf="track.data?.explicit; else noExpl"> Sí</span>
+                    <span *ngIf="track.data.explicit; else noExpl"> Sí</span>
                     <ng-template #noExpl>No</ng-template> 
+                </div>
+                <div class="like-dislike-cont">
+                    <span (click)="like($event)" 
+                    class="like" 
+                    title="{{track.data.id}}-{{track.data.name}}">Me gusta</span>
+
+                    <span (click)="dislike($event)" 
+                    class="dislike" 
+                    title="{{track.data.id}}-{{track.data.name}}">Ya no me gusta</span>
                 </div>
             </div>
             <div class="left-bottom-platforms">
                 <h3 class="left-bottom-platforms-title">Plataformas de streaming</h3>
                 <div class="left-bottom-platforms-container">
-                    <span>Spotify</span><span>AppleMusic</span>
-                    <span>Deezer</span><span>Youtube</span>
-                    <span>Amazon Music</span>
+                    <span>Spotify</span><span>Deezer</span>
                 </div>
             </div>
         </div>
 
         <div *ngIf="track.artists" class="right-container">
-            <h2 class="element-name">{{track.data?.name}}</h2>
+            <h2 class="element-name">{{track.data.name}}</h2>
             <div *ngFor="let artist of track.artists" class="author-info-card">
                 <div class="author-image-container">
-                    <img *ngIf="artist?.images?.length > 0; else defaultimg" src="{{artist.images[0].url}}" alt="author image">
+                    <img *ngIf="artist?.img; else defaultimg" src="{{artist?.img}}" alt="author image">
                     <ng-template #defaultimg>
                         <img src="../../../assets/images/default-custom-list.png" alt="album image">
                     </ng-template>
                 </div>
                 <div class="author-info">
                     <div class="author-name">
-                        <a routerLink="/details/artist/{{artist?.id}}">{{artist?.name}}</a>
+                        <a routerLink="/details/artist/{{artist?.id}}">{{artist.name}}</a>
                     </div>
                     <div class="author-genre">More info about authors</div>
                 </div>
             </div>
-            <div *ngIf="track.album.tracks?.items.length > 0" class="related-tracks">
+            <div *ngIf="track.album.tracks" class="related-tracks">
                 <h2 class="related-tracks-title">Canciones del album</h2>
                 <div class="related-tracks-container">
-                    <div class="track" *ngFor="let thisTrack of track.album.tracks?.items; let index = index">
+                    <div class="track" *ngFor="let thisTrack of track.album.tracks; let index = index">
                         <span class="track-index">{{index+1}}</span>
                         <div class="track-index-imge">
-                            <img *ngIf="track.album.images?.length > 0; else defaultimg" src="{{track.album.images[0].url}}" alt="album image">
+                            <img *ngIf="track.album.img; else defaultimg" src="{{track.album.img}}" alt="album image">
                             <ng-template #defaultimg>
                                 <img src="../../../assets/images/default-custom-list.png" alt="album image">
                             </ng-template>
@@ -146,33 +153,32 @@
     <div *ngIf="elementType == 'artist'" class="page-section">
         <div class="left-container">
             <div class="lc-image-cont radial-img">
-                <img *ngIf="artist.data.images?.length > 0; else defaultimg" src="{{artist.data.images[1].url}}" alt="artist image">
+                <img *ngIf="artist.data.img; else defaultimg" src="{{artist.data.img}}" alt="artist image">
                 <ng-template #defaultimg>
                     <img src="../../../assets/images/default-custom-list.png" alt="album image">
                 </ng-template>
             </div>
             <div class="left-bottom-info">
                 <div>Género: 
-                    <span *ngFor="let genre of artist.data?.genres; let i = index">
+                    <span *ngFor="let genre of artist.data.genres; let i = index">
                         <span *ngIf="i != 0"> - </span> {{ genre | titlecase }}
                     </span>
                 </div>
-                <div>
-                    Seguidores: {{artist.data.followers?.total | number: '3.0': 'es' }}
+                <div class="details-follow-artist">
+                    Seguir
                 </div>
             </div>
             <div class="left-bottom-platforms">
                 <h3 class="left-bottom-platforms-title">Plataformas de streaming</h3>
                 <div class="left-bottom-platforms-container">
-                    <span>Spotify</span><span>AppleMusic</span>
-                    <span>Deezer</span><span>Youtube</span>
-                    <span>Amazon Music</span>
+                    <span>Spotify</span>
+                    <span>Deezer</span>
                 </div>
             </div>
         </div>
 
         <div class="right-container">
-            <h2 class="element-name">{{artist.data?.name}}</h2>
+            <h2 class="element-name">{{artist.data.name}}</h2>
             <div class="artist-bio">
                 {{artist.bio}}
             </div>
@@ -182,7 +188,7 @@
                     <div class="track" *ngFor="let track of artist.topTracks; let index = index">
                         <span class="track-index">{{index+1}}</span>
                         <div class="track-index-imge">
-                            <img *ngIf="track.album.images?.length > 0; else defaultimg" src="{{track.album.images[0].url}}" alt="album image">
+                            <img *ngIf="track.album.img else defaultimg" src="{{track.album.img}}" alt="album image">
                             <ng-template #defaultimg>
                                 <img src="../../../assets/images/default-custom-list.png" alt="album image">
                             </ng-template>

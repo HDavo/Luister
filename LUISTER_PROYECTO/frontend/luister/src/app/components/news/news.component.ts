@@ -1,5 +1,6 @@
 import { Component, ElementRef, HostListener, ViewChild, Renderer2 } from '@angular/core';
 import { Observable } from 'rxjs';
+import { SetData } from 'src/app/interfaces/SetData';
 import { ApibindingService } from 'src/app/services/apibinding.service';
 
 @Component({
@@ -7,16 +8,19 @@ import { ApibindingService } from 'src/app/services/apibinding.service';
   templateUrl: './news.component.html',
   styleUrls: ['./news.component.css']
 })
-export class NewsComponent {
-  public albums:any;
+export class NewsComponent extends SetData{
   public executing:boolean = false;
   @ViewChild('releasescontainer') releases!:ElementRef;
   @ViewChild('asMainContainer') asMainContainer!:ElementRef;
 
-  constructor(private fromSpotify:ApibindingService, private renderer:Renderer2){
-    this.getAlbums();
-    this.showAlbums();
-  }
+  constructor(
+    private fromSpotify:ApibindingService, 
+    private renderer:Renderer2
+    ){
+      super();
+      this.getAlbums();
+      this.showAlbums();
+    }
 
   @HostListener('window:scroll', ['$event'])
   onScroll(e:any) {
@@ -36,7 +40,7 @@ export class NewsComponent {
     return this.fromSpotify.getAlbumsRelease()
     .then((res:Observable<any>)=>{
       res.subscribe((data:any)=>{
-        this.albums = data.albums;
+        this.popAlbums = this.setPopAlbum(data.albums);
       });
     });
    }
@@ -54,20 +58,20 @@ export class NewsComponent {
   }
 
   showMoreAlbums(){
-    let url = this.albums?.next;
+    let url = this.popAlbums.next;
     if(url && !this.executing){
       this.executing = true;
       this.fromSpotify.getAlbumsRelease(url)
       .then((res:Observable<any>)=>{
         res.subscribe((data:any)=>{
           for(let album of data.albums.items) {
-            this.albums.items.push(album);
+            this.popAlbums.data.push(this._setAlbum(album));
           }
-          this.albums.href = data.albums.href;
-          this.albums.next = data.albums.next;
-          this.albums.previous = data.albums.previous;
-          this.albums.limit = data.albums.limit;
-          this.albums.offset = data.albums.offset;
+          this.popAlbums.href = data.albums.href;
+          this.popAlbums.next = data.albums.next;
+          this.popAlbums.prev = data.albums.previous;
+          this.popAlbums.limit = data.albums.limit;
+          this.popAlbums.offset = data.albums.offset;
 
           this.executing = false;
         });

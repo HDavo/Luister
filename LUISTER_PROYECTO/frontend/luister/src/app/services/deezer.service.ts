@@ -6,24 +6,46 @@ import { Injectable } from '@angular/core';
 })
 export class DeezerService {
 
-  // private ID=''; //no necesario token de autenticación salvo para inicios de sesión
-  private URL = 'https://api.deezer.com/';
+  private URL = '/api2/';
 
+  constructor(private http: HttpClient) {}
 
-  constructor(
-    private http: HttpClient
-  ) { }
-
-  searchForData(query: string, type: string = 'album, artist, track', offset=0, limit=20){
-
-    return this.http.get(`${this.URL}search?q=${query}&type=${type}&offset=${offset}&limit=${limit}`);
+  searchForData(data:string){
+    let result = {
+      albums: '',
+      tracks: '',
+      artists: '',
+    };
+    return new Promise((resolve)=>{
+      this.searchForAlbum(data)
+      .subscribe((response:any)=> {
+        result.albums = response;
+        this.searchForArtist(data)
+        .subscribe((response:any)=> {
+          result.artists = response;
+          this.searchForTrack(data)
+          .subscribe((response:any)=> {
+            result.tracks = response;
+            resolve(result);
+          });
+        });
+      });
+    })
   }
 
-  getArtist(id: string){
-    return this.http.get(`${this.URL}artist/${id}`);
+  searchForArtist(query: string, offset=0, limit=22){
+    return this.http.get(`${this.URL}search/artist?q=:${query}&offset=${offset}&limit=${limit}`);
   }
-
-  getTrack(id: string){
-    return this.http.get(`${this.URL}track/${id}`);
+  searchForAlbum(query: string, offset=0, limit=22){
+    return this.http.get(`${this.URL}search/album?q=${query}&offset=${offset}&limit=${limit}`);
+  }
+  searchForTrack(query: string, offset=0, limit=22){
+    return this.http.get(`${this.URL}search/track?q=${query}&offset=${offset}&limit=${limit}`);
+  }
+  getElement(id: string, element:string){
+    return this.http.get(`${this.URL}${element}/${id}`);
+  }
+  getArtistTopTracks(id:string, limit:number = 20){
+    return this.http.get(`${this.URL}artist/${id}/top?limit=${limit}`);
   }
 }

@@ -60,6 +60,31 @@
     text-align: center;
     z-index: 2;
 }
+.page-section-content-horizontal{
+    display: flex;
+    width: 100%;
+    gap: 22px;
+}
+.o-page-section-title-cont{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.o-page-section-element{
+    box-sizing: border-box;
+    position: relative;
+    width: 100%;
+    gap: 11px;
+    border-radius: clamp(5px,7px,10px);
+    cursor: pointer;
+    display: grid;
+    justify-content: center;
+    transition: .2s;
+}
+.show-more-link{
+    height: fit-content;
+    cursor: pointer;
+}
 
 @media screen and (max-width: 420px) {
     .album-image{

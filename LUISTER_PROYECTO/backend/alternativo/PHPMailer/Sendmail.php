@@ -11,7 +11,7 @@
     class Sendmail extends PHPMailer {
         private const HOST = 'smtp.gmail.com';
         private const USERMAIL = 'dorianwalkler24@gmail.com';
-        private const SECRET = 'lisgubrpjhsvmreg';
+        private const SECRET = 'mrpdutjnazxsgumg';
         private $smtp_debug;
         private $smtp_secure;
         private $smtp_port;

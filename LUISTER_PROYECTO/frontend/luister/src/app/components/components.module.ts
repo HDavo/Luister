@@ -17,7 +17,7 @@ import { NotfoundComponent } from './notfound/notfound.component';
 import { MoreInfoComponent } from './more-info/more-info.component';
 import { NewpasswordComponent } from './newpassword/newpassword.component';
 import { AccountComponent } from './account/account.component';
-import { ListComponent } from './library/pages/list/list/list.component';
+import { ListComponent } from './list/list.component';
 
 import { MatTableModule } from '@angular/material/table';
 import {MatFormFieldModule} from '@angular/material/form-field'; 

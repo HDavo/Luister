@@ -51,11 +51,11 @@
             <div class="favorite-songs-list-body">
                 <div class="favorite-songs-list-type">Lista predefinida</div>
                 <h1 class="favorite-songs-list-title">
-                    <a routerLink="/details/fav-list/">Canciones que te gustan</a>
+                    <a routerLink="list/fav-list/">Canciones que te gustan</a>
                 </h1>
                 <div class="favorite-songs-list-description">
                     <span class="list-owner"><a href="/profile/">Luke SkyWalker</a></span> 
-                    <span class="list-count">0 canciones </span>
+                    <span class="list-count">{{this.favtracks.length}} canciones </span>
                 </div>
             </div>
             <img class="fav-songs-list-image" src="../../../assets/images/fav-list.webp" alt="favorite songs">
@@ -63,7 +63,7 @@
         
         <div class="custom-list" *ngFor="let list of customLists" ctm="list" id="{{list.id}}">
             <div class="custom-list-body">
-                <h1 class="custom-list-title"><a routerLink="/details/list/{{list.id}}">{{list.title | titlecase}}</a></h1>
+                <h1 class="custom-list-title"><a routerLink="list/{{list.id}}">{{list.title | titlecase}}</a></h1>
                 <span class="custom-list-count"> {{list.totaltracks}} canciones </span>
             </div>
             <img *ngIf="list?.image; else defaultimg" class="custom-list-image" src="{{imgroot}}/images/customlist/{{list.id}}/{{list.image}}" alt="favorite songs">

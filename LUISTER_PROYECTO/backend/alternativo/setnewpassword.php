@@ -34,9 +34,9 @@ if($method == "OPTIONS") die();
                 $prepQ->bindParam(':password', $hashedpass);
                 $prepQ->bindParam(':id', $id);
                 $res = $prepQ->execute();
-                echo json_encode($res);
-            }else echo json_encode($id);
-        }else echo json_encode($data);
+                echo json_encode(['status'=>200]);
+            }else (['status'=>500, 'message'=>'Hubo un error inesperado']);
+        }else(['status'=>400, 'message'=>'Peticion incorrecta. Deben exisir datos']);
     } catch (PDOException $e) {
         die(json_encode(['status'=>500, 'message'=>'Hubo un error inesperado']));
     }

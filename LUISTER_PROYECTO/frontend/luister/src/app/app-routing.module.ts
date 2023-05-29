@@ -13,7 +13,7 @@ import { MoreInfoComponent } from './components/more-info/more-info.component';
 import { noAuthGuard, authGuard } from './services/luister-guard.guard';
 import { NewpasswordComponent } from './components/newpassword/newpassword.component';
 import { AccountComponent } from './components/account/account.component';
-import { ListComponent } from './components/library/pages/list/list/list.component';
+import { ListComponent } from './components/list/list.component';
 
 const routes: Routes = [
   {
@@ -36,7 +36,7 @@ const routes: Routes = [
   {
     path: 'library/list/:id',
     component: ListComponent,
-    
+    canActivate: [noAuthGuard]
   },
   {
     path: 'discover',
