@@ -64,14 +64,16 @@ export class DiscoverComponent extends SetData{
             if(response.artists.data){
               this.albums = this.setDzAlbums(response.albums.data);
             }
-            if(response.tracks.data.lentgh > first){
+            if(response.tracks.data){
               this.tracks = this.setDzTracks(response.tracks.data);
-              this.mainResult = {
-                id: this.tracks[first].id,
-                name: this.tracks[first].name,
-                type: this.tracks[first].type,
-                img: this.tracks[first].album.img,
-                extra: ''
+              if(this.tracks.length > first){
+                this.mainResult = {
+                  id: this.tracks[first].id,
+                  name: this.tracks[first].name,
+                  type: this.tracks[first].type,
+                  img: this.tracks[first].album.img,
+                  extra: ''
+                }
               }
             }
           }

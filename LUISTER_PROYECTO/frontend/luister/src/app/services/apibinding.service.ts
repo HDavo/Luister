@@ -1,17 +1,19 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
+import { environment } from 'src/environments/environments';
+
 @Injectable({
   providedIn: 'root'
 })
 export class ApibindingService {
-  private ID = '228337ef0a124d5ebe912338d8050e03';
-  private SID = 'be4da263ec534f46bdf841e70bcf5f94';
-  private URL = 'https://api.spotify.com/v1/';
+  private ID = environment.ID;
+  private SID = environment.SID;
+  private URL = environment.sfyUrl;
   private spotifyTokenReq = {
-    url: '/api1/api/token/',
+    url: environment.sfyKU,
     body: `grant_type=client_credentials&client_id=${this.ID}&client_secret=${this.SID}`,
-    headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
+    headers: environment.sfyKUH
   }
 
   constructor(private http:HttpClient) { }
