@@ -50,6 +50,6 @@
             }else echo json_encode(['status'=>404, 'message'=>'Dirección de correo electrónico no dada de alta']); 
         }else echo json_encode(['status'=>400, 'message'=>'Error en la petición']);
     } catch (PDOException $e) {
-        die(json_encode(['status'=>500, 'message'=>'Hubo un error inesperado']));
+        die(json_encode(['status'=>500, 'message'=>'Hubo un error inesperado '.$e->getMessage()]));
     }
 ?>

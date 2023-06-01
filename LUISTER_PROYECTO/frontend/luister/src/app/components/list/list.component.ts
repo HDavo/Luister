@@ -1,6 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import {MatTableDataSource} from '@angular/material/table';
 import { MatSort } from '@angular/material/sort';
+import { ActivatedRoute } from '@angular/router';
+import { LuisterApiService } from 'src/app/services/luister-api.service';
 
 interface Song {
   title: string;
@@ -9,81 +11,6 @@ interface Song {
   added: string;
   duration: string;
 }
-
-const jsonData = {
-  user: 'pepe',
-  listName: 'Favoritas de Pepe',
-  creationDate: '12/05/2023',
-  modified: '24/05/2023',
-  listImage:
-    'https://s3.pixers.pics/pixers/700/FO/50/11/98/35/700_FO50119835_66be2c1df4d46c274d84ebd00d51569f.jpg',
-  songs: {
-    '0': {
-      title: 'In the End',
-      artist: 'Linkin Park',
-      album: 'Hybrid Theory',
-      added: '12/05/2023',
-      duration: '224',
-      valido: true,
-    },
-    '1': {
-      title: 'My December',
-      artist: 'Linkin Park',
-      album: 'Hybrid Theory',
-      added: '12/05/2023',
-      duration: '442',
-      valido: true,
-    },
-    '2': {
-      title: 'Papercut',
-      artist: 'Linkin Park',
-      album: 'Hybrid Theory',
-      added: '12/05/2023',
-      duration: '555',
-      valido: true,
-    },
-    '3': {
-      title: 'Crawling',
-      artist: 'Linkin Park',
-      album: 'Hybrid Theory',
-      added: '12/05/2023',
-      duration: '300',
-      valido: true,
-    },
-    '4': {
-      title: 'With You',
-      artist: 'Linkin Park',
-      album: 'Hybrid Theory',
-      added: '12/05/2023',
-      duration: '524',
-      valido: true,
-    },
-    '5': {
-      title: 'One Step Closer',
-      artist: 'Linkin Park',
-      album: 'Hybrid Theory',
-      added: '12/05/2023',
-      duration: '284',
-      valido: true,
-    },
-    '6': {
-      title: 'Points of Authority',
-      artist: 'Linkin Park',
-      album: 'Hybrid Theory',
-      added: '12/05/2023',
-      duration: '434',
-      valido: true,
-    },
-    '7': {
-      title: 'Whispers in the Dark',
-      artist: 'Skillet',
-      album: 'Comatose',
-      added: '12/05/2023',
-      duration: '564',
-      valido: true,
-    },
-  },
-};
 
 @Component({
   selector: 'app-list',
@@ -95,46 +22,54 @@ export class ListComponent implements OnInit{
   
   @ViewChild(MatSort) sort!: MatSort;
 
-  //variables para la cabecera
-  public imgList!: string;
-  public userName!: string;
-  public modifyDate!: string;
-  public listName!: string;
+  public name!: string;
+  public img: string = '../../../assets/images/default-custom-list.png';
+  public description!: string;
+  public creationdate!: string;
+  public owner!: string;
+  public tracks: any[] = [];
 
-  displayedColumns: string[] = ['number', 'title', 'album', 'artist', 'date', 'duration'];
-  dataSource = new MatTableDataSource(Object.values(jsonData.songs));
-  element: Song = {} as Song;
+  fields: string[] = ['number', 'title', 'album', 'artist', 'includedon'];
+  dataSource!: MatTableDataSource<any>;
+  labels: { [key: string]: string } = {
+    'number': '#',
+    'title': 'Titulo',
+    'album': 'Album',
+    'artist': 'Artista',
+    'includedon': 'Fecha',
+    'duration': 'Duración'
+  };
 
-  getColumnLabel(column: string): string {
-    const columnLabels: { [key: string]: string } = {
-      'number': '#',
-      'title': 'Titulo',
-      'album': 'Album',
-      'artist': 'Artista',
-      'date': 'Fecha',
-      'duration': 'Duración'
-    };
+  constructor(
+    private route: ActivatedRoute,
+    private luister: LuisterApiService
+    ){}
   
-    return columnLabels[column];
-  }
-  
-  
-  
-
   ngOnInit() {
+    this.route.params.subscribe((params:any)=>{
+      const id = params.id;
+      this.luister.getCustomList(id)
+      .subscribe((response:any)=>{
+        this.name = response.data.title;
+        this.img = `http://localhost:8000/images/customlist/${id}/${response.data.image}`;
+        this.description = response.data.description;
+        this.owner = response.data.owner;
+        this.creationdate = response.data.creationdate;
+      });
 
-    
-
-
-    this.dataSource.sort = this.sort;
-    this.imgList = jsonData.listImage;
-    this.listName = jsonData.listName;
-    this.userName = jsonData.user;
-    this.modifyDate = jsonData.modified;
+      this.luister.getCustomListTracks(id)
+      .subscribe((response:any)=>{
+        if(response){
+          this.tracks = response.data;
+          this.dataSource = new MatTableDataSource(this.tracks);
+          this.dataSource.sort = this.sort;
+        }
+      });
+    })
   }
 
   ngAfterViewInit() {
-    this.dataSource.sort = this.sort;
+    
   }
 
   applyFilter(event: Event) {
