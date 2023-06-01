@@ -182,7 +182,7 @@
 /* ---- */
 .track-index-link{
     display: block;
-    width: calc(100% - (40px * 3) - 33px);
+    width: calc(66% - (40px * 3));
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;

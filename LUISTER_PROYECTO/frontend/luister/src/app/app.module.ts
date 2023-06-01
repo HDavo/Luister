@@ -27,7 +27,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     ContexMenu,
     LuisterApiService,
     LastFmService,
-    LuisterCookieManagerService
+    LuisterCookieManagerService,
   ],
   bootstrap: [AppComponent]
 })

@@ -19,7 +19,6 @@
                 <div class="left-bottom-platforms-container">
                     <span>Spotify</span>
                     <span>Deezer</span>
-                    <span>Amazon Music</span>
                 </div>
             </div>
         </div>
@@ -35,7 +34,7 @@
                 </div>
                 <div class="author-info">
                     <div class="author-name">
-                        <a routerLink="/details/artist/{{artist.id}}">{{artist.name}}</a>
+                        <a routerLink="/details/artist/{{artist.id}}" ctm="artist" id="{{artist.id}}">{{artist.name}}</a>
                     </div>
                     <div class="author-genre">More info about authors</div>
                 </div>
@@ -43,7 +42,7 @@
             <div class="related-tracks">
                 <h2 class="related-tracks-title">Pistas</h2>
                 <div class="related-tracks-container">
-                    <div class="track" *ngFor="let track of album.data.tracks; let index = index">
+                    <div class="track" *ngFor="let track of album.data.tracks; let index = index" ctm="track" id="{{track.id}}">
                         <span class="track-index">{{index+1}}</span>
                         <div class="track-index-imge">
                             <img *ngIf="album.data.img; else defaultimg" src="{{album.data.img}}" alt="album image">
@@ -56,11 +55,11 @@
                             <div>
                                 <span *ngFor="let artist of track.artists; let i = index">
                                     <span *ngIf="i != 0">&nbsp;&&nbsp;</span> 
-                                    <a routerLink="/details/artist/{{artist.id}}">{{artist.name}}</a>
+                                    <a routerLink="/details/artist/{{artist.id}}" ctm="artist" id="{{artist.id}}">{{artist.name}}</a>
                                 </span>
                             </div>
                         </span>
-                        <span class="track-index-like"></span>
+                        <a routerLink="/details/album/{{track.album.id}}">{{track.album.name}}</a>
                     </div>
                 </div>
             </div>
@@ -117,7 +116,7 @@
                 </div>
                 <div class="author-info">
                     <div class="author-name">
-                        <a routerLink="/details/artist/{{artist?.id}}">{{artist?.name}}</a>
+                        <a routerLink="/details/artist/{{artist?.id}}" ctm="artist" id="{{artist?.id}}">{{artist?.name}}</a>
                     </div>
                     <div class="author-genre">More info about authors</div>
                 </div>
@@ -125,7 +124,7 @@
             <div *ngIf="track.album.tracks" class="related-tracks">
                 <h2 class="related-tracks-title">Canciones del album</h2>
                 <div class="related-tracks-container">
-                    <div class="track" *ngFor="let thisTrack of track.album.tracks; let index = index">
+                    <div class="track" *ngFor="let thisTrack of track.album.tracks; let index = index" ctm="track" id="{{thisTrack.id}}">
                         <span class="track-index">{{index+1}}</span>
                         <div class="track-index-imge">
                             <img *ngIf="track.album.img; else defaultimg" src="{{track.album.img}}" alt="album image">
@@ -138,11 +137,11 @@
                             <div>
                                 <span *ngFor="let artist of thisTrack.artists; let i = index">
                                     <span *ngIf="i != 0"> & </span> 
-                                    <a routerLink="/details/artist/{{artist.id}}">{{artist.name}}</a>
+                                    <a routerLink="/details/artist/{{artist.id}}" ctm="artist" id="{{artist.id}}">{{artist.name}}</a>
                                 </span>
                             </div>
                         </span>
-                        <span class="track-index-like"></span>
+                        <a routerLink="/details/album/{{track.album.id}}">{{track.album.name}}</a>
                     </div>
                 </div>
             </div>
@@ -185,7 +184,7 @@
             <div class="related-tracks">
                 <h2 class="related-tracks-title">Canciones populares</h2>
                 <div class="related-tracks-container">
-                    <div class="track" *ngFor="let track of artist.topTracks; let index = index">
+                    <div class="track" *ngFor="let track of artist.topTracks; let index = index" ctm="track" id="{{track?.id}}">
                         <span class="track-index">{{index+1}}</span>
                         <div class="track-index-imge">
                             <img *ngIf="track.album.img else defaultimg" src="{{track.album.img}}" alt="album image">
@@ -198,11 +197,11 @@
                             <div>
                                 <span *ngFor="let artist of track.artists; let i = index">
                                     <span *ngIf="i != 0">&nbsp;&&nbsp;</span> 
-                                    <a routerLink="/details/artist/{{artist.id}}">{{artist.name}}</a>
+                                    <a routerLink="/details/artist/{{artist.id}}" ctm="artist" id="{{artist?.id}}">{{artist.name}}</a>
                                 </span>
                             </div>
                         </span>
-                        <span class="track-index-like"></span>
+                        <a routerLink="/details/album/{{track.album.id}}">{{track.album.name}}</a>
                     </div>
                 </div>
             </div>

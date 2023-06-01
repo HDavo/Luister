@@ -168,7 +168,6 @@ export class DetailsComponent extends SetData{
         });
       }
     }
-    console.log(this.platform)
     platform[this.platform]();
   }
   getThatTrack(id:string){
@@ -249,7 +248,7 @@ export class DetailsComponent extends SetData{
     }).subscribe((response:any)=>{
       if(response.status == 200){
         alert('Añadido a favoritos')
-      }else console.log(response.message)
+      }else alert(response.message)
     })
   }
   dislike(event: any){

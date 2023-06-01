@@ -29,7 +29,7 @@ export class ListComponent implements OnInit{
   public owner!: string;
   public tracks: any[] = [];
 
-  fields: string[] = ['number', 'title', 'album', 'artist', 'includedon'];
+  fields: string[] = ['number', 'title', 'album', 'artist', 'includedon', 'liked', 'remove'];
   dataSource!: MatTableDataSource<any>;
   labels: { [key: string]: string } = {
     'number': '#',
@@ -37,7 +37,9 @@ export class ListComponent implements OnInit{
     'album': 'Album',
     'artist': 'Artista',
     'includedon': 'Fecha',
-    'duration': 'Duración'
+    'duration': 'Duración',
+    'liked': '',
+    'remove': '',
   };
 
   constructor(

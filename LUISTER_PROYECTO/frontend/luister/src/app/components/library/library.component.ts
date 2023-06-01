@@ -112,7 +112,6 @@ export class LibraryComponent implements OnInit {
       this.favtracks = [];
       if(response.status == 200){
         this.favtracks = response.data;
-        console.log(response)
       }else console.log(response.message);
     })
   }

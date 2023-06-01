@@ -3,6 +3,7 @@ import { Router } from "@angular/router";
 import { LuisterApiService } from "./luister-api.service";
 import { LuisterCookieManagerService } from "./luister-cookie-manager.service";
 import { ApibindingService } from "./apibinding.service";
+import { DeezerService } from "./deezer.service";
 
 @Injectable({
     providedIn: 'root'
@@ -25,6 +26,7 @@ export class ContexMenu {
         private router:Router,
         private luister: LuisterApiService,
         private fromSpoify: ApibindingService,
+        private fromDeezer: DeezerService,
         private cookieService: LuisterCookieManagerService
     ){
         this.renderer = rendererFactory.createRenderer(null, null);
@@ -97,7 +99,7 @@ export class ContexMenu {
                 option = this.renderer.createElement('div');
                 this.renderer.addClass(option, 'ccm-option');
                 this.renderer.setAttribute(option, 'href', url);
-                this.renderer.listen(option, 'click', ()=> this.navigateTo(url))
+                this.renderer.listen(option, 'click', ()=> this.navigateTo(url));
                 this.renderer.appendChild(option, this.renderer.createText(caption));
                 return option;
             },
@@ -227,8 +229,6 @@ export class ContexMenu {
             this.renderer.setStyle(contextMenu, 'top', top+'px');
             if(menuSubmenu){
                 if(window.innerWidth - menuSubmenu.clientWidth <= (left + _left*1.1)  ) _left = - menuSubmenu.clientWidth; 
-                console.log(window.innerHeight - (top - _top) - menuSubmenu.offsetHeight)
-                console.log(window.innerHeight, (top - _top), menuSubmenu.offsetHeight)
                 if(window.innerHeight - menuSubmenu.offsetHeight <= (top - _top)) _top += (window.innerHeight - (top - _top - _top) - menuSubmenu.offsetHeight);
                 this.renderer.setStyle(menuSubmenu, 'left', _left+'px');
                 this.renderer.setStyle(menuSubmenu, 'top', _top+'px');
@@ -240,6 +240,7 @@ export class ContexMenu {
     navigateTo(url:string) {
         this.router.navigate([url]);
         document.documentElement.scrollTop = 0;
+        this.removeContexMenu();
     } 
     removeContexMenu(){
         if(this.contextMenu){
@@ -279,23 +280,47 @@ export class ContexMenu {
                 listid: listid,
                 lookupkey: this.id
             }
-
-        this.fromSpoify.getTrack(this.id)
-        .then((response:any)=> {
-            return response.subscribe((res:any)=>{
-                data.title = res.name;
-                res.artists.forEach((e:any)=>{
-                    data.artist += e.name;
-                });
-
-                this.luister.addTrackToList(data)
-                .subscribe((response:any)=>{
-                    if(response.status == 200){
-                        alert('Pista agregada a lista!');
-                    }else alert(response.message);
+        const platform: string = this.id.split(':').shift(),
+        uuid:string = this.id.split(':').pop(),
+        getTrack:{[key:string]: Function} = {
+            sfy: ()=>{
+                this.fromSpoify.getTrack(uuid)
+                .then((response:any)=> {
+                    response.subscribe((res:any)=>{
+                            data.title = res.name;
+                            res.artists.forEach((e:any, i:number)=>{
+                                (i != 0)
+                                ?data.artist += `${e.name}`
+                                : data.artist += `, ${e.name}`;
+                            });
+                            this.luister.addTrackToList(data)
+                            .subscribe((response:any)=>{
+                                if(response.status == 200){
+                                    alert('Pista agregada a lista!');
+                                }else alert(response.message);
+                            })
+                        this.removeContexMenu();
+                    });
                 })
+            },
+            dzr: ()=>{
+                this.fromDeezer.getElement(uuid, this.etype)
+                .subscribe((respone:any)=>{
+                    data.title = respone.title;
+                    data.artist = respone.artist.name;
+                    
+                    this.luister.addTrackToList(data)
+                    .subscribe((response:any)=>{
+                        if(response.status == 200){
+                            alert('Pista agregada a lista!');
+                        }else alert(response.message);
+                    });
+                });
+                        
                 this.removeContexMenu();
-            });
-        })
+            }
+        }
+
+        getTrack[platform]();
     }
 }
