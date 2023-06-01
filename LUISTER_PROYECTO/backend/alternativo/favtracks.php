@@ -20,7 +20,7 @@
     
         if($data){
             $userid = $data->userid;
-            $prepQ = $conection->prepare("SELECT ft.id, ft.name, ft.likedon, ft.lookupkey FROM favoritetracks ft INNER JOIN users u ON ft.userid = u.id WHERE ft.userid = :userid");
+            $prepQ = $conection->prepare("SELECT ft.id, ft.title, ft.includedon, ft.lookupkey FROM favoritetracks ft INNER JOIN users u ON ft.userid = u.id WHERE ft.userid = :userid");
             $prepQ->bindParam(':userid', $userid);
             $prepQ->execute();
             $res = $prepQ->fetchAll();

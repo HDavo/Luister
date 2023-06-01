@@ -113,3 +113,24 @@
     content: ' ';
     background-color: rgb(255, 255, 255);
 }
+
+.like, .liked, .rubish{
+  font-size: 22px;
+  cursor: pointer;
+}
+.like, .rubish{
+  font-family: 'linearicon';
+}
+.like::before{
+  content: '\e813';
+}
+.rubish::before{
+  content: '\e811';
+}
+.liked{
+  font-family: 'Icomoon';
+}
+.liked::before{
+  content: '\e9da';
+}
+

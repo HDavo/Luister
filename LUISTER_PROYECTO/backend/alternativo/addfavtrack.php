@@ -23,7 +23,7 @@
             $userid = $data->userid;
             $lookupkey = $data->lookupkey;
 
-            $prepQ = $conection->prepare("SELECT id FROM favoritetracks WHERE name = :name AND userid = :userid AND lookupkey = :lookupkey ");
+            $prepQ = $conection->prepare("SELECT id FROM favoritetracks WHERE title = :name AND userid = :userid AND lookupkey = :lookupkey ");
             $prepQ->bindParam(':name', $name);
             $prepQ->bindParam(':userid', $userid);
             $prepQ->bindParam(':lookupkey', $lookupkey);
@@ -31,7 +31,7 @@
             $exist = $prepQ->fetch();
 
             if(!$exist){
-                $prepQ = $conection->prepare("INSERT INTO favoritetracks (name,userid,lookupkey) VALUES (:name,:userid,:lookupkey)");
+                $prepQ = $conection->prepare("INSERT INTO favoritetracks (title,userid,lookupkey) VALUES (:name,:userid,:lookupkey)");
                 $prepQ->bindParam(':name', $name);
                 $prepQ->bindParam(':userid', $userid);
                 $prepQ->bindParam(':lookupkey', $lookupkey);

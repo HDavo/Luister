@@ -23,7 +23,7 @@
             $userid = $data->userid;
             $lookupkey = $data->lookupkey;
 
-            $prepQ = $conection->prepare("DELETE FROM favoritetracks WHERE name = :name AND userid = :userid AND lookupkey = :lookupkey");
+            $prepQ = $conection->prepare("DELETE FROM favoritetracks WHERE title = :name AND userid = :userid AND lookupkey = :lookupkey");
             $prepQ->bindParam(':name', $name);
             $prepQ->bindParam(':userid', $userid);
             $prepQ->bindParam(':lookupkey', $lookupkey);
@@ -33,6 +33,6 @@
             
         }else echo json_encode(['status'=>400, 'message'=>'No se recibieron datos']);
     } catch (PDOException $e) {
-        echo die(json_encode(['status'=>500, 'message'=>'Hubo un error inesperado']));
+        echo die(json_encode(['status'=>500, 'message'=>'Hubo un error inesperado '.$e->getMessage()]));
     }
 ?>

@@ -39,7 +39,7 @@ export class ContexMenu {
                 {
                     type: 'link',
                     caption: 'Detalles',
-                    url: `/details/${etype}/${id}`
+                    url: `/library/${etype}/${id}`
                 },
                 {
                     type: 'action',
@@ -289,7 +289,7 @@ export class ContexMenu {
                     response.subscribe((res:any)=>{
                             data.title = res.name;
                             res.artists.forEach((e:any, i:number)=>{
-                                (i != 0)
+                                (i == 0)
                                 ?data.artist += `${e.name}`
                                 : data.artist += `, ${e.name}`;
                             });

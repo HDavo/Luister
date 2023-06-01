@@ -33,8 +33,8 @@ export class AppComponent {
 
     @HostListener('click',['$event.target'])
     onCLick(element:any):void{
-        
-        if(element.localName === 'a' || element.parentNode.localName === 'a'){
+
+        if(element.localName === 'a' ){
             document.documentElement.scrollTo({top: 0, behavior: 'smooth'});
         }
 
