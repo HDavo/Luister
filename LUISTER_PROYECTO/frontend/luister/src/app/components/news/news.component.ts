@@ -31,7 +31,7 @@ export class NewsComponent extends SetData{
     let elemBottom = this.releases?.nativeElement.getBoundingClientRect().bottom,
         windowHeigth = window.innerHeight,
         pageTotalScroll = document.documentElement.scrollHeight - windowHeigth;
-    if(elemBottom <= windowHeigth * 0.7 || window.scrollY >= pageTotalScroll){
+    if(elemBottom <= windowHeigth * 0.7 || window.scrollY >= pageTotalScroll * 0.95){
       this.getMoreAlbums();
     }
   }

@@ -180,6 +180,7 @@
     grid-auto-rows: repeat(3, 30%);
     gap: 3.33%;
     overflow: hidden;
+    min-height: 144pxñ
 }
 .mtf-img-container{
     aspect-ratio: 1 / 0.9;
