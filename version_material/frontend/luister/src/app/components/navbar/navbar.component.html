@@ -18,7 +18,9 @@
             </li>
         </ul>
         <div class="menu" id="userSession">
-            <span *ngIf="!username; else profile"><a routerLink="/signin">Iniciar sesión</a></span>
+          <!-- <button mat-raised-button color="primary"><a href="ecosia.org">Cosa</a></button> -->
+           <span *ngIf="!username; else profile"><a routerLink="/signin">Iniciar sesión</a></span>
+            <!-- <span *ngIf="!username; else profile"><a routerLink="/signin">Iniciar sesión</a></span> -->
             <ng-template #profile>
                 <ul class="profile-container">
                     <li class="profile-container-caption">
@@ -41,45 +43,53 @@
 
 <nav class="mobile-navbar">
     <div class="mobile-menu mobile-logo">
-        <a class="home-page-icon" routerLink="/"></a>
+        <a routerLink="/">
+          <mat-icon>home</mat-icon>
+        </a>
         <span class="mobile-menu-option-caption">Luister</span>
     </div>
 
     <ul class="mobile-menu main-menu">
-        <span class="main-menu-icon"  #asMobileGridMenu></span>
-        <span class="mobile-menu-option-caption">Menú</span>
-        <li class="mobile-menu-container element-hidden" #asGridMenuContainer>
-            <ul class="mobile-menu-grid">
-                <li class="page-like-app">
-                    <a routerLink="/news">
-                        <img src="../../../assets/images/new.jpg" alt="">
-                        <span>Novedades</span>
-                    </a>
-                </li>
-                <li class="page-like-app">
-                    <a routerLink="/popular">
-                        <img src="../../../assets/images/popular.jpg" alt="">
-                        <span>Popular</span>
-                    </a>
-                </li>
-                <li class="page-like-app">
-                    <a routerLink="/library">
-                        <img src="../../../assets/images/lib.jpg" alt="">
-                        <span>Biblioteca</span>
-                    </a>
-                </li>
-                <li class="page-like-app">
-                    <a routerLink="/discover">
-                        <img src="../../../assets/images/discover.jpg" alt="">
-                        <span>Descubrir</span>
-                    </a>
-                </li>
-            </ul>                
-        </li>
-    </ul>
+      <!-- <mat-icon>menu</mat-icon> -->
+      <!-- TODO: no puedo poner este icono sin perder la funcionalidad de mostrar el resto de opciones -->
+      <span class="main-menu-icon"  #asMobileGridMenu></span>
+      <span class="mobile-menu-option-caption">Menú</span>
+      <li class="mobile-menu-container element-hidden" #asGridMenuContainer>
+          <ul class="mobile-menu-grid">
+              <li class="page-like-app">
+                  <a routerLink="/news">
+                      <!-- <img src="../../../assets/images/new.jpg" alt=""> -->
+                      <mat-icon>new_releases</mat-icon>
+                      <span>Novedades</span>
+                  </a>
+              </li>
+              <li class="page-like-app">
+                  <a routerLink="/popular">
+                      <!-- <img src="../../../assets/images/popular.jpg" alt=""> -->
+                      <mat-icon>trending_up</mat-icon>
+                      <span>Popular</span>
+                  </a>
+              </li>
+              <li class="page-like-app">
+                  <a routerLink="/library">
+                      <!-- <img src="../../../assets/images/lib.jpg" alt=""> -->
+                      <mat-icon>library_music</mat-icon>
+                      <span>Biblioteca</span>
+                  </a>
+              </li>
+              <li class="page-like-app">
+                  <a routerLink="/discover">
+                      <!-- <img src="../../../assets/images/discover.jpg" alt=""> -->
+                      <mat-icon>saved_search</mat-icon>
+                      <span>Descubrir</span>
+                  </a>
+              </li>
+          </ul>
+      </li>
+  </ul>
 
     <div class="mobile-menu userSession">
-        <span class="user-icon"></span>
+        <mat-icon>person</mat-icon>
         <span class="mobile-menu-option-caption">Perfil</span>
     </div>
 </nav>
