@@ -6,5 +6,6 @@ export const environment = {
     ID: '228337ef0a124d5ebe912338d8050e03',
     SID: 'be4da263ec534f46bdf841e70bcf5f94',
     sfyKU: '/api1/api/token/',
-    sfyKUH: { 'Content-Type': 'application/x-www-form-urlencoded' }
+    sfyKUH: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    webapi: 'http://51.91.78.21:8000/'
   };
