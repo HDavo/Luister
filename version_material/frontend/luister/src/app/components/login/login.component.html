@@ -1,0 +1,54 @@
+<div id="pagecontainer" class="maincontainers">
+  <form autocomplete="off" [formGroup]="signInForm" (ngSubmit)="login()" class="login-form">
+    <h1 class="form-title">LUISTER</h1>
+    <div class="wrong-credentials">
+      <span *ngIf="errors">{{errors}}</span>
+    </div>
+    <div class="form-field-cont">
+      <span class="email-field-icon"></span>
+      <input 
+        type="email" 
+        formControlName="email" 
+        placeholder="Correo electrónico">
+    </div> 
+    <div class="validation-caption">
+      <span *ngIf="!isValid('email',signInForm)">Correo no válido</span>
+    </div>    
+    <div class="form-field-cont">
+      <span class="password-field-icon"></span>
+      <input 
+        type="password" 
+        formControlName="password" 
+        placeholder="Contraseña">
+    </div>
+      <div class="validation-caption">
+        <span *ngIf="!isValid('password',signInForm)">Contraseña no correcta</span>
+      </div>
+    <div class="form-bottom-caption">
+      <input class="login-button" type="submit" value="Iniciar de sesión">
+      <a routerLink="/signup">Registrarse</a>
+    </div>
+
+    <div class="recover-pass" (click)="showPassResetCont()">Recuperar contraseña</div>
+  </form>
+
+  <form [formGroup]="resetPassForm" 
+    class="password-recover-container"
+    (ngSubmit)="passwordResetRequest()"
+    #asPassResetCont>
+    <span class="close-rest-pass-container" (click)="hidePassResetCont()">X</span>
+    <p class="pass-rest-info">Se enviará un enlace para <b>restablecer la contraseña</b> a la <b>dirección de correo electrónico</b> 
+    que nos indique a continuación. (<i>Siempre y cuando esté vinculada a una cuenta existente</i>)
+    </p>
+    <div class="password-recover-field-container">
+      <input
+      type="email"
+      formControlName="resetpassemail"
+      class="pass-reset-email">
+      <input type="submit" class="send-button" value="Enviar">
+    </div>
+    <span *ngIf="!isValid('resetpassemail', resetPassForm)">
+      Formato de correo electrónico incorrecto
+    </span>
+  </form>
+</div>

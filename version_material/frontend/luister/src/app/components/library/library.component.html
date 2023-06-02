@@ -1,0 +1,77 @@
+<div id="pagecontainer" class="maincontainers" #asMainContainer>
+    <div id="mainpagetitle">
+        <div class="mainpagetitle-cont">
+            <h1 id="mainpagetitle-title">Biblioteca</h1>
+            <p id="mainpagetitle-body">
+                Puedes visualizar tus canciones favoritas en esta sección. <br>
+                Crea listas personalizadas para agrupar y  guardar tus canciones favoritas según tus propios criterios.
+            </p>
+        </div>
+    </div>
+
+    <div class="new-custom-list-cont page-section">
+        <button (click)="printCustomListForm()" class="new-list-button">Nueva lista</button>
+    </div>
+
+    <form [formGroup]="customListForm" #newCustomListForm class="new-custom-list-form">
+        <h2 class="new-custom-list-form-title">Editar información</h2>
+        <div class="nclf-body">
+            <div class="new-custom-list-form-image">
+                <img *ngIf="!newListImagePreview; else image" src="../../../assets/images/default-custom-list.png" alt="default image">
+                <ng-template #image>
+                    <img src="{{newListImagePreview}}" alt="default image">
+                </ng-template>
+                <div class="addImage">
+                    <label for="form-list-image" class="form-list-image"></label>
+                    <input formControlName="image" name="imgFile" (change)="getImage($event)" type="file" id="form-list-image" hidden>
+                </div>
+            </div>
+            <div class="nclf-body-fields-container">
+                <div class="nclf-body-fields-child"> 
+                    <input formControlName="title" placeholder="Nombre" class="new-custom-list-form-name new-custom-list-formfields" id="title">
+                    <label for="title">Titulo</label>
+                </div>
+                <div class="nclf-body-fields-child">
+                    <textarea formControlName="description" placeholder="Detalles" class="new-custom-list-form-description new-custom-list-formfields" id="description"></textarea>
+                    <label for="description">Descripción</label>
+                </div>
+            </div>
+        </div>
+        <button class="new-custom-list-form-save" (click)="submitNewCusstomList()"> Guardar</button>
+        <div class="new-custom-list-form-advise">
+            Al continuar, estás de acuerdo con dar a Luister acceso 
+            a la imagen que selecciones para subir. 
+            Asegúrate de tener derecho a subir la imagen.
+        </div>
+        <div class="new-custom-list-form-close-button" (click)="closeForm()"></div>
+    </form>
+
+    <div class="library-body-container page-section">
+        <div class="favorite-songs-list">
+            <div class="favorite-songs-list-body">
+                <div class="favorite-songs-list-type">Lista predefinida</div>
+                <h1 class="favorite-songs-list-title">
+                    <a routerLink="list/fav-list/">Canciones que te gustan</a>
+                </h1>
+                <div class="favorite-songs-list-description">
+                    <span class="list-owner"><a href="/profile/">Luke SkyWalker</a></span> 
+                    <span class="list-count">{{this.favtracks.length}} canciones </span>
+                </div>
+            </div>
+            <img class="fav-songs-list-image" src="../../../assets/images/fav-list.webp" alt="favorite songs">
+        </div>
+        
+        <div class="custom-list" *ngFor="let list of customLists" ctm="list" id="{{list.id}}">
+            <div class="custom-list-body">
+                <h1 class="custom-list-title"><a routerLink="list/{{list.id}}">{{list.title | titlecase}}</a></h1>
+                <span class="custom-list-count"> {{list.totaltracks}} canciones </span>
+            </div>
+            <img *ngIf="list?.image; else defaultimg" class="custom-list-image" src="{{imgroot}}/images/customlist/{{list.id}}/{{list.image}}" alt="favorite songs">
+            <ng-template #defaultimg>
+                <img class="custom-list-image" src="../../../assets/images/default-custom-list.png" alt="favorite songs">
+            </ng-template>
+        </div>
+
+    </div>
+
+</div>
