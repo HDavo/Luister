@@ -134,4 +134,18 @@
 .liked::before{
   content: '\e9da';
 }
+.table-search-field{
+  max-width: 350px;
+  height: 70%;
+  display: flex;
+  justify-content: flex-start;
+  overflow-y: hidden;
+  position: relative;
+}
+.search-icon{
+  width: 20%;
+}
+.search-input{
+  max-width: 80px;
+}
 

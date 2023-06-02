@@ -20,7 +20,7 @@ interface Song {
 })
 
 export class ListComponent implements OnInit{
-  
+
   @ViewChild(MatSort) sort!: MatSort;
   public liked: boolean = false;
   public name!: string;
@@ -88,10 +88,14 @@ export class ListComponent implements OnInit{
       }
     });
   }
+  //para el buscador
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
+
+
+
   like(){
     (this.liked)?this.liked = false: this.liked = true;
   }

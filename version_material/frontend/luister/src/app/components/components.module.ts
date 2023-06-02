@@ -1,6 +1,11 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
+//Para poder usar material
+import { MaterialModule } from '../material/material.module';
+
 import { NavbarComponent } from './navbar/navbar.component';
 import { FooterComponent } from './footer/footer.component';
 import { HomeComponent } from './home/home.component';
@@ -9,7 +14,6 @@ import { PopularComponent } from './popular/popular.component';
 import { LibraryComponent } from './library/library.component';
 import { DiscoverComponent } from './discover/discover.component';
 import { AppRoutingModule } from '../app-routing.module';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DetailsComponent } from './details/details.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
@@ -19,9 +23,6 @@ import { NewpasswordComponent } from './newpassword/newpassword.component';
 import { AccountComponent } from './account/account.component';
 import { ListComponent } from './list/list.component';
 
-import { MatTableModule } from '@angular/material/table';
-import {MatFormFieldModule} from '@angular/material/form-field'; 
-import {MatSortModule} from '@angular/material/sort'; 
 
 @NgModule({
   declarations: [
@@ -46,9 +47,7 @@ import {MatSortModule} from '@angular/material/sort';
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    MatTableModule,
-    MatFormFieldModule,
-    MatSortModule
+    MaterialModule
   ],
   exports: [
     NavbarComponent,

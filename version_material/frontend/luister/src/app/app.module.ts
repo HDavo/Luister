@@ -11,6 +11,7 @@ import { LuisterApiService } from './services/luister-api.service';
 import { LastFmService } from './services/last-fm.service';
 import { LuisterCookieManagerService } from './services/luister-cookie-manager.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MaterialModule } from './material/material.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -19,7 +20,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     HttpClientModule,
     AppRoutingModule,
     ComponentsModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MaterialModule
   ],
   providers: [
     ApibindingService,
@@ -33,5 +35,5 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 })
 
 export class AppModule {
-  
+
 }
