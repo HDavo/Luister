@@ -9,11 +9,11 @@ CREATE DATABASE IF NOT EXISTS `luister` DEFAULT CHARACTER SET utf8mb4 COLLATE ut
 USE `luister`;
 
 CREATE TABLE `users` (
-  `id` int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  `name` varchar(25) NOT NULL,
-  `email` varchar(55) NOT NULL,
-  `password` longtext NOT NULL,
-  `creationdate` datetime NOT NULL DEFAULT current_timestamp()
+  `id` INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  `name` VARCHAR(25) NOT NULL,
+  `email` VARCHAR(55) NOT NULL,
+  `password` BLOB NOT NULL,
+  `creationdate` DATETIME NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 INSERT INTO `users` (`id`, `name`, `email`, `password`, `creationdate`) VALUES
@@ -27,12 +27,12 @@ CONSTRAINT fk_usersettings_userid FOREIGN KEY (userid) REFERENCES users(id) ON D
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 CREATE TABLE `customlists` (
-  `id` int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  `title` varchar(55) NOT NULL,
-  `description` text NOT NULL,
-  `image` varchar(100) DEFAULT NULL,
-  `userid` int(11) NOT NULL,
-  `creationdate` datetime NOT NULL DEFAULT current_timestamp(),
+  `id` INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  `title` VARCHAR(55) NOT NULL,
+  `description` TEXT NOT NULL,
+  `image` VARCHAR(100) DEFAULT NULL,
+  `userid` INT(11) NOT NULL,
+  `creationdate` DATETIME NOT NULL DEFAULT current_timestamp(),
   CONSTRAINT fk_customlists_userid FOREIGN KEY (userid) REFERENCES users(id) ON DELETE  CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -42,13 +42,13 @@ INSERT INTO `customlists` (`id`, `title`, `description`, `image`, `userid`, `cre
 (5, 'africanas', '', 'eg.jpg', 1, '2023-05-28 10:34:15');
 
 CREATE TABLE `customlisttracks` (
-  `id` int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  `title` varchar(55) NOT NULL,
-  `artist` TEXT(255) NULL,
+  `id` INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  `title` VARCHAR(55) NOT NULL,
+  `artist` TEXT NOT NULL,
   `album` JSON DEFAULT NULL,
-  `customlistid` int(11) NOT NULL,
-  `lookupkey` varchar(100) NOT NULL,
-  `includedon` datetime NOT NULL DEFAULT current_timestamp(),
+  `customlistid` INT(11) NOT NULL,
+  `lookupkey` VARCHAR(100) NOT NULL,
+  `includedon` DATETIME NOT NULL DEFAULT current_timestamp(),
    CONSTRAINT fk_customlisttracks_customlistid FOREIGN KEY (customlistid) REFERENCES customlists(id) ON DELETE  CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -61,32 +61,32 @@ INSERT INTO `customlisttracks` (`id`, `title`, `artist`, `customlistid`, `lookup
 (14, 'Monster', 'Skillet', 2, 'dzr:4116951', '2023-06-01 19:05:50', '');
 
 CREATE TABLE `favoritetracks` (
-  `id` int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  `title` varchar(55) NOT NULL,
-  `artist` varchar(100) NOT NULL,
-  `album` varchar(100) NOT NULL,
-  `userid` int(11) NOT NULL,
-  `lookupkey` text NOT NULL,
-  `includedon` datetime NOT NULL DEFAULT current_timestamp(),
+  `id` INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  `title` VARCHAR(55) NOT NULL,
+  `artist` VARCHAR(100) NOT NULL,
+  `album` VARCHAR(100) NOT NULL,
+  `userid` INT(11) NOT NULL,
+  `lookupkey` TEXT NOT NULL,
+  `includedon` DATETIME NOT NULL DEFAULT current_timestamp(),
   CONSTRAINT fk_favoritetracks_userid FOREIGN KEY (userid) REFERENCES users(id) ON DELETE  CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 CREATE TABLE `followedartists` (
-  `id` int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  `name` varchar(25) NOT NULL,
-  `image` text NOT NULL,
-  `follower` int(11) NOT NULL,
-  `lookupkey` text NOT NULL,
-  `followedon` datetime NOT NULL DEFAULT current_timestamp(),
+  `id` INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  `name` VARCHAR(25) NOT NULL,
+  `image` TEXT NOT NULL,
+  `follower` INT(11) NOT NULL,
+  `lookupkey` TEXT NOT NULL,
+  `followedon` DATETIME NOT NULL DEFAULT current_timestamp(),
   CONSTRAINT fk_followedartists_follower FOREIGN KEY (follower) REFERENCES users(id) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 CREATE TABLE `passwordresettokens` (
-  `id` int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  `value` longtext NOT NULL,
-  `userid` int(11) NOT NULL,
-  `creationdate` datetime NOT NULL DEFAULT current_timestamp(),
-  `expirationdate` datetime NOT NULL,
+  `id` INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  `value` BLOB NOT NULL,
+  `userid` INT(11) NOT NULL,
+  `creationdate` DATETIME NOT NULL DEFAULT current_timestamp(),
+  `expirationdate` DATETIME NOT NULL,
   CONSTRAINT fk_passwrdresettoken_userid FOREIGN KEY (userid) REFERENCES users(id) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -96,12 +96,12 @@ $$
 DELIMITER ;
 
 CREATE TABLE `sessions` (
-  `id` int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  `token` longtext NOT NULL,
-  `userid` int(11) NOT NULL,
-  `device` longtext NOT NULL,
-  `creationdate` datetime NOT NULL DEFAULT current_timestamp(),
-  `expirationdate` datetime NOT NULL,
+  `id` INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  `token` BLOB NOT NULL,
+  `userid` INT(11) NOT NULL,
+  `device` VARCHAR(255) NOT NULL,
+  `creationdate` DATETIME NOT NULL DEFAULT current_timestamp(),
+  `expirationdate` DATETIME NOT NULL,
   CONSTRAINT fk_sessions_userid FOREIGN KEY (userid) REFERENCES users(id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 

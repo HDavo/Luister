@@ -19,7 +19,7 @@
         $data = json_decode(file_get_contents("php://input"));
     
         if($data){
-            $title = $data->title;
+            $title = $data->name;
             $artists = $data->artists;
             $album = $data->album;
             $userid = $data->userid;

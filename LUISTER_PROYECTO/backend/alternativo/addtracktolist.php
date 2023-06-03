@@ -33,9 +33,10 @@
             $exist = $prepQ->fetch();
 
             if(!$exist){
-                $prepQ = $conection->prepare("INSERT INTO customlisttracks (title,artist,customlistid,lookupkey) VALUES (:title,:artist,:listid,:lookupkey)");
+                $prepQ = $conection->prepare("INSERT INTO customlisttracks (title,artist,customlistid,lookupkey) VALUES (:title,,:artist,:album,:listid,:lookupkey)");
                 $prepQ->bindParam(':title', $title);
                 $prepQ->bindParam(':artist', $artist);
+                $prepQ->bindParam(':album', $album);
                 $prepQ->bindParam(':listid', $listid);
                 $prepQ->bindParam(':lookupkey', $lookupkey);
                 $prepQ->execute();
