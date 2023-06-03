@@ -8,7 +8,7 @@
     if($method == "OPTIONS") {
         die();
     }
-    $data=$title=$artist=$listid=$lookupkey=$conection='';
+    $data=$title=$artist=$album=$listid=$lookupkey=$conection='';
 
     try {
         $conection = new PDO('mysql:host=luister-db:3306;dbname=luister','admin','admin',[
@@ -27,7 +27,7 @@
 
             $prepQ = $conection->prepare("SELECT id FROM customlisttracks WHERE title = :title AND album = :album AND customlistid = :listid");
             $prepQ->bindParam(':title', $title);
-            $prepQ->bindParam(':artist', $artist);
+            $prepQ->bindParam(':album', $artist);
             $prepQ->bindParam(':listid', $listid);
             $prepQ->execute();
             $exist = $prepQ->fetch();
