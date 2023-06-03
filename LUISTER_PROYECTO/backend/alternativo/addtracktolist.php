@@ -21,19 +21,19 @@
         if($data){
             $title = $data->title;
             $artists = $data->artists;
-            $album = json_encode($data->album);
+            $album = $data->album;
             $listid = $data->listid;
             $lookupkey = $data->lookupkey;
-            $x = json_decode($album);
 
-            $prepQ = $conection->prepare("SELECT id FROM customlisttracks WHERE title = :title AND album = :album AND customlistid = :listid");
+            $prepQ = $conection->prepare("SELECT id FROM customlisttracks WHERE title = :title AND JSON_EXTRACT(album, '$.title') = :album AND customlistid = :listid");
             $prepQ->bindParam(':title', $title);
-            $prepQ->bindParam(':album', $x);
+            $prepQ->bindParam(':album', $album->title);
             $prepQ->bindParam(':listid', $listid);
             $prepQ->execute();
             $exist = $prepQ->fetch();
 
-            if(!$exist){
+	    if(!$exist){
+		$album = json_encode($album);
                 $prepQ = $conection->prepare("INSERT INTO customlisttracks (title,artists,album,customlistid,lookupkey) VALUES (:title,:artists,:album,:listid,:lookupkey)");
                 $prepQ->bindParam(':title', $title);
                 $prepQ->bindParam(':artists', $artists);
