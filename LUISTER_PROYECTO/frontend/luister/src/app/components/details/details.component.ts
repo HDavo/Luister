@@ -72,7 +72,6 @@ export class DetailsComponent extends SetData{
       }
     })
   }
-
   getThatAlbum(id:string){
     const platform:any = {
       sfy: ()=>{
@@ -233,16 +232,26 @@ export class DetailsComponent extends SetData{
   }
   like(event: any){
     const userid = this.cookieService.get('userid');
-    let title, lookupkey;
-    event.target.getAttribute('title').split('-').
-    forEach((e:string, i:number)=>{
-    (i == 0)? lookupkey = e : title = e;
+    let art: any[] = [];
+    
+    this.track.artists.forEach((track:any, i:number)=>{
+      art[i] = {"title": track.name, "lookupkey": track.id};
     })
-    this.luister.addFavTracks({
-      userid,
-      lookupkey,
-      title
-    }).subscribe((response:any)=>{
+
+    const trackElement = {
+      title: this.track.data.name,
+      lookupkey: this.track.data.id,
+      album: {
+        "title": this.track.album.name,
+        "lookupkey": this.track.album.id
+      },
+      artists: JSON.stringify(art),
+      userid: userid
+    }
+
+    console.log(trackElement)
+    this.luister.addFavTracks(trackElement)
+    .subscribe((response:any)=>{
       if(response.status == 200){
         alert('Añadido a favoritos')
       }else alert(response.message)
@@ -256,7 +265,7 @@ export class DetailsComponent extends SetData{
     (i == 0)? lookupkey = e : title = e;
     })
     this.luister.removeFavTracks({
-      userid, lookupkey, title
+      userid: userid, lookupkey: lookupkey, title: title
     }).subscribe((response:any)=>{
       if(response.status == 200){
         alert('Eliminado de favoritos')

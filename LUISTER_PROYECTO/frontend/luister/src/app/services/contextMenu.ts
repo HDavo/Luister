@@ -299,7 +299,7 @@ export class ContexMenu {
                             data.artists = JSON.stringify(art);
                             data.album.title = res.album.name;
                             data.album.lookupkey = res.album.id;
-
+                            console.log(data)
                             this.luister.addTrackToList(data)
                             .subscribe((response:any)=>{
                                 if(response.status == 200){

@@ -44,8 +44,8 @@ INSERT INTO `customlists` (`id`, `title`, `description`, `image`, `userid`, `cre
 CREATE TABLE `customlisttracks` (
   `id` INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
   `title` VARCHAR(55) NOT NULL,
-  `artist` TEXT NOT NULL,
-  `album` JSON DEFAULT NULL,
+  `artist` TEXT(255) NOT NULL,
+  `album` JSON NOT NULL,
   `customlistid` INT(11) NOT NULL,
   `lookupkey` VARCHAR(100) NOT NULL,
   `includedon` DATETIME NOT NULL DEFAULT current_timestamp(),
@@ -63,8 +63,8 @@ INSERT INTO `customlisttracks` (`id`, `title`, `artist`, `customlistid`, `lookup
 CREATE TABLE `favoritetracks` (
   `id` INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
   `title` VARCHAR(55) NOT NULL,
-  `artist` VARCHAR(100) NOT NULL,
-  `album` VARCHAR(100) NOT NULL,
+  `artist` TEXT(255) NOT NULL,
+  `album` JSON NOT NULL,
   `userid` INT(11) NOT NULL,
   `lookupkey` TEXT NOT NULL,
   `includedon` DATETIME NOT NULL DEFAULT current_timestamp(),
@@ -107,16 +107,6 @@ CREATE TABLE `sessions` (
 
 DELIMITER $$
 CREATE TRIGGER `session_exp_date` BEFORE INSERT ON `sessions` FOR EACH ROW SET NEW.expirationdate =  DATE_ADD(CURRENT_TIMESTAMP(), INTERVAL 7 DAY)
-$$
-DELIMITER ;
-
-DELIMITER $$
-CREATE TRIGGER `remove_track_artist` AFTER DELETE ON `customlisttracks` FOR EACH ROW DELETE FROM `trackartists` WHERE OLD.artist = lookupkey
-$$
-DELIMITER ;
-
-DELIMITER $$
-CREATE TRIGGER `remove_track_album` AFTER DELETE ON `customlisttracks` FOR EACH ROW DELETE FROM `trackalbums` WHERE OLD.album = lookupkey
 $$
 DELIMITER ;
 
