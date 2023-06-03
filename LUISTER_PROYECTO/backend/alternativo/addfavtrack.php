@@ -8,7 +8,7 @@
     if($method == "OPTIONS") {
         die();
     }
-    $data=$title=$userid=$lookupkey=$conection='';
+    $data=$title=$artists=$album=$userid=$lookupkey=$conection='';
 
     try {
         $conection = new PDO('mysql:host=luister-db:3306;dbname=luister','admin','admin',[
