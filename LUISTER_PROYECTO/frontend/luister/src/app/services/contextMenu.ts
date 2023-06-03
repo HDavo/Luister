@@ -294,12 +294,11 @@ export class ContexMenu {
                     response.subscribe((res:any)=>{
                             data.title = res.name;
                             res.artists.forEach((e:any, i:number)=>{
-                               art[i] = { "name": e.name, "lookupkey": res.id};
+                               art[i] = { "name": e.name, "lookupkey": `sfy:${e.id}`};
                             });
                             data.artists = JSON.stringify(art);
                             data.album.title = res.album.name;
-                            data.album.lookupkey = res.album.id;
-                            console.log(data)
+                            data.album.lookupkey = `sfy:${res.album.id}`;
                             this.luister.addTrackToList(data)
                             .subscribe((response:any)=>{
                                 if(response.status == 200){
@@ -313,12 +312,12 @@ export class ContexMenu {
             },
             dzr: ()=>{
                 this.fromDeezer.getElement(uuid, this.etype)
-                .subscribe((respone:any)=>{
-                    data.title = respone.title;
-                    art = [{"name": respone.artist.name, "lookupkey":  respone.artist.id}];
+                .subscribe((response:any)=>{
+                    data.title = response.title;
+                    art = [{"name": response.artist.name, "lookupkey": `sfy:${response.artist.id}`}];
                     data.artists = JSON.stringify(art);
-                    data.album.title = respone.album.title;
-                    data.album.lookupkey = respone.album.id;
+                    data.album.title = response.album.title;
+                    data.album.lookupkey = `sfy: ${response.album.id}`;
 
                     this.luister.addTrackToList(data)
                     .subscribe((response:any)=>{

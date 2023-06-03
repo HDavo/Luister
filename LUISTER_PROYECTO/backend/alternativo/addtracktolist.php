@@ -21,14 +21,13 @@
         if($data){
             $title = $data->title;
             $artists = $data->artists;
-            $album = json_encode($data->album);
+            $album = $data->album;
             $listid = $data->listid;
             $lookupkey = $data->lookupkey;
-            $x = json_decode($album);
 
-            $prepQ = $conection->prepare("SELECT id FROM customlisttracks WHERE title = :title AND album = :album AND customlistid = :listid");
+            $prepQ = $conection->prepare("SELECT id FROM customlisttracks WHERE title = :title AND JSON_EXTRACT(album, '$.title') = :album AND customlistid = :listid");
             $prepQ->bindParam(':title', $title);
-            $prepQ->bindParam(':album', $x);
+            $prepQ->bindParam(':album', $album->title);
             $prepQ->bindParam(':listid', $listid);
             $prepQ->execute();
             $exist = $prepQ->fetch();

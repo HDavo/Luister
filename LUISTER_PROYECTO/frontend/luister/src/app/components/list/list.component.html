@@ -42,8 +42,12 @@
           <span *ngIf="field != 'number'; else number"> 
             <span *ngIf="field == 'title' || field == 'artist' || field == 'album'; else otherfield">
               <a *ngIf="field == 'title'" routerLink="/details/track/{{content['lookupkey']}}" ctm="track" id="{{content['lookupkey']}}"> {{content[field]}} </a>
-              <a  *ngIf="field == 'artist'" routerLink="/details/{{field}}/{{content['lookupkey']}}" ctm="artist" id="{{content['lookupkey']}}"> {{content[field]}} </a>
-              <a  *ngIf="field == 'album'" routerLink="/details/{{field}}/{{content['lookupkey']}}" ctm="album" id="{{content['lookupkey']}}"> {{content[field]}} </a>
+              <span *ngIf="field == 'artist'">
+                <a *ngFor="let artist of content['artists']" routerLink="/details/{{field}}/{{artist.lookupkey}}" ctm="artist" id="{{artist.lookupkey}}">
+                  {{artist.name}} &nbsp;
+                </a>
+              </span>
+              <a  *ngIf="field == 'album'" routerLink="/details/{{field}}/{{content[field]['lookupkey']}}" ctm="album" id="{{content['lookupkey']}}"> {{content[field]['title']}} </a>
             </span>
             <ng-template #otherfield>
               <span *ngIf="field == 'remove'" class="rubish"></span>

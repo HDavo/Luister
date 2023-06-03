@@ -80,6 +80,10 @@ export class ListComponent implements OnInit{
         this.luister.getCustomListTracks(id)
         .subscribe((response:any)=>{
           if(response){
+            response.data.forEach((track:any, index:number) => {
+              response.data[index].album = JSON.parse(track.album);
+              response.data[index].artists = JSON.parse(track.artists);
+            });
             this.tracks = response.data;
             this.dataSource = new MatTableDataSource(this.tracks);
             this.dataSource.sort = this.sort;
