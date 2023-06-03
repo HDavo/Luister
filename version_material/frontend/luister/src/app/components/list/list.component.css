@@ -54,11 +54,13 @@
     font-size: 16px;
   }
   .actions{
-    height: 66px;
+    height: 50px;
+    /* width: 100%; */
     background: rgba(0, 0, 0, 0.3);
     display: flex;
     align-items: center;
     justify-content: space-between;
+    /* gap:40%; */
   }
   .list-actions{
     font-family: 'linearicon';
@@ -134,18 +136,19 @@
 .liked::before{
   content: '\e9da';
 }
+/* usado para el buscador*/
 .table-search-field{
-  max-width: 350px;
-  height: 70%;
+  width: 50%;
   display: flex;
-  justify-content: flex-start;
-  overflow-y: hidden;
-  position: relative;
-}
-.search-icon{
-  width: 20%;
+  justify-content: flex-end;
+  gap: 5px;
 }
 .search-input{
-  max-width: 80px;
+  width: 200px;
+  border: none;
+  border-bottom: 1px solid #eaeaea;
+  transition: 0.5s;
+  height: 15px;
+  color: white;
+  background-color: transparent;
 }
-

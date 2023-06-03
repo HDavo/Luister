@@ -32,7 +32,8 @@
             $prepQ->execute();
             $exist = $prepQ->fetch();
 
-            if(!$exist){
+	    if(!$exist){
+		$album = json_encode($album);
                 $prepQ = $conection->prepare("INSERT INTO customlisttracks (title,artists,album,customlistid,lookupkey) VALUES (:title,:artists,:album,:listid,:lookupkey)");
                 $prepQ->bindParam(':title', $title);
                 $prepQ->bindParam(':artists', $artists);

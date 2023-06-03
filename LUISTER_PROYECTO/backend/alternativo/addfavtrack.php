@@ -47,6 +47,6 @@
             
         }else echo json_encode(['status'=>400, 'message'=>'No se recibieron datos']);
     } catch (PDOException $e) {
-        echo die(json_encode(['status'=>500, 'message'=>'Hubo un error inesperado']));
+        echo die(json_encode(['status'=>500, 'message'=>'Hubo un error inesperado '.$e->getMessage()]));
     }
 ?>
