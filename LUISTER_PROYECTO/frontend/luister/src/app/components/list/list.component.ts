@@ -31,13 +31,13 @@ export class ListComponent implements OnInit{
   public owner!: string;
   public tracks: any[] = [];
 
-  fields: string[] = ['number', 'title', 'album', 'artist', 'includedon', 'liked', 'remove'];
+  fields: string[] = ['number', 'title', 'album', 'artists', 'includedon', 'liked', 'remove'];
   dataSource!: MatTableDataSource<any>;
   labels: { [key: string]: string } = {
     'number': '#',
     'title': 'Titulo',
     'album': 'Album',
-    'artist': 'Artista',
+    'artists': 'Artista',
     'includedon': 'Fecha',
     'duration': 'Duración',
     'liked': '',
@@ -91,6 +91,11 @@ export class ListComponent implements OnInit{
         });
       }
     });
+  }
+  ngAfterViewInit(){
+    setTimeout(() => {
+      this.dataSource.sort = this.sort;
+    }, 1000);
   }
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;

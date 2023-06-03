@@ -40,10 +40,10 @@
         <th mat-header-cell *matHeaderCellDef  mat-sort-header>{{labels[field]}}</th>
         <td mat-cell *matCellDef="let content; let i = index" class="field"  ctm="track" id="{{content['lookupkey']}}">
           <span *ngIf="field != 'number'; else number"> 
-            <span *ngIf="field == 'title' || field == 'artist' || field == 'album'; else otherfield">
+            <span *ngIf="field == 'title' || field == 'artists' || field == 'album'; else otherfield">
               <a *ngIf="field == 'title'" routerLink="/details/track/{{content['lookupkey']}}" ctm="track" id="{{content['lookupkey']}}"> {{content[field]}} </a>
-              <span *ngIf="field == 'artist'">
-                <a *ngFor="let artist of content['artists']" routerLink="/details/{{field}}/{{artist.lookupkey}}" ctm="artist" id="{{artist.lookupkey}}">
+              <span *ngIf="field == 'artists'">
+                <a *ngFor="let artist of content[field]" routerLink="/details/{{field}}/{{artist.lookupkey}}" ctm="artist" id="{{artist.lookupkey}}">
                   {{artist.name}} &nbsp;
                 </a>
               </span>
