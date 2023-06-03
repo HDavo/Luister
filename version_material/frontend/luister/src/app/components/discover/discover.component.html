@@ -2,24 +2,39 @@
 
     <div class="search-container">
         <div class="search-field-shadow">
-            <input type="text" name="search" 
-                id="search-field" [(ngModel)]="searchLabel" 
-                class="search-field" autocomplete="off" 
+            <input type="text" name="search"
+                id="search-field" [(ngModel)]="searchLabel"
+                class="search-field" autocomplete="off"
                 placeholder="¿Qué te apetece escuchar?" (ngModelChange)="getData($event)">
         </div>
     </div>
 
     <div class="search-filter-container">
-        <select name="platforms" class="filter filter-platform" [(ngModel)]="platform" (ngModelChange)="getData($event)">
+      <mat-form-field appearance="fill">
+        <mat-label>Spotify</mat-label>
+        <mat-select id="custom-platforms" name="platforms"[(ngModel)]="platform" (ngModelChange)="getData($event)">
+          <mat-option value="sfy">Spotify</mat-option>
+          <mat-option value="dzr">Deezer</mat-option>
+        </mat-select>
+      </mat-form-field>
+        <!-- <select name="platforms" class="filter filter-platform" [(ngModel)]="platform" (ngModelChange)="getData($event)">
             <option value="sfy" selected>Spotify</option>
             <option value="dzr">Deezer</option>
-        </select>
-        <select name="elements" class="filter filter-element" [(ngModel)]="elements">
+        </select> -->
+        <mat-form-field appearance="fill">
+          <mat-select name="elements" [(ngModel)]="elements">
+            <mat-option value="sfy">Todo</mat-option>
+            <mat-option value="dzr">Canciones</mat-option>
+            <mat-option value="dzr">Álbumes</mat-option>
+            <mat-option value="dzr">Artistas</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <!-- <select name="elements" [(ngModel)]="elements">
             <option value="all" selected>Todo</option>
             <option value="track">Canciones</option>
             <option value="album">Álbumes</option>
             <option value="artist">Artistas</option>
-        </select>
+        </select> -->
     </div>
 
     <div class="search-page-default-body" *ngIf="searchFullResults == null; else searchresults">
@@ -85,7 +100,7 @@
                                 <span class="msr-ae-info-title">
                                     <a routerLink="/details/{{album.type}}/{{album.id}}" ctm="album" id="{{album.id}}">{{album.name}}</a>
                                 </span>
-                                
+
                                 <span class="msr-ae-info-artists">
                                    <a *ngFor="let artist of album.artists; let i = index"
                                     routerLink="/details/artist/{{artist.id}}"
@@ -138,7 +153,7 @@
                         <div>
                             <a routerLink="/details/{{track.type}}/{{track.id}}" class="pse-card-album-name"> {{track.name}} </a>
                             <div>
-                                <span class="pse-card-track-artists" *ngFor="let artist of track.artists; let i = index"> 
+                                <span class="pse-card-track-artists" *ngFor="let artist of track.artists; let i = index">
                                    <i class="ft" *ngIf="i != 0"> Ft </i> <a routerLink="/details/artist/{{artist.id}}" ctm="artist" id="{{artist.id}}">{{artist.name}}</a>
                                 </span>
                             </div>
@@ -164,7 +179,7 @@
             </div>
 
         </div>
-        
+
         <div *ngIf="elements == 'artist' && artists" class="page-section">
             <h2 class="page-section-title">Artistas</h2>
             <div class="page-section-content">
