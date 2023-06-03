@@ -54,7 +54,7 @@
                             <a routerLink="/details/track/{{track.id}}">{{track.name}}</a>
                             <div>
                                 <span *ngFor="let artist of track.artists; let i = index">
-                                    <span *ngIf="i != 0">&nbsp;&&nbsp;</span> 
+                                    <span *ngIf="i != 0">&nbsp;&&nbsp;</span>
                                     <a routerLink="/details/artist/{{artist.id}}" ctm="artist" id="{{artist.id}}">{{artist.name}}</a>
                                 </span>
                             </div>
@@ -83,17 +83,17 @@
             <div class="left-bottom-info">
                 <div>Album: <a routerLink="/details/album/{{track.album.id}}">{{track.album.name}}</a></div>
                 <div>Lanzamiento: {{track.album.release}}</div>
-                <div>Explícita: 
+                <div>Explícita:
                     <span *ngIf="track.data.explicit; else noExpl"> Sí</span>
-                    <ng-template #noExpl>No</ng-template> 
+                    <ng-template #noExpl>No</ng-template>
                 </div>
                 <div class="like-dislike-cont">
-                    <span (click)="like($event)" 
-                    class="like" 
+                    <span (click)="like($event)"
+                    class="like"
                     title="{{track.data.id}}-{{track.data.name}}">Me gusta</span>
 
-                    <span (click)="dislike($event)" 
-                    class="dislike" 
+                    <span (click)="dislike($event)"
+                    class="dislike"
                     title="{{track.data.id}}-{{track.data.name}}">Ya no me gusta</span>
                 </div>
             </div>
@@ -136,7 +136,7 @@
                             <a routerLink="/details/track/{{thisTrack.id}}">{{thisTrack.name}}</a>
                             <div>
                                 <span *ngFor="let artist of thisTrack.artists; let i = index">
-                                    <span *ngIf="i != 0"> & </span> 
+                                    <span *ngIf="i != 0"> & </span>
                                     <a routerLink="/details/artist/{{artist.id}}" ctm="artist" id="{{artist.id}}">{{artist.name}}</a>
                                 </span>
                             </div>
@@ -158,13 +158,20 @@
                 </ng-template>
             </div>
             <div class="left-bottom-info">
-                <div>Género: 
+                <div>Género:
                     <span *ngFor="let genre of artist.data.genres; let i = index">
                         <span *ngIf="i != 0"> - </span> {{ genre | titlecase }}
                     </span>
                 </div>
                 <div class="details-follow-artist">
-                    Seguir
+                    <button mat-raised-button color="primary">
+                      <mat-icon>trending_up</mat-icon>
+                      Seguir
+                    </button>
+                      <button mat-raised-button color="primary">
+                        <mat-icon>trending_up</mat-icon>
+                        Eliminar
+                      </button>
                 </div>
             </div>
             <div class="left-bottom-platforms">
@@ -196,7 +203,7 @@
                             <a routerLink="/details/track/{{track.id}}">{{track.name}}</a>
                             <div>
                                 <span *ngFor="let artist of track.artists; let i = index">
-                                    <span *ngIf="i != 0">&nbsp;&&nbsp;</span> 
+                                    <span *ngIf="i != 0">&nbsp;&&nbsp;</span>
                                     <a routerLink="/details/artist/{{artist.id}}" ctm="artist" id="{{artist?.id}}">{{artist.name}}</a>
                                 </span>
                             </div>
