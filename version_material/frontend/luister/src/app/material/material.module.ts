@@ -8,6 +8,8 @@ import {MatSortModule} from '@angular/material/sort';
 import {MatIconModule} from '@angular/material/icon';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatInputModule} from '@angular/material/input';
+import {MatButtonModule} from '@angular/material/button';
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 
 
 
@@ -21,7 +23,9 @@ import {MatInputModule} from '@angular/material/input';
     MatTableModule,
     MatIconModule,
     MatTooltipModule,
-    MatInputModule
+    MatInputModule,
+    MatButtonModule,
+    MatSlideToggleModule
   ],
   exports: [
     MatFormFieldModule,
@@ -29,7 +33,9 @@ import {MatInputModule} from '@angular/material/input';
     MatTableModule,
     MatIconModule,
     MatTooltipModule,
-    MatInputModule
+    MatInputModule,
+    MatButtonModule,
+    MatSlideToggleModule
   ]
 })
 export class MaterialModule { }

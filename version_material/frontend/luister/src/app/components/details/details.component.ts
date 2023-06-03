@@ -5,6 +5,7 @@ import { ApibindingService } from 'src/app/services/apibinding.service';
 import { LastFmService } from 'src/app/services/last-fm.service';
 import { LuisterSweetAlert } from 'src/app/services/luisterSweetAlert';
 import { registerLocaleData } from '@angular/common';
+import { MatIconModule } from '@angular/material/icon';
 
 //necesario para poder mostrar el formato de números de forma que se ajuste al formato usado en España
 import localeEs from '@angular/common/locales/es';
@@ -126,7 +127,7 @@ export class DetailsComponent extends SetData{
         .then((response:Observable<any>)=>{
           response.subscribe((res:any)=>{
             this.artist.data = this.setArtist(res);
-    
+
             this.fromSpotify.getArtistTopTracks(id)
             .then((response:Observable<any>)=>{
               response.subscribe((res:any)=>{
@@ -136,7 +137,7 @@ export class DetailsComponent extends SetData{
             })
             this.lastFm.getArtistInfo(this.artist.data.name)
             .subscribe((res:any) => {
-                this.artist.bio = `${res.artist.bio.summary.split('<a href').shift()}`; 
+                this.artist.bio = `${res.artist.bio.summary.split('<a href').shift()}`;
             })
           },
           (error:any)=>{
@@ -158,7 +159,7 @@ export class DetailsComponent extends SetData{
 
           this.lastFm.getArtistInfo(this.artist.data.name)
           .subscribe((res:any) => {
-            this.artist.bio = `${res.artist.bio.summary.split('<a href').shift()}`; 
+            this.artist.bio = `${res.artist.bio.summary.split('<a href').shift()}`;
           })
         },
         (error:any)=>{
@@ -177,14 +178,14 @@ export class DetailsComponent extends SetData{
         .then((response:Observable<any>)=>{
           response.subscribe((res:any)=>{
             this.track.data = this.setTrack(res);
-    
+
             this.fromSpotify.getAlbum(res.album.id)
             .then((response:Observable<any>)=>{
               response.subscribe((res:any)=> {
                 this.track.album = this.setAlbum(res)
               });
             })
-    
+
             res.artists.forEach((artist:any, index:number) => {
               this.track.artists=[];
               this.fromSpotify.getArtist(artist.id)
@@ -192,7 +193,7 @@ export class DetailsComponent extends SetData{
                 response.subscribe((res:any)=> this.track.artists[index]=this.setArtist(res))
               })
             })
-    
+
           })
         })
       },
@@ -221,7 +222,7 @@ export class DetailsComponent extends SetData{
     if(uri){
       if(DetailsComponent.audio){
         DetailsComponent.audio.src = '';
-  
+
         DetailsComponent.audio = new Audio(uri);
         DetailsComponent.audio.volume = 0.5;
         DetailsComponent.audio.play();

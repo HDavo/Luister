@@ -44,7 +44,7 @@ INSERT INTO `customlists` (`id`, `title`, `description`, `image`, `userid`, `cre
 CREATE TABLE `customlisttracks` (
   `id` INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
   `title` VARCHAR(55) NOT NULL,
-  `artist` TEXT(255) NOT NULL,
+  `artists` TEXT(255) NOT NULL,
   `album` JSON NOT NULL,
   `customlistid` INT(11) NOT NULL,
   `lookupkey` VARCHAR(100) NOT NULL,
@@ -52,18 +52,10 @@ CREATE TABLE `customlisttracks` (
    CONSTRAINT fk_customlisttracks_customlistid FOREIGN KEY (customlistid) REFERENCES customlists(id) ON DELETE  CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
-INSERT INTO `customlisttracks` (`id`, `title`, `artist`, `customlistid`, `lookupkey`, `includedon`, `album`) VALUES
-(9, 'Falling Inside the Black', 'Skillet', 2, 'dzr:707229', '2023-06-01 11:39:42', ''),
-(10, 'Animal I Have Become', ', Three Days Grace', 2, 'sfy:56sk7jBpZV0CD31G9hEU3b', '2023-06-01 17:19:19', ''),
-(11, 'Its All Over', 'Three Days Grace', 2, 'sfy:2QZxpZDfJjhEGclSszvMVX', '2023-06-01 17:21:18', ''),
-(12, 'Ojo de Halcón', 'Hoke, Louis Amoeba', 3, 'sfy:0VhfZo2uwcWnQGExuOxNKq', '2023-06-01 17:23:09', ''),
-(13, 'Animal I Have Become', 'Three Days Grace', 3, 'sfy:56sk7jBpZV0CD31G9hEU3b', '2023-06-01 18:59:14', ''),
-(14, 'Monster', 'Skillet', 2, 'dzr:4116951', '2023-06-01 19:05:50', '');
-
 CREATE TABLE `favoritetracks` (
   `id` INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
   `title` VARCHAR(55) NOT NULL,
-  `artist` TEXT(255) NOT NULL,
+  `artists` TEXT(255) NOT NULL,
   `album` JSON NOT NULL,
   `userid` INT(11) NOT NULL,
   `lookupkey` TEXT NOT NULL,
@@ -111,25 +103,13 @@ $$
 DELIMITER ;
 
 ALTER TABLE `customlists`
-  ADD UNIQUE KEY `title` (`title`,`userid`);
-
-ALTER TABLE `customlisttracks`
-  ADD UNIQUE KEY `title` (`title`,`artist`,`customlistid`);
-
-ALTER TABLE `favoritetracks`
-  ADD UNIQUE KEY `userid` (`userid`,`title`,`artist`);
+  ADD UNIQUE KEY `unique_customlist` (`title`,`userid`);
 
 ALTER TABLE `followedartists`
-  ADD UNIQUE KEY `name` (`name`,`follower`);
-
-ALTER TABLE `passwordresettokens`
-  ADD UNIQUE KEY `value` (`value`) USING HASH;
-
-ALTER TABLE `sessions`
-  ADD UNIQUE KEY `token` (`token`) USING HASH;
+  ADD UNIQUE KEY `uniqued_artist` (`name`,`follower`);
 
 ALTER TABLE `users`
-  ADD UNIQUE KEY `email` (`email`);
+  ADD UNIQUE KEY `unique_email` (`email`);
 
 ALTER TABLE `usersettings`
   ADD UNIQUE KEY `userid_key_value`(`key`,`value`,`userid`);

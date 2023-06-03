@@ -33,9 +33,9 @@
             $exist = $prepQ->fetch();
 
             if(!$exist){
-                $prepQ = $conection->prepare("INSERT INTO favoritetracks (title,artist,album,userid,lookupkey) VALUES (:title,:artist,:album,:userid,:lookupkey)");
+                $prepQ = $conection->prepare("INSERT INTO favoritetracks (title,artists,album,userid,lookupkey) VALUES (:title,:artists,:album,:userid,:lookupkey)");
                 $prepQ->bindParam(':title', $title);
-                $prepQ->bindParam(':artist', $artists);
+                $prepQ->bindParam(':artists', $artists);
                 $prepQ->bindParam(':album', $album);
                 $prepQ->bindParam(':userid', $userid);
                 $prepQ->bindParam(':lookupkey', $lookupkey);
