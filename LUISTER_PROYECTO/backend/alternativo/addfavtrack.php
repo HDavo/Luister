@@ -35,7 +35,7 @@
             if(!$exist){
                 $prepQ = $conection->prepare("INSERT INTO favoritetracks (title,artist,album,userid,lookupkey) VALUES (:title,:artist,:album,:userid,:lookupkey)");
                 $prepQ->bindParam(':title', $title);
-                $prepQ->bindParam(':artist', $artist);
+                $prepQ->bindParam(':artist', $artists);
                 $prepQ->bindParam(':album', $album);
                 $prepQ->bindParam(':userid', $userid);
                 $prepQ->bindParam(':lookupkey', $lookupkey);
@@ -47,6 +47,6 @@
             
         }else echo json_encode(['status'=>400, 'message'=>'No se recibieron datos']);
     } catch (PDOException $e) {
-        echo die(json_encode(['status'=>500, 'message'=>'Hubo un error inesperado']));
+        echo die(json_encode(['status'=>500, 'message'=>'Hubo un error inesperado '.$e->getMessage()]));
     }
 ?>
