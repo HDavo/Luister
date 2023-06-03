@@ -24,10 +24,11 @@
             $album = json_encode($data->album);
             $listid = $data->listid;
             $lookupkey = $data->lookupkey;
+            $x = json_decode($album);
 
             $prepQ = $conection->prepare("SELECT id FROM customlisttracks WHERE title = :title AND album = :album AND customlistid = :listid");
             $prepQ->bindParam(':title', $title);
-            $prepQ->bindParam(':album', $album['title']);
+            $prepQ->bindParam(':album', $x);
             $prepQ->bindParam(':listid', $listid);
             $prepQ->execute();
             $exist = $prepQ->fetch();
