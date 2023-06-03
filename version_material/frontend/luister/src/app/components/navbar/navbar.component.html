@@ -18,8 +18,8 @@
             </li>
         </ul>
         <div class="menu" id="userSession">
-          <!-- <button mat-raised-button color="primary"><a href="ecosia.org">Cosa</a></button> -->
-           <span *ngIf="!username; else profile"><a routerLink="/signin">Iniciar sesión</a></span>
+          <button mat-raised-button color="primary" *ngIf="!username; else profile"><a routerLink="/signin">Iniciar sesión</a></button>
+           <!-- <span *ngIf="!username; else profile"><a routerLink="/signin">Iniciar sesión</a></span> -->
             <!-- <span *ngIf="!username; else profile"><a routerLink="/signin">Iniciar sesión</a></span> -->
             <ng-template #profile>
                 <ul class="profile-container">
