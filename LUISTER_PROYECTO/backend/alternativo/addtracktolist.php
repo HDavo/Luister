@@ -25,7 +25,7 @@
             $listid = $data->listid;
             $lookupkey = $data->lookupkey;
 
-            $prepQ = $conection->prepare("SELECT id FROM customlisttracks WHERE title = :title AND artist = :artist AND customlistid = :listid");
+            $prepQ = $conection->prepare("SELECT id FROM customlisttracks WHERE title = :title AND album = :album AND customlistid = :listid");
             $prepQ->bindParam(':title', $title);
             $prepQ->bindParam(':artist', $artist);
             $prepQ->bindParam(':listid', $listid);
