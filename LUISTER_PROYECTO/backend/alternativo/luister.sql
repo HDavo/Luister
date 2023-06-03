@@ -45,7 +45,7 @@ CREATE TABLE `customlisttracks` (
   `id` int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
   `title` varchar(55) NOT NULL,
   `artist` TEXT NULL,
-  `album` JSON NOT NULL,
+  `album` JSON DEFAULT NULL,
   `customlistid` int(11) NOT NULL,
   `lookupkey` varchar(100) NOT NULL,
   `includedon` datetime NOT NULL DEFAULT current_timestamp(),

@@ -47,7 +47,7 @@
                                     Estimado, <br>
                                     Acceda al siguiente enlace para asignar una 
                                     contraseña y activar su usuario <br>
-                                    enlace: http://luister-db:4200/set-your-password/$token
+                                    enlace: http://51.91.78.21/set-your-password/$token
 
                                     Cordiales saludos, <br>
 
