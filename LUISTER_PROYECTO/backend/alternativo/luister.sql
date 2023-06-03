@@ -1,21 +1,6 @@
--- phpMyAdmin SQL Dump
--- version 5.2.0
--- https://www.phpmyadmin.net/
---
--- Servidor: 127.0.0.1
--- Tiempo de generación: 01-06-2023 a las 23:06:36
--- Versión del servidor: 10.4.27-MariaDB
--- Versión de PHP: 8.0.25
-
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
 SET time_zone = "+00:00";
-
-
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
 
 DROP DATABASE IF EXISTS `luister`;
 
@@ -59,11 +44,11 @@ INSERT INTO `customlists` (`id`, `title`, `description`, `image`, `userid`, `cre
 CREATE TABLE `customlisttracks` (
   `id` int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
   `title` varchar(55) NOT NULL,
-  `artist` varchar(25) NOT NULL,
+  `artist` TEXT NULL,
+  `album` JSON NOT NULL,
   `customlistid` int(11) NOT NULL,
   `lookupkey` varchar(100) NOT NULL,
   `includedon` datetime NOT NULL DEFAULT current_timestamp(),
-  `album` varchar(100) NOT NULL,
    CONSTRAINT fk_customlisttracks_customlistid FOREIGN KEY (customlistid) REFERENCES customlists(id) ON DELETE  CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -125,17 +110,6 @@ CREATE TRIGGER `session_exp_date` BEFORE INSERT ON `sessions` FOR EACH ROW SET N
 $$
 DELIMITER ;
 
-CREATE TABLE `trackalbums` (
-  `lookupkey` varchar(100) NOT NULL,
-  `title` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
-
-CREATE TABLE `trackartists` (
-  `lookupkey` varchar(100) NOT NULL,
-  `name` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
 DELIMITER $$
 CREATE TRIGGER `remove_track_artist` AFTER DELETE ON `customlisttracks` FOR EACH ROW DELETE FROM `trackartists` WHERE OLD.artist = lookupkey
 $$
@@ -164,12 +138,6 @@ ALTER TABLE `passwordresettokens`
 ALTER TABLE `sessions`
   ADD UNIQUE KEY `token` (`token`) USING HASH;
 
-ALTER TABLE `trackalbums`
-  ADD UNIQUE KEY `lookupkey` (`lookupkey`,`title`);
-
-ALTER TABLE `trackartists`
-  ADD UNIQUE KEY `lookupkey` (`lookupkey`,`name`);
-
 ALTER TABLE `users`
   ADD UNIQUE KEY `email` (`email`);
 
@@ -177,7 +145,3 @@ ALTER TABLE `usersettings`
   ADD UNIQUE KEY `userid_key_value`(`key`,`value`,`userid`);
 
 COMMIT;
-
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

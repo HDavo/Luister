@@ -17,7 +17,7 @@
         <h2 class="new-custom-list-form-title">Editar información</h2>
         <div class="nclf-body">
             <div class="new-custom-list-form-image">
-                <img *ngIf="!newListImagePreview; else image" src="../../../assets/images/default-custom-list.png" alt="default image">
+                <img *ngIf="!newListImagePreview; else image" src="/assets/images/default-custom-list.png" alt="default image">
                 <ng-template #image>
                     <img src="{{newListImagePreview}}" alt="default image">
                 </ng-template>
@@ -58,7 +58,7 @@
                     <span class="list-count">{{this.favtracks.length}} canciones </span>
                 </div>
             </div>
-            <img class="fav-songs-list-image" src="../../../assets/images/fav-list.webp" alt="favorite songs">
+            <img class="fav-songs-list-image" src="/assets/images/fav-list.webp" alt="favorite songs">
         </div>
         
         <div class="custom-list" *ngFor="let list of customLists" ctm="list" id="{{list.id}}">
@@ -68,7 +68,7 @@
             </div>
             <img *ngIf="list?.image; else defaultimg" class="custom-list-image" src="{{imgroot}}/images/customlist/{{list.id}}/{{list.image}}" alt="favorite songs">
             <ng-template #defaultimg>
-                <img class="custom-list-image" src="../../../assets/images/default-custom-list.png" alt="favorite songs">
+                <img class="custom-list-image" src="/assets/images/default-custom-list.png" alt="favorite songs">
             </ng-template>
         </div>
 

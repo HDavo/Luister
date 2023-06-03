@@ -2,7 +2,10 @@
 
   <div class="list-page-section list-header">
     <div class="image-cont">
-      <img src="{{img}}" alt="lista">
+      <img *ngIf="img && img !=' '; else defimg" src="{{img}}" alt="lista">
+      <ng-template #defimg>
+        <img src="../../../assets/images/default-custom-list.png" alt="lista">
+      </ng-template>
     </div>
     <div class="list-details">
       <div class="list-type">
@@ -28,7 +31,7 @@
     <span class="list-actions"></span> <div class="table-search-field"></div>
   </div>
 
-  <div *ngIf="tracks; else explore" class="list-page-section table">
+  <div *ngIf="tracks.length > 0; else explore" class="list-page-section table">
     <table mat-table [dataSource]="dataSource" matSort class="list-table">
       <tr mat-header-row *matHeaderRowDef="fields"></tr>
       <tr mat-row *matRowDef="let row; columns: fields" class="table-head"></tr>

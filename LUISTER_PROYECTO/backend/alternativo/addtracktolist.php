@@ -20,7 +20,8 @@
     
         if($data){
             $title = $data->title;
-            $artist = $data->artist;
+            $artists = $data->artists;
+            $album = $data->album;
             $listid = $data->listid;
             $lookupkey = $data->lookupkey;
 

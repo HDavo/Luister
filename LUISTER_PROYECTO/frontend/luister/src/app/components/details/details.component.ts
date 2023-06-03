@@ -10,9 +10,6 @@ import { registerLocaleData } from '@angular/common';
 import localeEs from '@angular/common/locales/es';
 import { LuisterCookieManagerService } from 'src/app/services/luister-cookie-manager.service';
 import { LuisterApiService } from 'src/app/services/luister-api.service';
-import { Track } from 'src/app/interfaces/Track';
-import { Artist } from 'src/app/interfaces/Artist';
-import { AlbumExtended } from 'src/app/interfaces/AlbumExtended';
 import { SetData } from 'src/app/interfaces/SetData';
 import { DeezerService } from 'src/app/services/deezer.service';
 registerLocaleData(localeEs, 'es');
@@ -236,15 +233,15 @@ export class DetailsComponent extends SetData{
   }
   like(event: any){
     const userid = this.cookieService.get('userid');
-    let name, lookupkey;
+    let title, lookupkey;
     event.target.getAttribute('title').split('-').
     forEach((e:string, i:number)=>{
-    (i == 0)? lookupkey = e : name = e;
+    (i == 0)? lookupkey = e : title = e;
     })
     this.luister.addFavTracks({
       userid,
       lookupkey,
-      name
+      title
     }).subscribe((response:any)=>{
       if(response.status == 200){
         alert('Añadido a favoritos')
@@ -253,13 +250,13 @@ export class DetailsComponent extends SetData{
   }
   dislike(event: any){
     const userid = this.cookieService.get('userid');
-    let name, lookupkey;
+    let title, lookupkey;
     event.target.getAttribute('title').split('-').
     forEach((e:string, i:number)=>{
-    (i == 0)? lookupkey = e : name = e;
+    (i == 0)? lookupkey = e : title = e;
     })
     this.luister.removeFavTracks({
-      userid, lookupkey, name
+      userid, lookupkey, title
     }).subscribe((response:any)=>{
       if(response.status == 200){
         alert('Eliminado de favoritos')

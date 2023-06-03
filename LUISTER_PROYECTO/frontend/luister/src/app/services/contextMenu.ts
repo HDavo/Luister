@@ -276,10 +276,15 @@ export class ContexMenu {
     addTrackToList(listid:any){
         let data = {
                 title: '',
-                artist: '',
+                artists: '',
+                album: {
+                    title: '',
+                    lookupkey: ''
+                },
                 listid: listid,
                 lookupkey: this.id
-            }
+            },
+        art: any[] = [];
         const platform: string = this.id.split(':').shift(),
         uuid:string = this.id.split(':').pop(),
         getTrack:{[key:string]: Function} = {
@@ -289,16 +294,19 @@ export class ContexMenu {
                     response.subscribe((res:any)=>{
                             data.title = res.name;
                             res.artists.forEach((e:any, i:number)=>{
-                                (i == 0)
-                                ?data.artist += `${e.name}`
-                                : data.artist += `, ${e.name}`;
+                               art[i] = { "name": e.name, "lookupkey": res.id};
                             });
+                            data.artists = JSON.stringify(art);
+                            data.album.title = res.album.name;
+                            data.album.lookupkey = res.album.id;
+
                             this.luister.addTrackToList(data)
                             .subscribe((response:any)=>{
                                 if(response.status == 200){
                                     alert('Pista agregada a lista!');
                                 }else alert(response.message);
                             })
+
                         this.removeContexMenu();
                     });
                 })
@@ -307,8 +315,11 @@ export class ContexMenu {
                 this.fromDeezer.getElement(uuid, this.etype)
                 .subscribe((respone:any)=>{
                     data.title = respone.title;
-                    data.artist = respone.artist.name;
-                    
+                    art = [{"name": respone.artist.name, "lookupkey":  respone.artist.id}];
+                    data.artists = JSON.stringify(art);
+                    data.album.title = respone.album.title;
+                    data.album.lookupkey = respone.album.id;
+
                     this.luister.addTrackToList(data)
                     .subscribe((response:any)=>{
                         if(response.status == 200){

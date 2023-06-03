@@ -8,7 +8,7 @@
     if($method == "OPTIONS") {
         die();
     }
-    $data=$name=$userid=$lookupkey=$conection='';
+    $data=$title=$userid=$lookupkey=$conection='';
 
     try {
         $conection = new PDO('mysql:host=luister-db:3306;dbname=luister','admin','admin',[
@@ -19,12 +19,12 @@
         $data = json_decode(file_get_contents("php://input"));
     
         if($data){
-            $name = $data->name;
+            $title = $data->title;
             $userid = $data->userid;
             $lookupkey = $data->lookupkey;
 
-            $prepQ = $conection->prepare("DELETE FROM favoritetracks WHERE title = :name AND userid = :userid AND lookupkey = :lookupkey");
-            $prepQ->bindParam(':name', $name);
+            $prepQ = $conection->prepare("DELETE FROM favoritetracks WHERE title = :title AND userid = :userid AND lookupkey = :lookupkey");
+            $prepQ->bindParam(':title', $title);
             $prepQ->bindParam(':userid', $userid);
             $prepQ->bindParam(':lookupkey', $lookupkey);
             $prepQ->execute();

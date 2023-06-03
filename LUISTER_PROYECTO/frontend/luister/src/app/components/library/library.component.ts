@@ -4,6 +4,7 @@ import { FavTrack } from 'src/app/interfaces/Favtrack';
 import { ContexMenu } from 'src/app/services/contextMenu';
 import { LuisterApiService } from 'src/app/services/luister-api.service';
 import { LuisterCookieManagerService } from 'src/app/services/luister-cookie-manager.service';
+import { environment } from 'src/environments/environments';
 
 @Component({
   selector: 'app-library',
@@ -11,7 +12,7 @@ import { LuisterCookieManagerService } from 'src/app/services/luister-cookie-man
   styleUrls: ['./library.component.css']
 })
 export class LibraryComponent implements OnInit {
-  public imgroot:string = 'http://localhost:8000';
+  public imgroot:string = environment.webapi;
   public customLists:any[] = [];
   public newListImagePreview: string | null = null;
   public customListForm:FormGroup = this.formBuilder.group({
