@@ -1,0 +1,42 @@
+.cookie-banner-container{
+    visibility: hidden;
+    width: 100%;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.719);
+    position: fixed;
+    z-index: 5;
+    top: 0;
+    left: 0;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+}
+.cookie-banner{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    row-gap: 22px;
+    width: 100%;
+    background: rgb(255, 255, 255);
+    padding: 22px 0;
+    animation: to-top3;
+    animation-duration: .6s;
+}
+.banner-info{
+    color: black;
+    font-weight: bolder;
+    font-size: 25px;
+    width: 90%;
+    max-width: 1500px;
+    font-family: 'Montserrat';
+}
+.banner-button-admit{
+    max-width: 200px;
+    min-height: 33px;
+    padding: 10px 20px;
+    color: rgb(255, 255, 255);
+    background: black;
+    font-size: 25px;
+    cursor: pointer;
+    font-family: 'Montserrat';
+}

@@ -11,7 +11,7 @@
     $data=$userid=$conection='';
 
     try {
-        $conection = new PDO('mysql:host=localhost:3306;dbname=luister','admin','admin',[
+        $conection = new PDO('mysql:host=luister-db:3306;dbname=luister','admin','admin',[
             PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
             PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC
         ]);

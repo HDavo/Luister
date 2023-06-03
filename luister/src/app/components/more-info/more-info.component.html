@@ -1,0 +1,101 @@
+<div class="more-info-container">
+
+    <div *ngIf="page == 'luister'" class="luister-info info-container">
+
+        <h1>¿Qué es Luister?</h1>
+
+        <p>
+            Luister proviene del afrikáans y significa escuchar. Es una página web cuya temática es la música. Es una página centrada en la música en streaming y el contenido o catálogo que ofrecen las distintas plataformas de este sector.
+            En Luister se podrán comparar catálogos, ver novedades o los contenidos más populares de las distintas plataformas. Todo ello con el fin de ser una herramienta que facilite la elección entre servicios de streaming, en el caso de que no se hayan usado nunca, o bien el cambio de servicio.
+            Con el fin de facilitar el cambio entre plataformas en Luister se podrá llevar un registro del contenido favorito del usuario para que pueda traspasarse de manera más sencilla entre plataformas. De esta manera, Luister puede definirse como un buscador, comparador de catálogos de servicios de streaming de música y una base de datos para el usuario y su contenido favorito.
+        </p>
+
+        <h1>¿Para qué sirve?</h1>
+
+        <p>
+            Luister tiene 4 funcionalidades que son la base de la página, todas ellas relacionadas con los servicios de streaming musicales y su contenido. Cada una de estas funcionalidades, excepto una, tendrá un apartado propio dentro de la página y de la barra de navegación.
+            Posibilidad de seguir las novedades de las distintas plataformas en un mismo lugar. Estas novedades del catálogo serán mostradas según la plataforma y separadas por un filtro temporal para facilitar su consulta.
+            Seguimiento del contenido más popular en los distintos servicios. En este apartado se mostrará el contenido más popular por artistas y por tipo de contenido (canciones, álbumes, EPs…)
+            Posibilidad de ver los detalles del contenido. Debido a la naturaleza de esta funcionalidad, no será accesible desde la barra de navegación. Para acceder a ella, se deberá pulsar sobre un elemento de contenido y se podrán ver distintos detalles del elemento pulsado y de su autor, contenido relacionado o saber en qué plataforma se encuentra disponible ese elemento en particular. 
+            Lista o registro de contenido. Se trata de la funcionalidad más importante de Luister y estará integrada dentro del apartado “Mi Lista”. En esta parte de la página, los usuarios podrán llevar un registro de su contenido preferido, independientemente de la plataforma en la que se encuentre disponible o usen de manera habitual. Este registro podrá ser exportado en diversos formatos para ser descargado o usado para hacer una migración entre servicios de streaming. 
+            La suma de estas funcionalidades hace que Luister sea un buscador, un comparador de catálogos entre servicios de streaming y una base de datos de contenido musical.
+        </p>
+
+        <h1>¿Cómo funciona?</h1>
+
+        <p>
+            A través del uso de diferentes APIs, que nos proporcionarán el contenido que vamos a usar de las distintas plataformas de streaming, se realizarán las funciones previstas y explicadas en el apartado anterior.
+            Estas funcionalidades harán uso de una serie de elementos comunes para la interacción con el contenido como:
+            El carrusel de plataformas. Se mostrará en todos los apartados de la página web, salvo detalles, contacto y el perfil del usuario, y actuará como filtro del contenido mostrado dentro del apartado. 
+            Filtros. Se implementarán diversos filtros complementarios al carrusel de plataformas para poder acotar el contenido mostrado al usuario.
+            Uso de APIs para obtener el contenido mostrado. Es la base de Luister, ya que son el medio de obtener el contenido que se va a mostrar en la página. Estas APIs serán,  siempre que sea posible, desarrolladas en base a los medios proporcionados por las propias plataformas para los desarrolladores. El contenido no estará almacenado en nuestros servidores ya que se accederá a él usando las APIs para adaptar el contenido mostrado en función del apartado de la página en que se encuentre el usuario y las funcionalidades de las que esté haciendo uso.
+            El funcionamiento de la página variará en función del tipo de acceso que hagamos o del tipo de usuario que seamos. Los tipos de acceso o usuario son:
+            Primer acceso (sin cookies) o nuevo usuario: se muestra contenido genérico sin ninguna personalización dentro de las páginas de novedades y populares, es decir, el contenido será el que se recupere de las distintas APIs sin ningún tipo de filtro. Además, no se tendrá acceso a la sección de “Mi lista” y sus funcionalidades específicas, el resto de funcionalidades de la página serán las mismas sin ninguna diferencia entre los tipos de acceso.
+            Uso continuado sin cuenta o usuario sin cuenta: haciendo uso de las cookies y la actividad que se haya tenido en la página de manera previa (búsquedas, filtros aplicados, plataformas seleccionadas, artistas consultados…) se mostrará contenido personalizado en la medida de lo posible, es decir, el contenido recuperado por las APIs será filtrado en base a la información disponible de la actividad. Al ser un contenido dependiente de la información almacenada en las cookies no podrá verse en otro dispositivo o navegador y podrá perderse en el momento en que se borren o alteren las cookies.
+            Acceso autentificado o usuario con cuenta: el usuario tendrá las funcionalidades y la personalización disponible para los usuarios sin cuenta y además tendrá acceso a la sección “Mi Lista”, pudiendo hacer uso de las distintas funcionalidades específicas de la sección. Al crear una cuenta e iniciar sesión, tendrá acceso al contenido personalizado en distintos navegadores y/o dispositivos mientras mantenga su cuenta activa. Además en el caso de que anteriormente usase la página sin cuenta de forma habitual, al crear la cuenta se volcará toda la información posible en su perfil de usuario para mantener la personalización de contenidos que tuviese.
+        </p>
+
+    </div>
+
+    <div *ngIf="page == 'about-us'" class="about-us-info info-container">
+        <h1>Sobre nosotros</h1> <br>
+        <h1>Henry David Orbe Cisneros</h1>
+        <p>
+            Contribucion <br> <br>
+
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+            Voluptate dicta distinctio aliquid veniam vero! Delectus autem modi, maxime,
+            nulla atque beatae rerum culpa fugit quos omnis doloremque.
+            Porro, ipsa explicabo.
+        </p>    
+        <h1>Sandra Fernández Sánchez</h1>
+        <p>
+            Contribucion <br> <br>
+
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+            Voluptate dicta distinctio aliquid veniam vero! Delectus autem modi, maxime,
+            nulla atque beatae rerum culpa fugit quos omnis doloremque.
+            Porro, ipsa explicabo.
+        </p>    
+        <h1>Fausto Obama Ngomo Afgang</h1>
+        <p>
+            Contribucion <br> <br>
+
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+            Voluptate dicta distinctio aliquid veniam vero! Delectus autem modi, maxime,
+            nulla atque beatae rerum culpa fugit quos omnis doloremque.
+            Porro, ipsa explicabo.
+        </p>        
+    </div>
+
+    <div *ngIf="page == 'priv-policies'" class="priv-pol-info info-container">
+
+    </div>
+
+    <div *ngIf="page == 'cookies'" class="cookies-info info-container">
+
+    </div>
+
+    <div *ngIf="page == 'copyright'" class="copyright-info info-container">
+
+    </div>
+
+    <div *ngIf="page == 'attributions'" class="attributions-info info-container">
+        <h1>Atribuciones</h1>
+        <p>
+            Esta es la seccion de atribuciones
+        </p>
+
+        <ol>
+            <li>
+                <a href="https://www.freepik.es/vector-gratis/ilustracion-icono-lupa_2606133.htm#query=buscador%20logo&position=8&from_view=keyword&track=ais">Imagen de rawpixel.com</a> en Freepik
+            </li>
+
+            <li>
+                <a href="https://www.freepik.es/vector-gratis/estrella-navidad-dorada-aislada-sobre-fondo-blanco_18059286.htm#page=2&query=estrella&position=29&from_view=search&track=sph">Imagen de hannazasimova</a> en Freepik
+            </li>
+
+        </ol>
+    </div>
+
+</div>

@@ -1,0 +1,16 @@
+{
+    "/api1": {
+        "target": "https://accounts.spotify.com",
+        "secure": true,
+        "logLevel": "debug",
+        "changeOrigin": true,
+        "pathRewrite": { "^/api1": "" }
+    },
+    "/api2": {
+        "target": "https://api.deezer.com",
+        "secure": true,
+        "logLevel": "debug",
+        "changeOrigin": true,
+        "pathRewrite": { "^/api2": "" }
+    }
+}

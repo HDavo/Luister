@@ -1,0 +1,444 @@
+
+*{ font-family: 'Outfit'; }
+
+.search-container{
+    width: 85%;
+    min-height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.search-field-shadow{
+    opacity: 0;
+    display: flex;
+    align-items: center;
+    position: relative;
+    min-width: 100px;
+    max-width: 400px;
+    height: 55px;
+    border-radius: 111px;
+    color: rgb(255, 255, 255);
+    animation-name: enlarge;
+    animation-duration: 1.99s;
+    animation-fill-mode: forwards;
+}
+.search-field{
+    --border: 3px;
+    --padding: 44px;
+    padding: 0 var(--padding);
+    width: calc(100% - (var(--padding) + var(--border))*2);
+    height: 100%;
+    border-radius: 111px;
+    background: rgba(82, 82, 82, 0.187);
+    border: var(--border) groove white;
+    color: rgb(255, 255, 255);
+    font-size: 18px;
+    position: absolute;
+    font-family: 'Montserrat';
+}
+.search-field-shadow::before{   
+    font-size: 22px;
+    content: '\e986';
+    left: 16px;
+}
+.search-field-shadow::after{
+    font-size: 17px;
+    content: '\ea0f';
+    right: 16px;
+    cursor: pointer;
+}
+.search-field-shadow::after, .search-field-shadow::before{
+    position: absolute;
+    width: fit-content;
+    font-family: 'icomoon';
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.search-page-default-body{
+    opacity: 0;
+    width: 60%;
+    color: white;
+    font-family: 'Montserrat';
+    text-align: center;
+    margin: 22px 0;
+    line-height: 33px;
+    animation-name: to-bottom;
+    animation-duration: .6s;
+    animation-fill-mode: forwards;
+}
+.page-section-element:hover{
+    background-color: rgba(81, 81, 81, 0.364);
+    transform: scale(1.03);
+}
+.image{
+    position: relative;
+}
+.artist-image{
+    border-radius: 100%;
+    box-shadow: 0 0 8px 8px rgba(32, 16, 53, 0.1),
+                0 0 11px 22px rgba(0, 0, 0, 0.1),
+                0 0 22px 33px rgba(0, 0, 0, 0.1);
+}
+.album-image{
+    border-radius: 7px;
+}
+.card-description{
+    display: flex;
+    align-items: center;
+    text-align: justify;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.genre-element{
+    --opacity: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 200px;
+    height: 200px;
+    border-radius: clamp(5px,7px,10px);
+    overflow: hidden;
+    transition: box-shadow .3s, transform .15s;
+    position: relative;
+    cursor: pointer;
+       
+}
+
+/* *** */
+.main-search-results{
+    margin: 55px 0;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 33% 30% 33%;
+    grid-template-rows: 100%;
+    flex-wrap: wrap;
+    gap: 2%;
+}
+.main-elements-container{
+    width: 100%;
+    height: 100%;
+    min-width: 222px;
+    max-width: 555px;
+}
+.main-elements-container > h1{
+    margin-bottom: 22px;
+}
+.first-element{
+    box-sizing: border-box;
+    display: grid;
+    grid-template-columns: 100%;
+    grid-template-rows: 55% 40%;
+    padding: 22px;
+    gap: 5%;
+    background: rgba(22, 22, 22, 0.64);
+    max-height: 370px;
+    min-height: 255px;
+}
+.fe-img-cont{
+    aspect-ratio: 1.11 / 1;
+    overflow: hidden;
+    height: 100%;
+    border-radius: 6px;
+}
+.fe-tittle-extra-cont{
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+    justify-content: flex-end;
+}
+.fe-title{
+    font-weight: 600;
+    font-size: 39px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+.fe-element-extra{
+    font-size: 20px;
+}
+.fee-extra{
+    font-size: 16px;
+    margin-right: 5px;
+}
+.fee-type{
+    background: black;
+    border-radius: 100px;
+    padding: 2px 10px 4px 10px;
+}
+.tracks-elements{
+    display: grid;
+    grid-template-columns: 100%;
+    grid-template-rows: repeat(3, calc(33% - 15px));
+    gap: 15px;
+    box-sizing: border-box;
+    
+}
+.main-track-found{
+    display: grid;
+    grid-template-columns: 25% 70%;
+    grid-auto-rows: repeat(3, 30%);
+    gap: 3.33%;
+    overflow: hidden;
+    min-height: 144pxñ
+}
+.mtf-img-container{
+    aspect-ratio: 1 / 0.9;
+    overflow: hidden;
+    grid-column: 1/2;
+    grid-row: 1/4;
+}
+.msr-albums-elements{
+    display: grid;
+    grid-template-columns: repeat(3, calc(33.33% - 13.333px));
+    grid-template-rows: repeat(2, calc(50% - 10px));
+    gap: 20px;
+}
+.msr-ae-elements{
+    position: relative;
+    aspect-ratio: 1 / 1;
+    box-sizing: border-box;
+    padding: 2px 11px;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+}
+.ae-img-cont{
+    top: 0;
+    left: 0;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+.ae-img-cont::after{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    content: ' ';
+    background: rgba(120, 0, 168, 0.411);
+    clip-path: polygon(40.33% 57.51%, 31.43% 53.06%, 23.76% 50.27%, 16.08% 50.34%, 9.1% 53.53%, 3.35% 56.82%, 0.5% 62.81%, 0% 41.25%, 2.44% 34.97%, 4.88% 28.68%, 11.65% 20.87%, 21.5% 17.75%, 31.43% 20.5%, 41.59% 22.21%, 50.54% 21.5%, 58.77% 17.93%, 65.99% 10.18%, 71.15% 0%, 29.75% 0%, 0% 0%, 0% 100%, 100% 100%, 100% 49.33%, 93.63% 55.33%, 84.85% 59.97%, 75.88% 64.2%, 64.99% 67.08%, 55.94% 67.81%, 47.71% 64.2%);
+}
+.msr-ae-type, .msr-ae-info{
+    position: relative;
+    font-size: 18px;
+    overflow: hidden;
+}
+.msr-ae-info{
+    height: 33%;
+    display: flex;
+    flex-direction: column;
+}
+.msr-ae-info-title, .msr-ae-info-artists{
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;  
+}
+.msr-ae-info-title > a, .msr-ae-info-artists > a{
+    cursor: pointer;
+}
+
+.more-results-artists{
+    margin-bottom: 111px;
+    width: 100%;
+    overflow: hidden;
+    overflow-x: visible;
+}
+.more-results-artists::-webkit-scrollbar{
+    display: none;
+}
+.mra-main-title {
+   display: flex;
+   justify-content: center;
+   min-height: 88px;
+}
+.mra-main-title > h1 {
+   padding: 0 3px 9px 3px;
+   border-bottom: 4px solid white;
+   height: fit-content;
+ }
+.artist-tape{
+    display: flex;
+    width: calc(22 / 5 * 100%);
+    gap: 22px;
+    cursor: grab;
+}
+.mra-element{
+    position: relative;
+    width: calc((100% - 21*22px) / 22);
+    display: grid;
+    grid-template-columns: 100%;
+    grid-template-rows: auto auto;
+    row-gap: 11px;
+    overflow: hidden;
+}
+.mrae-image{
+    aspect-ratio: 1 / 0.99;
+    width: 100%;
+    border-radius: 1000px;
+}
+.mrae-title{
+    display: block;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+.artist-genre-content, .genre-container{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.secundary-result{
+    box-sizing: border-box;
+    width: 100%;
+    min-height: 300px;
+    padding: 33px 0 0 0;
+    background: rgb(249, 244, 255);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.secundary-result-title{
+    width: fit-content;
+    color: black;
+    border-bottom: 4px solid rgb(89, 89, 89);
+    padding: 0 6px 5px 6px;
+}
+.secundary-result-info{
+    width: 222px;
+    color: black;
+    text-align: center;
+    margin: 22px 0;
+    font-weight: 600;
+}
+
+.ps-title{
+    margin: 0 0 22px 0;
+    font-weight: bolder;
+    color: black;
+}
+
+.ps-element{
+    display: grid;
+    grid-template-columns: 100%;
+    grid-template-rows: 65% 27%;
+    gap: 8%;
+}
+.pse-card-track-artists > a, .ft{
+    color: black;
+    font-weight: bold;
+    font-family: 'Montserrat';
+    font-size: 15px;
+}
+.pse-card-album-name{
+    color: black;
+    font-size: 18px;
+    font-weight: bold;
+}
+.another-image{
+    box-shadow: 0 0 2px rgba(0, 0, 0, .3),
+                0 0 4px rgba(0, 0, 0, .051),
+                0 0 8px rgba(0, 0, 0, .091),
+                0 0 16px rgba(0, 0, 0, .2);
+}
+
+.album-carusel-title{
+    color: black;
+    margin: 33px 0 22px 0;
+    padding: 0 5px 8px 5px;
+    border-bottom: 4px solid rgb(103, 103, 103);
+}
+.album-carusel-container{
+    width: 100%;
+    height: fit-content;
+}
+.album-carusel-tape{
+    display: flex;
+    width: calc(100% * 22 / 5);
+}
+.ac-tape-element{
+    position: relative;
+    aspect-ratio: 1 / 1;
+    width: calc(100% / 22);
+}
+.ac-tape-e-image{
+    left: 0;top: 0;
+    position: absolute;
+}
+.ac-tape-e-caption{
+    box-sizing: border-box;
+    padding: 22px;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    bottom: 0;left: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 11px;
+    background: rgb(0, 0, 0);
+    font-weight: bolder;
+    opacity: .1;
+    transition: .3s;
+}
+.ac-tape-element:hover > .ac-tape-e-caption{
+    opacity: .9;
+}
+.ac-tape-e-title{
+    font-size: 20px;
+}
+/* *** */
+
+.search-filter-container{
+    display: flex;
+    height: 50px;
+    max-width: 398px;
+    width: 100%;
+    min-width: 222px;
+    justify-content: space-between;
+    margin: 11px 0;
+}
+.filter{
+    width: 44%;
+    height: 100%;
+    background: rgb(16, 3, 20);
+    cursor: pointer;
+    box-shadow: 0 0 5px 5px rgba(32, 32, 32, 0.063),
+    0 0 11px 11px rgba(33, 33, 33, 0.084),
+    0 0 22px 22px rgba(48, 48, 48, 0.086);
+    border-radius: 1000px;
+    padding: 5px 11px;
+    font-size: 1.5rem;
+    font-weight: bold;
+    border: 2px groove white;
+}
+
+@media screen and (max-width: 420px){
+    
+}
+@media screen and (min-width: 420.1px) and (max-width: 640px) {
+    
+}
+@media screen and (min-width: 640.1px) and (max-width: 960px) {
+  
+}
+@media screen and (min-width: 960.1px) and (max-width: 1280px) {
+    
+}
+@media screen and (min-width: 1280.1px) and (max-width: 1600px) {
+
+}
+@media screen and (min-width: 1600.1px) and (max-width: 1920px) {
+    
+}
+@media screen and (min-width: 1920.1px) and (max-width: 2240px) {
+    
+}
+@media screen and (min-width: 2240.1px) {
+    
+}
+
+

@@ -12,7 +12,7 @@ if($method == "OPTIONS") die();
     $data=$email=$id=$token=$conection='';
 
     try {
-        $conection = new PDO('mysql:host=localhost:3306;dbname=luister','admin','admin',[
+        $conection = new PDO('mysql:host=luister-db:3306;dbname=luister','admin','admin',[
             PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
             PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC
         ]);
@@ -39,7 +39,7 @@ if($method == "OPTIONS") die();
                                 Acceda al siguiente enlace para asignar una 
                                 contraseña y activar su usuario. 
                                 <br><br>
-                                Enlace: http://localhost:4200/set-your-password/$token
+                                Enlace: http://luister-db:4200/set-your-password/$token
                                 <br>
                                 Cordiales saludos, 
                                 <br><br>

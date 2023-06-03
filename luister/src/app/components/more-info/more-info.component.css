@@ -1,0 +1,28 @@
+.more-info-container{
+    min-height: calc(100vh - 444px);
+    width: 100%;
+    min-width: 250px;
+    display: flex;
+    justify-content: center;
+    background: rgb(0, 0, 0);
+    padding: 33px 0;
+}
+
+h1{
+    font-size: 22px;
+    font-family: 'Montserrat';
+    margin: 11px 0;
+}
+p{
+    font-size: 16px;
+    font-family: 'Outfit';
+    text-align: justify;
+    margin-bottom: 33px;
+}
+
+/* luister info*/
+.info-container{
+    width: 75%;
+    max-width: 1000px;
+    height: fit-content;
+}

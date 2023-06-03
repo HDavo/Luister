@@ -1,0 +1,76 @@
+<div class="maincontainers" id="pagecontainer">
+
+  <div class="list-page-section list-header">
+    <div class="image-cont">
+      <img src="{{img}}" alt="lista">
+    </div>
+    <div class="list-details">
+      <div class="list-type">
+        <a routerLink="/library">Biblioteca de {{owner}}</a>
+        <span> / </span>
+        <span>{{name}}</span>
+      </div>
+      <div class="list-name">{{name}}</div>
+      <div *ngIf="description" class="list-description">{{description}}</div>
+      <div class="list-owner-total">
+        <div class="list-owner"> {{owner}} </div> 
+        <span> · </span>
+        <div class="list-total-tracks"> 
+          <span *ngIf="tracks; else zero">{{tracks.length}}</span> 
+          <ng-template #zero> 0 </ng-template>
+          Canciones totales 
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="list-page-section actions">
+    <span class="list-actions"></span> <div class="table-search-field"></div>
+  </div>
+
+  <div *ngIf="tracks; else explore" class="list-page-section table">
+    <table mat-table [dataSource]="dataSource" matSort class="list-table">
+      <tr mat-header-row *matHeaderRowDef="fields"></tr>
+      <tr mat-row *matRowDef="let row; columns: fields" class="table-head"></tr>
+
+      <ng-container *ngFor="let field of fields" matColumnDef="{{field}}">
+        <th mat-header-cell *matHeaderCellDef  mat-sort-header>{{labels[field]}}</th>
+        <td mat-cell *matCellDef="let content; let i = index" class="field"  ctm="track" id="{{content['lookupkey']}}">
+          <span *ngIf="field != 'number'; else number"> 
+            <span *ngIf="field == 'title' || field == 'artist' || field == 'album'; else otherfield">
+              <a *ngIf="field == 'title'" routerLink="/details/track/{{content['lookupkey']}}" ctm="track" id="{{content['lookupkey']}}"> {{content[field]}} </a>
+              <a  *ngIf="field == 'artist'" routerLink="/details/{{field}}/{{content['lookupkey']}}" ctm="artist" id="{{content['lookupkey']}}"> {{content[field]}} </a>
+              <a  *ngIf="field == 'album'" routerLink="/details/{{field}}/{{content['lookupkey']}}" ctm="album" id="{{content['lookupkey']}}"> {{content[field]}} </a>
+            </span>
+            <ng-template #otherfield>
+              <span *ngIf="field == 'remove'" class="rubish"></span>
+              <span *ngIf="field == 'liked'">
+                <span *ngIf="liked;" class="liked" (click)="like()"></span>
+                <span *ngIf="!liked;" class="like" (click)="like()"></span>
+              </span>
+              <span *ngIf="field != 'liked' && field != 'remove'">
+                {{content[field]}}
+              </span>
+            </ng-template>
+          </span>
+          <ng-template #number> <span>{{i+1}}</span> </ng-template>
+        </td>
+      </ng-container>
+    </table>
+  </div>
+
+  <ng-template #explore>
+    <div class="list-page-section">
+      <p class="suggestion">
+        Puedes acceder al buscador y demás páginas de Luister para dar con el contenido
+        que mejor se adapte a ti y agregarlo en esta lista personalizada.
+      </p>
+      <div class="suggestions-container">
+        <a class="suggestions" routerLink="/discover">Buscador</a> 
+        <a class="suggestions" routerLink="/news">Lo más nuevo</a>
+        <a class="suggestions" routerLink="/popular">Lo más popular</a>
+      </div>
+    </div>
+  </ng-template>
+</div>
+  

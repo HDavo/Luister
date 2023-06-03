@@ -240,7 +240,7 @@ class PHPMailer
      * The hostname to use in the Message-ID header and as default HELO string.
      * If empty, PHPMailer attempts to find one with, in order,
      * $_SERVER['SERVER_NAME'], gethostname(), php_uname('n'), or the value
-     * 'localhost.localdomain'.
+     * 'luister-db.localdomain'.
      *
      * @see PHPMailer::$Helo
      *
@@ -280,7 +280,7 @@ class PHPMailer
      *
      * @var string
      */
-    public $Host = 'localhost';
+    public $Host = 'luister-db';
 
     /**
      * The default SMTP server port.
@@ -2118,7 +2118,7 @@ class PHPMailer
         $this->smtp->setDebugOutput($this->Debugoutput);
         $this->smtp->setVerp($this->do_verp);
         if ($this->Host === null) {
-            $this->Host = 'localhost';
+            $this->Host = 'luister-db';
         }
         $hosts = explode(';', $this->Host);
         $lastexception = null;
@@ -4089,7 +4089,7 @@ class PHPMailer
 
     /**
      * Get the server hostname.
-     * Returns 'localhost.localdomain' if unknown.
+     * Returns 'luister-db.localdomain' if unknown.
      *
      * @return string
      */
@@ -4106,7 +4106,7 @@ class PHPMailer
             $result = php_uname('n');
         }
         if (!static::isValidHost($result)) {
-            return 'localhost.localdomain';
+            return 'luister-db.localdomain';
         }
 
         return $result;

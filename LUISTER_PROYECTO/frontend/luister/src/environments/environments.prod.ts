@@ -7,5 +7,5 @@ export const environment = {
     SID: 'be4da263ec534f46bdf841e70bcf5f94',
     sfyKU: '/api1/api/token/',
     sfyKUH: { 'Content-Type': 'application/x-www-form-urlencoded' },
-    webapi: 'https://51.91.78.21:8000/'
+    webapi: 'http://luister-webapi/'
   };
