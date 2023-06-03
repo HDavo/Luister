@@ -44,7 +44,7 @@ INSERT INTO `customlists` (`id`, `title`, `description`, `image`, `userid`, `cre
 CREATE TABLE `customlisttracks` (
   `id` int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
   `title` varchar(55) NOT NULL,
-  `artist` TEXT NULL,
+  `artist` TEXT(255) NULL,
   `album` JSON DEFAULT NULL,
   `customlistid` int(11) NOT NULL,
   `lookupkey` varchar(100) NOT NULL,
