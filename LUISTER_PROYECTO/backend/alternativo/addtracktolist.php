@@ -21,7 +21,7 @@
         if($data){
             $title = $data->title;
             $artists = $data->artists;
-            $album = json_decode($data->album);
+            $album = 'album';//$data->album;
             $listid = $data->listid;
             $lookupkey = $data->lookupkey;
 
