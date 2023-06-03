@@ -88,13 +88,17 @@
                     <ng-template #noExpl>No</ng-template>
                 </div>
                 <div class="like-dislike-cont">
-                    <span (click)="like($event)"
-                    class="like"
-                    title="{{track.data.id}}-{{track.data.name}}">Me gusta</span>
 
-                    <span (click)="dislike($event)"
-                    class="dislike"
-                    title="{{track.data.id}}-{{track.data.name}}">Ya no me gusta</span>
+                    <button mat-raised-button color="primary"><span (click)="like($event)"
+                      title="{{track.data.id}}-{{track.data.name}}">Me gusta</span>
+                      <mat-icon>thumb_up</mat-icon>
+                    </button>
+
+
+                    <button mat-raised-button color="warn"> <span (click)="dislike($event)"
+                      title="{{track.data.id}}-{{track.data.name}}">Ya no me gusta</span>
+                      <mat-icon>thumb_down</mat-icon>
+                    </button>
                 </div>
             </div>
             <div class="left-bottom-platforms">
@@ -164,14 +168,19 @@
                     </span>
                 </div>
                 <div class="details-follow-artist">
-                    <button mat-raised-button color="primary">
-                      <mat-icon>trending_up</mat-icon>
-                      Seguir
+                  <button
+                      mat-raised-button
+                      color="primary">
+                    <mat-icon>person_add</mat-icon>
+                    Seguir
+                  </button>
+                    <button
+                      mat-raised-button
+                      color="warn">
+                      <span>Dejar de seguir</span>
+                      <mat-icon>person_remove</mat-icon>
                     </button>
-                      <button mat-raised-button color="primary">
-                        <mat-icon>trending_up</mat-icon>
-                        Eliminar
-                      </button>
+
                 </div>
             </div>
             <div class="left-bottom-platforms">

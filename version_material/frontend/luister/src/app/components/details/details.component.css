@@ -1,6 +1,6 @@
-*{
+/* *{
     font-family: 'Montserrat';
-}
+} */
 
 .page-section{
     display: grid;
@@ -209,6 +209,17 @@
 .track-index-like:hover{
     background-color: rgb(255, 1, 221);
 }
+.details-follow-artist{
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+.custom-color{
+  color: #ff1a1a;
+  background-color: green;
+}
+
+
 /* ----- */
 
 @media screen and (max-width: 600px) {
@@ -301,6 +312,7 @@
         border-radius: 2px;
         margin-bottom: 4px;
     }
+
 }
 @media screen and (min-width: 1080px) {
     .page-section{
@@ -346,5 +358,5 @@
       display: flex;
       justify-content: space-between;
     }
-    
+
 }
