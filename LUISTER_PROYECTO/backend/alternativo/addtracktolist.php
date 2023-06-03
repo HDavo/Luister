@@ -27,7 +27,7 @@
 
             $prepQ = $conection->prepare("SELECT id FROM customlisttracks WHERE title = :title AND album = :album AND customlistid = :listid");
             $prepQ->bindParam(':title', $title);
-            $prepQ->bindParam(':album', $artist);
+            $prepQ->bindParam(':album', $album['title']);
             $prepQ->bindParam(':listid', $listid);
             $prepQ->execute();
             $exist = $prepQ->fetch();
