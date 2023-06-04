@@ -18,10 +18,8 @@ import { MoreInfoComponent } from './more-info/more-info.component';
 import { NewpasswordComponent } from './newpassword/newpassword.component';
 import { AccountComponent } from './account/account.component';
 import { ListComponent } from './list/list.component';
+import { MaterialModule } from '../material/material.module';
 
-import { MatTableModule } from '@angular/material/table';
-import {MatFormFieldModule} from '@angular/material/form-field'; 
-import {MatSortModule} from '@angular/material/sort'; 
 
 @NgModule({
   declarations: [
@@ -46,9 +44,7 @@ import {MatSortModule} from '@angular/material/sort';
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    MatTableModule,
-    MatFormFieldModule,
-    MatSortModule
+    MaterialModule
   ],
   exports: [
     NavbarComponent,

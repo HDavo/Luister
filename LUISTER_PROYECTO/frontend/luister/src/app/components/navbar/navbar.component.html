@@ -18,7 +18,9 @@
             </li>
         </ul>
         <div class="menu" id="userSession">
-            <span *ngIf="!username; else profile"><a routerLink="/signin">Iniciar sesión</a></span>
+            <button mat-raised-button color="primary" *ngIf="!username; else profile">
+                <a routerLink="/signin">Iniciar sesión</a>
+              </button>
             <ng-template #profile>
                 <ul class="profile-container">
                     <li class="profile-container-caption">
@@ -41,45 +43,59 @@
 
 <nav class="mobile-navbar">
     <div class="mobile-menu mobile-logo">
-        <a class="home-page-icon" routerLink="/"></a>
+        <a routerLink="/">
+          <mat-icon>home</mat-icon>
+        </a>
         <span class="mobile-menu-option-caption">Luister</span>
-    </div>
-
-    <ul class="mobile-menu main-menu">
-        <span class="main-menu-icon"  #asMobileGridMenu></span>
+      </div>
+    
+      <ul class="mobile-menu main-menu">
+        <div #asMobileGridMenu>
+          <mat-icon>menu</mat-icon>
+        </div>
         <span class="mobile-menu-option-caption">Menú</span>
         <li class="mobile-menu-container element-hidden" #asGridMenuContainer>
-            <ul class="mobile-menu-grid">
-                <li class="page-like-app">
-                    <a routerLink="/news">
-                        <img src="../../../assets/images/new.jpg" alt="">
-                        <span>Novedades</span>
-                    </a>
-                </li>
-                <li class="page-like-app">
-                    <a routerLink="/popular">
-                        <img src="../../../assets/images/popular.jpg" alt="">
-                        <span>Popular</span>
-                    </a>
-                </li>
-                <li class="page-like-app">
-                    <a routerLink="/library">
-                        <img src="../../../assets/images/lib.jpg" alt="">
-                        <span>Biblioteca</span>
-                    </a>
-                </li>
-                <li class="page-like-app">
-                    <a routerLink="/discover">
-                        <img src="../../../assets/images/discover.jpg" alt="">
-                        <span>Descubrir</span>
-                    </a>
-                </li>
-            </ul>                
+          <ul class="mobile-menu-grid">
+            <li class="page-like-app">
+              <div></div>
+              <a routerLink="/news">
+                <button mat-fab color="accent">
+                  <mat-icon>new_releases</mat-icon>
+                </button>
+                <span>Novedades</span>
+              </a>
+            </li>
+            <li class="page-like-app">
+              <a routerLink="/popular">
+                <button mat-fab color="accent">
+                  <mat-icon>trending_up</mat-icon>
+                </button>
+    
+                <span>Popular</span>
+              </a>
+            </li>
+            <li class="page-like-app">
+              <a routerLink="/library">
+                <button mat-fab color="accent">
+                  <mat-icon>library_music</mat-icon>
+                </button>
+                <span>Biblioteca</span>
+              </a>
+            </li>
+            <li class="page-like-app">
+              <a routerLink="/discover">
+                <button mat-fab color="accent">
+                  <mat-icon>saved_search</mat-icon>
+                </button>
+                <span>Descubrir</span>
+              </a>
+            </li>
+          </ul>
         </li>
-    </ul>
-
-    <div class="mobile-menu userSession">
-        <span class="user-icon"></span>
+      </ul>
+    
+      <div class="mobile-menu userSession">
+        <mat-icon>person</mat-icon>
         <span class="mobile-menu-option-caption">Perfil</span>
-    </div>
+      </div>
 </nav>

@@ -29,6 +29,25 @@
 
   <div class="list-page-section actions">
     <span class="list-actions"></span> <div class="table-search-field"></div>
+    <div class="table-search-field">
+      <!-- Equivalente a contenedor buscador -->
+      <div class="search-icon">
+        <mat-icon
+        matTooltip="Introduce un término de búsqueda"
+        matTooltipHideDelay="0"
+        aria-label="Button that displays a tooltip that hides when scrolled out of the container"
+        >
+        search
+      </mat-icon>
+      </div>
+      <div>
+        <input
+        class="search-input"
+        type="search"
+        (keyup)="applyFilter($event)"
+        placeholder="Buscar...">
+      </div>
+    </div>
   </div>
 
   <div *ngIf="tracks.length > 0; else explore" class="list-page-section table">
@@ -73,9 +92,15 @@
         que mejor se adapte a ti y agregarlo en esta lista personalizada.
       </p>
       <div class="suggestions-container">
-        <a class="suggestions" routerLink="/discover">Buscador</a> 
-        <a class="suggestions" routerLink="/news">Lo más nuevo</a>
-        <a class="suggestions" routerLink="/popular">Lo más popular</a>
+        <button mat-raised-button color="primary">
+          <a routerLink="/discover">Buscador</a>
+        </button>
+        <button mat-raised-button color="primary">
+          <a routerLink="/news">Lo más nuevo</a>
+        </button>
+        <button mat-raised-button color="primary">
+          <a routerLink="/popular">Lo más popular</a>
+        </button>
       </div>
     </div>
   </ng-template>
