@@ -12,7 +12,7 @@ import { environment } from 'src/environments/environments';
   styleUrls: ['./library.component.css']
 })
 export class LibraryComponent implements OnInit {
-  public imgroot:string = environment.webapi;
+  public imgroot:string = environment.altwebapi;
   public customLists:any[] = [];
   public newListImagePreview: string | null = null;
   public customListForm:FormGroup = this.formBuilder.group({
