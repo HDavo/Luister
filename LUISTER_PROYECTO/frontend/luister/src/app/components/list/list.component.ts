@@ -63,7 +63,7 @@ export class ListComponent implements OnInit{
         this.luister.getCustomList(id)
         .subscribe((response:any)=>{
           this.name = response.data.title;
-          this.img = `${environment.webapi}images/customlist/${id}/${response.data.image}`;
+          this.img = `${environment.altwebapi}images/customlist/${id}/${response.data.image}`;
           this.description = response.data.description;
           this.owner = response.data.owner;
           this.creationdate = response.data.creationdate;
