@@ -9,7 +9,7 @@ import { environment } from 'src/environments/environments';
 
 export class LuisterApiService {
 
-  private URL: string = environment.webapi;
+  private URL: string = environment.altwebapi;
 
   @Output() deletedList:EventEmitter<any> = new EventEmitter();
   @Output() updateList: EventEmitter<any> = new EventEmitter();

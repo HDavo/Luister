@@ -20,7 +20,7 @@
     
         if($data){
             $userid = $data->userid;
-            $prepQ = $conection->prepare("SELECT ft.id, ft.title, ft.includedon, ft.lookupkey FROM favoritetracks ft INNER JOIN users u ON ft.userid = u.id WHERE ft.userid = :userid");
+            $prepQ = $conection->prepare("SELECT ft.id, ft.title, ft.includedon, ft.lookupkey, ft.album, ft.artists, ft.userid FROM favoritetracks ft INNER JOIN users u ON ft.userid = u.id WHERE ft.userid = :userid");
             $prepQ->bindParam(':userid', $userid);
             $prepQ->execute();
             $res = $prepQ->fetchAll();
@@ -28,8 +28,7 @@
             echo json_encode(['status'=>200, 'data'=> $res]);
 
         }else die(json_encode([
-            'status'=>400,
-            'message'=> 'Sin datos'
+            'status'=>400, 'message'=> 'Sin datos'
         ]));
     } catch (PDOException $e) {
        die(json_encode([

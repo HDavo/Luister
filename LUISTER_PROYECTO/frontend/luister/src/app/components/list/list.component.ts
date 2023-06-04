@@ -6,14 +6,6 @@ import { LuisterApiService } from 'src/app/services/luister-api.service';
 import { LuisterCookieManagerService } from 'src/app/services/luister-cookie-manager.service';
 import { environment } from 'src/environments/environments';
 
-interface Song {
-  title: string;
-  artist: string;
-  album: string;
-  added: string;
-  duration: string;
-}
-
 @Component({
   selector: 'app-list',
   templateUrl: './list.component.html',
@@ -37,9 +29,8 @@ export class ListComponent implements OnInit{
     'number': '#',
     'title': 'Titulo',
     'album': 'Album',
-    'artists': 'Artista',
-    'includedon': 'Fecha',
-    'duration': 'Duración',
+    'artists': 'Artistas',
+    'includedon': 'Incluido el',
     'liked': '',
     'remove': '',
   };
@@ -62,6 +53,7 @@ export class ListComponent implements OnInit{
         this.luister.getFavTracks(userid)
         .subscribe((response:any)=>{
           if(response){
+            console.log(response)
             this.tracks = response.data;
             this.dataSource = new MatTableDataSource(this.tracks);
             this.dataSource.sort = this.sort;
@@ -92,10 +84,8 @@ export class ListComponent implements OnInit{
       }
     });
   }
-  ngAfterViewInit(){
-    setTimeout(() => {
-      this.dataSource.sort = this.sort;
-    }, 1000);
+  ngAfterContentChecked(){
+    if(this.sort) this.dataSource.sort = this.sort;
   }
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
