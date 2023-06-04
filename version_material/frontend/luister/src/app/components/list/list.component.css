@@ -148,7 +148,10 @@
   border: none;
   border-bottom: 1px solid #eaeaea;
   transition: 0.5s;
-  height: 15px;
+  height: 33px;
   color: white;
   background-color: transparent;
+}
+.search-icon{
+  margin-top: 8px;
 }

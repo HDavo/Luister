@@ -259,8 +259,10 @@
         grid-template-rows: 75% 20%;
         overflow: hidden;
         justify-content: center;
-        align-items: center;
+        /* align-items: center; */
         gap: 5%;
+        text-align: center;
+        margin: 0 auto;
     }
     .page-like-app > a > img{
         border-radius: 5px;

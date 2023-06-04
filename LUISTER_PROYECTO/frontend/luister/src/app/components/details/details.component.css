@@ -1,6 +1,7 @@
+/*
 *{
     font-family: 'Montserrat';
-}
+} */
 
 .page-section{
     display: grid;
@@ -209,6 +210,16 @@
 .track-index-like:hover{
     background-color: rgb(255, 1, 221);
 }
+/* para los botones de artista */
+.details-follow-artist{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+  }
+  .custom-color{
+    color: #ff1a1a;
+    background-color: green;
+  }
 /* ----- */
 
 @media screen and (max-width: 600px) {

@@ -1,105 +1,129 @@
-<nav id='navigationbar' class="maincontainers">
-    <div class="all-nav-menu-container">
-        <div class="menu" id="logo">
-            <span> <a #asMenu id="luister-logo" routerLink="/" routerLinkActive="logo-selected">{{ title }}</a></span>
-        </div>
-        <ul id="menucontainer">
-            <li class="menu">
-                <span><a #asMenu routerLink="/news" routerLinkActive="page-selected"> Novedades </a></span>
-            </li>
-            <li class="menu">
-                <span> <a #asMenu routerLink="/popular" routerLinkActive="page-selected"> Popular </a></span>
-            </li>
-            <li class="menu">
-                <span> <a #asMenu routerLink="/library" routerLinkActive="page-selected"> Biblioteca </a></span>
-            </li>
-            <li class="menu">
-                <span> <a #asMenu routerLink="/discover" routerLinkActive="page-selected"> Descubrir </a></span>
-            </li>
-        </ul>
-        <div class="menu" id="userSession">
-          <button mat-raised-button color="primary" *ngIf="!username; else profile"><a routerLink="/signin">Iniciar sesión</a></button>
-           <!-- <span *ngIf="!username; else profile"><a routerLink="/signin">Iniciar sesión</a></span> -->
-            <!-- <span *ngIf="!username; else profile"><a routerLink="/signin">Iniciar sesión</a></span> -->
-            <ng-template #profile>
-                <ul class="profile-container">
-                    <li class="profile-container-caption">
-                        <span>{{username | titlecase}} </span>
-                        <ul class="pc-menu">
-                            <li class="pc-menu-element">
-                                <a routerLink="/user/profile">Perfil</a>
-                            </li>
-                            <li class="pc-menu-element">
-                                <a routerLink="/user/settings">Configuración</a>
-                            </li>
-                            <li class="pc-menu-element logout" (click)="logOut()">Cerrar sesión</li>
-                        </ul>
-                    </li>
-                </ul>
-            </ng-template>
-        </div>
+<nav id="navigationbar" class="maincontainers">
+  <div class="all-nav-menu-container">
+    <div class="menu" id="logo">
+      <span>
+        <a
+          #asMenu
+          id="luister-logo"
+          routerLink="/"
+          routerLinkActive="logo-selected"
+          >{{ title }}</a
+        ></span
+      >
     </div>
+    <ul id="menucontainer">
+      <li class="menu">
+        <span
+          ><a #asMenu routerLink="/news" routerLinkActive="page-selected">
+            Novedades
+          </a></span
+        >
+      </li>
+      <li class="menu">
+        <span>
+          <a #asMenu routerLink="/popular" routerLinkActive="page-selected">
+            Popular
+          </a></span
+        >
+      </li>
+      <li class="menu">
+        <span>
+          <a #asMenu routerLink="/library" routerLinkActive="page-selected">
+            Biblioteca
+          </a></span
+        >
+      </li>
+      <li class="menu">
+        <span>
+          <a #asMenu routerLink="/discover" routerLinkActive="page-selected">
+            Descubrir
+          </a></span
+        >
+      </li>
+    </ul>
+    <div class="menu" id="userSession">
+      <button mat-raised-button color="primary" *ngIf="!username; else profile">
+        <a routerLink="/signin">Iniciar sesión</a>
+      </button>
+      <!-- <span *ngIf="!username; else profile"><a routerLink="/signin">Iniciar sesión</a></span> -->
+      <!-- <span *ngIf="!username; else profile"><a routerLink="/signin">Iniciar sesión</a></span> -->
+      <ng-template #profile>
+        <ul class="profile-container">
+          <li class="profile-container-caption">
+            <span>{{ username | titlecase }} </span>
+            <ul class="pc-menu">
+              <li class="pc-menu-element">
+                <a routerLink="/user/profile">Perfil</a>
+              </li>
+              <li class="pc-menu-element">
+                <a routerLink="/user/settings">Configuración</a>
+              </li>
+              <li class="pc-menu-element logout" (click)="logOut()">
+                Cerrar sesión
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </ng-template>
+    </div>
+  </div>
 </nav>
 
 <nav class="mobile-navbar">
-    <div class="mobile-menu mobile-logo">
-        <a routerLink="/">
-          <mat-icon>home</mat-icon>
-        </a>
-        <span class="mobile-menu-option-caption">Luister</span>
+  <div class="mobile-menu mobile-logo">
+    <a routerLink="/">
+      <mat-icon>home</mat-icon>
+    </a>
+    <span class="mobile-menu-option-caption">Luister</span>
+  </div>
+
+  <ul class="mobile-menu main-menu">
+    <div #asMobileGridMenu>
+      <mat-icon>menu</mat-icon>
     </div>
+    <span class="mobile-menu-option-caption">Menú</span>
+    <li class="mobile-menu-container element-hidden" #asGridMenuContainer>
+      <ul class="mobile-menu-grid">
+        <li class="page-like-app">
+          <div></div>
+          <a routerLink="/news">
+            <button mat-fab color="accent">
+              <mat-icon>new_releases</mat-icon>
+            </button>
+            <span>Novedades</span>
+          </a>
+        </li>
+        <li class="page-like-app">
+          <a routerLink="/popular">
+            <button mat-fab color="accent">
+              <mat-icon>trending_up</mat-icon>
+            </button>
 
-    <ul class="mobile-menu main-menu">
-      <!-- <mat-icon>menu</mat-icon> -->
-      <!-- TODO: no puedo poner este icono sin perder la funcionalidad de mostrar el resto de opciones -->
-      <!-- <span class="main-menu-icon"  #asMobileGridMenu></span> -->
-      <div #asMobileGridMenu>
-        <mat-icon >menu</mat-icon>
-      </div>
-      <span class="mobile-menu-option-caption">Menú</span>
-      <li class="mobile-menu-container element-hidden" #asGridMenuContainer>
-          <ul class="mobile-menu-grid">
-              <li class="page-like-app">
-                <div>
-
-                </div>
-                  <a routerLink="/news">
-                      <!-- <img src="../../../assets/images/new.jpg" alt=""> -->
-                      <!-- <mat-icon></mat-icon>
-                      -->
-                      <button mat-fab color="warn">
-                        <mat-icon>new_releases</mat-icon>
-                    </button>
-                    <span>Novedades</span>
-                  </a>
-              </li>
-              <li class="page-like-app">
-                  <a routerLink="/popular">
-                      <!-- <img src="../../../assets/images/popular.jpg" alt=""> -->
-                      <mat-icon>trending_up</mat-icon>
-                      <span>Popular</span>
-                  </a>
-              </li>
-              <li class="page-like-app">
-                  <a routerLink="/library">
-                      <!-- <img src="../../../assets/images/lib.jpg" alt=""> -->
-                      <mat-icon>library_music</mat-icon>
-                      <span>Biblioteca</span>
-                  </a>
-              </li>
-              <li class="page-like-app">
-                  <a routerLink="/discover">
-                      <!-- <img src="../../../assets/images/discover.jpg" alt=""> -->
-                      <mat-icon>saved_search</mat-icon>
-                      <span>Descubrir</span>
-                  </a>
-              </li>
-          </ul>
-      </li>
+            <span>Popular</span>
+          </a>
+        </li>
+        <li class="page-like-app">
+          <a routerLink="/library">
+            <button mat-fab color="accent">
+              <mat-icon>library_music</mat-icon>
+            </button>
+            <span>Biblioteca</span>
+          </a>
+        </li>
+        <li class="page-like-app">
+          <a routerLink="/discover">
+            <button mat-fab color="accent">
+              <mat-icon>saved_search</mat-icon>
+            </button>
+            <span>Descubrir</span>
+          </a>
+        </li>
+      </ul>
+    </li>
   </ul>
 
-    <div class="mobile-menu userSession">
-        <mat-icon>person</mat-icon>
-        <span class="mobile-menu-option-caption">Perfil</span>
-    </div>
+  <div class="mobile-menu userSession">
+    <mat-icon>person</mat-icon>
+    <span class="mobile-menu-option-caption">Perfil</span>
+  </div>
 </nav>

@@ -36,7 +36,7 @@
     position: absolute;
     font-family: 'Montserrat';
 }
-.search-field-shadow::before{   
+.search-field-shadow::before{
     font-size: 22px;
     content: '\e986';
     left: 16px;
@@ -102,7 +102,7 @@
     transition: box-shadow .3s, transform .15s;
     position: relative;
     cursor: pointer;
-       
+
 }
 
 /* *** */
@@ -172,7 +172,7 @@
     grid-template-rows: repeat(3, calc(33% - 15px));
     gap: 15px;
     box-sizing: border-box;
-    
+
 }
 .main-track-found{
     display: grid;
@@ -233,7 +233,7 @@
 .msr-ae-info-title, .msr-ae-info-artists{
     overflow: hidden;
     white-space: nowrap;
-    text-overflow: ellipsis;  
+    text-overflow: ellipsis;
 }
 .msr-ae-info-title > a, .msr-ae-info-artists > a{
     cursor: pointer;
@@ -416,29 +416,40 @@
     border: 2px groove white;
 }
 
+mat-form-field[color="select"] .mat-form-field-outline {
+    background-color: var(--custom-primary-color) !important;
+    color: var(--custom-color) !important;
+  }
+  
+  mat-form-field[color="accent"] .mat-form-field-outline {
+    color: var(--custom-accent-color) !important;
+  }
+  
+
+
 @media screen and (max-width: 420px){
-    
+
 }
 @media screen and (min-width: 420.1px) and (max-width: 640px) {
-    
+
 }
 @media screen and (min-width: 640.1px) and (max-width: 960px) {
-  
+
 }
 @media screen and (min-width: 960.1px) and (max-width: 1280px) {
-    
+
 }
 @media screen and (min-width: 1280.1px) and (max-width: 1600px) {
 
 }
 @media screen and (min-width: 1600.1px) and (max-width: 1920px) {
-    
+
 }
 @media screen and (min-width: 1920.1px) and (max-width: 2240px) {
-    
+
 }
 @media screen and (min-width: 2240.1px) {
-    
+
 }
 
 
