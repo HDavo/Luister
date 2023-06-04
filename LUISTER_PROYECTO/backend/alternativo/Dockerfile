@@ -1,10 +1,12 @@
 FROM php:latest
 
-RUN mkdir -p /app/webapi
+RUN mkdir -p /app/altwebapi
 
-WORKDIR /app/webapi
+WORKDIR /app/altwebapi
 
 COPY . .
+
+VOLUME /app/altwebapi/images
 
 RUN docker-php-ext-install pdo_mysql
 

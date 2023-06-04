@@ -1,6 +1,6 @@
 
 import os
-from envs import *
+#from envs import *
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -40,7 +40,9 @@ MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
 ]
 
-CORS_ORIGIN_WHITELIST = ["http://localhost:3000","http://luister-website"]
+CORS_ORIGIN_ALLOW_ALL = True
+
+#CORS_ORIGIN_WHITELIST = ["http://luister-website","https://luister-website"]
 
 CORS_ALLOW_CREDENTIALS = True
 
