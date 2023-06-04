@@ -11,5 +11,6 @@ urlpatterns = [
     path('', include(('favoritetracks.urls', 'favoritetracks'), namespace='favoritetracks')),
     path('', include(('customlistTrack.urls', 'customlistTrack'), namespace='customlistTrack')),
     path('', include(('users.urls', 'users'), namespace='users')),
+    
  
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
