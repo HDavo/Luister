@@ -416,19 +416,15 @@
     border: 2px groove white;
 }
 
-/* ::ng-deep .mat-select-content{
-    background-color: black;
-} */
-
-
-/* .mat-form-field-appearance-fill .mat-select {
-  background-color: black !important;
-  color: white !important;
-}
-
-.mat-form-field-appearance-fill .mat-select-value {
-  color: white !important;
-} */
+mat-form-field[color="select"] .mat-form-field-outline {
+    background-color: var(--custom-primary-color) !important;
+    color: var(--custom-color) !important;
+  }
+  
+  mat-form-field[color="accent"] .mat-form-field-outline {
+    color: var(--custom-accent-color) !important;
+  }
+  
 
 
 @media screen and (max-width: 420px){

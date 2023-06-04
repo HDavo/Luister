@@ -238,8 +238,17 @@ img{
 /* para poner el mismo color a todos los botones con primary */
 :root{
   --custom-primary-color: rgb(104, 20, 104);
+  --custom-accent-color: rgb(104, 20, 104);
+  --custom-select-color: rgba(24, 1, 24, 0.014);
+  --custom-color: rgb(255, 255, 255);
+
+
 }
 button[color="primary"]{
+  background-color: var(--custom-primary-color) !important;
+  color: white;
+}
+button[color="accent"]{
   background-color: var(--custom-primary-color) !important;
   color: white;
 }
