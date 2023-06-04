@@ -43,7 +43,7 @@ class CustomlistTrackSerializer(serializers.Serializer):
         try:
             cancionenlista = CustomlistTrack.objects.get(customlistid=data['customlistid'],title=data['title'],artist=data['artist'])
         except:
-            nueva = CustomlistTrack.objects.create(customlistid=cid,title=data['title'],artist=data['artist'])
+            nueva = CustomlistTrack.objects.create(customlistid=cid,title=data['title'],artist=data['artist'],lookupkey=data['lookupkey'],includedon=data['includedon'])
             return nueva
         raise forms.ValidationError(u'CustomlistTrack "%s" ya se encuentra agregada a favoritos' % cancionenlista)
 
