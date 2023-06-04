@@ -8,7 +8,7 @@ export class ValidationsService {
 
   constructor() { }
 
-  public namePattern: string = '([a-zA-Z0-9_-]{4,15})';
+  public namePattern: string = '([a-zA-Z0-9_-]{12}+[a-zA-Z0-9_-]{13})'; 
   public emailPattern: string = "^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$";
 
   //TODO: poner el servicio en funcionamiento dentro de las páginas de reactive (hasta ahora con las validaciones en el propio fichero)

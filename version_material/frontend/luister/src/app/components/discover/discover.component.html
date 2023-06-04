@@ -10,25 +10,32 @@
     </div>
 
     <div class="search-filter-container">
-      <mat-form-field appearance="fill">
-        <mat-label>Spotify</mat-label>
-        <mat-select id="custom-platforms" name="platforms"[(ngModel)]="platform" (ngModelChange)="getData($event)">
-          <mat-option value="sfy">Spotify</mat-option>
-          <mat-option value="dzr">Deezer</mat-option>
-        </mat-select>
-      </mat-form-field>
+        <mat-form-field appearance="fill" >
+            <mat-label style="background-color: black; color: white;">Platforms</mat-label>
+            <mat-select name="platforms" [(ngModel)]="platform" (ngModelChange)="getData($event)">
+              <mat-option style="background-color: black; color: white;" value="sfy">Spotify</mat-option>
+              <mat-option style="background-color: black; color: white;" value="dzr">Deezer</mat-option>
+            </mat-select>
+          </mat-form-field>
+        <mat-form-field appearance="fill" class="custom-select">
+            <mat-label>Elements</mat-label>
+            <mat-select name="elements" [(ngModel)]="elements">
+              <mat-option value="all">Todo</mat-option>
+              <mat-option value="track">Canciones</mat-option>
+              <mat-option value="album">Álbumes</mat-option>
+              <mat-option value="artist">Artistas</mat-option>
+            </mat-select>
+          </mat-form-field>
+          
+         
+          
+          
+          
+          
         <!-- <select name="platforms" class="filter filter-platform" [(ngModel)]="platform" (ngModelChange)="getData($event)">
             <option value="sfy" selected>Spotify</option>
             <option value="dzr">Deezer</option>
         </select> -->
-        <mat-form-field appearance="fill">
-          <mat-select name="elements" [(ngModel)]="elements">
-            <mat-option value="sfy">Todo</mat-option>
-            <mat-option value="dzr">Canciones</mat-option>
-            <mat-option value="dzr">Álbumes</mat-option>
-            <mat-option value="dzr">Artistas</mat-option>
-          </mat-select>
-        </mat-form-field>
         <!-- <select name="elements" [(ngModel)]="elements">
             <option value="all" selected>Todo</option>
             <option value="track">Canciones</option>

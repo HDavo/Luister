@@ -416,14 +416,19 @@
     border: 2px groove white;
 }
 
-.mat-form-field-appearance-fill .mat-select {
+/* ::ng-deep .mat-select-content{
+    background-color: black;
+} */
+
+
+/* .mat-form-field-appearance-fill .mat-select {
   background-color: black !important;
   color: white !important;
 }
 
 .mat-form-field-appearance-fill .mat-select-value {
   color: white !important;
-}
+} */
 
 
 @media screen and (max-width: 420px){

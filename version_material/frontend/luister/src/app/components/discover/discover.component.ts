@@ -5,10 +5,13 @@ import { MainResult } from 'src/app/interfaces/mainresult';
 import { ApibindingService } from 'src/app/services/apibinding.service';
 import { DeezerService } from 'src/app/services/deezer.service';
 
+
 @Component({
   selector: 'app-discover',
   templateUrl: './discover.component.html',
-  styleUrls: ['./discover.component.css']
+  styleUrls: [
+    './discover.component.css',
+  ]
 })
 export class DiscoverComponent extends SetData{
   public searchLabel!:string;
