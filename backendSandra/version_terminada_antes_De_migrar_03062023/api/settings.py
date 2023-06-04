@@ -46,6 +46,8 @@ CORS_ALLOW_CREDENTIALS = True
 
 ROOT_URLCONF = 'api.urls'
 
+DEFAULT_AUTO_FIELD ='django.db.models.BigAutoField'
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',

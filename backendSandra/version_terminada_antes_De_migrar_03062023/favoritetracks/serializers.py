@@ -31,13 +31,11 @@ class FavoriteTrackSerializer(serializers.Serializer):
         try:
             fav = FavoriteTrack.objects.get(nombre=data['nombre'],userid=data['userid'])
         except:
-            #favorite = FavoriteTrack.objects.get_or_create(nombre=data['nombre'],userid=data['userid'])
             favorite = FavoriteTrack.objects.create(**data)
             return favorite
         raise forms.ValidationError(u'FavoriteTrack "%s" ya se encuentra agregada a favoritos' % fav)
 
-       #FavoriteTrack.objects.get_or_create(userid=self.userid, nombre=self.nombre,lookupkey=self.lookupkey,includedon=self.includedon)
-        #if fav
+      
     
         
     

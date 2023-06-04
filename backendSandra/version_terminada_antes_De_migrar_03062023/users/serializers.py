@@ -46,13 +46,6 @@ class UserLoginSerializer(serializers.Serializer):
         token, created = Token.objects.get_or_create(user=self.context['user'])
         return self.context['user'], token.key
 
-#class UserLogoutSerializer(serializers.Serializer):
-    #token = serializers.CharField()
-    #def delete(self, data):
-        #data.pop('access_token')
-        #token, created = Token.objects.get(user=self.context['user'])
-        #return 
-
 
 class UserSignUpSerializer(serializers.Serializer):
 

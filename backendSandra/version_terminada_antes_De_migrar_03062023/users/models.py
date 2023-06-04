@@ -8,7 +8,6 @@ class User(AbstractUser):
     name=models.CharField(null=True, max_length=25)
     email = models.EmailField('email address', unique=True)
     USERNAME_FIELD = 'email'
-    #name=models.CharField(null=True, max_length=25)
     REQUIRED_FIELDS = ['username']
     modified = models.DateTimeField(auto_now=True)
     photo = models.ImageField(null=True, upload_to='users')
