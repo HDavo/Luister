@@ -39,13 +39,12 @@ class CustomlistTrackSerializer(serializers.Serializer):
     includedon = serializers.DateTimeField(allow_null=True)
 
     def create(self, data):
-         
+        cid = Customlist.objects.get(id=data['customlistid'])
         try:
             cancionenlista = CustomlistTrack.objects.get(customlistid=data['customlistid'],title=data['title'],artist=data['artist'])
         except:
-            #favorite = FavoriteTrack.objects.get_or_create(nombre=data['nombre'],userid=data['userid'])
-            Customlisttrack = CustomlistTrack.objects.create(**data)
-            return Customlisttrack
+            nueva = CustomlistTrack.objects.create(customlistid=cid,title=data['title'],artist=data['artist'])
+            return nueva
         raise forms.ValidationError(u'CustomlistTrack "%s" ya se encuentra agregada a favoritos' % cancionenlista)
 
 
