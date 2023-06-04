@@ -6,6 +6,9 @@ from customlistTrack.models import CustomlistTrack
 from customlists.serializers import CustomlistModelSerializer
 from customlists.models import Customlist
 from django.db import models
+from django import forms
+
+
 class CustomlistTrackModelSerializer(serializers.ModelSerializer):
 
 
@@ -33,9 +36,17 @@ class CustomlistTrackSerializer(serializers.Serializer):
     title = serializers.CharField(max_length=250)
     artist = serializers.CharField(allow_null=True)
     lookupkey = serializers.CharField(allow_null=True)
-    includedon = serializers.DateTimeField()
+    includedon = serializers.DateTimeField(allow_null=True)
 
     def create(self, data):
-        
-        Customlisttrack = CustomlistTrack.objects.create(**data)
-        return Customlisttrack
+         
+        try:
+            cancionenlista = CustomlistTrack.objects.get(customlistid=data['customlistid'],title=data['title'],artist=data['artist'])
+        except:
+            #favorite = FavoriteTrack.objects.get_or_create(nombre=data['nombre'],userid=data['userid'])
+            Customlisttrack = CustomlistTrack.objects.create(**data)
+            return Customlisttrack
+        raise forms.ValidationError(u'CustomlistTrack "%s" ya se encuentra agregada a favoritos' % cancionenlista)
+
+
+       
