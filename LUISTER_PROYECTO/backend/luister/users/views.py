@@ -10,7 +10,8 @@ from django_rest_passwordreset.signals import reset_password_token_created
 
 class UserViewSet(viewsets.GenericViewSet):
 
-    queryset = Users.objects.filter(is_active=True)
+    #queryset = Users.objects.filter(is_active=True)
+    queryset = Users.objects.filter()
     serializer_class = UserModelSerializer
     lookup_field = 'name'
 

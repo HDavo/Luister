@@ -1,9 +1,5 @@
-
-
 from rest_framework.permissions import BasePermission
-
 from users.models import Users
-
 
 class IsStandardUser(BasePermission):
 
@@ -18,10 +14,8 @@ class IsStandardUser(BasePermission):
             return False
         return True
 
-
 class IsRecruiterUser(BasePermission):
     
-
     def has_permission(self, request, view):
 
         try:
