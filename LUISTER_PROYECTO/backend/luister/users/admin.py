@@ -1,9 +1,5 @@
-#from django.contrib import admin
 from django.contrib.auth.models import BaseUserManager
 from django.contrib.auth import get_user_model
-#from users.models import Users
-
-#admin.site.register(Users)
 
 class UserAdmin(BaseUserManager):
 
@@ -17,5 +13,4 @@ class UserAdmin(BaseUserManager):
     )
 
     def get_by_natural_key(self, email):
-       # user = get_user_model()
         return self.get(email=email)
