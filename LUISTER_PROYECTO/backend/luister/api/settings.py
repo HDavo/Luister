@@ -4,12 +4,10 @@ import os
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-
 DEBUG = True
 SECRET_KEY = 'e%ebfx1%5ot@^nqru7!i_705qq7*@30b3-ui5ztoi8$#$p^u1d'
 
 ALLOWED_HOSTS = ['localhost','luister-website','luister.com','51.91.78.21']
-
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -66,7 +64,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'api.wsgi.application'
 
-
 DATABASES = {
     'default': {
     'ENGINE': 'django.db.backends.mysql',
@@ -77,8 +74,6 @@ DATABASES = {
     'PORT': '3306'
     }
 }
-
-
 
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -95,8 +90,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
-
 LANGUAGE_CODE = 'es-es'
 
 TIME_ZONE = 'UTC'
@@ -107,15 +100,12 @@ USE_L10N = True
 
 USE_TZ = True
 
-
-
 STATIC_URL = '/static/'
 
-AUTH_USER_MODEL = 'users.User'
+AUTH_USER_MODEL = 'users.Users'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
-
 
 REST_FRAMEWORK = {
     'DEFAULT_RENDERER_CLASSES': (
