@@ -18,14 +18,17 @@ class UserViewSet(viewsets.GenericViewSet):
     @action(detail=False, methods=['post'])
     def login(self, request):
         serializer = UserLoginSerializer(data=request.data)
-        #serializer.is_valid(raise_exception=True)
-        user, token = serializer.save()
-        data = {
-            'user': UserModelSerializer(user).data,
-            'access_token': token
-        }
-       
-        return Response(data, status=status.HTTP_201_CREATED)
+        is_valid = serializer.is_valid(raise_exception=True)
+        if is_valid:
+            user, token = serializer.save()
+            data = {
+                'user': UserModelSerializer(user).data,
+                'access_token': token
+            }
+            return Response(data, status=status.HTTP_201_CREATED)
+        else:
+            errors = serializer.errors
+            return Response(errors, status=status.HTTP_400_BAD_REQUEST)
     
     @action(detail=False, methods=['post'])
     def signup(self, request):
