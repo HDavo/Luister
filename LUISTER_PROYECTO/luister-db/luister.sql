@@ -12,7 +12,8 @@ CREATE TABLE `users` (
   `id` INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
   `name` VARCHAR(25) NOT NULL,
   `email` VARCHAR(55) NOT NULL,
-  `password` BLOB NOT NULL,
+  `password` VARCHAR(255) NOT NULL,
+  `last_login` DATETIME DEFAULT NULL,
   `creationdate` DATETIME NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -75,7 +76,7 @@ CREATE TABLE `followedartists` (
 
 CREATE TABLE `passwordresettokens` (
   `id` INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  `value` BLOB NOT NULL,
+  `value` VARCHAR(255) NOT NULL,
   `userid` INT(11) NOT NULL,
   `creationdate` DATETIME NOT NULL DEFAULT current_timestamp(),
   `expirationdate` DATETIME NOT NULL,
@@ -89,7 +90,7 @@ DELIMITER ;
 
 CREATE TABLE `sessions` (
   `id` INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  `token` BLOB NOT NULL,
+  `token` VARCHAR(255) NOT NULL,
   `userid` INT(11) NOT NULL,
   `device` VARCHAR(255) NOT NULL,
   `creationdate` DATETIME NOT NULL DEFAULT current_timestamp(),

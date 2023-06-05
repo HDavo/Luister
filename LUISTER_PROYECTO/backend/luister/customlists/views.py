@@ -5,11 +5,13 @@ from users.permissions import IsStandardUser
 from customlists.serializers import (CustomlistModelSerializer, CustomlistSerializer)
 from customlists.models import Customlists
 
-class CustomlistViewSet(mixins.ListModelMixin,
-                        mixins.CreateModelMixin,
-                        mixins.UpdateModelMixin,
-                        mixins.DestroyModelMixin,
-                        viewsets.GenericViewSet):
+class CustomlistViewSet(
+    mixins.ListModelMixin,
+    mixins.CreateModelMixin,
+    mixins.UpdateModelMixin,
+    mixins.DestroyModelMixin,
+    viewsets.GenericViewSet
+    ):
 
     serializer_class = CustomlistModelSerializer
 
