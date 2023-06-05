@@ -1,9 +1,9 @@
 from rest_framework import serializers
-from customlists.models import Customlist
+from customlists.models import Customlists
 
 class CustomlistModelSerializer(serializers.ModelSerializer):
     class Meta: 
-        model = Customlist
+        model = Customlists
         fields = (
             'id',
             'title',
@@ -21,5 +21,5 @@ class CustomlistSerializer(serializers.Serializer):
     creationdate = serializers.DateTimeField()
 
     def create(self, data):
-        customlist = Customlist.objects.create(**data)
+        customlist = Customlists.objects.create(**data)
         return customlist

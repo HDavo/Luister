@@ -2,7 +2,7 @@
 
 from rest_framework.permissions import BasePermission
 
-from users.models import User
+from users.models import Users
 
 
 class IsStandardUser(BasePermission):
@@ -10,11 +10,11 @@ class IsStandardUser(BasePermission):
     def has_permission(self, request, view):
 
         try:
-            user = User.objects.get(
+            user = Users.objects.get(
                 email=request.user,
                 is_recruiter=False
             )
-        except User.DoesNotExist:
+        except Users.DoesNotExist:
             return False
         return True
 
@@ -25,10 +25,10 @@ class IsRecruiterUser(BasePermission):
     def has_permission(self, request, view):
 
         try:
-            user = User.objects.get(
+            user = Users.objects.get(
                 email=request.user,
                 is_recruiter=True
             )
-        except User.DoesNotExist:
+        except Users.DoesNotExist:
             return False
         return True

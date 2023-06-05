@@ -1,9 +1,9 @@
 from django.contrib import admin
 
 
-from favoritetracks.models import FavoriteTrack
+from favoritetracks.models import FavoriteTracks
 
 class FavoriteTrackAdmin(admin.ModelAdmin):
     list_display = ('id', 'token', 'userid',)
 
-admin.site.register(FavoriteTrack)
+admin.site.register(FavoriteTracks)
