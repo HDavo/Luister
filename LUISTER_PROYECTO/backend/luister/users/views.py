@@ -18,7 +18,7 @@ class UserViewSet(viewsets.GenericViewSet):
     @action(detail=False, methods=['post'])
     def login(self, request):
         serializer = UserLoginSerializer(data=request.data)
-        serializer.is_valid(raise_exception=True)
+        serializer.validate(raise_exception=True)
         user, token = serializer.save()
         data = {
             'user': UserModelSerializer(user).data,

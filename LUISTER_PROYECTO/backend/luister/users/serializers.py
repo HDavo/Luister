@@ -23,7 +23,7 @@ class UserModelSerializer(serializers.ModelSerializer):
 class UserLoginSerializer(serializers.Serializer):
 
     email = serializers.EmailField()
-    password = serializers.CharField(min_length=8, max_length=64)
+    password = serializers.CharField(min_length=6, max_length=64)
 
     def validate(self, data):
 
@@ -38,7 +38,6 @@ class UserLoginSerializer(serializers.Serializer):
         
         token, created = Token.objects.get_or_create(user=self.context['user'])
         return self.context['user'], token.key
-
 
 class UserSignUpSerializer(serializers.Serializer):
 
