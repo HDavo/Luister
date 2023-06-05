@@ -22,7 +22,7 @@ class UserModelSerializer(serializers.ModelSerializer):
     
 class UserLoginSerializer(serializers.Serializer):
 
-    email = serializers.CharField()
+    email = serializers.EmailField()
     password = serializers.CharField(min_length=6, max_length=64)
 
     def validate(self, data):
