@@ -8,7 +8,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DEBUG = True
 SECRET_KEY = 'e%ebfx1%5ot@^nqru7!i_705qq7*@30b3-ui5ztoi8$#$p^u1d'
 
-ALLOWED_HOSTS = ['localhost']
+ALLOWED_HOSTS = ['localhost','luister-website','luister.com','51.91.78.21']
 
 
 INSTALLED_APPS = [

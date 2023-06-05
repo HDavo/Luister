@@ -43,7 +43,7 @@ INSERT INTO `customlists` (`id`, `title`, `description`, `image`, `userid`, `cre
 
 CREATE TABLE `customlisttracks` (
   `id` INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  `title` VARCHAR(55) NOT NULL,
+  `title` VARCHAR(255) NOT NULL,
   `artists` TEXT(255) NOT NULL,
   `album` JSON NOT NULL,
   `customlistid` INT(11) NOT NULL,

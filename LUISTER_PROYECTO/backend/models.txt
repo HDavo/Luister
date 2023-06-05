@@ -1,0 +1,133 @@
+from django.db import models
+
+
+class Customlists(models.Model):
+    title = models.CharField(max_length=55)
+    description = models.TextField()
+    image = models.CharField(max_length=100, blank=True, null=True)
+    userid = models.ForeignKey('Users', models.DO_NOTHING, db_column='userid')
+    creationdate = models.DateTimeField()
+
+    class Meta:
+        managed = False
+        db_table = 'customlists'
+        unique_together = (('title', 'userid'),)
+
+
+class Customlisttracks(models.Model):
+    title = models.CharField(max_length=255)
+    artists = models.TextField()
+    album = models.TextField()  # This field type is a guess.
+    customlistid = models.ForeignKey(Customlists, models.DO_NOTHING, db_column='customlistid')
+    lookupkey = models.CharField(max_length=100)
+    includedon = models.DateTimeField()
+
+    class Meta:
+        managed = False
+        db_table = 'customlisttracks'
+
+
+class DjangoAdminLog(models.Model):
+    action_time = models.DateTimeField()
+    object_id = models.TextField(blank=True, null=True)
+    object_repr = models.CharField(max_length=200)
+    action_flag = models.PositiveSmallIntegerField()
+    change_message = models.TextField()
+    content_type = models.ForeignKey('DjangoContentType', models.DO_NOTHING, blank=True, null=True)
+    user_id = models.IntegerField()
+
+    class Meta:
+        managed = False
+        db_table = 'django_admin_log'
+
+
+class DjangoContentType(models.Model):
+    name = models.CharField(max_length=100)
+    app_label = models.CharField(max_length=100)
+    model = models.CharField(max_length=100)
+
+    class Meta:
+        managed = False
+        db_table = 'django_content_type'
+        unique_together = (('app_label', 'model'),)
+
+
+class DjangoMigrations(models.Model):
+    app = models.CharField(max_length=255)
+    name = models.CharField(max_length=255)
+    applied = models.DateTimeField()
+
+    class Meta:
+        managed = False
+        db_table = 'django_migrations'
+
+
+class Favoritetracks(models.Model):
+    title = models.CharField(max_length=255)
+    artists = models.TextField()
+    album = models.TextField()  # This field type is a guess.
+    userid = models.ForeignKey('Users', models.DO_NOTHING, db_column='userid')
+    lookupkey = models.TextField()
+    includedon = models.DateTimeField()
+
+    class Meta:
+        managed = False
+        db_table = 'favoritetracks'
+
+
+class Followedartists(models.Model):
+    name = models.CharField(max_length=25)
+    image = models.TextField()
+    follower = models.ForeignKey('Users', models.DO_NOTHING, db_column='follower')
+    lookupkey = models.TextField()
+    followedon = models.DateTimeField()
+
+    class Meta:
+        managed = False
+        db_table = 'followedartists'
+        unique_together = (('name', 'follower'),)
+
+
+class Passwordresettokens(models.Model):
+    value = models.TextField()
+    userid = models.ForeignKey('Users', models.DO_NOTHING, db_column='userid')
+    creationdate = models.DateTimeField()
+    expirationdate = models.DateTimeField()
+
+    class Meta:
+        managed = False
+        db_table = 'passwordresettokens'
+
+
+class Sessions(models.Model):
+    token = models.TextField()
+    userid = models.ForeignKey('Users', models.DO_NOTHING, db_column='userid')
+    device = models.CharField(max_length=255)
+    creationdate = models.DateTimeField()
+    expirationdate = models.DateTimeField()
+
+    class Meta:
+        managed = False
+        db_table = 'sessions'
+
+
+class Users(models.Model):
+    name = models.CharField(max_length=25)
+    email = models.CharField(unique=True, max_length=55)
+    password = models.TextField()
+    creationdate = models.DateTimeField()
+
+    class Meta:
+        managed = False
+        db_table = 'users'
+
+
+class Usersettings(models.Model):
+    key = models.CharField(max_length=25)
+    value = models.IntegerField()
+    userid = models.ForeignKey(Users, models.DO_NOTHING, db_column='userid')
+
+    class Meta:
+        managed = False
+        db_table = 'usersettings'
+        unique_together = (('key', 'value', 'userid'),)

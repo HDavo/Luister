@@ -1,34 +1,25 @@
-
-
 from rest_framework import serializers
-
 from customlists.models import Customlist
 
-
 class CustomlistModelSerializer(serializers.ModelSerializer):
-
-
-    class Meta:
-     
-
+    class Meta: 
         model = Customlist
         fields = (
-            'pk',
+            'id',
             'title',
             'description',
             'image',
-            'creation',
+            'userid',
+            'creationdate',
         )
 
 class CustomlistSerializer(serializers.Serializer):
-
     userid = serializers.HiddenField(default=serializers.CurrentUserDefault())
-    title = serializers.CharField(max_length=250)
+    title = serializers.CharField(max_length=255)
     description = serializers.CharField(allow_null=True)
     image = serializers.ImageField(max_length=None, use_url=True, allow_null=True, required=False)
-    creation = serializers.DateTimeField()
+    creationdate = serializers.DateTimeField()
 
     def create(self, data):
-
         customlist = Customlist.objects.create(**data)
         return customlist
