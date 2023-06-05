@@ -4,12 +4,16 @@ from users.models import Users
 
 admin.site.register(Users)
 
-class UserAdmin(admin.ModelAdmin):
+class UserAdmin(BaseUserManager):
 
     list_display = ('id', 'name', 'email',)
     list_display_links = ('id', 'name', 'email',)
 
     search_fields = ('email', 'name',)
+
+    fieldsets = (
+        ('Credenciales', {'fields': ('username', 'password')}),
+    )
 
     def get_by_natural_key(self, name):
         return self.get(name=name)
