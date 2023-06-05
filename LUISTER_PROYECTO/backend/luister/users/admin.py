@@ -16,6 +16,6 @@ class UserAdmin(BaseUserManager):
         ('Credenciales', {'fields': ('username', 'password')}),
     )
 
-    def get_by_natural_key(self, name):
-        user = get_user_model()
-        return self.get(**{user.name: name})
+    def get_by_natural_key(self, email):
+       # user = get_user_model()
+        return self.get(email=email)
