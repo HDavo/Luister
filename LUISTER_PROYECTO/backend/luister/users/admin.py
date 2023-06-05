@@ -1,8 +1,9 @@
-from django.contrib import admin
+#from django.contrib import admin
 from django.contrib.auth.models import BaseUserManager
-from users.models import Users
+from django.contrib.auth import get_user_model
+#from users.models import Users
 
-admin.site.register(Users)
+#admin.site.register(Users)
 
 class UserAdmin(BaseUserManager):
 
@@ -16,13 +17,5 @@ class UserAdmin(BaseUserManager):
     )
 
     def get_by_natural_key(self, name):
-        return self.get(name=name)
-
-    # list_filter = (
-    #     'is_active',
-    #     'is_staff',
-    #     'date_joined',
-    #     'modified',
-    # )
-
-    #readonly_fields = ('date_joined', 'modified',)
+        user = get_user_model()
+        return self.get(**{user.name: name})
