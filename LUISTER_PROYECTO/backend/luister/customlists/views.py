@@ -1,7 +1,7 @@
 from rest_framework import mixins, status, viewsets
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
-from users.permissions import IsStandardUser
+#from users.permissions import IsStandardUser
 from customlists.serializers import (CustomlistModelSerializer, CustomlistSerializer)
 from customlists.models import Customlists
 
@@ -16,7 +16,8 @@ class CustomlistViewSet(
     serializer_class = CustomlistModelSerializer
 
     def get_permissions(self):
-        permission_classes = [IsAuthenticated, IsStandardUser]
+        #permission_classes = [IsAuthenticated, IsStandardUser]
+        permission_classes = [IsAuthenticated]
         return [permission() for permission in permission_classes]
 
     def get_queryset(self):
