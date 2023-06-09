@@ -11,19 +11,25 @@
         <input type="text" formControlName="name" placeholder="Introduce tu nombre">
       </div>
       <div class="infvalid-field-value">
-        <span *ngIf="!isValid('name')">Nombre no válido</span>
+        <span *ngIf="isValid('name')">Nombre no válido</span>
       </div>
       <div class="form-field-container">
         <span>Email</span>
         <input type="text" formControlName="email" placeholder="Introduce tu correo electrónico">
       </div>
       <div class="infvalid-field-value">
-        <span *ngIf="!isValid('email')">Email no válido</span>
+        <span *ngIf="isValid('email')">Email no válido</span>
       </div>
       <div class="consent-container">
         <input type="checkbox" formControlName="consent" id="consent">
         <label for="consent">Aceptar los términos y condiciones</label>
+        <br>
+        <div class="infvalid-field-value">
+          <span *ngIf="isValid('consent')">Tienes que aceptar los términos y condiciones</span>
+        </div>
+  
       </div>
+      <br>
       <div class="form-bottom-fields">
         <input type="submit" class="send-button" value="Registrarse"
           [disabled]="!signUpForm.valid">

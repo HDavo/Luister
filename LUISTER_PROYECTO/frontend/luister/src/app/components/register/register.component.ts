@@ -13,12 +13,14 @@ export class RegisterComponent {
     name: ['', [Validators.required, Validators.pattern(this.validator.namePattern)]],
     email: ['', [Validators.required, Validators.pattern(this.validator.emailPattern)]],
     consent: [false, [Validators.requiredTrue]]
-  },{
-    validators: [
-      this.validator.EqualFields('password', 'password2')
-    ]
-    
   });
+  // {
+  //   validators: [
+  //     this.validator.EqualFields('password', 'password2')
+  //   ]
+    
+  // }
+  // );
 
   constructor(
     private fb: FormBuilder,

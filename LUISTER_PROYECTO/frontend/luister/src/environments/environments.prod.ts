@@ -7,8 +7,8 @@ export const environment = {
     SID: 'be4da263ec534f46bdf841e70bcf5f94',
     sfyKU: '/api1/api/token/',
     sfyKUH: { 'Content-Type': 'application/x-www-form-urlencoded' },
-    webapi: 'http://luister-webapi/',
-    altwebapi: 'http://luister-altwebapi/',
+    webapi: 'https://luister-webapi/',
+    altwebapi: 'https://luister-altwebapi/',
     lastFmKey: 'e6ecb63ac11f019d2196c8a10c2279bd',
     lastFmUrl: 'http://ws.audioscrobbler.com/2.0/'
   };

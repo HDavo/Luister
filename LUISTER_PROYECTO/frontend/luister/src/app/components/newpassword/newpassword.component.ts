@@ -15,7 +15,13 @@ export class NewpasswordComponent {
   public setPasswordForm: FormGroup = this.formBuilder.group({
     password: ['',[Validators.required]],
     passwordrepeat: ['',[Validators.required]]
-  })
+  },
+  {
+      validators: [
+        this.validator.EqualFields('password', 'password2')
+      ]    
+  }
+  );
 
   constructor(
     route: ActivatedRoute,

@@ -8,7 +8,8 @@ export class ValidationsService {
 
   constructor() { }
 
-  public namePattern: string = '([a-zA-Z0-9_-]{12}+[a-zA-Z0-9_-]{13})'; 
+  // public namePattern: string = '([a-zA-Z0-9_- ]{12}'; 
+  public namePattern: string = "^[a-zA-Z0-9_-\w ]{4,25}$"; 
   public emailPattern: string = "^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$";
 
   //TODO: poner el servicio en funcionamiento dentro de las páginas de reactive (hasta ahora con las validaciones en el propio fichero)
@@ -27,7 +28,8 @@ export class ValidationsService {
   }
 
   public validField( form: FormGroup, field: string): boolean | null {
-      return !(form.controls[field].errors && form.controls[field].touched);
+    const control = form.controls[field];
+    return control.errors && (control.touched || control.dirty);
   }
 
 

@@ -49,7 +49,7 @@ const routes: Routes = [
   {
     path: 'signup',
     component: RegisterComponent,
-    canActivate: [authGuard]
+    // canActivate: [authGuard]
   },
   {
     path: 'set-your-password/:token',
