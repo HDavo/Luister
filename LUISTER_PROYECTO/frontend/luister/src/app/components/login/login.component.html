@@ -12,7 +12,7 @@
         placeholder="Correo electrónico">
     </div> 
     <div class="validation-caption">
-      <span *ngIf="!isValid('email',signInForm)">Correo no válido</span>
+      <span *ngIf="isValid('email',signInForm)">Correo no válido</span>
     </div>    
     <div class="form-field-cont">
       <span class="password-field-icon"></span>
@@ -22,7 +22,7 @@
         placeholder="Contraseña">
     </div>
       <div class="validation-caption">
-        <span *ngIf="!isValid('password',signInForm)">Contraseña no correcta</span>
+        <span *ngIf="isValid('password',signInForm)">Contraseña no correcta</span>
       </div>
     <div class="form-bottom-caption">
       <input class="login-button" type="submit" value="Iniciar de sesión">

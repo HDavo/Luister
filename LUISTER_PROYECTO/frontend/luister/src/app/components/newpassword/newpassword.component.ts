@@ -18,7 +18,7 @@ export class NewpasswordComponent {
   },
   {
       validators: [
-        this.validator.EqualFields('password', 'password2')
+        this.validator.EqualFields('password', 'passwordrepeat')
       ]    
   }
   );
