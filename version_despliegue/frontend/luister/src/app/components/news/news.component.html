@@ -1,0 +1,44 @@
+<div id="pagecontainer" class="maincontainers" #asMainContainer>
+    <div id="mainpagetitle">
+        <div class="mainpagetitle-cont">
+            <h1 id="mainpagetitle-title">Novedades</h1>
+            <p id="mainpagetitle-body">
+                Mantente al día de los nuevos lanzamientos. <br>
+                Todas las canciones nuevas y los álbumes más recientes de tus artistas y grupos favoritos a tu disposición.
+            </p>
+        </div>
+    </div>
+
+    <div class="page-section" #releasescontainer>
+        <h2 class="page-section-title">Nuevos lanzamientos</h2>
+        <div class="page-section-content" #releases>
+            <div class="page-section-element" *ngFor="let album of popAlbums.data" #album id="{{album.id}}" ctm="album">
+                <img *ngIf="album.img; else defaultimg" class='image album-image' src="{{album.img}}" alt="{{album.name}}">
+                <figcaption class="fig-caption" *ngIf="album.a_type == 'single'; else albumfigcaption"> Canción </figcaption>
+                <ng-template #albumfigcaption>
+                    <figcaption class="fig-caption"> Album </figcaption>
+                </ng-template>
+                <ng-template #defaultimg>
+                    <img class='image album-image' src="https://c8.alamy.com/compes/2e2kkm2/notas-musicales-con-placa-musical-sobre-fondo-blanco-musica-abstracta-fondo-de-disco-2e2kkm2.jpg" alt="{{album.name}}">
+                    <figcaption class="fig-caption" *ngIf="album.a_type == 'single'; else albumfigcaption"> Canción </figcaption>
+                    <ng-template #albumfigcaption>
+                        <figcaption class="fig-caption"> Album </figcaption>
+                    </ng-template>
+                </ng-template>
+                <p class="card-title" >
+                    <a routerLink="/details/album/{{album.id}}">{{album.name}}</a>
+                </p>
+                <p class="card-description">
+                    <span *ngFor="let artist of album.artists; let i = index">
+                        <span *ngIf="i != 0"> ft </span> 
+                        <a routerLink="/details/artist/{{artist.id}}"
+                            ctm="artist" id="{{artist.id}}">
+                            {{artist.name}}
+                        </a>
+                    </span>
+                </p>
+            </div>
+        </div>
+    </div>
+
+</div>

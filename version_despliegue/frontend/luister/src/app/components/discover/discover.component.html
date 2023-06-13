@@ -1,0 +1,225 @@
+<div id="pagecontainer" class="maincontainers">
+
+    <div class="search-container">
+        <div class="search-field-shadow">
+            <input type="text" name="search" 
+                id="search-field" [(ngModel)]="searchLabel" 
+                class="search-field" autocomplete="off" 
+                placeholder="¿Qué te apetece escuchar?" (ngModelChange)="getData($event)">
+        </div>
+    </div>
+
+    <div class="search-filter-container">
+        <select name="platforms" class="filter filter-platform" [(ngModel)]="platform" (ngModelChange)="getData($event)">
+            <option value="sfy" selected>Spotify</option>
+            <option value="dzr">Deezer</option>
+        </select>
+        <select name="elements" class="filter filter-element" [(ngModel)]="elements">
+            <option value="all" selected>Todo</option>
+            <option value="track">Canciones</option>
+            <option value="album">Álbumes</option>
+            <option value="artist">Artistas</option>
+        </select>
+    </div>
+
+    <div class="search-page-default-body" *ngIf="searchFullResults == null; else searchresults">
+        Puedes introducir tus criterios de búsqueda en el campo para dar con
+        las canciones, artistas o álbumes que desees encontrar.
+    </div>
+
+    <ng-template #searchresults>
+
+        <div *ngIf="elements == 'all'" class="page-section">
+            <div class="main-search-results">
+                <div *ngIf="mainResult.id" class="main-elements-container"> <h1>Resultado principal</h1>
+                    <div class="first-element">
+                        <div class="fe-img-cont" *ngIf="mainResult.type != 'artist'; else roundfeimage">
+                            <img src="{{mainResult.img}}" alt="image">
+                        </div>
+                        <ng-template #roundfeimage>
+                            <div class="fe-img-cont roundfeimage">
+                                <img src="{{mainResult.img}}" alt="image">
+                            </div>
+                        </ng-template>
+                        <div class="fe-tittle-extra-cont">
+                            <div class="fe-title">
+                                <a routerLink="/details/{{mainResult.type}}/{{mainResult.id}}">{{mainResult.name}}</a>
+                            </div>
+                            <div class="fe-element-extra">
+                                <span class="fee-extra">
+                                    {{ mainResult.extra}}
+                                </span>
+                                <span class="fee-type">
+                                    {{ captions[mainResult.type]}}
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div *ngIf="tracks.length > 0" class="main-elements-container"><h1>Canciones</h1>
+                    <div class="tracks-elements">
+                        <div class="main-track-found" *ngFor="let track of tracks.slice(0,3)" id="{{track.id}}">
+                            <div class="mtf-img-container">
+                                <img src="{{track.album.img}}" alt="">
+                            </div>
+                            <span class="mtf-type">{{captions[track.type]}}</span>
+                            <span class="mtf-title">
+                                <a routerLink="/details/{{track.type}}/{{track.id}}" ctm="track">{{track.name}}</a>
+                            </span>
+                            <span class="mtf-artists">
+                                <a *ngFor="let artist of track.artists; let i = index" routerLink="/details/artist/{{artist.id}}" ctm="artist" id="{{artist.id}}">
+                                    <span *ngIf="i != 0"> & </span> {{artist.name}}
+                                </a>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <div *ngIf="albums.length > 0" class="main-elements-container"><h1>Albumes</h1>
+                    <div class="msr-albums-elements">
+                        <div class="msr-ae-elements" *ngFor="let album of albums.slice(0,6)" ctm="album" id="{{album.id}}">
+                            <div class="ae-img-cont">
+                                <img *ngIf="album.img; else defaultimage" src="{{album.img}}" alt="album">
+                                <ng-template #defaultimage>
+                                    <img src="../../../assets/images/default-custom-list.png" alt="album">
+                                </ng-template>
+                            </div>
+                            <div class="msr-ae-type">{{captions[album.type]}}</div>
+                            <div class="msr-ae-info">
+                                <span class="msr-ae-info-title">
+                                    <a routerLink="/details/{{album.type}}/{{album.id}}" ctm="album" id="{{album.id}}">{{album.name}}</a>
+                                </span>
+                                
+                                <span class="msr-ae-info-artists">
+                                   <a *ngFor="let artist of album.artists; let i = index"
+                                    routerLink="/details/artist/{{artist.id}}"
+                                    ctm="artist" id="{{artist.id}}">
+                                    <span *ngIf="i != 0"> & </span>
+                                    {{artist.name}}
+                                    </a>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div  class="mra-main-title">
+                <h1>Artistas</h1>
+            </div>
+
+            <div *ngIf="artists.length > 0" class="more-results-artists" #asArtistsCarrusel>
+                <div class="artist-tape">
+                    <div *ngFor="let artist of artists" class="mra-element" id="{{artist.id}}" ctm="artist">
+                        <img src="{{artist.img}}" alt="{{artist.name}}" class="mrae-image">
+                        <div>
+                            <a class="mrae-title" routerLink="/details/{{artist.type}}/{{artist.id}}">{{artist.name}}</a>
+                            <div class="artist-genre-content">
+                                <span *ngFor="let genre of artist.genres; let i = index" class="genre-container">
+                                    <span *ngIf="i != 0"> - </span> {{genre}}
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div *ngIf="elements == 'all'" class="secundary-result">
+            <h1 class="secundary-result-title">Mas resultados</h1>
+            <p class="secundary-result-info">
+                A continuación, podrás encontrar más resultados referentes a tu búsqueda.
+            </p>
+
+            <div class="page-section">
+                <h1 class="ps-title">Canciones</h1>
+                <div class="page-section-content">
+                    <div class="ps-element" *ngFor="let track of tracks" #track ctm="track" id="{{track.id}}">
+                        <div class="another-image">
+                            <img *ngIf="track.album.img; else defaultimg" src="{{track.album.img}}" alt="{{track.name}}">
+                        </div>
+        
+                        <ng-template #defaultimg>
+                            <div class="another-image">
+                                <img src="https://c8.alamy.com/compes/2e2kkm2/notas-musicales-con-placa-musical-sobre-fondo-blanco-musica-abstracta-fondo-de-disco-2e2kkm2.jpg" alt="{{track.name}}">
+                            </div>
+                        </ng-template>
+                        <div>
+                            <a routerLink="/details/{{track.type}}/{{track.id}}" class="pse-card-album-name"> {{track.name}} </a>
+                            <div>
+                                <span class="pse-card-track-artists" *ngFor="let artist of track.artists; let i = index"> 
+                                   <i class="ft" *ngIf="i != 0"> Ft </i> <a routerLink="/details/artist/{{artist.id}}" ctm="artist" id="{{artist.id}}">{{artist.name}}</a>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <h1 class="album-carusel-title">Álbumes</h1>
+            <div class="album-carusel-container">
+                <div class="album-carusel-tape">
+                    <div class="ac-tape-element" *ngFor="let album of albums" #album id="{{album.id}}" ctm="album">
+                        <img *ngIf="album.img; else defaultimg" class='ac-tape-e-image' src="{{album.img}}" alt="{{album.name}}">
+                        <ng-template #defaultimg>
+                            <img class='ac-tape-e-image' src="https://c8.alamy.com/compes/2e2kkm2/notas-musicales-con-placa-musical-sobre-fondo-blanco-musica-abstracta-fondo-de-disco-2e2kkm2.jpg" alt="{{album.name}}">
+                        </ng-template>
+                        <div class="ac-tape-e-caption">
+                            <a class="ac-tape-e-title" routerLink="/details/album/{{album.id}}"> {{album.name}} &nbsp;</a>
+                            <span class="ac-tape-e-description">Álbum</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        
+        <div *ngIf="elements == 'artist' && artists" class="page-section">
+            <h2 class="page-section-title">Artistas</h2>
+            <div class="page-section-content">
+                <div class="page-section-element" *ngFor="let artist of artists" id="{{artist.id}}" #pagesectionelement ctm="artist">
+                    <img *ngIf="artist.img; else defaultimg" class='image artist-image' src="{{artist.img}}" alt="{{artist.type}} {{artist.name}}">
+                    <ng-template #defaultimg>
+                        <img class='image artist-image' src="https://c8.alamy.com/compes/2e2kkm2/notas-musicales-con-placa-musical-sobre-fondo-blanco-musica-abstracta-fondo-de-disco-2e2kkm2.jpg" alt="{{artist.type}} {{artist.name}}">
+                    </ng-template>
+                    <span class="card-title">
+                        <a routerLink="/details/artist/{{artist.id}}" ctm="artist">{{artist.name}}</a>
+                    </span>
+                    <span class="card-description"> Artista </span>
+                </div>
+            </div>
+        </div>
+
+        <div *ngIf="elements == 'album' && albums" class="page-section">
+            <h2 class="page-section-title">Álbumes</h2>
+            <div class="page-section-content">
+                <div class="page-section-element" #pagesectionelement *ngFor="let album of albums" id="{{album.id}}" ctm="album">
+                    <img *ngIf="album.img; else defaultimg" class='image album-image' src="{{album.img}}" alt="{{album.name}}">
+                    <ng-template #defaultimg>
+                        <img class='image artist-image' src="https://c8.alamy.com/compes/2e2kkm2/notas-musicales-con-placa-musical-sobre-fondo-blanco-musica-abstracta-fondo-de-disco-2e2kkm2.jpg" alt="{{album.name}}">
+                    </ng-template>
+                    <a class="card-title" routerLink="/details/album/{{album.id}}" ctm="album"> {{album.name}} </a>
+                    <p class="card-description" >Album</p>
+                </div>
+            </div>
+        </div>
+
+        <div *ngIf="elements == 'track' && tracks" class="page-section">
+            <h2 class="page-section-title">Canciones</h2>
+            <div class="page-section-content">
+                <div class="page-section-element" #pagesectionelement *ngFor="let track of tracks" id="{{track.id}}" ctm="track">
+                    <img *ngIf="track.album.img; else defaultimg" class='image album-image' src="{{track.album.img}}" alt="{{track.name}}">
+                    <ng-template #defaultimg>
+                        <img class='image artist-image' src="https://c8.alamy.com/compes/2e2kkm2/notas-musicales-con-placa-musical-sobre-fondo-blanco-musica-abstracta-fondo-de-disco-2e2kkm2.jpg" alt="{{track.name}}">
+                    </ng-template>
+                    <a class="card-title" routerLink="/details/track/{{track.id}}" ctm="track"> {{track.name}} </a>
+                    <p class="card-description" >Canción</p>
+                </div>
+            </div>
+        </div>
+
+    </ng-template>
+
+</div>
+

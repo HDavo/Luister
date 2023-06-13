@@ -1,0 +1,35 @@
+<div id="pagecontainer" class="maincontainers">
+  <form [formGroup]="contactForm" (ngSubmit)="onSubmit()">
+  <div class="contact-form">
+    <h1>Contacte con nosotros</h1>
+    <div class="form-field-container">
+      <span>Nombre</span>
+      <input type="text" formControlName="name" placeholder="Introduzca su nombre">
+    </div>
+    <div class="infvalid-field-value">
+      <span *ngIf="isValid('name')">Nombre no válido</span>
+    </div>
+    <div class="form-field-container">
+      <span>Email</span>
+      <input type="text" formControlName="email" placeholder="Introduzca su correo electrónico">
+    </div>
+    <div class="infvalid-field-value">
+      <span *ngIf="isValid('email')">Email no válido</span>
+    </div>
+    <div class="form-field-container">
+      <span>Asunto</span>
+      <input type="text" formControlName="subject" placeholder="Asunto">
+    </div>
+    <div class="infvalid-field-value">
+      <span *ngIf="isValid('subject')">Introduzca un asunto</span>
+    </div>
+
+    <div class="container-description">
+      <span>Descripción</span>
+      <textarea class="description" formControlName="description" placeholder="Escriba aquí su problema"></textarea>
+    </div>
+    <button type="submit" mat-raised-button color="primary" [disabled]="contactForm.invalid">Enviar</button>
+
+  </div>
+</form>
+</div>

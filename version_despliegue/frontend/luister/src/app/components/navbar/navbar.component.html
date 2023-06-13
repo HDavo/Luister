@@ -1,0 +1,79 @@
+<nav id='navigationbar' class="maincontainers">
+    <div class="all-nav-menu-container">
+        <div class="menu" id="logo">
+            <span> <a #asMenu id="luister-logo" routerLink="/" routerLinkActive="logo-selected">{{ title }}</a></span>
+        </div>
+        <ul id="menucontainer">
+            <li class="menu">
+                <span><a #asMenu routerLink="/news" routerLinkActive="page-selected"> Novedades </a></span>
+            </li>
+            <li class="menu">
+                <span> <a #asMenu routerLink="/popular" routerLinkActive="page-selected"> Popular </a></span>
+            </li>
+            <li class="menu">
+                <span> <a #asMenu routerLink="/library" routerLinkActive="page-selected"> Biblioteca </a></span>
+            </li>
+            <li class="menu">
+                <span> <a #asMenu routerLink="/discover" routerLinkActive="page-selected"> Descubrir </a></span>
+            </li>
+        </ul>
+        <div class="menu" id="userSession">
+            <button routerLink="/signin" mat-raised-button color="primary" *ngIf="!username; else profile">
+                Iniciar sesión
+              </button>
+            <ng-template #profile>
+                <ul class="profile-container">
+                    <li class="profile-container-caption">
+                        <span>{{username | titlecase}} </span>
+                        <ul class="pc-menu">
+                            <li class="pc-menu-element">
+                                <a routerLink="/user/profile">Perfil</a>
+                            </li>
+                            <li class="pc-menu-element">
+                                <a routerLink="/user/settings">Configuración</a>
+                            </li>
+                            <li class="pc-menu-element logout" (click)="logOut()">Cerrar sesión</li>
+                        </ul>
+                    </li>
+                </ul>
+            </ng-template>
+        </div>
+    </div>
+</nav>
+
+<nav class="mobile-navbar">
+    <div class="mobile-menu mobile-logo" (click)="mobileBackHome()">
+      <mat-icon class="mobile-main-icons">home</mat-icon>
+      <span class="mobile-menu-option-caption">Luister</span>
+    </div>
+    
+    <ul class="mobile-menu main-menu">
+      <mat-icon (click)="mobileGridManager()" class="mobile-main-icons">apps</mat-icon>
+      <span class="mobile-menu-option-caption">Menú</span>
+      <li class="mobile-menu-container" #asGridMenuContainer>
+          <ul class="mobile-menu-grid">
+            <li class="page-like-app" routerLink="/news">
+              <mat-icon class="mobile-app-icon">new_releases</mat-icon>
+              <span class="app-caption">Novedades</span>
+            </li>
+            <li class="page-like-app" routerLink="/popular">
+              <mat-icon class="mobile-app-icon">trending_up</mat-icon>
+              <span class="app-caption">Popular</span>
+            </li>
+            <li class="page-like-app" routerLink="/library">
+              <mat-icon class="mobile-app-icon">library_music</mat-icon>
+              <span class="app-caption">Biblioteca</span>
+            </li>
+            <li class="page-like-app" routerLink="/discover">
+              <mat-icon class="mobile-app-icon">saved_search</mat-icon>
+              <span class="app-caption">Descubrir</span>
+            </li>
+          </ul>
+      </li>
+    </ul>
+    
+    <div class="mobile-menu userSession" (click)="mobileGoToUserProfile()">
+      <mat-icon class="mobile-main-icons">person</mat-icon>
+      <span class="mobile-menu-option-caption">Perfil</span>
+    </div>
+</nav>

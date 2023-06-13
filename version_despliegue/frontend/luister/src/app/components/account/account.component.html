@@ -1,0 +1,56 @@
+<div class="account-main-container">
+  <div *ngIf="location == 'profile'" class="user-data">
+    <h1 class="user-body-section-title">Datos del usuario</h1>
+    <div>
+      <h5 class="userdata-label">Nombre</h5>
+      <input class="userdata-input-field" type="text" disabled />
+      <button
+        mat-raised-button
+        color="primary"
+        (click)="updateUserData($event.target)"
+      >
+        Editar
+      </button>
+    </div>
+    <div>
+      <h5 class="userdata-label">Dir. correo electrónico</h5>
+      <input class="userdata-input-field" type="text" disabled />
+      <button
+        mat-raised-button
+        color="primary"
+        (click)="updateUserData($event.target)"
+      >
+        Editar
+      </button>
+    </div>
+  </div>
+
+  <div *ngIf="location == 'following'" class="following-section">
+    <h1 class="user-body-section-title">Artistas seguidos</h1>
+    <div class="following-artist-card-containter">
+      <div class="following-artist-card">
+        <div class="following-image-cont">
+          <img src="../../../assets/images/default-custom-list.png" alt="" />
+        </div>
+        <div class="following-artist-name">Nombre del artista</div>
+        <button class="unfollow-button">Dejar de seguir</button>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="location == 'settings'" class="settings-main-child">
+    <h1 class="user-body-section-title">Configuración</h1>
+    <div class="settings-configs">
+      <h2>Recomendaciones aleatorias</h2>
+      <p>Habilitar / deshabilitar las recomendaciones aleatorias de Luister</p>
+      <mat-slide-toggle
+        class="example-margin"
+        [color]="'primary'"
+        id="toggle"
+        (change)="toggleChange($event.checked)"
+      >
+      </mat-slide-toggle>
+      <!-- <span class="enabled" #enabledisable></span> -->
+    </div>
+  </div>
+</div>

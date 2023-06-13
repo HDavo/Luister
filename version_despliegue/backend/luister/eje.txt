@@ -1,0 +1,2 @@
+docker: Error response from daemon: Conflict. The container name "/luister-altwebapi" is already in use by container "300ffcbef41db011520d66b8f5d0233c53883c5f984567a609f9c3f947779c2a". You have to remove (or rename) that container to be able to reuse that name.
+See 'docker run --help'.
