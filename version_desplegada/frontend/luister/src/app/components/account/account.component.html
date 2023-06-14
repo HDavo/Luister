@@ -1,0 +1,59 @@
+<div class="account-main-container">
+  <div *ngIf="location == 'profile'" class="user-data">
+    <h1 class="user-body-section-title">Datos del usuario</h1>
+    <div>
+      <h5 class="userdata-label">Nombre</h5>
+      <input [(ngModel)]="username" class="userdata-input-field" type="text" disabled />
+    </div>
+    <div>
+      <h5 class="userdata-label">Dir. correo electrónico</h5>
+      <input [(ngModel)]="email" class="userdata-input-field" type="text" disabled />
+    </div>
+  </div>
+
+  <div *ngIf="location == 'profile'" class="following-section">
+    <h1 class="user-body-section-title">Artistas seguidos</h1>
+    <div class="following-artist-card-containter" *ngIf="followedArtists; else nofollowed">
+      <div class="following-artist-card" *ngFor="let artist of followedArtists">
+        <div class="following-image-cont">
+          <img src="{{artist.image}}" alt="" />
+        </div>
+        <div class="following-artist-name">{{artist.name}}</div>
+        <button class="unfollow-button" (click)="unfollow(artist.id)">Dejar de seguir</button>
+      </div>
+    </div>
+    <ng-template #nofollowed>
+      <span class="nofollowed">
+        No estás siguiendo a ningún artista
+      </span>
+    </ng-template>
+  </div>
+
+  <div *ngIf="location == 'settings'" class="settings-main-child">
+    <h1 class="user-body-section-title">Configuración</h1>
+    <div class="settings-configs">
+      <h2>Recomendaciones aleatorias</h2>
+      <label for="defaultsettings">Habilitar / deshabilitar las recomendaciones aleatorias de Luister</label>
+      <!-- <mat-slide-toggle
+        class="example-margin" [color]="'primary'" id="toggle"
+        (change)="toggleChange()">
+      </mat-slide-toggle> -->
+      <div class="checkbox-container">
+        <input [(ngModel)]="defaultsettings" type="checkbox" class="defaultsettings" name="defaultsettings" id="defaultsettings" (click)="setdefault()">
+      </div>
+    </div>
+  </div>
+
+  <div class="settings-main-child accounts-link-container">
+    <a class="accounts-links" 
+    *ngIf="location == 'profile'" 
+    routerLink="/user/settings/">Ir a ajustes de usuario</a>
+    <a class="accounts-links" 
+    *ngIf="location == 'settings'" 
+    routerLink="/user/profile/">Ir a perfil de usuario</a>
+  </div>
+
+  <button class="accounts-links-logout" 
+    *ngIf="location == 'settings'" 
+    (click)="logOut()">Cerrar sesión</button>
+</div>

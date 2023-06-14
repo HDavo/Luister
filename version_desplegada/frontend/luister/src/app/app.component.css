@@ -1,0 +1,57 @@
+.cookie-banner-container{
+    visibility: hidden;
+    width: 100%;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.719);
+    position: fixed;
+    z-index: 10;
+    top: 0;
+    left: 0;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+}
+.cookie-banner{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    row-gap: 22px;
+    width: 100%;
+    background: rgb(255, 255, 255);
+    padding: 22px 0;
+    animation: to-top3;
+    animation-duration: .6s;
+}
+.banner-info{
+    color: black;
+    font-weight: bolder;
+    font-size: 18px;
+    width: 90%;
+    max-width: 1500px;
+    font-family: 'Montserrat';
+    text-align: center;
+    color: rgb(66, 17, 64);;
+}
+.banner-button-admit{
+    max-width: 200px;
+    min-height: 33px;
+    padding: 5px 11px;
+    color: rgb(255, 255, 255);
+    background: rgb(66, 17, 64);
+    font-size: 16px;
+    cursor: pointer;
+    font-family: 'Montserrat';
+    border-radius: 3px;
+}
+
+@media screen and (min-width: 1200px) {
+    .banner-info, .banner-button-admit{
+        font-size: 28px;
+    }
+    .banner-button-admit{
+        padding: 10px 22px;
+    }
+    .cookie-banner{
+        padding-bottom: 77px;
+    }
+}

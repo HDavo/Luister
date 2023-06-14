@@ -1,0 +1,176 @@
+
+.account-main-container{
+    position: relative;
+    width: 100%;
+    min-height: calc(100vh - 444px);
+    background: black;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 77px;
+    font-family: 'Outfit';
+}
+.settings-main-child, .user-data, .following-section{
+    width: 85%;
+    max-width: 900px;
+    margin-bottom: 44px;
+}
+.settings-configs{
+    display: grid;
+    height: 77px;
+    grid-template-columns: 90% 10%;
+    grid-template-rows: 55% 45%;
+}
+.settings-configs > h2{
+    grid-column: 1/3;
+    grid-row: 1/2;
+}
+.enabled, .disabled{
+    grid-column: 2/3;
+    grid-row: 2/3;
+    align-self: center;
+    justify-self: flex-end;
+    --he: 22px;
+    position: relative;
+    width: calc(2.1 * var(--he));
+    height: var(--he);
+    border-radius: 1000px;
+    box-shadow: 0 0 5px black inset;
+    overflow: hidden;
+    cursor: pointer;
+}
+.enabled{
+    background: rgb(221, 140, 225);
+}
+.disabled{
+    background: rgb(205, 179, 219);
+}
+.enabled::after, .disabled::after{
+    position: absolute;
+    content: '';
+    aspect-ratio: 1 / 1;
+    height: 100%;
+    box-shadow: 0 0 5px black inset;
+    border-radius: 100px;
+    background: rgb(106, 35, 125);
+}
+.enabled::after{
+    left: 0%;
+}
+.disabled::after{
+    left: calc(100% - var(--he));
+}
+
+.user-body-section-title{
+    margin-bottom: 22px;
+    font-size: 44px;
+    color: rgb(172, 79, 172);
+}
+.userdata-label{
+    margin-bottom: 2px;
+    font-size: 22px;
+    color: rgb(238, 222, 241);
+}
+.userdata-input-field{
+    background: transparent;
+    border: none;
+    width: 60%;
+    min-width: 100px;
+    font-size: 33px;
+    padding: 0;
+    margin-bottom: 11px;
+    font-weight: 300;
+    outline: none;
+    color: rgb(238, 222, 241);
+}
+.userdata-edit-save-button{
+    background: rgb(62, 15, 75);
+    cursor: pointer;
+    border-radius: 3px;
+    box-shadow: 1px 1px 1px black;
+    border: none;
+    width: 77px;
+    height: 25px;
+    font-size: 16px;
+}
+.userdata-edit-save-button:active{
+    box-shadow: 1px 1px 1px black inset;
+    font-size: 15px;
+}
+
+.following-artist-card-containter{
+    display: flex;
+    column-gap: 11px;
+    row-gap: 33px;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+.following-artist-card{
+    display: grid;
+    grid-template-columns: 77px 155px;
+    column-gap: 11px;
+    grid-template-rows: 50% 50%;
+}
+.following-image-cont{
+    aspect-ratio: 1.2 / 1;
+    width: 100%;
+    overflow: hidden;
+    grid-row: 1/3;
+}
+.following-artist-name{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    color: rgb(238, 222, 241);
+}
+.unfollow-button{
+    width: fit-content;
+    background: rgb(106, 35, 125);
+    border: none;
+    cursor: pointer;
+    justify-self: flex-start;
+    height: 30px;
+    padding: 0 8px;
+}
+.accounts-links-cont{
+    height: 100px;
+    display: flex;
+    align-items: center;
+    width: 80%;
+}
+.accounts-links{
+    color: rgb(209, 120, 194);
+    cursor: pointer;
+    font-size: 25px;
+}
+.accounts-links:hover{
+    text-decoration: none;
+}
+.accounts-link-container{
+    height: 88px;
+    display: flex;
+    align-items: flex-end;
+
+}
+.accounts-links-logout{
+    background: red;
+    color: white;
+    padding: 8px 10px;
+    cursor: pointer;
+    font-size: 18px;
+    border-radius: 3px;
+}
+.nofollowed{
+    font-size: 19px;
+    color: rgb(209, 120, 120);
+    font-style: italic;
+}
+.defaultsettings{
+    height: 22px;
+    width: 22px;
+}
+.checkbox-container{
+       display: flex;
+       align-items: flex-start;
+       cursor: pointer;
+}
